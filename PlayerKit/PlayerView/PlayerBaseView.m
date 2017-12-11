@@ -7,12 +7,6 @@
 //
 
 #import "PlayerBaseView.h"
-#import "UALogger.h"
-#import "UIScreen+Extend.h"
-#import "LogParam.h"
-
-#import <ReactiveCocoa.h>
-#import <Masonry.h>
 
 @implementation PlayerBaseView
 

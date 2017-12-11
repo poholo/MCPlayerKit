@@ -5,189 +5,32 @@
 
 #import "PlayerNormalView.h"
 
-#import <ReactiveCocoa.h>
-#import <Masonry.h>
 #import <MediaPlayer/MediaPlayer.h>
-#import <WaQuBase/MMKeyChain.h>
-#import <WaQuBase/ReachabilitySession.h>
-#import <FXDanmaku/FXDanmaku.h>
 
 #import "PlayerProgress.h"
-#import "WQColorStyle.h"
 #import "PlayerTerminalView.h"
 #import "MCMediaNotify.h"
 #import "PlayerLoadingView.h"
 #import "PlayerRateBoard.h"
-#import "UIScreen+Extend.h"
-#import "UILabel+LabelSize.h"
-#import "AirplayProtocol.h"
 #import "PlayerViewControlDelegate.h"
 #import "PlayerConfig.h"
-#import "GCDQueue.h"
-#import "UIColor+Extend.h"
-#import "UIButton+BackgroundColor.h"
-#import "ViewShapeMask.h"
-#import "NSString+Size.h"
-#import "UIColor+Hex.h"
-#import "UALogger.h"
-#import "WQUserSetting.h"
-#import "MMTableView.h"
-#import "MMDto.h"
-#import "RefreshMoreTableTranslate.h"
-#import "RACSignal.h"
-#import "TableViewCell.h"
-#import "PlayerQudanLineCell.h"
-#import "MMVideoDto.h"
-#import "Video.h"
-
-#import "AppSetting.h"
-#import "UserSession.h"
-#import "LoginHelper.h"
-#import "MMAdDto.h"
-#import "PlayerPreAdView.h"
 #import "PlayerFollowView.h"
-#import "PlayerPauseView.h"
-#import "MobileSSP.h"
-#import "LogService.h"
-#import "NSString+LogWord.h"
-#import "LogParam.h"
-#import "CBAutoScrollLabel.h"
-#import "UtilsMacro.h"
-#import "SnapDto.h"
-#import "StringUtils.h"
-#import "PlayerBulletView.h"
-#import "BulletHelper.h"
+#import "PlayerKitLog.h"
 
-@protocol _DefinitionViewDelegate <NSObject>
-
-- (void)change2Normal;
-
-- (void)change2Hight;
-
-- (void)change2UHD;
-
-@end
-
-@interface _DefinitionView : UIView
-
-@property(nonatomic, strong) UIView *bgView;
-@property(nonatomic, strong) UILabel *titleLabel;
-@property(nonatomic, strong) UIButton *normalBtn;
-@property(nonatomic, strong) UIButton *hightBtn;
-@property(nonatomic, strong) UIButton *uhdBtn;
-
-@property(nonatomic, assign) BOOL hasNormal;
-@property(nonatomic, assign) BOOL hasHD;
-@property(nonatomic, assign) BOOL hasUHD;
-
-@property(nonatomic, weak) id <_DefinitionViewDelegate> delegate;
-
-- (void)selectDefinitionType:(DefinitionType)type;
-
-- (void)updateDefinitionNormal:(BOOL)hasNormal HD:(BOOL)hasHD UHD:(BOOL)hasUHD;
-
-@end
-
-
-@protocol _HobbleMentionViewDelelgate <NSObject>
-
-- (void)change2Normal;
-
-- (void)log2HobbleChange2Normal;
-
-@end
-
-
-typedef NS_ENUM(NSInteger, _HobbleMentionType) {
-    HobbleMentionDefault,
-    HobbleMentionQudianTitle
-};
-
-@interface _HobbleMentionView : UIView
-
-@property(nonatomic, assign) CGFloat xRate;
-
-@property(nonatomic, assign) _HobbleMentionType type;
-
-@property(nonatomic, strong) UIView *bgView;
-@property(nonatomic, strong) UILabel *mentionLabel;
-
-@property(nonatomic, weak) id <_HobbleMentionViewDelelgate> delegate;
-
-- (void)updateBadNet;
-
-- (void)updateMention:(NSString *)mention;
-
-@end
-
-
-//////////////////////////////////////
-
-
-@protocol _QudanListViewDelegate <NSObject>
-
-- (void)clickCell;
-
-@end
-
-@interface _QudanListViewTranslate : RefreshMoreTableTranslate
-
-@property(nonatomic, weak) id <_QudanListViewTranslateDelegate> delegate;
-@property(nonatomic, weak) id <_QudanListViewDelegate> qudanListViewDelegate;
-@property(nonatomic, assign) BOOL isRefresh;
-@property(nonatomic, strong) NSArray<MMDto *> *datas;
-@property(nonatomic, assign) NSUInteger currentPlayIndex;
-
-@property(nonatomic, strong) RACDisposable *dispose;
-
-- (instancetype)initWithEmptyTableView:(UITableView *)tableView delegate:(id <_QudanListViewTranslateDelegate>)delegate;
-
-- (void)disposeScroll;
-
-@end
-
-
-@interface _QudanListView : UIView <_QudanListViewDelegate>
-
-@property(nonatomic, strong) UIView *bgView;
-@property(nonatomic, strong) UITableView *tableView;
-@property(nonatomic, strong) _QudanListViewTranslate *translate;
-
-- (instancetype)initWithFrame:(CGRect)frame delegate:(id <_QudanListViewTranslateDelegate>)delegate;
-
-@end
 
 ////////////////////////////////////
 @interface PlayerNormalView () <PlayerRateBoardDelegate,
-        _DefinitionViewDelegate,
-        PlayerProgressDelegate,
-        _HobbleMentionViewDelelgate,
-        PlayerPreAdViewDelegate,
-        PlayerPauseViewDelegate>
+        PlayerProgressDelegate>
 
-@property(nonatomic, strong) _DefinitionView *definitionView;
 @property(nonatomic, assign) DefinitionType definitionType;
 
-@property(nonatomic, strong) _HobbleMentionView *hobbleMentionView;
-@property(nonatomic, strong) _HobbleMentionView *hobbleQudianMentionView;
 @property(nonatomic, assign) NSTimeInterval hobbleStartTimeInterval;
-@property(nonatomic, strong) RACDisposable *hobbleDispose;
-@property(nonatomic, strong) RACDisposable *hobbleQudianDispose;
-
-@property(nonatomic, strong) _QudanListView *qudanListView;
-
-@property(nonatomic, strong) PlayerPreAdView *playerPreAdView;
 
 @property(nonatomic, assign) BOOL hasNormal;
 @property(nonatomic, assign) BOOL hasHD;
 @property(nonatomic, assign) BOOL hasUHD;
 
-@property(nonatomic, assign) PreVideoJumpType adJumpType;
-@property(nonatomic, strong) NSArray<MMAdDto *> *baiduAds;
-
 @property(nonatomic, strong) PlayerFollowView *playerFollowView;
-
-@property(nonatomic, strong) PlayerPauseView *playerPauseView;
 
 - (NSString *)decorateCountDownByJumpType;
 
@@ -197,25 +40,9 @@ typedef NS_ENUM(NSInteger, _HobbleMentionType) {
 
 @implementation PlayerNormalView
 - (void)dealloc {
-    UALog(@"[%@]dealloc", NSStringFromClass([self class]));
-    [self disposeQudianMentionView];
-    [self disposeHobbleView];
+    PKLog(@"[%@]dealloc", NSStringFromClass([self class]));
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(fadeHiddenLockAnimation:) object:@(YES)];
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(fadeHiddenControlViewAnimation:) object:@(YES)];
-}
-
-- (void)disposeHobbleView {
-    if (self.hobbleDispose) {
-        [self.hobbleDispose dispose];
-        self.hobbleDispose = nil;
-    }
-}
-
-- (void)disposeQudianMentionView {
-    if (self.hobbleQudianDispose) {
-        [self.hobbleQudianDispose dispose];
-        self.hobbleQudianDispose = nil;
-    }
 }
 
 - (void)updatePlayerView:(UIView *)drawPlayerView {
@@ -230,50 +57,8 @@ typedef NS_ENUM(NSInteger, _HobbleMentionType) {
 - (void)updatePlayStyle:(PlayerType)playerType {
     _playerType = playerType;
     if (_playerType != PlayerBaiduAd) {
-        [_playerPreAdView removeFromSuperview];
-        _playerPreAdView = nil;
     }
 }
-
-- (void)updateBaiduAd:(NSArray<MMAdDto *> *)baiduAds perDuration:(NSUInteger)perDuration sumOfDuration:(NSUInteger)sumOfDuration {
-    self.baiduAds = baiduAds;
-    [_playerPreAdView removeFromSuperview];
-    _playerPreAdView = nil;
-    [self.playerPreAdView updateBaiduAd:baiduAds perDuration:perDuration sumOfDuration:sumOfDuration];
-    [self showLoading];
-
-}
-
-- (void)updateAdJumpType:(PreVideoJumpType)jumpType {
-    _adJumpType = jumpType;
-}
-
-- (NSString *)decorateCountDownByJumpType {
-    NSString *jumpStr;
-    switch (_adJumpType) {
-        case PreVideoNotJump: {
-            jumpStr = @"";
-        }
-            break;
-        case PreVideoAllCanJump: {
-            jumpStr = @"跳过 | ";
-        }
-            break;
-        case PreVideoLoginCanJump : {
-            if ([[UserSession share] isLogin]) {
-                jumpStr = @"跳过 | ";
-            } else {
-                jumpStr = @"登录跳过 | ";
-            }
-        }
-            break;
-        case PreVideoJumpOnlyDownload: {
-            jumpStr = @"跳过 | ";
-        }
-    }
-    return jumpStr;
-}
-
 
 - (void)updateTitle:(NSString *)title {
     _titleLabel.text = title;
@@ -292,9 +77,6 @@ typedef NS_ENUM(NSInteger, _HobbleMentionType) {
     self.backgroundColor = [UIColor blackColor];
     _containerView = [[UIView alloc] init];
     [self addSubview:_containerView];
-
-    _playerBulletView = [[PlayerBulletView alloc] init];
-    [_containerView addSubview:_playerBulletView];
 
     _touchView = [[UIView alloc] init];
     [_containerView addSubview:_touchView];
@@ -335,20 +117,12 @@ typedef NS_ENUM(NSInteger, _HobbleMentionType) {
 
     _backBtn = [[UIButton alloc] init];
     _titleLabel = ({
-        CBAutoScrollLabel *autoLabel = [CBAutoScrollLabel new];
+        UILabel *autoLabel = [UILabel new];
         autoLabel.textColor = [WQColorStyle whiteColor];
         autoLabel.font = [UIFont systemFontOfSize:15];
-
         [_containerView addSubview:autoLabel];
-
         autoLabel.textColor = [UIColor whiteColor];
-        autoLabel.labelSpacing = 30; // distance between start and end labels
-        autoLabel.pauseInterval = 1.7; // seconds of pause before scrolling starts again
-        autoLabel.scrollSpeed = 30; // pixels per second
         autoLabel.textAlignment = NSTextAlignmentLeft; // centers text when no auto-scrolling is applied
-        autoLabel.fadeLength = 0.f;
-        autoLabel.scrollDirection = CBAutoScrollDirectionLeft;
-        [autoLabel observeApplicationNotifications];
         autoLabel;
     });
 
@@ -432,7 +206,6 @@ typedef NS_ENUM(NSInteger, _HobbleMentionType) {
 
     [_definitionBtn setTitle:({
         NSString *name = @"标清";
-
         DefinitionType definitionType = [[WQUserSetting sharedInstance] getUserSettingwithUserID:[MMKeyChain openUDID]].definitionType;
         switch (definitionType) {
             case DTNormal: {
@@ -519,15 +292,6 @@ typedef NS_ENUM(NSInteger, _HobbleMentionType) {
     });
 
     [self updateLayerIndex];
-
-    if ([AppSetting isDownloadable]) {
-        _airplayBtn.hidden = NO;
-        _downloadBtn.hidden = NO;
-    } else {
-        _airplayBtn.hidden = YES;
-        _downloadBtn.hidden = YES;
-    }
-
 }
 
 - (void)setPlayerTermailDelegate:(id <PlayerTerminalDelegate>)playerTermailDelegate {
@@ -535,100 +299,7 @@ typedef NS_ENUM(NSInteger, _HobbleMentionType) {
     self.playerTerminalView.delegate = playerTermailDelegate;
 }
 
-- (_DefinitionView *)definitionView {
-    [self removeDefinitionView];
-    if (_definitionView == nil) {
-        _definitionView = [[_DefinitionView alloc] initWithFrame:_containerView.bounds];
-        [_definitionView updateDefinitionNormal:self.hasNormal HD:self.hasHD UHD:self.hasUHD];
-        [_definitionView selectDefinitionType:self.definitionType];
-        _definitionView.delegate = self;
-        [_containerView addSubview:_definitionView];
-        [_containerView bringSubviewToFront:_definitionView];
-    }
-    return _definitionView;
-}
-
-- (_HobbleMentionView *)hobbleMentionView {
-    [self removeHobbleMentionView];
-    if (_hobbleMentionView == nil) {
-        _hobbleMentionView = [[_HobbleMentionView alloc] initWithFrame:CGRectMake(15, self.frame.size.height - 60, 230, 30)];
-        _hobbleMentionView.delegate = self;
-        [_hobbleMentionView updateBadNet];
-        [self addSubview:_hobbleMentionView];
-        [self bringSubviewToFront:_hobbleMentionView];
-        [self insertSubview:_hobbleMentionView atIndex:PlayerLayerLevelBackView];
-        if ([self.playerNormalViewDelegate respondsToSelector:@selector(log2ShowHobble)]) {
-            [self.playerNormalViewDelegate log2ShowHobble];
-        }
-    }
-    return _hobbleMentionView;
-}
-
-- (_HobbleMentionView *)hobbleQudianMentionView {
-    if (_hobbleQudianMentionView == nil) {
-        _hobbleQudianMentionView = [[_HobbleMentionView alloc] initWithFrame:CGRectMake(15, self.frame.size.height - 60, 230, 30)];
-        [self addSubview:_hobbleQudianMentionView];
-        [self bringSubviewToFront:_hobbleQudianMentionView];
-        [self insertSubview:_hobbleQudianMentionView atIndex:PlayerLayerLevelBackView];
-        [self disposeQudianMentionView];
-        @weakify(self);
-        self.hobbleQudianDispose = [[RACScheduler mainThreadScheduler] afterDelay:30 schedule:^{
-            @strongify(self);
-            [self removeHobbleQudianMentionView];
-        }];
-    }
-    return _hobbleQudianMentionView;
-}
-
-- (_QudanListView *)qudanListView {
-    [self removeQudanListView];
-    if (_qudanListView == nil) {
-        _qudanListView = [[_QudanListView alloc] initWithFrame:_containerView.bounds delegate:self.qudanListViewTranslateDelegate];
-
-        [self addSubview:_qudanListView];
-        [self bringSubviewToFront:_qudanListView];
-        [self insertSubview:_qudanListView atIndex:PlayerLayerLevelBackView];
-    }
-    return _qudanListView;
-}
-
-- (PlayerPreAdView *)playerPreAdView {
-    if (_playerPreAdView == nil) {
-        _playerPreAdView = [[PlayerPreAdView alloc] initWithFrame:_containerView.bounds];
-        [_playerPreAdView setAdRefer:self.logParam.refer];
-        _playerPreAdView.delegate = self;
-        [_containerView addSubview:_playerPreAdView];
-        [_containerView bringSubviewToFront:_playerPreAdView];
-        [_containerView bringSubviewToFront:_jumpBtn];
-    }
-    return _playerPreAdView;
-}
-
-- (PlayerFollowView *)playerFollowView {
-    return nil;
-    if (_playerFollowView == nil) {
-        _playerFollowView = [[PlayerFollowView alloc] init];
-        _playerFollowView.delegate = self.playerFollowViewDelegate;
-        [self addSubview:_playerFollowView];
-        [self bringSubviewToFront:_playerFollowView];
-        @weakify(self);
-        [_playerFollowView mas_makeConstraints:^(MASConstraintMaker *make) {
-            @strongify(self);
-            make.right.mas_equalTo(self.mas_right).offset(200);
-            make.height.mas_equalTo(40);
-            make.bottom.mas_equalTo(self.mas_bottom).offset(-60);
-        }];
-        [_playerFollowView layoutIfNeeded];
-    }
-    return _playerFollowView;
-}
-
 - (void)setPlayerStyle:(PlayerStyle)playerStyle {
-    if (_playerPauseView) {
-        [_playerPauseView removeFromSuperview];
-        _playerPauseView = nil;
-        [self addPanGesture];
-    }
     _playerStyle = playerStyle;
     [_playerRateBoard setPlayerStyle:playerStyle];
     switch (_playerStyle) {
@@ -705,11 +376,6 @@ typedef NS_ENUM(NSInteger, _HobbleMentionType) {
     _bottomControlView.frame = CGRectMake(0, self.frame.size.height - 55, self.frame.size.width, 55);
     _topGradientLayer.frame = _topControlView.bounds;
     _bottomGradientLayer.frame = _bottomControlView.bounds;
-    _playerPreAdView.frame = self.bounds;
-    [_playerPreAdView setNeedsLayout];
-    [_playerPreAdView setNeedsUpdateConstraints];
-    [_playerPreAdView layoutIfNeeded];
-    _playerBulletView.frame = self.bounds;
 
     [self updateQudianMentionFrame];
 }
@@ -975,22 +641,15 @@ typedef NS_ENUM(NSInteger, _HobbleMentionType) {
 - (void)showPlayBtnPlay:(BOOL)isPlay {
     _playPauseBtn.selected = !isPlay;
     _portraitPlayPauseBtn.selected = _playPauseBtn.selected;
-    [_playerPreAdView enable:isPlay];
     if (_playerType != PlayerNormal || isPlay) {
-        [_playerPauseView removeFromSuperview];
         [self addPanGesture];
-        _playerPauseView = nil;
     }
     if (_playerType != PlayerNormal) {
-        [_playerPauseView removeFromSuperview];
-        _playerPauseView = nil;
         return;
     }
     if (!isPlay) {
         switch (self.playerStyle) {
             case PlayerStyleSizeClassRegularHalf: {
-                [_playerPauseView removeFromSuperview];
-                _playerPauseView = nil;
             }
                 break;  ///<  16:9 半屏幕
             case PlayerStyleSizeClassRegular: {
@@ -1005,40 +664,6 @@ typedef NS_ENUM(NSInteger, _HobbleMentionType) {
             default: {
             }
                 break;
-        }
-    }
-}
-
-- (void)showPlayPauseAdView {
-    if ([self.playerNormalViewDelegate respondsToSelector:@selector(canShowPlayPauseView)]) {
-        BOOL canShow = [self.playerNormalViewDelegate canShowPlayPauseView];
-        if (canShow) {
-            [_playerPauseView removeFromSuperview];
-            _playerPauseView = nil;
-
-            CGRect frame = CGRectMake(({
-                        CGFloat x = MAX([UIScreen width], [UIScreen height]) / 2.0 - 275 / 2.0;
-                        if (self.playerStyle == PlayerStyleSizeClassRegular) {
-                            x = MIN([UIScreen width], [UIScreen height]) / 2.0 - 275 / 2.0;
-                        }
-                        x;
-                    }),
-                    MIN([UIScreen width], [UIScreen height]) / 2.0 - 190 / 2.0,
-                    275,
-                    190);
-            _playerPauseView = [[PlayerPauseView alloc] initWithFrame:frame];
-            _playerPreAdView.logParam = self.logParam;
-            _playerPauseView.delegate = self;
-            [self addSubview:_playerPauseView];
-
-            if ([self.playerNormalViewDelegate respondsToSelector:@selector(logShowScreenAd)]) {
-                [self.playerNormalViewDelegate logShowScreenAd];
-            }
-            [self removePanGesture];
-
-        } else {
-            [_playerPauseView removeFromSuperview];
-            _playerPauseView = nil;
         }
     }
 }
@@ -1066,16 +691,6 @@ typedef NS_ENUM(NSInteger, _HobbleMentionType) {
         NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970];
         if (timeInterval - self.hobbleStartTimeInterval > 30) {
             self.hobbleStartTimeInterval = timeInterval;
-        }
-        if (timeInterval - self.hobbleStartTimeInterval > 5.0) {
-            [self hobbleMentionView];
-            RACScheduler *scheduler = [RACScheduler mainThreadScheduler];
-            @weakify(self);
-            self.hobbleDispose = [scheduler afterDelay:10 schedule:^{
-                @strongify(self);
-                self.hobbleStartTimeInterval = 0;
-                [self removeHobbleMentionView];
-            }];
         }
     }
     [self fadeHiddenControlViewAnimation:@(YES)];
@@ -1184,7 +799,7 @@ typedef NS_ENUM(NSInteger, _HobbleMentionType) {
             secs += [obj integerValue] * pow(10, idx - 1);
         }];
         if (secs == 10) {
-            UALog(@"[PlayerFollowView again]%@", leftTime);
+            PKLog(@"[PlayerFollowView again]%@", leftTime);
             [self.playerFollowView showFollowPlayerViewAnimaiton:YES];
         }
     } else if (_playerType == PlayerAd) {
@@ -1862,27 +1477,6 @@ typedef NS_ENUM(NSInteger, _HobbleMentionType) {
     _definitionView = nil;
 }
 
-- (void)removeHobbleMentionView {
-    [_hobbleMentionView removeFromSuperview];
-    _hobbleMentionView = nil;
-}
-
-- (void)removeHobbleQudianMentionView {
-    [_hobbleQudianMentionView removeFromSuperview];
-    _hobbleQudianMentionView = nil;
-}
-
-- (void)removeQudanListView {
-    [_qudanListView removeFromSuperview];
-    _qudanListView = nil;
-}
-
-- (void)removePlayerFollowView {
-    [_playerFollowView removeFromSuperview];
-    _playerFollowView = nil;
-}
-
-
 - (void)updateFullScreenBtnStatus:(BOOL)fullScreen {
     _fullScreenBtn.selected = fullScreen;
 }
@@ -1974,58 +1568,6 @@ typedef NS_ENUM(NSInteger, _HobbleMentionType) {
     [_playerRateBoard circle:NO];
 }
 
-- (void)refreshDots:(NSArray<SnapDto *> *)dtos duration:(CGFloat)duration {
-    if (duration <= 1.0f) {
-        return;
-    }
-
-    NSMutableArray<__SliderPointDto *> *sliderPointDtos = [NSMutableArray array];
-    for (SnapDto *dto in dtos) {
-        __SliderPointDto *sliderPointDto = [[__SliderPointDto alloc] init];
-        sliderPointDto.entityId = dto.entityId;
-        sliderPointDto.snapDto = dto;
-        sliderPointDto.xStartRate = [@([dto.startTime doubleValue] / (duration * 1000.0f)) floatValue];
-        [sliderPointDtos addObject:sliderPointDto];
-    }
-
-    [_playerProgress refreshDots:sliderPointDtos];
-}
-
-- (void)updateMention:(NSString *)mention xRate:(CGFloat)xRate showSecs:(CGFloat)showSecs {
-    if (![StringUtils hasText:mention]) {
-        [self removeHobbleQudianMentionView];
-        return;
-    }
-    [self.hobbleQudianMentionView updateMention:mention];
-    self.hobbleQudianMentionView.xRate = xRate;
-    [self updateQudianMentionFrame];
-
-    [self disposeQudianMentionView];
-    showSecs = showSecs < 5.0f ? 5.0f : showSecs;
-    @weakify(self);
-    self.hobbleQudianDispose = [[RACScheduler mainThreadScheduler] afterDelay:showSecs schedule:^{
-        @strongify(self);
-        [self removeHobbleQudianMentionView];
-    }];
-}
-
-- (void)updateQudianMentionFrame {
-    CGFloat width = CGRectGetWidth(_playerProgress.frame);
-    CGSize size = [_hobbleQudianMentionView.mentionLabel sizeThatFits:CGSizeMake(width, 12)];
-    CGFloat x = ({
-        CGFloat x1 = _hobbleQudianMentionView.xRate * width - size.width / 2.0f;
-        x1;
-    });
-
-    x += CGRectGetMinX(_playerProgress.frame);
-
-    CGFloat bottomMagain = self.playerStyle == PlayerStyleSizeClassCompact ? 80.0f : 60.0f;
-    _hobbleQudianMentionView.frame = CGRectMake(x, self.frame.size.height - bottomMagain, size.width + 20, 30);
-
-    [_playerProgress refreshDotsFrame];
-}
-
-
 #pragma mark -AirplayPlayerDelegate
 
 - (void)showAirplayFailed:(NSString *)title {
@@ -2088,463 +1630,8 @@ typedef NS_ENUM(NSInteger, _HobbleMentionType) {
 
 - (void)sliderPointClick:(SnapDto *)snapDto {
     if ([self.playerNormalViewDelegate respondsToSelector:@selector(sliderPointClick:)]) {
-        [self disposeHobbleView];
         [self.playerNormalViewDelegate sliderPointClick:snapDto];
     }
 }
 
-#pragma mark - PlayerPreAdViewDelegate
-
-- (void)playerStartUnionAd:(MMAdDto *)adDto {
-    UALog(@"[Baidu][Player]Start[%@]", adDto);
-}
-
-- (void)playerEndUnionAd:(MMAdDto *)adDto {
-    UALog(@"[Baidu][Player]End[%@]", adDto);
-}
-
-- (void)playerUnionCountDown:(NSUInteger)secs {
-    UALog(@"[Baidu][Player]current[%zd]", secs);
-    [_jumpBtn setTitle:[NSString stringWithFormat:@"%@%zdS", [self decorateCountDownByJumpType], secs] forState:UIControlStateNormal];
-    [_jumpBtn mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo([_jumpBtn.titleLabel.text size4size:CGSizeMake(CGFLOAT_MAX, 25) font:[UIFont systemFontOfSize:12]].width + 20);
-    }];
-    [_jumpBtn layoutIfNeeded];
-}
-
-- (void)playerFinishAllUnionAds {
-    if ([self.playerNormalViewDelegate respondsToSelector:@selector(changeDefinition:)]) {
-        [self.playerNormalViewDelegate changeDefinition:self.definitionType];
-    }
-}
-
-@end
-
-
-@implementation _DefinitionView
-
-- (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-        CGSize size = CGSizeMake(50, 25);
-        CGFloat xSpace = 20;
-
-        CGFloat x = frame.size.width / 2;
-        CGFloat centerY = frame.size.height / 2;
-
-        self.bgView = ({
-            UIView *view = [[UIView alloc] initWithFrame:self.bounds];
-            view.backgroundColor = [WQColorStyle blackColor];
-            view.alpha = .8;
-            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapClick)];
-            [view addGestureRecognizer:tap];
-            [self addSubview:view];
-            view;
-        });
-
-        self.titleLabel = ({
-            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(x - 140, (CGFloat) (centerY - 7.5), 60, 15)];
-            label.text = @"清晰度";
-            label.textColor = [UIColor colorWithHex:0xb2b2b2];
-            label.font = [UIFont systemFontOfSize:14];
-            [self addSubview:label];
-            label;
-        });
-
-        self.normalBtn = ({
-            UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(x - 80, (CGFloat) (centerY - (CGFloat) size.height / 2.0), size.width, size.height)];
-            [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            [btn setTitleColor:[WQColorStyle shallowBlueColor] forState:UIControlStateHighlighted];
-            [btn addTarget:self action:@selector(normalBtnClick) forControlEvents:UIControlEventTouchUpInside];
-            btn.titleLabel.font = [UIFont systemFontOfSize:14];
-            [btn setTitle:@"标清" forState:UIControlStateNormal];
-            [self addSubview:btn];
-            btn;
-        });
-
-
-        self.hightBtn = ({
-            UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(x - 8, (CGFloat) (centerY - size.height / 2.0), size.width, size.height)];
-            [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            [btn setTitleColor:[WQColorStyle shallowBlueColor] forState:UIControlStateHighlighted];
-            [btn addTarget:self action:@selector(hightBtnClick) forControlEvents:UIControlEventTouchUpInside];
-            btn.titleLabel.font = [UIFont systemFontOfSize:14];
-            [btn setTitle:@"高清" forState:UIControlStateNormal];
-            [self addSubview:btn];
-            btn;
-        });
-
-
-        self.uhdBtn = ({
-            UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(x + 60, (CGFloat) (centerY - size.height / 2.0), size.width, size.height)];
-            [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            [btn setTitleColor:[WQColorStyle shallowBlueColor] forState:UIControlStateHighlighted];
-            [btn addTarget:self action:@selector(uhdBtnClick) forControlEvents:UIControlEventTouchUpInside];
-            btn.titleLabel.font = [UIFont systemFontOfSize:14];
-            [btn setTitle:@"超清" forState:UIControlStateNormal];
-            [self addSubview:btn];
-            btn;
-        });
-    }
-    return self;
-}
-
-- (void)selectDefinitionType:(DefinitionType)type {
-
-    [self change2BtnSelected:YES btn:_normalBtn];
-    [self change2BtnSelected:NO btn:_hightBtn];
-    [self change2BtnSelected:NO btn:_uhdBtn];
-
-    switch (type) {
-        case DTNormal: {
-            if (_hasNormal) {
-                [self change2BtnSelected:YES btn:_normalBtn];
-                [self change2BtnSelected:NO btn:_hightBtn];
-                [self change2BtnSelected:NO btn:_uhdBtn];
-            }
-        }
-            break;
-        case DTHight: {
-            if (_hasHD) {
-                [self change2BtnSelected:NO btn:_normalBtn];
-                [self change2BtnSelected:YES btn:_hightBtn];
-                [self change2BtnSelected:NO btn:_uhdBtn];
-            }
-        }
-            break;
-        case DTUHight: {
-            if (_hasUHD) {
-                [self change2BtnSelected:NO btn:_normalBtn];
-                [self change2BtnSelected:NO btn:_hightBtn];
-                [self change2BtnSelected:YES btn:_uhdBtn];
-            } else if (_hasHD) {
-                [self change2BtnSelected:NO btn:_normalBtn];
-                [self change2BtnSelected:YES btn:_hightBtn];
-                [self change2BtnSelected:NO btn:_uhdBtn];
-            }
-        }
-            break;
-    }
-}
-
-- (void)updateDefinitionNormal:(BOOL)hasNormal HD:(BOOL)hasHD UHD:(BOOL)hasUHD {
-
-    self.hasNormal = hasNormal;
-    self.hasHD = hasHD;
-    self.hasUHD = hasUHD;
-
-    _normalBtn.enabled = hasNormal;
-    _hightBtn.enabled = hasHD;
-    _uhdBtn.enabled = hasUHD;
-
-
-    [_normalBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [_hightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [_uhdBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-
-    if (!hasNormal) {
-        [self change2BtnSelected:NO btn:_normalBtn];
-        [_normalBtn setTitleColor:[UIColor colorWithHex:0x808080] forState:UIControlStateNormal];
-    }
-
-    if (!hasHD) {
-        [self change2BtnSelected:NO btn:_hightBtn];
-        [_hightBtn setTitleColor:[UIColor colorWithHex:0x808080] forState:UIControlStateNormal];
-    }
-
-    if (!hasUHD) {
-        [self change2BtnSelected:NO btn:_uhdBtn];
-        [_uhdBtn setTitleColor:[UIColor colorWithHex:0x808080] forState:UIControlStateNormal];
-    }
-}
-
-
-- (void)change2BtnSelected:(BOOL)isSelected btn:(UIButton *)btn {
-    if (isSelected) {
-        [ViewShapeMask cornerView:btn radius:12.5 border:1 color:[UIColor whiteColor]];
-    } else {
-        [ViewShapeMask cornerView:btn radius:12.5 border:0 color:nil];
-    }
-}
-
-- (void)tapClick {
-    [self removeFromSuperview];
-}
-
-- (void)hightBtnClick {
-    [self selectDefinitionType:DTHight];
-    if ([_delegate respondsToSelector:@selector(change2Hight)]) {
-        [_delegate change2Hight];
-    }
-    [self wifiChangeUserSetting:DTHight];
-}
-
-- (void)normalBtnClick {
-    [self selectDefinitionType:DTNormal];
-    if ([_delegate respondsToSelector:@selector(change2Normal)]) {
-        [_delegate change2Normal];
-    }
-    [self wifiChangeUserSetting:DTNormal];
-}
-
-- (void)uhdBtnClick {
-    [self selectDefinitionType:DTUHight];
-    if ([_delegate respondsToSelector:@selector(change2UHD)]) {
-        [_delegate change2UHD];
-    }
-    [self wifiChangeUserSetting:DTUHight];
-}
-
-- (void)wifiChangeUserSetting:(DefinitionType)definitionType {
-    ReachabilityStatus netStatus = [[ReachabilitySession share] netWorkStatus];
-    if (netStatus == RealStatusViaWiFi) {
-        WQUserSetting *setting = [[WQUserSetting sharedInstance] getUserSettingwithUserID:[MMKeyChain openUDID]];
-        setting.definitionType = definitionType;
-        setting.userSetDefinition = YES;
-        [setting saveUserSetting:setting];
-    }
-}
-
-@end
-
-
-@implementation _HobbleMentionView
-
-- (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-        _bgView = ({
-            UIView *view = [[UIView alloc] initWithFrame:self.bounds];
-            view.backgroundColor = [WQColorStyle blackColor];
-            view.alpha = .8;
-            [ViewShapeMask cornerView:view radius:15 border:0 color:nil];
-            [self addSubview:view];
-            view;
-        });
-
-        _mentionLabel = ({
-            UILabel *label = [[UILabel alloc] initWithFrame:self.bounds];
-            label.textAlignment = NSTextAlignmentCenter;
-            label.font = [UIFont systemFontOfSize:12];
-            [self addSubview:label];
-            label;
-        });
-
-        UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapClick)];
-        [self addGestureRecognizer:tapGestureRecognizer];
-    }
-    return self;
-}
-
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    _bgView.frame = self.bounds;
-    _mentionLabel.frame = self.bounds;
-}
-
-- (void)tapClick {
-    if (self.type == HobbleMentionQudianTitle) {
-        return;
-    }
-    [self removeFromSuperview];
-    if ([self.delegate respondsToSelector:@selector(change2Normal)]) {
-        [self.delegate change2Normal];
-    }
-    ReachabilityStatus netStatus = [[ReachabilitySession share] netWorkStatus];
-    if (netStatus == RealStatusViaWiFi) {
-        WQUserSetting *setting = [[WQUserSetting sharedInstance] getUserSettingwithUserID:[MMKeyChain openUDID]];
-        setting.definitionType = DTNormal;
-        setting.userSetDefinition = YES;
-        [setting saveUserSetting:setting];
-    }
-}
-
-- (void)updateBadNet {
-    _mentionLabel.attributedText = ({
-        NSString *str = @"网络似乎不流畅？切换标清试试";
-        NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:str];
-        [text addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12] range:NSMakeRange(0, str.length)];
-        [text addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, 10)];
-        [text addAttribute:NSForegroundColorAttributeName value:[WQColorStyle waQuBlue] range:NSMakeRange(str.length - 4, 2)];
-        [text addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(str.length - 2, 2)];
-        text;
-    });
-}
-
-- (void)updateMention:(NSString *)mention {
-    self.type = HobbleMentionQudianTitle;
-    NSMutableAttributedString *attributedString = ({
-        NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:mention];
-        [text addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12] range:NSMakeRange(0, mention.length)];
-        [text addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, mention.length)];
-        text;
-    });
-
-    _mentionLabel.attributedText = nil;
-    _mentionLabel.attributedText = attributedString;
-}
-
-
-@end
-
-
-@implementation _QudanListView
-- (instancetype)initWithFrame:(CGRect)frame delegate:(id <_QudanListViewTranslateDelegate>)delegate {
-    self = [super initWithFrame:frame];
-    if (self) {
-        _bgView = ({
-            UIView *view = [[UIView alloc] initWithFrame:self.bounds];
-            view.backgroundColor = [WQColorStyle blackColor];
-            view.alpha = .8;
-            [ViewShapeMask cornerView:view radius:15 border:0 color:nil];
-            [self addSubview:view];
-            view;
-        });
-
-        self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(frame.size.width * 0.2, 0, frame.size.width * 0.6, frame.size.height) style:UITableViewStylePlain];
-        [self addSubview:self.tableView];
-        self.translate = [[_QudanListViewTranslate alloc] initWithEmptyTableView:self.tableView delegate:delegate];
-        [self.translate triggerRefresh];
-
-        self.translate.qudanListViewDelegate = self;
-
-        UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapClick)];
-        [_bgView addGestureRecognizer:tapGestureRecognizer];
-    }
-    return self;
-}
-
-- (void)tapClick {
-    [self removeFromSuperview];
-}
-
-- (void)clickCell {
-    [self tapClick];
-}
-
-@end
-
-
-@implementation _QudanListViewTranslate
-
-- (void)dealloc {
-    [self disposeScroll];
-}
-
-- (instancetype)initWithEmptyTableView:(UITableView *)tableView delegate:(id <_QudanListViewTranslateDelegate>)delegate {
-    self = [super initWithEmptyTable:tableView];
-    if (self) {
-        self.tableView.backgroundView.backgroundColor = [UIColor clearColor];
-        self.tableView.backgroundColor = [UIColor clearColor];
-        self.delegate = delegate;
-        [self.tableView registerClass:[PlayerQudanLineCell class] forCellReuseIdentifier:[PlayerQudanLineCell reuseIdentifier]];
-        [self.tableView registerClass:[MMTableCell class] forCellReuseIdentifier:[MMTableCell identifier]];
-    }
-    return self;
-}
-
-- (void)disposeScroll {
-    if (self.dispose) {
-        [self.dispose dispose];
-        self.dispose = nil;
-    }
-}
-
-- (void)refresh {
-    if (self.isRefresh) {
-        return;
-    }
-    self.isRefresh = YES;
-    [self loadData:self.datas.count <= 0];
-}
-
-- (void)more {
-    if ([self.delegate respondsToSelector:@selector(canLoadMore)]) {
-        if ([self.delegate canLoadMore]) {
-            [self loadData:NO];
-        } else {
-            [self stopMore];
-        }
-    }
-}
-
-- (void)loadData:(BOOL)isLocal {
-    if ([self.delegate respondsToSelector:@selector(qudanList:)] && [self.delegate respondsToSelector:@selector(localDataRfresh)]) {
-        RACSignal *signal = nil;
-        if (isLocal) {
-            signal = [self.delegate localDataRfresh];
-        } else {
-            signal = [self.delegate qudanList:self.isRefresh];
-        }
-
-        @weakify(self);
-        [signal subscribeNext:^(NSArray<MMDto *> *datas) {
-            @strongify(self);
-            self.isRefresh = NO;
-            self.datas = datas;
-            if ([self.delegate respondsToSelector:@selector(qudanPlayAtIndex)]) {
-                self.currentPlayIndex = [self.delegate qudanPlayAtIndex];
-            }
-
-            if ([self.delegate respondsToSelector:@selector(reloadData)]) {
-                [self.delegate reloadData];
-            }
-            [self successStop];
-
-            [self disposeScroll];
-            if (isLocal && datas.count > 0 && self.currentPlayIndex < datas.count) {
-                @weakify(self);
-                self.dispose = [[RACScheduler mainThreadScheduler] afterDelay:.2 schedule:^{
-                    @strongify(self);
-                    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.currentPlayIndex inSection:0] atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
-                }];
-            }
-        }               error:^(NSError *error) {
-            [self errorStop];
-            self.isRefresh = NO;
-        }];
-    }
-}
-
-- (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView {
-    return [UIColor clearColor];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    MMVideoDto *dto = self.datas[(NSUInteger) indexPath.row];
-    if ([dto isVideo]) {
-        PlayerQudanLineCell *cell = [tableView dequeueReusableCellWithIdentifier:[PlayerQudanLineCell reuseIdentifier] forIndexPath:indexPath];
-        [cell updateTitle:((MMVideoDto *) dto).videoMedia.title];
-        [cell updatePlayNow:self.currentPlayIndex == indexPath.row];
-        return cell;
-    } else {
-        MMTableCell *cell = [tableView dequeueReusableCellWithIdentifier:[MMTableCell identifier] forIndexPath:indexPath];
-        return cell;
-    }
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    MMVideoDto *dto = self.datas[(NSUInteger) indexPath.row];
-    if ([dto isVideo]) {
-        return [PlayerQudanLineCell staticHeight];
-    } else {
-        return 0.0;
-    }
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.datas.count;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self.delegate respondsToSelector:@selector(qudanlistClick:)]) {
-        self.currentPlayIndex = (NSUInteger) indexPath.row;
-        [self.tableView reloadData];
-        [self.delegate qudanlistClick:self.datas[(NSUInteger) indexPath.row]];
-    }
-
-    if ([self.qudanListViewDelegate respondsToSelector:@selector(clickCell)]) {
-        [self.qudanListViewDelegate clickCell];
-    }
-}
 @end

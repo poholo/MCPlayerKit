@@ -10,7 +10,6 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 #import <ReactiveCocoa.h>
-#import <WaQuBase/UALogger.h>
 
 #import "PlayerConfig.h"
 #import "NSURL+Convert2HTTPS.h"

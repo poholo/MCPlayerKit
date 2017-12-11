@@ -4,17 +4,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <IJKMediaFramework/WaQuIJKSnapDelegate.h>
 #import <AVFoundation/AVFoundation.h>
 
 #import "PlayerConfig.h"
 #import "PlayerViewControlDelegate.h"
-#import "Constant.h"
 #import "PlayerConfig.h"
-#import "Video.h"
-
-@protocol StoreDelegate;
-@class Dto;
 
 
 @protocol PlayerDelegate <NSObject>
@@ -51,14 +45,12 @@
 
 - (void)isPlaySmarty;
 
-- (void)cacheFinish:(Dto *)dto;
-
 - (void)finishCirclePlay;
 
 
 @end
 
-@interface Player : NSObject <PlayerViewControlDelegate, WaQuIJKSnapDelegate> {
+@interface Player : NSObject <PlayerViewControlDelegate> {
     PlayerState _playerState;
     CGFloat _cacheProgress;
     CGFloat _rate;
@@ -73,8 +65,6 @@
 @property(nonatomic, nullable, weak) id <PlayerDelegate> delegate;
 @property(nonatomic, assign) BOOL isRecording;
 @property(nonatomic, copy) NSString *recordFilePath;
-
-@property(nonatomic, strong) Dto <StoreDelegate> *dto;
 
 @property(nonatomic, assign) PlayerActionAtItemEnd actionAtItemEnd;
 @property(nonatomic, assign) BOOL notNeedSetProbesize;
@@ -143,17 +133,5 @@
 - (void)changeAudioVolume:(CGFloat)volume;
 
 - (CGSize)naturalSize;
-
-- (BOOL)startRecord:(NSTimeInterval)startTime filePath:(NSString *)filePath type:(RecordType)type;
-
-- (void)endRecord:(NSTimeInterval)endTime;
-
-
-@end
-
-
-@interface Player (Utils)
-
-+ (BOOL)checkActiveCode;
 
 @end

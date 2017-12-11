@@ -4,25 +4,16 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #import "PlayerBaseView.h"
 #import "PlayerConfig.h"
-#import "AirplayPlayerDelegate.h"
-#import "PreVideo.h"
 
 @class PlayerProgress;
 @class PlayerTerminalView;
 @class PlayerLoadingView;
 @class PlayerRateBoard;
 @protocol PlayerTerminalDelegate;
-@class RACSignal;
-@class MMDto;
-@class MMAdDto;
 @protocol PlayerFollowViewDelegate;
-@class CBAutoScrollLabel;
-@class SnapDto;
-@class PlayerBulletView;
-@protocol FXDanmakuDelegate;
-@protocol BulletHelperDelegate;
 
 @protocol PlayerNormalViewDelegate <NSObject>
 
@@ -79,7 +70,7 @@
 
 - (void)playNextVideo;
 
-- (void)sliderPointClick:(SnapDto *)snapDto;
+//- (void)sliderPointClick:(SnapDto *)snapDto;
 
 - (void)logShowScreenAd;
 
@@ -90,28 +81,12 @@
 
 @end
 
-@protocol _QudanListViewTranslateDelegate <NSObject>
 
-- (RACSignal *)localDataRfresh;
-
-- (RACSignal *)qudanList:(BOOL)isRefresh;
-
-- (void)qudanlistClick:(MMDto *)dto;
-
-- (BOOL)canLoadMore;
-
-- (NSUInteger)qudanPlayAtIndex;
-
-- (void)reloadData;
-
-@end
-
-
-@interface PlayerNormalView : PlayerBaseView <AirplayPlayerDelegate> {
+@interface PlayerNormalView : PlayerBaseView {
     UIView *_containerView;
     UIView *_touchView;
     UIButton *_backBtn;
-    CBAutoScrollLabel *_titleLabel;
+    UILabel *_titleLabel;
     UIButton *_moreBtn;
     UIButton *_airplayBtn;
 
@@ -140,7 +115,6 @@
 
     UIView *_topControlView;
     UIView *_bottomControlView;
-    PlayerBulletView *_playerBulletView;
     PlayerTerminalView *_playerTerminalView;
 
     PlayerLoadingView *_loadingView;
@@ -167,15 +141,13 @@
 
 @property(nonatomic, weak) id <PlayerTerminalDelegate> playerTermailDelegate;
 
-@property(nonatomic, weak) id <_QudanListViewTranslateDelegate> qudanListViewTranslateDelegate;
-
 @property(nonatomic, weak) id <PlayerFollowViewDelegate> playerFollowViewDelegate;
 
 - (void)updatePlayStyle:(PlayerType)playerType;
 
-- (void)updateBaiduAd:(NSArray<MMAdDto *> *)baiduAds perDuration:(NSUInteger)perDuration sumOfDuration:(NSUInteger)sumOfDuration;
+//- (void)updateBaiduAd:(NSArray<MMAdDto *> *)baiduAds perDuration:(NSUInteger)perDuration sumOfDuration:(NSUInteger)sumOfDuration;
 
-- (void)updateAdJumpType:(PreVideoJumpType)jumpType;
+//- (void)updateAdJumpType:(PreVideoJumpType)jumpType;
 
 - (void)updateTitle:(NSString *)title;
 
@@ -205,16 +177,8 @@
 
 - (void)resetLoop;
 
-- (void)refreshDots:(NSArray<SnapDto *> *)dtos duration:(CGFloat)duration;
-
 - (void)updateMention:(NSString *)mention xRate:(CGFloat)xRate showSecs:(CGFloat)showSecs;
 
 - (void)fadeShowAndThenHiddenAnimation;
-
-- (void)jumppreAd;
-
-- (void)updateBulletHelperDelegate:(id<FXDanmakuDelegate>)delegate;
-
-- (id<BulletHelperDelegate>)bulletHelperImpDelegate;
 
 @end

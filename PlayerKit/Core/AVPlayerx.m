@@ -8,27 +8,11 @@
 #import <AVFoundation/AVFoundation.h>
 #import <IJKMediaFramework/IJKMediaFramework.h>
 #import <MobileCoreServices/MobileCoreServices.h>
-#import <ReactiveCocoa.h>
-#import <WaQuBase/StringUtils.h>
 
-#import "Dto.h"
-#import "UALogger.h"
-#import "GCDQueue.h"
-#import "FileUtil.h"
-#import "Dto+DownloadInfo.h"
-#import "NSURL+Extend.h"
+#import "PlayerKitLog.h"
 
-typedef NS_ENUM(NSInteger, AVPlayerxSaveType) {
-    AVPlayerxSaveNone,
-    AVPlayerXSave30s,
-    AVPlayerxSaveBreakPointResume
-};
 
-/***
- * AVPlayer 视频保存方案看http://sky-weihao.github.io/2015/10/06/Video-streaming-and-caching-in-iOS
- * AVPlayer save asset 方案最好控制比较短的视频，不要超过一分钟，耗时大概在 0.04s左右，保存时间会会随着视频几何性的增长，而且
- */
-@interface AVPlayerx () <NSURLConnectionDataDelegate, AVAssetResourceLoaderDelegate>
+@interface AVPlayerx ()
 
 @property(nonatomic, strong) AVQueuePlayer *player;
 @property(nonatomic, strong) AVPlayerLayer *avplayerLayer;
@@ -38,8 +22,6 @@ typedef NS_ENUM(NSInteger, AVPlayerxSaveType) {
 @property(nonatomic, strong) IJKNotificationManager *notificationManager;
 
 @property(nonatomic, assign) CFAbsoluteTime startTime;
-
-@property(nonatomic, assign) AVPlayerxSaveType saveType;
 
 
 - (AVPlayerItem *)playerItemFromPath:(NSString *)path;
@@ -60,9 +42,7 @@ typedef NS_ENUM(NSInteger, AVPlayerxSaveType) {
 
 - (void)dealloc {
     [self releaseSpace];
-#if DEBUG
-    UALog(@"%@--%s--%d dealloc", [self class], __func__, __LINE__);
-#endif
+    PKLog(@"%@--%s--%d dealloc", [self class], __func__, __LINE__);
 }
 
 - (void)releaseSpace {
@@ -73,7 +53,6 @@ typedef NS_ENUM(NSInteger, AVPlayerxSaveType) {
 }
 
 - (void)playUrls:(nonnull NSArray<NSString *> *)urls {
-    self.saveType = AVPlayerXSave30s;
     self.playerState = PlayerStateLoading;
     [super playUrls:urls];
     for (NSString *url in urls) {
@@ -225,15 +204,7 @@ typedef NS_ENUM(NSInteger, AVPlayerxSaveType) {
 
 - (void)playFinish:(NSNotification *)notification {
     if (notification.object != self.player.currentItem) return;
-    if (self.saveType == AVPlayerXSave30s) {
-        @weakify(self);
-        [self saveAssetItemBlock:^(BOOL success, NSString *reason) {
-            @strongify(self);
-            [self playFinishX];
-        }];
-    } else {
-        [self playFinishX];
-    }
+    [self playFinishX];
 }
 
 - (void)playFinishX {
@@ -306,7 +277,6 @@ typedef NS_ENUM(NSInteger, AVPlayerxSaveType) {
     }
 }
 
-
 - (IJKNotificationManager *)notificationManager {
     if (_notificationManager == nil) {
         _notificationManager = [[IJKNotificationManager alloc] init];
@@ -371,7 +341,7 @@ typedef NS_ENUM(NSInteger, AVPlayerxSaveType) {
         return;
     } else if (object == self.player && [keyPath isEqualToString:@"currentItem"]) {
         if ([change[@"new"] isEqual:NSNull.null]) {
-            UALog(@"%@", change[@"new"]);
+            PKLog(@"%@", change[@"new"]);
             self.playerState = PlayerStateError;
             return;
         }
@@ -421,76 +391,12 @@ typedef NS_ENUM(NSInteger, AVPlayerxSaveType) {
     // and video doesn't include any time ranges
     if ([loadedTimeRanges count] > 0) {
         CMTimeRange timeRange = [[loadedTimeRanges objectAtIndex:0] CMTimeRangeValue];
-        float startSeconds = CMTimeGetSeconds(timeRange.start);
-        float durationSeconds = CMTimeGetSeconds(timeRange.duration);
+        CGFloat startSeconds = CMTimeGetSeconds(timeRange.start);
+        CGFloat durationSeconds = CMTimeGetSeconds(timeRange.duration);
         return (startSeconds + durationSeconds);
     } else {
         return 0.0f;
     }
 }
-
-#pragma mark - save below 30s
-
-- (void)saveAssetItemBlock:(void (^)(BOOL success, NSString *reason))finishBlock {
-
-    NSString *filepath = [self.dto sourcePath];
-    if (![StringUtils hasText:filepath]) {
-        if (finishBlock) {
-            finishBlock(NO, @"File path nil");
-        }
-        return;
-    }
-    NSURL *fileUrl = [NSURL fileURLWithPath:[self.dto sourcePath]];
-
-    AVAsset *asset = self.player.currentItem.asset;
-    NSFileManager *fm = [NSFileManager defaultManager];
-    if ([fm fileExistsAtPath:[self.dto sourcePath]]) {
-        if (finishBlock) {
-            finishBlock(YES, @"File had downloaded");
-        }
-        if ([self.delegate respondsToSelector:@selector(cacheFinish:)]) {
-            [self.delegate cacheFinish:self.dto];
-        }
-    } else {
-        if (asset != nil) {
-            AVMutableComposition *mixComposition = [[AVMutableComposition alloc] init];
-            AVMutableCompositionTrack *firstTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
-            [firstTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, asset.duration) ofTrack:[[asset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0] atTime:kCMTimeZero error:nil];
-
-            AVMutableCompositionTrack *audioTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
-            [audioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, asset.duration) ofTrack:[[asset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0] atTime:kCMTimeZero error:nil];
-
-            AVAssetExportSession *exporter = [[AVAssetExportSession alloc] initWithAsset:mixComposition presetName:AVAssetExportPresetHighestQuality];
-
-            self.startTime = CFAbsoluteTimeGetCurrent();
-            exporter.outputURL = fileUrl;
-            if (exporter.supportedFileTypes) {
-                exporter.outputFileType = exporter.supportedFileTypes[0];
-                exporter.shouldOptimizeForNetworkUse = YES;
-
-                NSLog(@"start");
-
-                __weak  typeof(self) weakSelf = self;
-                [exporter exportAsynchronouslyWithCompletionHandler:^{
-                    __strong typeof(weakSelf) strongSelf = weakSelf;
-                    NSLog(@"end");
-                    NSLog(@"losttime: %lf", CFAbsoluteTimeGetCurrent() - strongSelf.startTime);
-                    if (finishBlock) {
-                        finishBlock(YES, @"success");
-                    }
-                    if ([self.delegate respondsToSelector:@selector(cacheFinish:)]) {
-                        [self.delegate cacheFinish:self.dto];
-                    }
-                }];
-
-            }
-        } else {
-            if (finishBlock) {
-                finishBlock(NO, @"Asset is nil");
-            }
-        }
-    }
-}
-
 
 @end

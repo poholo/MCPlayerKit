@@ -6,17 +6,13 @@
 //  Copyright © 2017年 mjc inc. All rights reserved.
 //
 
-#import "MMViewController.h"
-
-#import <IJKMediaFramework/WaQuIJKSnapDelegate.h>
-
 #import "Player.h"
 #import "PlayerBaseView.h"
 #import "PlayerStatusDelegate.h"
 
 @protocol PlayerViewDelegate;
 
-@interface PlayerKit : NSObject <WaQuIJKSnapDelegate> {
+@interface PlayerKit : NSObject {
     Player *_player;
     __weak PlayerBaseView <PlayerViewDelegate> *_playerView;
 }
@@ -38,23 +34,13 @@
 
 - (void)playUrls:(nonnull NSArray<NSString *> *)urls;
 
-- (void)playUrls:(nonnull NSArray<NSString *> *)urls dto:(Dto <StoreDelegate> *)dto;
-
 - (void)playUrls:(nonnull NSArray<NSString *> *)urls isLiveOptions:(BOOL)isLiveOptions;
-
-- (void)playUrls:(nonnull NSArray<NSString *> *)urls dto:(Dto <StoreDelegate> *)dto isLiveOptions:(BOOL)isLiveOptions;
 
 - (void)play;
 
 - (void)pause;
 
 - (void)destoryPlayer;
-
-- (BOOL)startRecordFilePath:(NSString *)filePath;
-
-- (BOOL)startRecordFilePath:(NSString *)filePath type:(RecordType)type;
-
-- (void)endRecord;
 
 - (NSTimeInterval)duration;
 
@@ -63,16 +49,6 @@
 - (void)seekSeconds:(CGFloat)seconds;
 
 - (BOOL)isPlaying;
-
-+ (int)initSensetimeSDK:(NSString *)faceModelPath;
-
-+ (void)destorySensetimeSDK;
-
-- (int)createSensetimeStickerInstance:(NSString *)stickerZipPath;
-
-- (int)changeSensetimeStickerPackage:(NSString *)stickerZipPath;
-
-- (void)destorySensetimeStickerInstance;
 
 - (CGSize)naturalSize;
 

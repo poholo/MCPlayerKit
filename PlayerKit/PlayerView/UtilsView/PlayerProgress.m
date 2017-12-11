@@ -4,16 +4,12 @@
 //
 
 #import "PlayerProgress.h"
+
 #import "MASViewAttribute.h"
 #import "UIImage+ImageWithColor.h"
 #import "ViewShapeMask.h"
-#import "SnapDto.h"
 #import "WaQuColor.h"
-
-#import <ReactiveCocoa.h>
-#import <Masonry.h>
-#import <WaQuBase/UALogger.h>
-
+#import "PlayerKitLog.h"
 
 @implementation __SliderPointDto
 
@@ -217,7 +213,7 @@
 
 
 - (void)sliderBtnClick:(__SliderPointBtn *)btn {
-    UALog(@"~~~~~[Progres][Slider][click]");
+    PKLog(@"~~~~~[Progres][Slider][click]");
     if ([self.delegate respondsToSelector:@selector(sliderPointClick:)]) {
         [self.delegate sliderPointClick:btn.dto.snapDto];
     }

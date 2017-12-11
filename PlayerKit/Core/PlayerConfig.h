@@ -8,16 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#define IJKTEST 0
-#define PlayerBoundaryTest 0
-
-typedef void (^CallBackTwo)(id value0, id value1);
-
-typedef void (^CallBackOne)(id value);
-
-typedef void (^CallbackNone)();
-
-typedef void (^CallbackFinish)(BOOL finish, id value);
 
 /** 默认初始化播放器 */
 typedef NS_ENUM(NSInteger, PlayerCoreType) {
@@ -28,10 +18,10 @@ typedef NS_ENUM(NSInteger, PlayerCoreType) {
 
 
 typedef NS_ENUM(NSInteger, PlayerActionAtItemEnd) {
-    PlayerActionAtItemEndAdvance = 0,
-    PlayerActionAtItemEndPause = 1,
-    PlayerActionAtItemEndCircle = 2,
-    PlayerActionAtItemEndNone = 3,
+    PlayerActionAtItemEndAdvance
+    PlayerActionAtItemEndPause,
+    PlayerActionAtItemEndCircle,
+    PlayerActionAtItemEndNone
 };
 
 
@@ -63,23 +53,11 @@ typedef NS_ENUM(NSInteger, PlayerStyle) {
     PlayerStyleSizeRegularAuto
 };
 
-typedef NS_ENUM(NSInteger, VideoSourceCardType) {
-    VideoSourceNormal,   ///<  常规趣单进入
-    VideoSourceSearch,       ///<  来自搜索
-    VideoSourceDownload        ///<  来自下载
-};
-
 typedef NS_ENUM(NSInteger, PlayerType) {
     PlayerNormal,                  ///<  普通播放器
     PlayerAd,
     PlayerBaiduAd
 };
-
-typedef NS_ENUM(NSInteger, RecordType) {
-    RecordNormal = -1,
-    RecordCompile = 0
-};
-
 
 /** 暂停播放的可能状态  */
 typedef NS_ENUM(NSInteger, WQPlayerPauseState) {
@@ -94,7 +72,6 @@ typedef NS_ENUM(NSInteger, WQPlayerPauseState) {
     WQPlayerPauseByNetError,
     WQPlayerPauseWhenOutHeadPhone,   ///< 耳机
     WQPlayerPauseWhenUsingAirplay
-
 };
 
 
@@ -153,7 +130,7 @@ typedef NS_ENUM(NSInteger, PlayErrorRetryType) {
 
 typedef NS_ENUM(NSInteger, AudioModeType) {
     AudioModeSpeaker, ///< 扬声器
-    AudioModeHead         ///< 带线耳机
+    AudioModeHead     ///< 带线耳机
 };
 
 
@@ -222,9 +199,5 @@ extern NSString *const _k_player_WQAVPlayer;
 extern NSString *const _k_player_IJKPlayer;
 
 + (instancetype)sharedPlayerConfig;
-
-- (void)showPlayerDebugMenu;
-
-- (void)hidenDebugMenu;
 
 @end

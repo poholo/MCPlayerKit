@@ -7,9 +7,8 @@
 
 #import <IJKMediaFramework/IJKFFMoviePlayerController.h>
 
-#import "UALogger.h"
-#import "AppCongfig.h"
 #import "NSURL+Extend.h"
+#import "PlayerKitLog.h"
 
 @interface IJKPlayer ()
 
@@ -38,13 +37,12 @@
 - (void)dealloc {
     [self releaseSpace];
 #if DEBUG
-    UALog(@"%@--%s--%zd dealloc", [self class], __func__, __LINE__);
+    PKLog(@"%@--%s--%zd dealloc", [self class], __func__, __LINE__);
 #endif
 }
 
 - (void)releaseSpace {
     [super releaseSpace];
-    [self.ijkPlayer destorySensetimeStickerInstance];
 }
 
 - (instancetype)init {
@@ -86,7 +84,7 @@
 
 - (IJKFFOptions *)liveOptions {
     //IJKFFOptions *options = [IJKFFOptions optionsByDefault];
-    IJKFFOptions *options = [IJKFFOptions optionsByLive];
+    IJKFFOptions *options = [IJKFFOptions optionsByDefault];
 
     //    [options setPlayerOptionIntValue:20 forKey:@"max-fps"];
     [options setPlayerOptionIntValue:8 forKey:@"framedrop"];
@@ -175,89 +173,6 @@
     return [self.ijkPlayer duration];
 }
 
-+ (int)initSensetimeSDK:(NSString *)faceModelPath {
-    return [IJKFFMoviePlayerController initSensetimeSDK:faceModelPath];
-}
-
-+ (void)destorySensetimeSDK {
-    [IJKFFMoviePlayerController destorySensetimeSDK];
-}
-
-- (int)createSensetimeStickerInstance:(NSString *)stickerZipPath {
-    return [_ijkPlayer createSensetimeStickerInstance:stickerZipPath];
-}
-
-- (int)changeSensetimeStickerPackage:(NSString *)stickerZipPath {
-    return [_ijkPlayer changeSensetimeStickerPackage:stickerZipPath];
-}
-
-- (void)destorySensetimeStickerInstance {
-    [_ijkPlayer destorySensetimeStickerInstance];
-}
-
-- (uint64_t)addSticker:(NSString *)stickerFilePath startTime:(uint64_t)startTime endTime:(uint64_t)endTime centerX:(float)centerX centerY:(float)centerY scaleX:(float)scaleX scaleY:(float)scaleY angle:(int)angle {
-    return [_ijkPlayer addSticker:stickerFilePath startTime:startTime endTime:endTime centerX:centerX centerY:centerY scaleX:scaleX scaleY:scaleY angle:angle];
-}
-
-- (uint64_t)addCaption:(unsigned char *)buffer startTime:(uint64_t)startTime endTime:(uint64_t)endTime width:(int)width height:(int)height centerX:(float)centerX centerY:(float)centerY scaleX:(float)scaleX scaleY:(float)scaleY angle:(int)angle {
-    return [_ijkPlayer addCaption:buffer startTime:startTime endTime:endTime width:width height:height centerX:centerX centerY:centerY scaleX:scaleX scaleY:scaleY angle:angle];
-}
-
-- (bool)updateStickerObject:(uint64_t)objId objType:(int)objType startTime:(int64_t)startTime endTime:(int64_t)endTime width:(int)width height:(int)height centerX:(float)centerX centerY:(float)centerY scaleX:(float)scaleX scaleY:(float)scaleY angle:(int)angle {
-    return [_ijkPlayer updateStickerObject:objId objType:objType startTime:startTime endTime:endTime width:width height:height centerX:centerX centerY:centerY scaleX:scaleX scaleY:scaleY angle:angle];
-}
-
-- (int)deleteStickerObject:(uint64_t)objId objType:(int)objType {
-    return [_ijkPlayer deleteStickerObject:objId objType:objType];
-}
-
-- (int)enableStickerObject:(uint64_t)objId objType:(int)objType enable:(bool)enable {
-    return [_ijkPlayer enableStickerObject:objId objType:objType enable:enable];
-}
-
-- (int)initRecord:(NSString *)fileName {
-    return [_ijkPlayer initRecord:fileName];
-}
-
-- (int)initRecordEX:(NSString *)fileName width:(int)width height:(int)height videoBitrate:(int)videoBitrate {
-    return [_ijkPlayer initRecordEX:fileName width:width height:height videoBitrate:videoBitrate];
-}
-
-- (int)setBackgroundMusicInsertTime:(long)insertTime {
-    return [_ijkPlayer setBackgroundMusicInsertTime:insertTime];
-}
-
-- (long)setBackgroundMusicPath:(NSString *)musicPath {
-    return [_ijkPlayer setBackgroundMusicPath:musicPath];
-}
-
-- (BOOL)setBackgroundMusicRegion:(uint64_t)startTime endTime:(uint64_t)endTime {
-    return [_ijkPlayer setBackgroundMusicRegion:startTime endTime:endTime];
-}
-
-- (BOOL)setOutputAudioVolume:(int)trackIdx volume:(float)volume {
-    return [_ijkPlayer setOutputAudioVolume:trackIdx volume:volume];
-}
-
-+ (long)executeFfmpegCmd:(int)argc paramArray:(char **)argv {
-    return [IJKFFMoviePlayerController executeFfmpegCmd:argc paramArray:argv];
-}
-
-- (BOOL)startRecord:(NSTimeInterval)startTime filePath:(NSString *)filePath type:(RecordType)type {
-    [super startRecord:startTime filePath:filePath type:type];
-    NSInteger ret = [self.ijkPlayer initRecord:filePath];
-    if (ret > 0) {
-        [self.ijkPlayer startRecord:type];
-    }
-    return ret > 0;
-
-}
-
-- (void)endRecord:(NSTimeInterval)endTime {
-    [super endRecord:endTime];
-    [self.ijkPlayer stopRecord];
-}
-
 - (UIView *)playerView {
     return self.ijkPlayer.view;
 }
@@ -299,7 +214,7 @@
     _changeVoluming = YES;
     _setVolumeSucess = [self.ijkPlayer setPlaybackAudioVolume:volume];
     _volume = volume;
-    UALog(@"~~~volume %s _setVolumeSucess = %d", __func__, _setVolumeSucess);
+    PKLog(@"~~~volume %s _setVolumeSucess = %d", __func__, _setVolumeSucess);
 }
 
 - (CGSize)naturalSize {
@@ -345,15 +260,14 @@
 }
 
 - (IJKFFOptions *)defaultOptions {
-    IJKFFOptions *options = [IJKFFOptions optionsByVideo];
+    IJKFFOptions *options = [IJKFFOptions optionsByDefault];
     [options setOptionIntValue:1 forKey:@"framedrop" ofCategory:kIJKFFOptionCategoryPlayer];
     [options setOptionIntValue:48 forKey:@"skip_loop_filter" ofCategory:kIJKFFOptionCategoryCodec];
     [options setOptionIntValue:0 forKey:@"http-detect-range-support" ofCategory:kIJKFFOptionCategoryFormat];
     [options setOptionIntValue:0 forKey:@"start-on-prepared" ofCategory:kIJKFFOptionCategoryPlayer];
     if (!self.notNeedSetProbesize) {
-        NSNumber *probesize = [AppCongfig findAppCongfig].playProbesize;
-        [options setOptionIntValue:probesize.integerValue forKey:@"probesize" ofCategory:kIJKFFOptionCategoryFormat];
-        [options setOptionIntValue:probesize.integerValue forKey:@"max-buffer-size" ofCategory:kIJKFFOptionCategoryPlayer];
+        [options setOptionIntValue:1024 forKey:@"probesize" ofCategory:kIJKFFOptionCategoryFormat];
+        [options setOptionIntValue:1024 forKey:@"max-buffer-size" ofCategory:kIJKFFOptionCategoryPlayer];
     }
     [options setPlayerOptionIntValue:_enableVideoToolBox forKey:@"videotoolbox"];
 
@@ -371,16 +285,16 @@
     IJKMPMovieLoadState loadState = self.ijkPlayer.loadState;
 
     if ((loadState & IJKMPMovieLoadStatePlaythroughOK) != 0) {
-        UALog(@"%@:::::: loadStateDidChange: IJKMPMovieLoadStatePlaythroughOK: %d\n", [self class], (int) loadState);
+        PKLog(@"%@:::::: loadStateDidChange: IJKMPMovieLoadStatePlaythroughOK: %d\n", [self class], (int) loadState);
         if ([_delegate respondsToSelector:@selector(startPlay)]) {
             [_delegate startPlay];
         }
         [self configureDefaultPlayer:_ijkPlayer];
     } else if ((loadState & IJKMPMovieLoadStateStalled) != 0) {
-        UALog(@"%@::::::loadStateDidChange: IJKMPMovieLoadStateStalled: %d\n", [self class], (int) loadState);
+        PKLog(@"%@::::::loadStateDidChange: IJKMPMovieLoadStateStalled: %d\n", [self class], (int) loadState);
         self.playerState = PlayerStateLoadingNoBg;
     } else {
-        UALog(@"%@::::::loadStateDidChange: ???: %d\n", [self class], (int) loadState);
+        PKLog(@"%@::::::loadStateDidChange: ???: %d\n", [self class], (int) loadState);
     }
 }
 
@@ -390,7 +304,7 @@
 
     switch (reason) {
         case IJKMPMovieFinishReasonPlaybackEnded:
-            UALog(@"%@::::::playbackStateDidChange: IJKMPMovieFinishReasonPlaybackEnded: %d\n", [self class], reason);
+            PKLog(@"%@::::::playbackStateDidChange: IJKMPMovieFinishReasonPlaybackEnded: %d\n", [self class], reason);
             switch (self.actionAtItemEnd) {
                 case PlayerActionAtItemEndAdvance : {
                     [self playFinish];
@@ -425,18 +339,18 @@
             break;
 
         case IJKMPMovieFinishReasonUserExited:
-            UALog(@"%@::::::playbackStateDidChange: IJKMPMovieFinishReasonUserExited: %d\n", [self class], reason);
+            PKLog(@"%@::::::playbackStateDidChange: IJKMPMovieFinishReasonUserExited: %d\n", [self class], reason);
             [self playError];
             break;
 
         case IJKMPMovieFinishReasonPlaybackError:
-            UALog(@"%@::::::playbackStateDidChange: IJKMPMovieFinishReasonPlaybackError: %d\n", [self class], reason);
+            PKLog(@"%@::::::playbackStateDidChange: IJKMPMovieFinishReasonPlaybackError: %d\n", [self class], reason);
             self.playerState = PlayerStateError;
             [self playError];
             break;
 
         default:
-            UALog(@"%@::::::playbackPlayBackDidFinish: ???: %d\n", [self class], reason);
+            PKLog(@"%@::::::playbackPlayBackDidFinish: ???: %d\n", [self class], reason);
             break;
     }
 }
@@ -444,7 +358,7 @@
 - (void)mediaIsPreparedToPlayDidChange:(NSNotification *)notification {
     if (self.ijkPlayer != notification.object) return;
     self.playerState = PlayerStateStarting;
-    UALog(@"%@::::::mediaIsPreparedToPlayDidChange\n", [self class]);
+    PKLog(@"%@::::::mediaIsPreparedToPlayDidChange\n", [self class]);
 }
 
 - (void)moviePlayBackStateDidChange:(NSNotification *)notification {
@@ -460,7 +374,7 @@
         case IJKMPMoviePlaybackStateStopped: {
             self.playerState = PlayerStateStopped;
             /*
-            UALog(@"%@::::::IJKMPMoviePlayBackStateDidChange %d: stoped", [self class], (int) self.ijkPlayer.playbackState);
+            PKLog(@"%@::::::IJKMPMoviePlayBackStateDidChange %d: stoped", [self class], (int) self.ijkPlayer.playbackState);
             if(!self.circlePlay) {
                 [self playFinish];
             } else {
@@ -473,12 +387,12 @@
             break;
         }
         case IJKMPMoviePlaybackStatePlaying: {
-            UALog(@"%@::::::IJKMPMoviePlayBackStateDidChange %d: playing", [self class], (int) self.ijkPlayer.playbackState);
+            PKLog(@"%@::::::IJKMPMoviePlayBackStateDidChange %d: playing", [self class], (int) self.ijkPlayer.playbackState);
             self.playerState = PlayerStatePlaying;
-            UALog(@"~~~volume %s _setVolumeSucess = %d", __func__, _setVolumeSucess);
+            PKLog(@"~~~volume %s _setVolumeSucess = %d", __func__, _setVolumeSucess);
             if (_changeVoluming && !_setVolumeSucess) {
                 [self changeAudioVolume:_volume];
-                UALog(@"~~~volume %s _setVolumeSucess = %d", __func__, _setVolumeSucess);
+                PKLog(@"~~~volume %s _setVolumeSucess = %d", __func__, _setVolumeSucess);
                 __weak typeof(self) weakSelf = self;
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                     __strong typeof(weakSelf) strongSelf = weakSelf;
@@ -488,7 +402,7 @@
 
             if (self.isFirstReplay) {
                 CFAbsoluteTime time = CFAbsoluteTimeGetCurrent();
-                UALog(@"[IJKPlayer][end = start] %lf", time - self.startTime);
+                PKLog(@"[IJKPlayer][end = start] %lf", time - self.startTime);
                 self.isFirstReplay = NO;
             }
 
@@ -496,20 +410,20 @@
             break;
         }
         case IJKMPMoviePlaybackStatePaused: {
-            UALog(@"%@::::::IJKMPMoviePlayBackStateDidChange %d: paused", [self class], (int) self.ijkPlayer.playbackState);
+            PKLog(@"%@::::::IJKMPMoviePlayBackStateDidChange %d: paused", [self class], (int) self.ijkPlayer.playbackState);
             break;
         }
         case IJKMPMoviePlaybackStateInterrupted: {
-            UALog(@"%@::::::IJKMPMoviePlayBackStateDidChange %d: interrupted", [self class], (int) self.ijkPlayer.playbackState);
+            PKLog(@"%@::::::IJKMPMoviePlayBackStateDidChange %d: interrupted", [self class], (int) self.ijkPlayer.playbackState);
             break;
         }
         case IJKMPMoviePlaybackStateSeekingForward:
         case IJKMPMoviePlaybackStateSeekingBackward: {
-            UALog(@"%@::::::IJKMPMoviePlayBackStateDidChange %d: seeking", [self class], (int) self.ijkPlayer.playbackState);
+            PKLog(@"%@::::::IJKMPMoviePlayBackStateDidChange %d: seeking", [self class], (int) self.ijkPlayer.playbackState);
             break;
         }
         default: {
-            UALog(@"%@::::::IJKMPMoviePlayBackStateDidChange %d: unknown", [self class], (int) self.ijkPlayer.playbackState);
+            PKLog(@"%@::::::IJKMPMoviePlayBackStateDidChange %d: unknown", [self class], (int) self.ijkPlayer.playbackState);
             break;
         }
     }
