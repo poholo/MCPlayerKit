@@ -1,0 +1,10 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+platform :ios, "8.0"
+
+target "PlayerKitDemo" do
+ pod "SDWebImage", "3.8.2"
+ pod "Masonry", "1.0.2"
+ pod "MBProgressHUD", "1.0.0"
+ pod 'HWWeakTimer', '~> 1.0'
+end

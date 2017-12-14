@@ -3,17 +3,17 @@
 // Copyright (c) 2017 mjc inc. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 
-#import "PlayerBaseView.h"
-#import "PlayerConfig.h"
+
+#import <MCPlayerKit/PlayerBaseView.h>
+
+#import "PlayerViewConfig.h"
 
 @class PlayerProgress;
 @class PlayerTerminalView;
 @class PlayerLoadingView;
-@class PlayerRateBoard;
 @protocol PlayerTerminalDelegate;
-@protocol PlayerFollowViewDelegate;
+
 
 @protocol PlayerNormalViewDelegate <NSObject>
 
@@ -105,9 +105,6 @@
     UIButton *_fullScreenBtn;
 
     UIButton *_definitionBtn;
-    UIButton *_qudanBtn;
-    UIButton *_jumpBtn;
-
     UIButton *_lockBtn;
 
     CAGradientLayer *_topGradientLayer;
@@ -119,7 +116,6 @@
 
     PlayerLoadingView *_loadingView;
     UIImageView *_waterImageView;
-    PlayerRateBoard *_playerRateBoard;
 
     UITapGestureRecognizer *_tapGesture;
     UIPanGestureRecognizer *_panGesture;
@@ -138,16 +134,11 @@
 }
 
 @property(nonatomic, weak) id <PlayerNormalViewDelegate> playerNormalViewDelegate;
-
 @property(nonatomic, weak) id <PlayerTerminalDelegate> playerTermailDelegate;
 
-@property(nonatomic, weak) id <PlayerFollowViewDelegate> playerFollowViewDelegate;
+@property(nonatomic, assign) PlayerStyle playerStyle;
 
 - (void)updatePlayStyle:(PlayerType)playerType;
-
-//- (void)updateBaiduAd:(NSArray<MMAdDto *> *)baiduAds perDuration:(NSUInteger)perDuration sumOfDuration:(NSUInteger)sumOfDuration;
-
-//- (void)updateAdJumpType:(PreVideoJumpType)jumpType;
 
 - (void)updateTitle:(NSString *)title;
 
@@ -158,8 +149,6 @@
 - (void)controlWaterMark:(BOOL)animated;
 
 - (void)updateFullScreenBtnStatus:(BOOL)fullScreen;
-
-- (void)updateFollow:(BOOL)follow;
 
 - (void)updateDefinitionNormal:(BOOL)hasNormal HD:(BOOL)hasHD UHD:(BOOL)hasUHD;
 
@@ -176,8 +165,6 @@
 - (BOOL)isLoop;
 
 - (void)resetLoop;
-
-- (void)updateMention:(NSString *)mention xRate:(CGFloat)xRate showSecs:(CGFloat)showSecs;
 
 - (void)fadeShowAndThenHiddenAnimation;
 

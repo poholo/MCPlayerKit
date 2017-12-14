@@ -6,10 +6,12 @@
 #import "AVPlayerx.h"
 
 #import <AVFoundation/AVFoundation.h>
-#import <IJKMediaFramework/IJKMediaFramework.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 
 #import "PlayerKitLog.h"
+#import "NSURL+Extend.h"
+#import "SafeKVOController.h"
+#import "SafeNotificationManager.h"
 
 
 @interface AVPlayerx ()
@@ -17,9 +19,9 @@
 @property(nonatomic, strong) AVQueuePlayer *player;
 @property(nonatomic, strong) AVPlayerLayer *avplayerLayer;
 @property(nonatomic, strong) NSMutableArray<AVPlayerItem *> *playerItems;
-@property(nonatomic, strong) NSMutableArray<IJKKVOController *> *playerItemsKVOManagers;
-@property(nonatomic, strong) IJKKVOController *playerKVOManager;
-@property(nonatomic, strong) IJKNotificationManager *notificationManager;
+@property(nonatomic, strong) NSMutableArray<SafeKVOController *> *playerItemsKVOManagers;
+@property(nonatomic, strong) SafeKVOController *playerKVOManager;
+@property(nonatomic, strong) SafeNotificationManager *notificationManager;
 
 @property(nonatomic, assign) CFAbsoluteTime startTime;
 
@@ -241,7 +243,7 @@
     return _playerItems;
 }
 
-- (NSMutableArray<IJKKVOController *> *)playerItemsKVOManagers {
+- (NSMutableArray<SafeKVOController *> *)playerItemsKVOManagers {
     if (_playerItemsKVOManagers == nil) {
         _playerItemsKVOManagers = [[NSMutableArray alloc] init];
     }
@@ -249,9 +251,9 @@
 }
 
 
-- (IJKKVOController *)playerKVOManager {
+- (SafeKVOController *)playerKVOManager {
     if (_playerKVOManager == nil) {
-        _playerKVOManager = [[IJKKVOController alloc] initWithTarget:self.player];
+        _playerKVOManager = [[SafeKVOController alloc] initWithTarget:self.player];
     }
     return _playerKVOManager;
 }
@@ -277,9 +279,9 @@
     }
 }
 
-- (IJKNotificationManager *)notificationManager {
+- (SafeNotificationManager *)notificationManager {
     if (_notificationManager == nil) {
-        _notificationManager = [[IJKNotificationManager alloc] init];
+        _notificationManager = [[SafeNotificationManager alloc] init];
     }
     return _notificationManager;
 }
@@ -303,7 +305,7 @@
 }
 
 - (void)configurePlayerItemObserver:(AVPlayerItem *)playerItem {
-    IJKKVOController *ijkkvoController = [[IJKKVOController alloc] initWithTarget:playerItem];
+    SafeKVOController *ijkkvoController = [[SafeKVOController alloc] initWithTarget:playerItem];
     [ijkkvoController safelyAddObserver:self forKeyPath:_k_PlayerItem_Status options:NSKeyValueObservingOptionNew context:nil];
     [ijkkvoController safelyAddObserver:self forKeyPath:_k_PlayerItem_PlaybackBufferEmpty options:NSKeyValueObservingOptionNew context:nil];
     [ijkkvoController safelyAddObserver:self forKeyPath:_k_PlayerItem_PlaybackLikelyToKeepUp options:NSKeyValueObservingOptionNew context:nil];
@@ -312,7 +314,7 @@
 }
 
 - (void)removePlayerItemsObserver {
-    for (IJKKVOController *ijkkvoController in self.playerItemsKVOManagers) {
+    for (SafeKVOController *ijkkvoController in self.playerItemsKVOManagers) {
         [ijkkvoController safelyRemoveAllObservers];
     }
     [self.playerItemsKVOManagers removeAllObjects];

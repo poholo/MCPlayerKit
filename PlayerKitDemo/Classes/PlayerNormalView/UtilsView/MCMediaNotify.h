@@ -6,7 +6,6 @@
 //  Copyright (c) 2014年 mjc Technology Center ltd. All rights reserved.
 //
 #import <UIKit/UIKit.h>
-#import "PlayerConfig.h"
 
 typedef NS_ENUM(NSInteger, MediaNotifyType) {
     MediaProgress = 1, //视频前进后退进度

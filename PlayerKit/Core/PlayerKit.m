@@ -10,10 +10,12 @@
 #import "PlayerKit.h"
 
 #import "IJKPlayer.h"
-#import "HWWeakTimer.h"
 #import "AVPlayerx.h"
 #import "PlayerKitLog.h"
+#import "Player.h"
 #import "PlayerKitTools.h"
+#import "PlayerBaseView.h"
+#import "PlayerStatusDelegate.h"
 
 
 @interface PlayerKit () <PlayerDelegate, PlayerViewControlDelegate>
@@ -116,7 +118,7 @@
 
 - (NSTimer *)timer {
     if (_timer == nil) {
-        _timer = [HWWeakTimer scheduledTimerWithTimeInterval:.2 target:self selector:@selector(timeTick) userInfo:nil repeats:YES];
+        _timer = [NSTimer scheduledTimerWithTimeInterval:.2 target:self selector:@selector(timeTick) userInfo:nil repeats:YES];
         [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSDefaultRunLoopMode];
     }
     return _timer;
@@ -324,10 +326,6 @@
             if ([_playerStatusDelegate respondsToSelector:@selector(playerStartError)]) {
                 [_playerStatusDelegate playerStartError];
             }
-        }
-            break;
-        case PlayerPlayingUsingAirplay : {
-//            [self showAirplaying];
         }
             break;
         default: {

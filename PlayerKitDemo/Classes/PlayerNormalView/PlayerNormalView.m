@@ -6,21 +6,18 @@
 #import "PlayerNormalView.h"
 
 #import <MediaPlayer/MediaPlayer.h>
+#import <Masonry.h>
+#import <MCPlayerKit/MCPlayerKit.h>
 
 #import "PlayerProgress.h"
 #import "PlayerTerminalView.h"
 #import "MCMediaNotify.h"
 #import "PlayerLoadingView.h"
-#import "PlayerRateBoard.h"
-#import "PlayerViewControlDelegate.h"
-#import "PlayerConfig.h"
-#import "PlayerFollowView.h"
-#import "PlayerKitLog.h"
+#import "UIColor+Hex.h"
 
 
 ////////////////////////////////////
-@interface PlayerNormalView () <PlayerRateBoardDelegate,
-        PlayerProgressDelegate>
+@interface PlayerNormalView () <PlayerProgressDelegate>
 
 @property(nonatomic, assign) DefinitionType definitionType;
 
@@ -29,10 +26,6 @@
 @property(nonatomic, assign) BOOL hasNormal;
 @property(nonatomic, assign) BOOL hasHD;
 @property(nonatomic, assign) BOOL hasUHD;
-
-@property(nonatomic, strong) PlayerFollowView *playerFollowView;
-
-- (NSString *)decorateCountDownByJumpType;
 
 
 @end
@@ -56,7 +49,7 @@
 
 - (void)updatePlayStyle:(PlayerType)playerType {
     _playerType = playerType;
-    if (_playerType != PlayerBaiduAd) {
+    if (_playerType != PlayerUnionAd) {
     }
 }
 
@@ -87,10 +80,10 @@
         layer.locations = @[@(.4)];
         layer.startPoint = CGPointMake(0, 0);
         layer.endPoint = CGPointMake(0, 1.0);
-        layer.frame = CGRectMake(0, 0, [UIScreen width], 50);
+        layer.frame = CGRectMake(0, 0, MIN([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height), 50);
 
         _topControlView = ({
-            UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen width], 50)];
+            UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MIN([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height), 50)];
             [_containerView addSubview:view];
             view.userInteractionEnabled = YES;
             view;
@@ -104,9 +97,9 @@
         layer.locations = @[@(.3)];
         layer.startPoint = CGPointMake(0, 0);
         layer.endPoint = CGPointMake(0, 1.0);
-        layer.frame = CGRectMake(0, 0, [UIScreen width], 50);
+        layer.frame = CGRectMake(0, 0, MIN([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height), 50);
         _bottomControlView = ({
-            UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen width], 50)];
+            UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MIN([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height), 50)];
             [_containerView addSubview:view];
             view.userInteractionEnabled = YES;
             view;
@@ -118,7 +111,7 @@
     _backBtn = [[UIButton alloc] init];
     _titleLabel = ({
         UILabel *autoLabel = [UILabel new];
-        autoLabel.textColor = [WQColorStyle whiteColor];
+        autoLabel.textColor = [UIColor whiteColor];
         autoLabel.font = [UIFont systemFontOfSize:15];
         [_containerView addSubview:autoLabel];
         autoLabel.textColor = [UIColor whiteColor];
@@ -145,8 +138,6 @@
     _fullScreenBtn = [[UIButton alloc] init];
 
     _definitionBtn = [[UIButton alloc] init];
-    _qudanBtn = [[UIButton alloc] init];
-    _jumpBtn = [[UIButton alloc] init];
     _lockBtn = [[UIButton alloc] init];
 
     [_containerView addSubview:_backBtn];
@@ -167,8 +158,6 @@
     [_containerView addSubview:_rightLabel];
     [_containerView addSubview:_fullScreenBtn];
     [_containerView addSubview:_definitionBtn];
-    [_containerView addSubview:_qudanBtn];
-    [_containerView addSubview:_jumpBtn];
     [_containerView addSubview:_lockBtn];
 
     {
@@ -206,7 +195,7 @@
 
     [_definitionBtn setTitle:({
         NSString *name = @"标清";
-        DefinitionType definitionType = [[WQUserSetting sharedInstance] getUserSettingwithUserID:[MMKeyChain openUDID]].definitionType;
+        DefinitionType definitionType = [PlayerViewConfig sharedInstance].definitionType;
         switch (definitionType) {
             case DTNormal: {
                 name = @"标清";
@@ -224,23 +213,14 @@
         name;
     })              forState:UIControlStateNormal];
     _definitionBtn.titleLabel.font = [UIFont systemFontOfSize:12];
-    [_definitionBtn setTitleColor:[WQColorStyle whiteColor] forState:UIControlStateNormal];
-    [_definitionBtn setTitleColor:[WQColorStyle shallowBlueColor] forState:UIControlStateHighlighted];
+    [_definitionBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_definitionBtn setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
 
-    [_qudanBtn setTitle:@"趣单" forState:UIControlStateNormal];
-    _qudanBtn.titleLabel.font = [UIFont systemFontOfSize:12];
-    [_qudanBtn setTitleColor:[WQColorStyle whiteColor] forState:UIControlStateNormal];
-    [_qudanBtn setTitleColor:[WQColorStyle shallowBlueColor] forState:UIControlStateHighlighted];
-
-    [_jumpBtn setBackgroundColor:[UIColor rgba:0x00000099] forState:UIControlStateNormal];
-    [ViewShapeMask cornerView:_jumpBtn radius:10 border:0 color:nil];
-    _jumpBtn.titleLabel.font = [UIFont systemFontOfSize:12];
-    [_jumpBtn setTitleColor:[WQColorStyle whiteColor] forState:UIControlStateNormal];
 
     _leftLabel.font = [UIFont systemFontOfSize:10];
-    _leftLabel.textColor = [WQColorStyle whiteColor];
+    _leftLabel.textColor = [UIColor whiteColor];
     _rightLabel.font = [UIFont systemFontOfSize:10];
-    _rightLabel.textColor = [WQColorStyle whiteColor];
+    _rightLabel.textColor = [UIColor whiteColor];
     _leftLabel.text = @"00:00";
     _rightLabel.text = @"00:00";
 
@@ -262,8 +242,6 @@
     [_nextBtn addTarget:self action:@selector(nextBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [_fullScreenBtn addTarget:self action:@selector(btnFullClick) forControlEvents:UIControlEventTouchUpInside];
     [_definitionBtn addTarget:self action:@selector(btnDefinitionClick) forControlEvents:UIControlEventTouchUpInside];
-    [_qudanBtn addTarget:self action:@selector(btnQudanClick) forControlEvents:UIControlEventTouchUpInside];
-    [_jumpBtn addTarget:self action:@selector(btnJumpAdClick) forControlEvents:UIControlEventTouchUpInside];
     [_lockBtn addTarget:self action:@selector(btnLockClick) forControlEvents:UIControlEventTouchUpInside];
 
     _playerProgress.delegate = self;
@@ -271,7 +249,6 @@
     _definitionBtn.alpha = 0.0;
     _shareBtn.alpha = 0.0;
     _titleLabel.alpha = 0.0;
-    _qudanBtn.alpha = 0.0;
     _playPauseBtn.alpha = 0.0;
 
     _loadingView = [[PlayerLoadingView alloc] init];
@@ -282,15 +259,6 @@
     [self insertSubview:_waterImageView atIndex:PlayerLayerLevelWater];
 
     [self playerTerminalView];
-
-    _playerRateBoard = ({
-        PlayerRateBoard *playerRateBoard = [[PlayerRateBoard alloc] init];
-        playerRateBoard.delegate = self;
-        [self addSubview:playerRateBoard];
-        playerRateBoard.hidden = YES;
-        playerRateBoard;
-    });
-
     [self updateLayerIndex];
 }
 
@@ -301,11 +269,9 @@
 
 - (void)setPlayerStyle:(PlayerStyle)playerStyle {
     _playerStyle = playerStyle;
-    [_playerRateBoard setPlayerStyle:playerStyle];
     switch (_playerStyle) {
         case PlayerStyleSizeClassCompact: {
             _airplayBtn.alpha = 0.0;
-            _qudanBtn.alpha = _moreBtn.alpha;
             _definitionBtn.alpha = _moreBtn.alpha;
             _shareBtn.alpha = _moreBtn.alpha;
             _downloadBtn.alpha = _moreBtn.alpha;
@@ -320,7 +286,6 @@
             break;
         case PlayerStyleSizeClassRegular: {
             _airplayBtn.alpha = 0.0;
-            _qudanBtn.alpha = _moreBtn.alpha;
             _definitionBtn.alpha = _moreBtn.alpha;
             _shareBtn.alpha = _moreBtn.alpha;
             _downloadBtn.alpha = _moreBtn.alpha;
@@ -336,7 +301,6 @@
             break;
         case PlayerStyleSizeClassRegularHalf: {
             _definitionBtn.alpha = 0.0;
-            _qudanBtn.alpha = 0.0;
             _airplayBtn.alpha = _moreBtn.alpha;
             _shareBtn.alpha = 0.0;
             _downloadBtn.alpha = 0.0;
@@ -347,24 +311,18 @@
             _playPauseBtn.alpha = 0.0;
             _portraitPlayPauseBtn.alpha = _moreBtn.alpha;
             _nextBtn.alpha = 0.0;
-            [self removeQudanListView];
         }
             break;
     }
 
-    [self updateQudianMentionFrame];
-
     [self setNeedsUpdateConstraints];
     [self updateConstraintsIfNeeded];
     [self layoutIfNeeded];
-
-    [self removeDefinitionView];
 }
 
 - (void)updateLayerIndex {
     [self insertSubview:_waterImageView atIndex:PlayerLayerLevelWater];
     [self insertSubview:_containerView atIndex:PlayerLayerLevelNormalControlBar];
-    [self insertSubview:_playerRateBoard atIndex:PlayerLayerLevelPlayerRate];
     [self insertSubview:_loadingView atIndex:PlayerLayerLevelLoadingView];
     [self insertSubview:_playerTerminalView atIndex:PlayerLayerLevelTerminal];
     [self insertSubview:_backBtn atIndex:PlayerLayerLevelBackView];
@@ -376,19 +334,14 @@
     _bottomControlView.frame = CGRectMake(0, self.frame.size.height - 55, self.frame.size.width, 55);
     _topGradientLayer.frame = _topControlView.bounds;
     _bottomGradientLayer.frame = _bottomControlView.bounds;
-
-    [self updateQudianMentionFrame];
 }
 
 - (void)updateConstraints {
-    @weakify(self);
     [_containerView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
         make.top.left.right.bottom.equalTo(self);
     }];
 
     [_touchView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
         make.top.left.right.bottom.equalTo(self->_containerView);
     }];
 
@@ -397,14 +350,12 @@
         top = 15;
     }
     [_backBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
         make.top.equalTo(self).offset(top);
         make.left.equalTo(self).offset(0);
         make.width.height.mas_equalTo(35);
     }];
 
     [_titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
         make.centerY.equalTo(self->_backBtn);
         make.left.equalTo(self->_backBtn.mas_right).offset(10);
         make.right.equalTo(self->_collectionBtn.mas_left).offset(-10);
@@ -413,14 +364,12 @@
 
     CGFloat btnWidth = 40;
     [_moreBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
         make.right.equalTo(self).offset(-10);
         make.top.equalTo(self).offset(top);
         make.width.height.mas_equalTo(btnWidth);
     }];
 
     [_airplayBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
         if (self.playerStyle == PlayerStyleSizeClassRegularHalf) {
             make.right.equalTo(self->_moreBtn.mas_left).offset(-10);
         } else {
@@ -431,7 +380,6 @@
     }];
 
     [_shareBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
         make.right.equalTo(self->_moreBtn.mas_left).offset(-10);
         make.top.equalTo(self->_backBtn);
         make.width.height.mas_equalTo(btnWidth);
@@ -439,25 +387,18 @@
 
 
     [_downloadBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
         make.right.equalTo(self->_shareBtn.mas_left).offset(-10);
         make.top.equalTo(self->_backBtn);
         make.width.height.mas_equalTo(btnWidth);
     }];
 
     [_collectionBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
-        if ([AppSetting isDownloadable]) {
-            make.right.equalTo(self->_downloadBtn.mas_left).offset(-10);
-        } else {
-            make.right.equalTo(self->_shareBtn.mas_left).offset(-10);
-        }
+        make.right.equalTo(self->_downloadBtn.mas_left).offset(-10);
         make.top.equalTo(self->_backBtn);
         make.width.height.mas_equalTo(btnWidth);
     }];
 
     [_loopBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
         make.top.equalTo(self->_backBtn);
         make.width.height.mas_equalTo(btnWidth);
         make.right.equalTo(self->_airplayBtn.mas_left).offset(-10);
@@ -482,28 +423,24 @@
         w;
     });
     [_playPauseBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
         make.left.equalTo(self).offset(10);
         make.bottom.equalTo(self).offset(-10);
         make.width.height.mas_equalTo(bottomHeight);
     }];
 
     [_portraitPlayPauseBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
         make.centerX.equalTo(self);
         make.centerY.equalTo(self);
         make.width.height.mas_equalTo(60);
     }];
 
     [_nextBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
         make.left.equalTo(_playPauseBtn.mas_right).offset(10);
         make.centerY.equalTo(_playPauseBtn);
         make.width.height.equalTo(_playPauseBtn);
     }];
 
     [_leftLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
         if (_playerStyle != PlayerStyleSizeClassCompact) {
             make.left.equalTo(self->_containerView.mas_left).offset(5);
         } else {
@@ -514,34 +451,20 @@
 
 
     [_fullScreenBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
         make.right.equalTo(self->_containerView.mas_right).offset(-10);
         make.centerY.equalTo(self->_playPauseBtn);
         make.width.height.mas_equalTo(bottomHeight);
     }];
 
-    [_qudanBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
+
+    [_definitionBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self->_fullScreenBtn.mas_left).offset(-5);
         make.width.mas_equalTo(40);
         make.height.mas_equalTo(bottomHeight);
         make.centerY.equalTo(self->_playPauseBtn);
     }];
 
-    [_definitionBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
-        if (_qudanBtn.hidden) {
-            make.right.equalTo(self->_fullScreenBtn.mas_left).offset(-5);
-        } else {
-            make.right.equalTo(self->_qudanBtn.mas_left).offset(-5);
-        }
-        make.width.mas_equalTo(40);
-        make.height.mas_equalTo(bottomHeight);
-        make.centerY.equalTo(self->_playPauseBtn);
-    }];
-
     [_rightLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
         if (self.playerStyle == PlayerStyleSizeClassRegularHalf) {
             make.right.equalTo(self->_fullScreenBtn.mas_left).offset(-5);
         } else {
@@ -551,7 +474,6 @@
     }];
 
     [_playerProgress mas_remakeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
         make.left.equalTo(self->_leftLabel.mas_right).offset(5);
         make.bottom.equalTo(self->_containerView.mas_bottom);
         make.top.equalTo(self->_playPauseBtn.mas_top).offset(-10);
@@ -561,7 +483,6 @@
     [_playerProgress layoutIfNeeded];
 
     [_bottomPlayerProgress mas_remakeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
         make.left.equalTo(self->_containerView.mas_left);
         make.bottom.equalTo(self->_containerView.mas_bottom);
         make.height.mas_equalTo(2);
@@ -571,12 +492,10 @@
     [_bottomPlayerProgress layoutIfNeeded];
 
     [_loadingView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
         make.edges.equalTo(self);
     }];
 
     [_waterImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
         CGFloat top = 15;
         make.right.equalTo(self).offset(-10);
         if (self.playerStyle == PlayerStyleSizeClassCompact) {
@@ -590,33 +509,11 @@
         make.size.mas_equalTo(_waterImageView.image.size);
     }];
 
-    [_playerRateBoard mas_remakeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
-        make.left.top.right.bottom.equalTo(self);
-    }];
-    [_playerRateBoard layoutIfNeeded];
-
-
     [_playerTerminalView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
         make.left.top.right.bottom.equalTo(self);
-    }];
-
-    [_playerBulletView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
-        make.left.top.right.bottom.equalTo(self);
-    }];
-
-    [_jumpBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
-        make.top.equalTo(self->_containerView).offset(20);
-        make.right.equalTo(self->_containerView.mas_right).offset(-20);
-        make.width.mas_equalTo([_jumpBtn.titleLabel.text size4size:CGSizeMake(CGFLOAT_MAX, 25) font:[UIFont systemFontOfSize:12]].width + 20);
-        make.height.mas_equalTo(25);
     }];
 
     [_lockBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
         make.width.height.mas_equalTo(50);
         make.centerY.equalTo(self);
         make.left.equalTo(self.mas_left).offset(15);
@@ -653,11 +550,9 @@
             }
                 break;  ///<  16:9 半屏幕
             case PlayerStyleSizeClassRegular: {
-                [self showPlayPauseAdView];
             }
                 break;      ///<  竖屏全屏
             case PlayerStyleSizeClassCompact: {
-                [self showPlayPauseAdView];
             }
 
                 break;
@@ -669,7 +564,7 @@
 }
 
 - (void)showLoading {
-    if (_playerType == PlayerBaiduAd) {
+    if (_playerType == PlayerUnionAd) {
         _playerTerminalView.hidden = YES;
         [self fadeHiddenControlViewAnimation:@(YES)];
         [_loadingView endRotating];
@@ -800,25 +695,9 @@
         }];
         if (secs == 10) {
             PKLog(@"[PlayerFollowView again]%@", leftTime);
-            [self.playerFollowView showFollowPlayerViewAnimaiton:YES];
         }
     } else if (_playerType == PlayerAd) {
-        if ([self.playerControlDelegate respondsToSelector:@selector(currentTime)] && [self.playerControlDelegate respondsToSelector:@selector(duration)]) {
-            NSInteger currentSec = (NSInteger) [self.playerControlDelegate currentTime];
-            NSInteger duration = (NSInteger) [self.playerControlDelegate duration];
-            [_jumpBtn setTitle:[NSString stringWithFormat:@"%@%zdS", [self decorateCountDownByJumpType], duration - currentSec] forState:UIControlStateNormal];
-            [_jumpBtn mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.width.mas_equalTo([_jumpBtn.titleLabel.text size4size:CGSizeMake(CGFLOAT_MAX, 25) font:[UIFont systemFontOfSize:12]].width + 20);
-            }];
-            [_jumpBtn layoutIfNeeded];
-            if (duration > 0 && duration - currentSec <= 1) {
-                if ([self.playerNormalViewDelegate respondsToSelector:@selector(jumpPreAd:duration:)]) {
-                    [self.playerNormalViewDelegate jumpPreAd:NO duration:currentSec];
-                }
-            }
-        }
-
-    } else if (_playerType == PlayerBaiduAd) {
+    } else if (_playerType == PlayerUnionAd) {
         //no implement here
     } else {
         //ignore
@@ -867,7 +746,7 @@
 }
 
 - (void)addPanGesture {
-    if (_playerType == PlayerAd || _playerType == PlayerBaiduAd) return;
+    if (_playerType == PlayerAd || _playerType == PlayerUnionAd) return;
     if (_panGesture) return;
     _panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onPanGesture:)];
     [_touchView addGestureRecognizer:_panGesture];
@@ -884,9 +763,7 @@
 
 - (void)fadeHiddenControlViewAnimation:(NSNumber *)animate {
     if (animate.boolValue) {
-        @weakify(self);
         [UIView animateWithDuration:.5 animations:^{
-            @strongify(self);
             [self userCustomMake:0.0];
         }];
     } else {
@@ -897,9 +774,8 @@
 
 - (void)fadeShowControlViewAnimation:(NSNumber *)animate {
     if (animate.boolValue) {
-        @weakify(self);
+        __weak typeof(self) weakSelf = self;
         [UIView animateWithDuration:.3 animations:^{
-            @strongify(self);
             [self userCustomMake:1.0];
         }];
     } else {
@@ -909,9 +785,7 @@
 
 - (void)userCustomMake:(float)alpha {
     if (_playerType == PlayerNormal) {
-        _jumpBtn.alpha = 0;
     } else {
-        _jumpBtn.alpha = 1;
         alpha = 0;
     }
     if (_lockBtn.selected) {
@@ -939,7 +813,6 @@
         _shareBtn.alpha = 0;
         _downloadBtn.alpha = 0;
         _collectionBtn.alpha = 0;
-        _qudanBtn.alpha = 0.0;
         _lockBtn.alpha = 0.0;
         _loopBtn.alpha = alpha;
         _playPauseBtn.alpha = 0.0;
@@ -952,7 +825,6 @@
         _shareBtn.alpha = alpha;
         _downloadBtn.alpha = alpha;
         _collectionBtn.alpha = alpha;
-        _qudanBtn.alpha = alpha;
         _loopBtn.alpha = 0.0;
         if (_lockBtn.selected) {
             _backBtn.alpha = 0.0;
@@ -996,7 +868,6 @@
         if ([self.playerNormalViewDelegate respondsToSelector:@selector(beforeJumpShowAdInfo)]) {
             BOOL needShow = [self.playerNormalViewDelegate beforeJumpShowAdInfo];
             if (!needShow) {
-                [self jumppreAd];
                 if ([self.playerNormalViewDelegate respondsToSelector:@selector(jump2AdContent)]) {
                     [self.playerNormalViewDelegate jump2AdContent];
                 }
@@ -1006,7 +877,7 @@
                 }
             }
         }
-    } else if (_playerType == PlayerBaiduAd) {
+    } else if (_playerType == PlayerUnionAd) {
         //TODO:: baidu click
     } else {
         if (_isControlUIShow) {
@@ -1196,15 +1067,6 @@
     }
 }
 
-
-- (void)btnMoreClick {
-    _playerRateBoard.hidden = NO;
-    if ([self.playerControlDelegate respondsToSelector:@selector(playRate)]) {
-        [_playerRateBoard selectRate:[self.playerControlDelegate playRate]];
-    }
-    [_playerRateBoard layoutIfNeeded];
-}
-
 - (void)btnDownloadClick {
     if ([self.playerNormalViewDelegate respondsToSelector:@selector(actionDownload)]) {
         [self.playerNormalViewDelegate actionDownload];
@@ -1214,18 +1076,18 @@
 - (void)btnCollectionClick {
     if (_collectionBtn.selected) {
         if ([self.playerNormalViewDelegate respondsToSelector:@selector(cancelCollectionBlock:)]) {
-            @weakify(self);
+            __weak typeof(self) weakSelf = self;
             [self.playerNormalViewDelegate cancelCollectionBlock:^(BOOL success) {
-                @strongify(self);
-                self->_collectionBtn.selected = NO;
+                __strong typeof(self) strongSelf = weakSelf;
+                strongSelf->_collectionBtn.selected = NO;
             }];
         }
     } else {
         if ([self.playerNormalViewDelegate respondsToSelector:@selector(collectionBlock:)]) {
-            @weakify(self);
+            __weak typeof(self) weakSelf = self;
             [self.playerNormalViewDelegate collectionBlock:^(BOOL success) {
-                @strongify(self);
-                self->_collectionBtn.selected = YES;
+                __strong typeof(self) strongSelf = weakSelf;
+                strongSelf->_collectionBtn.selected = YES;
             }];
         }
     }
@@ -1236,7 +1098,6 @@
     if ([self.playerNormalViewDelegate respondsToSelector:@selector(changeLoop:)]) {
         [self.playerNormalViewDelegate changeLoop:_loopBtn.selected];
     }
-    [_playerRateBoard circle:_loopBtn.selected];
 }
 
 - (void)playerPauseViewPlay {
@@ -1293,84 +1154,10 @@
     }
 }
 
-- (void)btnDefinitionClick {
-    //show DefinitionView
-    [self definitionView];
-}
-
-- (void)btnQudanClick {
-    [self qudanListView];
-}
-
-- (void)btnJumpAdClick {
-    switch (_adJumpType) {
-        case PreVideoNotJump: {
-            //不让跳
-        }
-            break;
-        case PreVideoAllCanJump: {
-            [self jumppreAd];
-        }
-            break;
-        case PreVideoLoginCanJump: {
-            @weakify(self);
-            [LoginHelper isLoginWithSource:@"" spos:@"" loginSuccess:^(BOOL accountSuccess, BOOL imSuccess, BOOL cancel) {
-                if (accountSuccess) {
-                    @strongify(self);
-                    [self jumppreAd];
-                }
-            }];
-        }
-            break;
-        case PreVideoJumpOnlyDownload : {
-            if ([self.playerNormalViewDelegate respondsToSelector:@selector(beforeJumpShowAdInfo)]) {
-                BOOL needShow = [self.playerNormalViewDelegate beforeJumpShowAdInfo];
-                if (!needShow) {
-                    [self jumppreAd];
-                    if ([self.playerNormalViewDelegate respondsToSelector:@selector(jump2AdContent)]) {
-                        [self.playerNormalViewDelegate jump2AdContent];
-                    }
-                } else {
-                    if ([self.playerNormalViewDelegate respondsToSelector:@selector(showAdJumpInfo)]) {
-                        [self.playerNormalViewDelegate showAdJumpInfo];
-                    }
-                }
-            }
-        }
-            break;
-        default: {
-            [self jumppreAd];
-        }
-            break;
-    }
-}
-
 - (void)btnLockClick {
     _lockBtn.selected = !_lockBtn.selected;
     [self lockScreen:_lockBtn.selected];
 }
-
-- (void)jumppreAd {
-    if ([_playerNormalViewDelegate respondsToSelector:@selector(jumpPreAd:duration:)] && [self.playerControlDelegate respondsToSelector:@selector(currentTime)]) {
-        if ([self.playerNormalViewDelegate respondsToSelector:@selector(isNotVideoPre)]) {
-            BOOL isNotVideoPre = [self.playerNormalViewDelegate isNotVideoPre];
-            if (!isNotVideoPre) {
-                [_playerNormalViewDelegate jumpPreAd:YES duration:(int) [self.playerControlDelegate currentTime]];
-            } else {
-                [_playerNormalViewDelegate jumpPreAd:YES duration:_playerPreAdView.originSumOfDuraion - _playerPreAdView.sumOfDuration];
-            }
-        }
-    }
-}
-
-- (void)updateBulletHelperDelegate:(id <FXDanmakuDelegate>)delegate {
-    _playerBulletView.delegate = delegate;
-}
-
-- (id <BulletHelperDelegate>)bulletHelperImpDelegate {
-    return _playerBulletView;
-}
-
 
 #pragma  mark -
 
@@ -1426,7 +1213,6 @@
         [self.playerNormalViewDelegate changeDefinitionSaveChange:DTNormal];
     }
     [_definitionBtn setTitle:@"标清" forState:UIControlStateNormal];
-    [self removeDefinitionView];
 }
 
 - (void)change2Hight {
@@ -1443,7 +1229,6 @@
     }
 
     [_definitionBtn setTitle:@"高清" forState:UIControlStateNormal];
-    [self removeDefinitionView];
 }
 
 - (void)change2UHD {
@@ -1459,7 +1244,6 @@
         [self.playerNormalViewDelegate changeDefinitionSaveChange:DTUHight];
     }
     [_definitionBtn setTitle:@"超清" forState:UIControlStateNormal];
-    [self removeDefinitionView];
 }
 
 - (void)log2HobbleChange2Normal {
@@ -1471,23 +1255,9 @@
     }
 }
 
-
-- (void)removeDefinitionView {
-    [_definitionView removeFromSuperview];
-    _definitionView = nil;
-}
-
 - (void)updateFullScreenBtnStatus:(BOOL)fullScreen {
     _fullScreenBtn.selected = fullScreen;
 }
-
-- (void)updateFollow:(BOOL)follow {
-    if (_playerFollowView) {
-        [_playerFollowView updateSeleted:follow];
-    }
-
-}
-
 
 - (void)updateDefinitionNormal:(BOOL)hasNormal HD:(BOOL)hasHD UHD:(BOOL)hasUHD {
     self.hasNormal = hasNormal;
@@ -1531,7 +1301,6 @@
 }
 
 - (void)updateHasQudan:(BOOL)hasQudan {
-    _qudanBtn.hidden = !hasQudan;
     [self setNeedsUpdateConstraints];
     [self needsUpdateConstraints];
     [self layoutIfNeeded];
@@ -1553,7 +1322,6 @@
 
 - (void)showCanLoop:(BOOL)isLoop {
     _loopBtn.hidden = !isLoop;
-    [_playerRateBoard canShowCircle:isLoop];
 }
 
 - (BOOL)isLoop {
@@ -1565,43 +1333,18 @@
 
 - (void)resetLoop {
     _loopBtn.selected = NO;
-    [_playerRateBoard circle:NO];
 }
 
-#pragma mark -AirplayPlayerDelegate
-
-- (void)showAirplayFailed:(NSString *)title {
-    @weakify(self);
-    [self mainThread:^{
-        @strongify(self);
-        self.playerTerminalView.hidden = NO;
-        [self.playerTerminalView updatePlayerTerminal:PlayerPlayingUsingAirplay title:title];
-        if ([self.playerControlDelegate respondsToSelector:@selector(pause)]) {
-            [self.playerControlDelegate pause];
-        }
-    }];
-
-}
-
-- (void)showAirplaySuccess:(NSString *)title {
-    @weakify(self);
-    [self mainThread:^{
-        @strongify(self);
-        self.playerTerminalView.hidden = NO;
-        [self.playerTerminalView updatePlayerTerminal:PlayerPlayingUsingAirplay title:title];
-        if ([self.playerControlDelegate respondsToSelector:@selector(pause)]) {
-            [self.playerControlDelegate pause];
-        }
-    }];
-}
 
 - (void)mainThread:(void (^)())callBack {
     if ([[NSThread currentThread] isMainThread]) {
         callBack();
     } else {
-        [[GCDQueue mainQueue] execute:^{
-            callBack();
-        }];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (callBack) {
+                callBack();
+            }
+        });
     }
 }
 
@@ -1619,19 +1362,12 @@
         [self.playerNormalViewDelegate playerStatusPause];
     }
     _isWait2Seek = YES;
-
     self.hobbleStartTimeInterval = 0;
 }
 
 - (void)controlProgressEndDragSlider {
-
     self.hobbleStartTimeInterval = 0;
 }
 
-- (void)sliderPointClick:(SnapDto *)snapDto {
-    if ([self.playerNormalViewDelegate respondsToSelector:@selector(sliderPointClick:)]) {
-        [self.playerNormalViewDelegate sliderPointClick:snapDto];
-    }
-}
 
 @end

@@ -6,7 +6,6 @@
 //
 
 #import "MCMediaNotify.h"
-#import "UIScreen+Extend.h"
 
 @interface MCMediaNotify () {
     UILabel *textLabel;

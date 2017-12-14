@@ -6,19 +6,20 @@
 //  Copyright © 2017年 mjc inc. All rights reserved.
 //
 
-#import "Player.h"
-#import "PlayerBaseView.h"
-#import "PlayerStatusDelegate.h"
+
+#import <Foundation/Foundation.h>
+
+#import "PlayerConfig.h"
 
 @protocol PlayerViewDelegate;
+@class Player;
+@class PlayerBaseView;
+@protocol PlayerStatusDelegate;
 
 @interface PlayerKit : NSObject {
     Player *_player;
     __weak PlayerBaseView <PlayerViewDelegate> *_playerView;
 }
-
-
-@property(nonatomic, assign) PlayerStyle playerStyle;
 
 @property(nonatomic, weak) id <PlayerStatusDelegate> playerStatusDelegate;
 @property(nonatomic, assign) PlayerEnvironment playerEnvironment;
