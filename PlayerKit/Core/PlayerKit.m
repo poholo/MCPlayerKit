@@ -9,18 +9,13 @@
 
 #import "PlayerKit.h"
 
-#import <IJKMediaFramework/IJKMediaFramework.h>
-#import <ReactiveCocoa.h>
-
-#import "UALogger.h"
 #import "IJKPlayer.h"
-#import "Utilities.h"
-#import "HWWeakTimer.h"
 #import "AVPlayerx.h"
-#import "SnapDto.h"
-#import "Entity+GlobalDao.h"
-#import "VideoEditorProcess.h"
-#import "GCDQueue.h"
+#import "PlayerKitLog.h"
+#import "Player.h"
+#import "PlayerKitTools.h"
+#import "PlayerBaseView.h"
+#import "PlayerStatusDelegate.h"
 
 
 @interface PlayerKit () <PlayerDelegate, PlayerViewControlDelegate>
@@ -67,20 +62,6 @@
     _player = nil;
 }
 
-- (BOOL)startRecordFilePath:(NSString *)filePath {
-    return [self startRecordFilePath:filePath type:RecordNormal];
-}
-
-- (BOOL)startRecordFilePath:(NSString *)filePath type:(RecordType)type {
-    [self play];
-    NSLog(@"wq_ff currentTime = %f ======", _player.currentTime);
-    return [_player startRecord:_player.currentTime filePath:filePath type:type];
-}
-
-- (void)endRecord {
-    [_player endRecord:_player.currentTime];
-}
-
 - (NSTimeInterval)duration {
     return [_player duration];
 }
@@ -112,26 +93,6 @@
     }
 }
 
-+ (int)initSensetimeSDK:(NSString *)faceModelPath {
-    return [Player initSensetimeSDK:faceModelPath];
-}
-
-+ (void)destorySensetimeSDK {
-    [Player destorySensetimeSDK];
-}
-
-- (int)createSensetimeStickerInstance:(NSString *)stickerZipPath {
-    return [_player createSensetimeStickerInstance:stickerZipPath];
-}
-
-- (int)changeSensetimeStickerPackage:(NSString *)stickerZipPath {
-    return [_player changeSensetimeStickerPackage:stickerZipPath];
-}
-
-- (void)destorySensetimeStickerInstance {
-    [_player destorySensetimeStickerInstance];
-}
-
 - (CGSize)naturalSize {
     return [_player naturalSize];
 }
@@ -152,75 +113,12 @@
 }
 
 
-#pragma mark - WaQuIJKSnapDelegate
-
-- (uint64_t)addSticker:(NSString *)stickerFilePath startTime:(uint64_t)startTime endTime:(uint64_t)endTime centerX:(float)centerX centerY:(float)centerY scaleX:(float)scaleX scaleY:(float)scaleY angle:(int)angle {
-    return [_player addSticker:stickerFilePath startTime:startTime endTime:endTime centerX:centerX centerY:centerY scaleX:scaleX scaleY:scaleY angle:angle];
-}
-
-- (uint64_t)addCaption:(unsigned char *)buffer startTime:(uint64_t)startTime endTime:(uint64_t)endTime width:(int)width height:(int)height centerX:(float)centerX centerY:(float)centerY scaleX:(float)scaleX scaleY:(float)scaleY angle:(int)angle {
-    uint64_t snapId = [_player addCaption:buffer startTime:startTime endTime:endTime width:width height:height centerX:centerX centerY:centerY scaleX:scaleX scaleY:scaleY angle:angle];
-    // [self.videoEditProcess preAddSnapId:[NSString stringWithFormat:@"%lld", snapId] buffer:buffer startTime:startTime endTime:endTime width:width height:height centerX:centerX centerY:centerY scaleX:scaleX scaleY:scaleY angle:angle];
-    return snapId;
-}
-
-- (bool)updateStickerObject:(uint64_t)objId objType:(int)objType startTime:(int64_t)startTime endTime:(int64_t)endTime width:(int)width height:(int)height centerX:(float)centerX centerY:(float)centerY scaleX:(float)scaleX scaleY:(float)scaleY angle:(int)angle {
-    return [_player updateStickerObject:objId objType:objType startTime:startTime endTime:endTime width:width height:height centerX:centerX centerY:centerY scaleX:scaleX scaleY:scaleY angle:angle];
-}
-
-- (int)deleteStickerObject:(uint64_t)objId objType:(int)objType {
-    int ret = [_player deleteStickerObject:objId objType:objType];
-    // [self.videoEditProcess preDeleteObject:objId objType:objType];
-    return ret;
-}
-
-- (int)enableStickerObject:(uint64_t)objId objType:(int)objType enable:(bool)enable {
-    return [_player enableStickerObject:objId objType:objType enable:enable];
-}
-
-- (int)initRecord:(NSString *)fileName {
-    return [_player initRecord:fileName];
-}
-
-- (int)initRecordEX:(NSString *)fileName width:(int)width height:(int)height videoBitrate:(int)videoBitrate {
-    return [_player initRecordEX:fileName width:width height:height videoBitrate:videoBitrate];
-}
-
-- (void)startRecord {
-    [_player startRecord:0];
-}
-
-- (void)stopRecord {
-    [_player stopRecord];
-}
-
-- (int)setBackgroundMusicInsertTime:(uint64_t)insertTime {
-    return [_player setBackgroundMusicInsertTime:insertTime];
-}
-
-- (long)setBackgroundMusicPath:(NSString *)musicPath {
-    return [_player setBackgroundMusicPath:musicPath];
-}
-
-- (BOOL)setBackgroundMusicRegion:(uint64_t)startTime endTime:(uint64_t)endTime {
-    return [_player setBackgroundMusicRegion:startTime endTime:endTime];
-}
-
-- (BOOL)setOutputAudioVolume:(int)trackIdx volume:(float)volume {
-    return [_player setOutputAudioVolume:trackIdx volume:volume];
-}
-
-+ (long)executeFfmpegCmd:(int)argc paramArray:(char **)argv {
-    return 0;
-}
-
-
 #pragma mark -
 #pragma mark NSTimer
 
 - (NSTimer *)timer {
     if (_timer == nil) {
-        _timer = [HWWeakTimer scheduledTimerWithTimeInterval:.2 target:self selector:@selector(timeTick) userInfo:nil repeats:YES];
+        _timer = [NSTimer scheduledTimerWithTimeInterval:.2 target:self selector:@selector(timeTick) userInfo:nil repeats:YES];
         [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSDefaultRunLoopMode];
     }
     return _timer;
@@ -241,8 +139,8 @@
             && [_playerView respondsToSelector:@selector(updateRightTime:)]
             && [_playerView respondsToSelector:@selector(updateBufferProgress:)]) {
         [_playerView updateProgress:(CGFloat) (curSecs / sumSecs)];
-        [_playerView updateLeftTime:[Utilities millisecondToHumanString:(curSecs + .5) * 1000]];
-        [_playerView updateRightTime:[Utilities millisecondToHumanString:(sumSecs + .5) * 1000]];
+        [_playerView updateLeftTime:[PlayerKitTools secondTimeString:(curSecs + .5)]];
+        [_playerView updateRightTime:[PlayerKitTools secondTimeString:(sumSecs + .5)]];
         [_playerView updateBufferProgress:_player.cacheProgress];
     }
 
@@ -308,7 +206,7 @@
 }
 
 - (void)changePlayerState:(PlayerState)playerState {
-    UALog(@"PlayerState == %zd", playerState);
+    PKLog(@"PlayerState == %zd", playerState);
     switch (playerState) {
         case PlayerStateNone: {
         }
@@ -319,7 +217,7 @@
             }
 
             if ([_playerView respondsToSelector:@selector(updateRightTime:)]) {
-                [_playerView updateRightTime:[Utilities millisecondToHumanString:_player.duration * 1000]];
+                [_playerView updateRightTime:[PlayerKitTools secondTimeString:_player.duration]];
             }
             [self timer];
         }
@@ -430,10 +328,6 @@
             }
         }
             break;
-        case PlayerPlayingUsingAirplay : {
-//            [self showAirplaying];
-        }
-            break;
         default: {
 
         }
@@ -461,15 +355,6 @@
 
 }
 
-- (void)cacheFinish:(Dto *)dto {
-    if ([dto isKindOfClass:[SnapDto class]]) {
-        SnapDto *dd = dto;
-        SnapEntity *entity = [SnapEntity createSnapEntity:dd];
-        entity.downloadState = DownloadFinished;
-        [entity MMPersistence];
-    }
-}
-
 - (void)isPlaySmarty {
     [self pause];
     [self play];
@@ -492,14 +377,6 @@
 }
 
 - (void)playUrls:(nonnull NSArray<NSString *> *)urls isLiveOptions:(BOOL)isLiveOptions {
-    [self playUrls:urls dto:nil isLiveOptions:isLiveOptions];
-}
-
-- (void)playUrls:(nonnull NSArray<NSString *> *)urls dto:(Dto <StoreDelegate> *)dto {
-    [self playUrls:urls dto:dto isLiveOptions:NO];
-}
-
-- (void)playUrls:(nonnull NSArray<NSString *> *)urls dto:(Dto <StoreDelegate> *)dto isLiveOptions:(BOOL)isLiveOptions {
     [self destoryPlayer];
     self.urls = urls;
     _player = ({
@@ -514,7 +391,6 @@
         player;
     });
     _player.actionAtItemEnd = self.actionAtItemEnd;
-    _player.dto = dto;
     [_player playUrls:urls isLiveOptions:isLiveOptions];
     _player.delegate = self;
     if ([_playerView respondsToSelector:@selector(showLoading)]) {

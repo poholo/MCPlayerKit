@@ -3,26 +3,17 @@
 // Copyright (c) 2017 mjc inc. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "PlayerBaseView.h"
-#import "PlayerConfig.h"
-#import "AirplayPlayerDelegate.h"
-#import "PreVideo.h"
+
+
+#import <MCPlayerKit/PlayerBaseView.h>
+
+#import "PlayerViewConfig.h"
 
 @class PlayerProgress;
 @class PlayerTerminalView;
 @class PlayerLoadingView;
-@class PlayerRateBoard;
 @protocol PlayerTerminalDelegate;
-@class RACSignal;
-@class MMDto;
-@class MMAdDto;
-@protocol PlayerFollowViewDelegate;
-@class CBAutoScrollLabel;
-@class SnapDto;
-@class PlayerBulletView;
-@protocol FXDanmakuDelegate;
-@protocol BulletHelperDelegate;
+
 
 @protocol PlayerNormalViewDelegate <NSObject>
 
@@ -79,7 +70,7 @@
 
 - (void)playNextVideo;
 
-- (void)sliderPointClick:(SnapDto *)snapDto;
+//- (void)sliderPointClick:(SnapDto *)snapDto;
 
 - (void)logShowScreenAd;
 
@@ -90,28 +81,12 @@
 
 @end
 
-@protocol _QudanListViewTranslateDelegate <NSObject>
 
-- (RACSignal *)localDataRfresh;
-
-- (RACSignal *)qudanList:(BOOL)isRefresh;
-
-- (void)qudanlistClick:(MMDto *)dto;
-
-- (BOOL)canLoadMore;
-
-- (NSUInteger)qudanPlayAtIndex;
-
-- (void)reloadData;
-
-@end
-
-
-@interface PlayerNormalView : PlayerBaseView <AirplayPlayerDelegate> {
+@interface PlayerNormalView : PlayerBaseView {
     UIView *_containerView;
     UIView *_touchView;
     UIButton *_backBtn;
-    CBAutoScrollLabel *_titleLabel;
+    UILabel *_titleLabel;
     UIButton *_moreBtn;
     UIButton *_airplayBtn;
 
@@ -130,9 +105,6 @@
     UIButton *_fullScreenBtn;
 
     UIButton *_definitionBtn;
-    UIButton *_qudanBtn;
-    UIButton *_jumpBtn;
-
     UIButton *_lockBtn;
 
     CAGradientLayer *_topGradientLayer;
@@ -140,12 +112,10 @@
 
     UIView *_topControlView;
     UIView *_bottomControlView;
-    PlayerBulletView *_playerBulletView;
     PlayerTerminalView *_playerTerminalView;
 
     PlayerLoadingView *_loadingView;
     UIImageView *_waterImageView;
-    PlayerRateBoard *_playerRateBoard;
 
     UITapGestureRecognizer *_tapGesture;
     UIPanGestureRecognizer *_panGesture;
@@ -164,18 +134,9 @@
 }
 
 @property(nonatomic, weak) id <PlayerNormalViewDelegate> playerNormalViewDelegate;
-
 @property(nonatomic, weak) id <PlayerTerminalDelegate> playerTermailDelegate;
 
-@property(nonatomic, weak) id <_QudanListViewTranslateDelegate> qudanListViewTranslateDelegate;
-
-@property(nonatomic, weak) id <PlayerFollowViewDelegate> playerFollowViewDelegate;
-
 - (void)updatePlayStyle:(PlayerType)playerType;
-
-- (void)updateBaiduAd:(NSArray<MMAdDto *> *)baiduAds perDuration:(NSUInteger)perDuration sumOfDuration:(NSUInteger)sumOfDuration;
-
-- (void)updateAdJumpType:(PreVideoJumpType)jumpType;
 
 - (void)updateTitle:(NSString *)title;
 
@@ -186,8 +147,6 @@
 - (void)controlWaterMark:(BOOL)animated;
 
 - (void)updateFullScreenBtnStatus:(BOOL)fullScreen;
-
-- (void)updateFollow:(BOOL)follow;
 
 - (void)updateDefinitionNormal:(BOOL)hasNormal HD:(BOOL)hasHD UHD:(BOOL)hasUHD;
 
@@ -205,16 +164,6 @@
 
 - (void)resetLoop;
 
-- (void)refreshDots:(NSArray<SnapDto *> *)dtos duration:(CGFloat)duration;
-
-- (void)updateMention:(NSString *)mention xRate:(CGFloat)xRate showSecs:(CGFloat)showSecs;
-
 - (void)fadeShowAndThenHiddenAnimation;
-
-- (void)jumppreAd;
-
-- (void)updateBulletHelperDelegate:(id<FXDanmakuDelegate>)delegate;
-
-- (id<BulletHelperDelegate>)bulletHelperImpDelegate;
 
 @end

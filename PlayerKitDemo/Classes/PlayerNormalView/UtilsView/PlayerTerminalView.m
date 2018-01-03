@@ -6,10 +6,8 @@
 #import "PlayerTerminalView.h"
 
 #import <Masonry.h>
-#import <ReactiveCocoa.h>
 
-#import "PlayerConfig.h"
-#import "WaQuColor.h"
+#import "PlayerViewConfig.h"
 
 
 typedef NS_ENUM(NSInteger, PTAirPlayEvent) {
@@ -77,16 +75,16 @@ typedef NS_ENUM(NSInteger, PTAirPlayEvent) {
         [self addSubview:_volumeSmallBtn];
         [self addSubview:_playPauseBtn];
 
-        _videoTitle.textColor = [WaQuColor colorVI];
+        _videoTitle.textColor = [PlayerViewConfig colorVI];
         _videoTitle.font      = [UIFont systemFontOfSize:14];
 
-        _mentionInfo.textColor = [WaQuColor colorVII];
+        _mentionInfo.textColor = [PlayerViewConfig colorVI];
         _mentionInfo.font      = [UIFont systemFontOfSize:12];
 
         _videoTitle.textAlignment = NSTextAlignmentCenter;
         _mentionInfo.textAlignment = NSTextAlignmentCenter;
 
-        self.backgroundColor = [WaQuColor colorI];
+        self.backgroundColor = [PlayerViewConfig colorI];
 
         [self addAction];
         [self updateStyle];
@@ -174,11 +172,6 @@ typedef NS_ENUM(NSInteger, PTAirPlayEvent) {
 //            _mentionInfo.textColor = [UIColor whiteColor];
             [self tapGestureRecognizer];
         } break;
-        case PlayerPlayingUsingAirplay: {
-            [self showAirpalyStyle];
-            _mentionInfo.text = _k_AV_TermianlMentionPlayerAirplaying,
-            [self removeTapGesture];
-        }
 
         default                      : {
 
@@ -188,21 +181,17 @@ typedef NS_ENUM(NSInteger, PTAirPlayEvent) {
 }
 
 - (void)updateConstraints {
-    @weakify(self);
     [_videoTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
         make.left.right.mas_equalTo(self);
         make.centerY.mas_equalTo(self).offset(0);
     }];
 
     [_mentionInfo mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
         make.left.right.mas_equalTo(self);
         make.centerY.mas_equalTo(self).offset(20);
     }];
 
     [_quitAirPlayBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
         make.top.mas_equalTo(self.mentionInfo.mas_bottom).offset(10);
         make.centerX.mas_equalTo(self);
         make.width.mas_equalTo(100);
@@ -210,28 +199,22 @@ typedef NS_ENUM(NSInteger, PTAirPlayEvent) {
     }];
 
     [_volumeLargeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
         make.right.mas_equalTo(self.mas_right).offset(-30);
         make.centerY.mas_equalTo(self.mas_centerY).offset(-40);
         make.width.height.mas_equalTo(40);
     }];
 
     [_volumeSmallBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
         make.right.mas_equalTo(self.mas_right).offset(-30);
         make.centerY.mas_equalTo(self.mas_centerY).offset(40);
         make.width.height.mas_equalTo(40);
     }];
 
     [_playPauseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
         make.left.mas_equalTo(self.mas_left).offset(30);
         make.bottom.mas_equalTo(self.mas_bottom).offset(-30);
         make.width.height.mas_equalTo(40);
     }];
-
-
-
 
     [super updateConstraints];
 }
@@ -278,10 +261,6 @@ typedef NS_ENUM(NSInteger, PTAirPlayEvent) {
         case  PlayerStateError      : {
             [_delegate terminalErrorRetry];
         } break;
-        case PlayerPlayingUsingAirplay: {
-            [_delegate terminalQuitAirplay2Play];
-        } break;
-
         default:break;
     }
 }

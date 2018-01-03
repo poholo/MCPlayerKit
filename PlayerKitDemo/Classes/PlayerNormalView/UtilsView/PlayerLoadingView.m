@@ -9,13 +9,9 @@
 #import <Masonry.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <MBProgressHUD/MBProgressHUD.h>
-#import <ReactiveCocoa.h>
-#import <WaQuBase/UALogger.h>
 
-#import "PlayerConfig.h"
-#import "NSURL+Convert2HTTPS.h"
+#import "PlayerViewConfig.h"
 #import "HWWeakTimer.h"
-#import "WaQuColor.h"
 
 @interface PlayerLoadingView ()
 
@@ -49,14 +45,16 @@
 
 - (NSTimer *)timer {
     if (_timer == nil) {
-        @weakify(self);
+
+        __weak typeof(self) weakSelf = self;
+
         _timer = [HWWeakTimer scheduledTimerWithTimeInterval:.1 block:^(id userInfo) {
-            @strongify(self);
-            self.progress += .05f;
-            if (self.progress >= 1.0f) {
-                self.progress = 0.0f;
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            strongSelf.progress += .05f;
+            if (strongSelf.progress >= 1.0f) {
+                strongSelf.progress = 0.0f;
             }
-            [self.progressHUD setProgress:self.progress];
+            [strongSelf.progressHUD setProgress:self.progress];
         }                                           userInfo:nil repeats:YES];
         [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSDefaultRunLoopMode];
     }
@@ -128,7 +126,7 @@
 }
 
 - (void)updatePlayerPicture:(NSString *)url {
-    [_loadingImageView sd_setImageWithURL:[NSURL convert2HTTPSURLWithString:url] placeholderImage:[UIImage imageNamed:_k_AV_Loading_image]];
+    [_loadingImageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:_k_AV_Loading_image]];
 }
 
 - (void)hiddenRotateLoadingView:(BOOL)hiddenRotateLoadingView {
@@ -138,7 +136,7 @@
 - (MBProgressHUD *)progressHUD {
     if (_progressHUD == nil) {
         _progressHUD = [MBProgressHUD showHUDAddedTo:self animated:YES];
-        _progressHUD.contentColor = [WaQuColor colorV];
+        _progressHUD.contentColor = [PlayerViewConfig colorV];
         _progressHUD.bezelView.color = [UIColor clearColor];
         _progressHUD.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
         _progressHUD.backgroundView.color = [UIColor clearColor];

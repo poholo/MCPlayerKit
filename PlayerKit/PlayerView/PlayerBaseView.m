@@ -7,14 +7,11 @@
 //
 
 #import "PlayerBaseView.h"
-#import "UALogger.h"
-#import "UIScreen+Extend.h"
-#import "LogParam.h"
 
-#import <ReactiveCocoa.h>
-#import <Masonry.h>
 
 @implementation PlayerBaseView
+
+@synthesize playerStyle = _playerStyle;
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -22,7 +19,6 @@
         [self prepareUI];
         self.clipsToBounds = YES;
     }
-
     return self;
 }
 
@@ -39,7 +35,7 @@
 }
 
 - (void)updatePlayerLayer:(CALayer *)layer {
-    if(_drawView == nil) {
+    if (_drawView == nil) {
         _drawView = [[UIView alloc] initWithFrame:self.bounds];
         [self addSubview:_drawView];
         [self sendSubviewToBack:_drawView];
@@ -64,17 +60,19 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     CGRect frame = CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
+    CGFloat width = MIN([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    CGFloat height = MAX([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
     switch (self.playerStyle) {
         case PlayerStyleSizeClassRegularHalf: {
-            frame = CGRectMake(0, 0, [UIScreen width], [UIScreen screenWidth9Division16]);
+            frame = CGRectMake(0, 0, width, width * 16 / 9.0f);
         }
             break;
         case PlayerStyleSizeClassRegular: {
-            frame = CGRectMake(0, 0, MIN([UIScreen width], [UIScreen height]), MAX([UIScreen width], [UIScreen height]));
+            frame = CGRectMake(0, 0, width, height);
         }
             break;
         case PlayerStyleSizeClassCompact : {
-            frame = CGRectMake(0, 0, MAX([UIScreen width], [UIScreen height]), MIN([UIScreen width], [UIScreen height]));
+            frame = CGRectMake(0, 0, height, width);
         }
             break;
         case PlayerStyleSizeRegularAuto : {
@@ -86,4 +84,5 @@
     _drawView.frame = frame;
     _drawLayer.frame = frame;
 }
+
 @end
