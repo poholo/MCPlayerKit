@@ -2,9 +2,6 @@
 .idea
 Pods
 Podfile.lock
-PlayerKit.xcodeproj
-PlayerKitDemo.xcodeproj
-PlayerKit.xcworkspace
 .DS_Store
 *.xcuserdate
 *.xcworkspacedata
