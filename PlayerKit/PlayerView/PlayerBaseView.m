@@ -29,16 +29,16 @@
     }
     _drawView = drawPlayerView;
     if (_drawView) {
-        [self addSubview:_drawView];
-        _drawView.frame = CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
+        [_contentView addSubview:_drawView];
+        _drawView.frame = CGRectMake(0, 0, CGRectGetWidth(_contentView.frame), CGRectGetHeight(_contentView.frame));
     }
 }
 
 - (void)updatePlayerLayer:(CALayer *)layer {
     if (_drawView == nil) {
         _drawView = [[UIView alloc] initWithFrame:self.bounds];
-        [self addSubview:_drawView];
-        [self sendSubviewToBack:_drawView];
+        [_contentView addSubview:_drawView];
+        [_contentView sendSubviewToBack:_drawView];
     }
     if (_drawLayer) {
         [_drawLayer removeFromSuperlayer];
@@ -49,11 +49,13 @@
 
     if (_drawLayer) {
         [_drawView.layer insertSublayer:_drawLayer atIndex:0];
-        _drawLayer.frame = CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
+        _drawLayer.frame = CGRectMake(0, 0, CGRectGetWidth(_contentView.frame), CGRectGetHeight(_contentView.frame));
     }
 }
 
 - (void)prepareUI {
+    _contentView = [UIView new];
+    [self addSubview:_contentView];
 }
 
 
@@ -81,6 +83,7 @@
             break;
 
     }
+    _contentView.frame = frame;
     _drawView.frame = frame;
     _drawLayer.frame = frame;
 }

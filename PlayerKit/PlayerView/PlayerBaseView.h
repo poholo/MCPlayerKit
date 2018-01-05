@@ -19,6 +19,7 @@
  */
 @interface PlayerBaseView : UIView <PlayerViewDelegate> {
 @public
+    UIView *_contentView;
     UIView *_drawView;
     CALayer *_drawLayer;
     PlayerStyle _playerStyle;

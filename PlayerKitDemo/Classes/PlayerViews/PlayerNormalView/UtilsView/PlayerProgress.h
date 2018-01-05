@@ -37,12 +37,6 @@ typedef NS_ENUM(NSInteger, SliderStyle) {
 
 @property(nonatomic, weak) id <PlayerProgressDelegate> delegate;
 
-@property(nonatomic, strong) MASViewAttribute *showAllLeftAttribute;
-@property(nonatomic, strong) MASViewAttribute *showAllRightAttribute;
-
-@property(nonatomic, strong) MASViewAttribute *showProgressLeftAttribute;
-@property(nonatomic, strong) MASViewAttribute *showProgressRightAttribute;
-
 - (void)updateProgress:(CGFloat)progress;
 
 - (void)updateBufferProgress:(CGFloat)progress;

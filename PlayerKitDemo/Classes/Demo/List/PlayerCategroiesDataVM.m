@@ -20,5 +20,41 @@
         dto.actionClass = [PlayerNormalController class];
         [self.dataList addObject:dto];
     }
+
+    {
+        PlayerCategroryDto *dto = [PlayerCategroryDto new];
+        dto.name = @"TableView 滚动";
+        dto.actionClass = [PlayerNormalController class];
+        [self.dataList addObject:dto];
+    }
+
+    {
+        PlayerCategroryDto *dto = [PlayerCategroryDto new];
+        dto.name = @"CollectionView 滚动";
+        dto.actionClass = [PlayerNormalController class];
+        [self.dataList addObject:dto];
+    }
+
+    {
+        PlayerCategroryDto *dto = [PlayerCategroryDto new];
+        dto.name = @"ScrollView 滚动 + 小窗切换";
+        dto.actionClass = [PlayerNormalController class];
+        [self.dataList addObject:dto];
+    }
+
+    {
+        PlayerCategroryDto *dto = [PlayerCategroryDto new];
+        dto.name = @"Music player";
+        dto.actionClass = [PlayerNormalController class];
+        [self.dataList addObject:dto];
+    }
+
+    {
+        PlayerCategroryDto *dto = [PlayerCategroryDto new];
+        dto.name = @"全局播放器";
+        dto.actionClass = [PlayerNormalController class];
+        [self.dataList addObject:dto];
+    }
+
 }
 @end

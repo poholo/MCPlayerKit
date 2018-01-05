@@ -168,7 +168,7 @@
 
     }
 
-    [_backBtn setImage:[UIImage imageNamed:@"back_white"] forState:UIControlStateNormal];
+    [_backBtn setImage:[UIImage imageNamed:@"back_w"] forState:UIControlStateNormal];
 
     [_moreBtn setImage:[UIImage imageNamed:@"more_whte"] forState:UIControlStateNormal];
     [_airplayBtn setImage:[UIImage imageNamed:@"player_tv"] forState:UIControlStateNormal];
@@ -177,7 +177,7 @@
     [_downloadBtn setImage:[UIImage imageNamed:@"download"] forState:UIControlStateNormal];
 
     [_collectionBtn setImage:[UIImage imageNamed:@"favorites_white"] forState:UIControlStateNormal];
-    [_collectionBtn setImage:[UIImage imageNamed:@"collect_red"] forState:UIControlStateSelected];
+    [_collectionBtn setImage:[UIImage imageNamed:@"favorited"] forState:UIControlStateSelected];
 
     [_playPauseBtn setImage:[UIImage imageNamed:@"pause-full"] forState:UIControlStateNormal];
     [_playPauseBtn setImage:[UIImage imageNamed:@"play-full"] forState:UIControlStateSelected];
@@ -268,56 +268,56 @@
 }
 
 - (void)setPlayerStyle:(PlayerStyle)playerStyle {
-//    _playerStyle = playerStyle;
-//    switch (_playerStyle) {
-//        case PlayerStyleSizeClassCompact: {
-//            _airplayBtn.alpha = 0.0;
-//            _definitionBtn.alpha = _moreBtn.alpha;
-//            _shareBtn.alpha = _moreBtn.alpha;
-//            _downloadBtn.alpha = _moreBtn.alpha;
-//            _collectionBtn.alpha = _moreBtn.alpha;
-//            _titleLabel.alpha = _moreBtn.alpha;
-//            _lockBtn.alpha = _moreBtn.alpha;
-//            _loopBtn.alpha = 0.0;
-//            _playPauseBtn.alpha = _moreBtn.alpha;
-//            _portraitPlayPauseBtn.alpha = 0.0;
-//            _nextBtn.alpha = _moreBtn.alpha;
-//        }
-//            break;
-//        case PlayerStyleSizeClassRegular: {
-//            _airplayBtn.alpha = 0.0;
-//            _definitionBtn.alpha = _moreBtn.alpha;
-//            _shareBtn.alpha = _moreBtn.alpha;
-//            _downloadBtn.alpha = _moreBtn.alpha;
-//            _collectionBtn.alpha = _moreBtn.alpha;
-//            _titleLabel.alpha = _moreBtn.alpha;
-//            _lockBtn.alpha = _moreBtn.alpha;
-//            _loopBtn.alpha = _moreBtn.alpha;
-//            _playPauseBtn.alpha = 0.0;
-//            _portraitPlayPauseBtn.alpha = _moreBtn.alpha;
-//            _nextBtn.alpha = 0.0f;
-//
-//        }
-//            break;
-//        case PlayerStyleSizeClassRegularHalf: {
-//            _definitionBtn.alpha = 0.0;
-//            _airplayBtn.alpha = _moreBtn.alpha;
-//            _shareBtn.alpha = 0.0;
-//            _downloadBtn.alpha = 0.0;
-//            _collectionBtn.alpha = 0.0;
-//            _titleLabel.alpha = 0.0;
-//            _lockBtn.alpha = 0.0;
-//            _loopBtn.alpha = _moreBtn.alpha;
-//            _playPauseBtn.alpha = 0.0;
-//            _portraitPlayPauseBtn.alpha = _moreBtn.alpha;
-//            _nextBtn.alpha = 0.0;
-//        }
-//            break;
-//    }
-//
-//    [self setNeedsUpdateConstraints];
-//    [self updateConstraintsIfNeeded];
-//    [self layoutIfNeeded];
+    _playerStyle = playerStyle;
+    switch (_playerStyle) {
+        case PlayerStyleSizeClassCompact: {
+            _airplayBtn.alpha = 0.0;
+            _definitionBtn.alpha = _moreBtn.alpha;
+            _shareBtn.alpha = _moreBtn.alpha;
+            _downloadBtn.alpha = _moreBtn.alpha;
+            _collectionBtn.alpha = _moreBtn.alpha;
+            _titleLabel.alpha = _moreBtn.alpha;
+            _lockBtn.alpha = _moreBtn.alpha;
+            _loopBtn.alpha = 0.0;
+            _playPauseBtn.alpha = _moreBtn.alpha;
+            _portraitPlayPauseBtn.alpha = 0.0;
+            _nextBtn.alpha = _moreBtn.alpha;
+        }
+            break;
+        case PlayerStyleSizeClassRegular: {
+            _airplayBtn.alpha = 0.0;
+            _definitionBtn.alpha = _moreBtn.alpha;
+            _shareBtn.alpha = _moreBtn.alpha;
+            _downloadBtn.alpha = _moreBtn.alpha;
+            _collectionBtn.alpha = _moreBtn.alpha;
+            _titleLabel.alpha = _moreBtn.alpha;
+            _lockBtn.alpha = _moreBtn.alpha;
+            _loopBtn.alpha = _moreBtn.alpha;
+            _playPauseBtn.alpha = 0.0;
+            _portraitPlayPauseBtn.alpha = _moreBtn.alpha;
+            _nextBtn.alpha = 0.0f;
+
+        }
+            break;
+        case PlayerStyleSizeClassRegularHalf: {
+            _definitionBtn.alpha = 0.0;
+            _airplayBtn.alpha = _moreBtn.alpha;
+            _shareBtn.alpha = 0.0;
+            _downloadBtn.alpha = 0.0;
+            _collectionBtn.alpha = 0.0;
+            _titleLabel.alpha = 0.0;
+            _lockBtn.alpha = 0.0;
+            _loopBtn.alpha = _moreBtn.alpha;
+            _playPauseBtn.alpha = 0.0;
+            _portraitPlayPauseBtn.alpha = _moreBtn.alpha;
+            _nextBtn.alpha = 0.0;
+        }
+            break;
+    }
+
+    [self setNeedsUpdateConstraints];
+    [self updateConstraintsIfNeeded];
+    [self layoutIfNeeded];
 }
 
 - (void)updateLayerIndex {
@@ -1049,6 +1049,10 @@
 
 #pragma mark - action
 
+- (void)btnMoreClick {
+    PKLog(@"btnMoreClick");
+}
+
 - (void)btnBackClick {
     if ([self.playerNormalViewDelegate respondsToSelector:@selector(playerPopViewController)]) {
         [self.playerNormalViewDelegate playerPopViewController];
@@ -1152,6 +1156,10 @@
             [self.playerNormalViewDelegate change2Half];
         }
     }
+}
+
+- (void)btnDefinitionClick {
+
 }
 
 - (void)btnLockClick {
