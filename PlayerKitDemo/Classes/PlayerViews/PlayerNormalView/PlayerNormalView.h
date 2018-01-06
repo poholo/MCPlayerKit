@@ -24,8 +24,6 @@
 
 - (void)playerPopViewController;
 
-- (void)laterPlay;
-
 - (void)change2FullScreen;
 
 - (void)change2Half;

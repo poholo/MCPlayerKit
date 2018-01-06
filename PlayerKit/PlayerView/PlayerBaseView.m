@@ -66,7 +66,7 @@
     CGFloat height = MAX([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
     switch (self.playerStyle) {
         case PlayerStyleSizeClassRegularHalf: {
-            frame = CGRectMake(0, 0, width, width * 16 / 9.0f);
+            frame = CGRectMake(0, 0, width, width * 9 / 16.0f);
         }
             break;
         case PlayerStyleSizeClassRegular: {

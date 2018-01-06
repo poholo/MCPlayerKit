@@ -13,6 +13,7 @@
 		1A6661B6AFC812F1D759377A /* PlayerNormalDataVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6669BD5C17C0A569888E59 /* PlayerNormalDataVM.m */; };
 		1A6662E8F24D7C317039CD72 /* PlayerCategroiesTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6662581C5E76CB7ACFA7DC /* PlayerCategroiesTableController.m */; };
 		1A6663AC2BC2373F75B64B10 /* MMAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666C76157D10A31788B33D /* MMAlertView.m */; };
+		1A6663C8401920FCA3598762 /* PlayerNormalController+AutoRotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666415603B64106A02A1CE /* PlayerNormalController+AutoRotate.m */; };
 		1A666483DC99C3FBF4671320 /* PlayerViewConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666B5696B81F3782AC4733 /* PlayerViewConfig.m */; };
 		1A66649D6B19C60372EAC2E6 /* MMPopupWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6661EA3478B83201013912 /* MMPopupWindow.m */; };
 		1A6664B264992DD654B10140 /* DataVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6666D18834C1E8379B4034 /* DataVM.m */; };
@@ -108,6 +109,7 @@
 		1A66622C4F1CED60053B1051 /* PlayerCategroiesDataVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerCategroiesDataVM.m; sourceTree = "<group>"; };
 		1A6662581C5E76CB7ACFA7DC /* PlayerCategroiesTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerCategroiesTableController.m; sourceTree = "<group>"; };
 		1A66632B378DBEDD62267C4B /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
+		1A666415603B64106A02A1CE /* PlayerNormalController+AutoRotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PlayerNormalController+AutoRotate.m"; sourceTree = "<group>"; };
 		1A66643BBCCBBBAF86AEFE03 /* MMPopupItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPopupItem.m; sourceTree = "<group>"; };
 		1A666454703B71F719B2FB93 /* PlayerLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerLoadingView.m; sourceTree = "<group>"; };
 		1A666459030A6BD99333596A /* MMWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMWindowController.h; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 		1A6664A374578BE38CA77005 /* PlayerTerminalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerTerminalView.h; sourceTree = "<group>"; };
 		1A66653C1D02E9A917428D8F /* PlayerProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerProgress.h; sourceTree = "<group>"; };
 		1A6665448EBA033DE1EC48C5 /* MMSheetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSheetView.h; sourceTree = "<group>"; };
+		1A6666154010E62100FC8852 /* PlayerNormalController+AutoRotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PlayerNormalController+AutoRotate.h"; sourceTree = "<group>"; };
 		1A6666A1CC6F773B3FAF4606 /* MMWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMWindowController.m; sourceTree = "<group>"; };
 		1A6666D18834C1E8379B4034 /* DataVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataVM.m; sourceTree = "<group>"; };
 		1A6666E7EAC4AD42C0DF7B6C /* Dto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dto.h; sourceTree = "<group>"; };
@@ -347,6 +350,8 @@
 				1A6660DD1196B32016077846 /* PlayerNormalDataVM.h */,
 				1A6667219B28351BBCC9880F /* PlayerNormalDto.m */,
 				1A666F43E67FB2BB15CEC664 /* PlayerNormalDto.h */,
+				1A666415603B64106A02A1CE /* PlayerNormalController+AutoRotate.m */,
+				1A6666154010E62100FC8852 /* PlayerNormalController+AutoRotate.h */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -552,13 +557,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PlayerKitDemo-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E27225AA1B4431BA5AEB3154 /* [CP] Embed Pods Frameworks */ = {
@@ -612,6 +620,7 @@
 				1A66649D6B19C60372EAC2E6 /* MMPopupWindow.m in Sources */,
 				1A666A18A48F26E0EF9EAF80 /* MMPopupCategory.m in Sources */,
 				1A666B153AD34B6B2B2C6502 /* MMWindowController.m in Sources */,
+				1A6663C8401920FCA3598762 /* PlayerNormalController+AutoRotate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

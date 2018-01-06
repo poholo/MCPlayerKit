@@ -1175,12 +1175,6 @@
     }
 }
 
-- (void)laterPlay {
-    if ([self.playerNormalViewDelegate respondsToSelector:@selector(laterPlay)]) {
-        [self.playerNormalViewDelegate laterPlay];
-    }
-}
-
 - (void)showAirplay {
     if ([self.playerNormalViewDelegate respondsToSelector:@selector(showAirplay)]) {
         [self.playerNormalViewDelegate showAirplay];

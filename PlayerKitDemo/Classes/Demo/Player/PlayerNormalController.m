@@ -7,8 +7,10 @@
 #import "PlayerNormalController.h"
 
 #import <MCPlayerKit/PlayerKit.h>
+#import <Masonry/View+MASAdditions.h>
 
 #import "PlayerNormalView.h"
+#import "PlayerNormalController+AutoRotate.h"
 
 @interface PlayerNormalController () <PlayerNormalViewDelegate, PlayerStatusDelegate>
 
@@ -29,6 +31,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.playerView];
+    [self.playerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view);
+        make.left.equalTo(self.view);
+        make.right.equalTo(self.view);
+        CGFloat width = MIN([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+        CGFloat height = width * 9 / 16.0f;
+        make.height.mas_equalTo(height);
+    }];
     [self.playerKit playUrls:@[@"http://aliuwmp3.changba.com/userdata/video/45F6BD5E445E4C029C33DC5901307461.mp4"]];
 }
 
@@ -51,12 +61,12 @@
     [_playerKit pause];
     _playerKit.playerEnvironment = PlayerEnvironmentOnResignActiveStatus;
 
-    __weak typeof(self) weakSelf = self;
-    dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC);
-    dispatch_after(time, dispatch_get_main_queue(), ^{
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        [strongSelf->_playerKit pause];
-    });
+//    __weak typeof(self) weakSelf = self;
+//    dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC);
+//    dispatch_after(time, dispatch_get_main_queue(), ^{
+//        __strong typeof(weakSelf) strongSelf = weakSelf;
+//        [strongSelf->_playerKit pause];
+//    });
 }
 
 - (void)willEnterForground:(NSNotification *)notification {
@@ -79,19 +89,23 @@
 }
 
 - (void)playerPopViewController {
-
-}
-
-- (void)laterPlay {
-
+    if (self.playerView.playerStyle != PlayerStyleSizeClassRegularHalf) {
+        [self updatePlayerRegularHalf];
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (void)change2FullScreen {
-
+    if ([self isSizeClassRegular]) {
+        [self rotate2PortraitFullScreen];
+    } else {
+        [self updatePlayerRegular];
+    }
 }
 
 - (void)change2Half {
-
+    [self updatePlayerRegularHalf];
 }
 
 - (void)changeDefinitionRecordHistory {
@@ -231,6 +245,7 @@
         CGFloat height = width * 9 / 16.0f;
         _playerView = [[PlayerNormalView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
         _playerView.playerNormalViewDelegate = self;
+        _playerView.playerStyle = PlayerStyleSizeClassRegularHalf;
 
         [_playerView updateTitle:@"标题"];
         [_playerView updateSave:YES];
@@ -239,6 +254,10 @@
         [_playerView showCanLoop:YES];
     }
     return _playerView;
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 @end
