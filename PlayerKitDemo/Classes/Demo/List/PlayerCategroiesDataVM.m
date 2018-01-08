@@ -6,6 +6,7 @@
 #import "PlayerCategroiesDataVM.h"
 #import "PlayerCategroryDto.h"
 #import "PlayerNormalController.h"
+#import "ScrollPlayerController.h"
 
 
 @implementation PlayerCategroiesDataVM {
@@ -24,7 +25,7 @@
     {
         PlayerCategroryDto *dto = [PlayerCategroryDto new];
         dto.name = @"TableView 滚动";
-        dto.actionClass = [PlayerNormalController class];
+        dto.actionClass = [ScrollPlayerController class];
         [self.dataList addObject:dto];
     }
 
