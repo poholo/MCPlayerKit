@@ -21,12 +21,14 @@
 		1A6664B264992DD654B10140 /* DataVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6666D18834C1E8379B4034 /* DataVM.m */; };
 		1A6665349C923267F1099327 /* MCController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666174ACC750AAF5718B64 /* MCController.m */; };
 		1A6665CED2ABE0468B36A5D6 /* PlayerSimpleViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6660445F254D108DD53ADD /* PlayerSimpleViewCell.m */; };
+		1A6667543C566B5161F332BB /* ScrollPlayer2SmallPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6662B57ECA372719D35450 /* ScrollPlayer2SmallPlayerController.m */; };
 		1A6667E54C0212DFCC4480BA /* PlayerViewUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666B0EFE60784483C79F13 /* PlayerViewUtils.m */; };
 		1A666873208B5405A80179D4 /* CollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A66678F9933BFB7714E2AB2 /* CollectionCell.m */; };
 		1A6668ACE3EA635D3C6BB1D7 /* ScrollPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666DFFB0BFB0E5F27599A0 /* ScrollPlayerController.m */; };
 		1A6668C7509B3EDFD134DA69 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666AD9BBC7C18286C4540E /* TableViewCell.m */; };
 		1A6669B7A22EFBEBC87B8E3C /* PlayerProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666130E7CDF5F3866F4E63 /* PlayerProgress.m */; };
 		1A666A18A48F26E0EF9EAF80 /* MMPopupCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666F06F23F98032435F20E /* MMPopupCategory.m */; };
+		1A666A3E5A208405FFB9654E /* SmallPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6669D0EADABD219E8F7DAA /* SmallPlayerView.m */; };
 		1A666A7427E5A27BDB29A472 /* PlayerNormalDto.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6667219B28351BBCC9880F /* PlayerNormalDto.m */; };
 		1A666A75043323A1A00323E1 /* PlayerCategroiesDataVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A66622C4F1CED60053B1051 /* PlayerCategroiesDataVM.m */; };
 		1A666AF97D02E0B0EB838792 /* PlayerCategroryDto.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666BEB79A7C3CA783BF82E /* PlayerCategroryDto.m */; };
@@ -116,6 +118,7 @@
 		1A6661EA3478B83201013912 /* MMPopupWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPopupWindow.m; sourceTree = "<group>"; };
 		1A66622C4F1CED60053B1051 /* PlayerCategroiesDataVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerCategroiesDataVM.m; sourceTree = "<group>"; };
 		1A6662581C5E76CB7ACFA7DC /* PlayerCategroiesTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerCategroiesTableController.m; sourceTree = "<group>"; };
+		1A6662B57ECA372719D35450 /* ScrollPlayer2SmallPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollPlayer2SmallPlayerController.m; sourceTree = "<group>"; };
 		1A6662D33D66E3759816D291 /* PlayerSimpleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerSimpleView.m; sourceTree = "<group>"; };
 		1A66632B378DBEDD62267C4B /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
 		1A666415603B64106A02A1CE /* PlayerNormalController+AutoRotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PlayerNormalController+AutoRotate.m"; sourceTree = "<group>"; };
@@ -131,6 +134,7 @@
 		1A66654EA943E104B3BD87FC /* PlayerSimpleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerSimpleView.h; sourceTree = "<group>"; };
 		1A6666154010E62100FC8852 /* PlayerNormalController+AutoRotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PlayerNormalController+AutoRotate.h"; sourceTree = "<group>"; };
 		1A6666422B5030B39F58766B /* VideoDto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoDto.h; sourceTree = "<group>"; };
+		1A6666960E4E1044032C5EC2 /* ScrollPlayer2SmallPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollPlayer2SmallPlayerController.h; sourceTree = "<group>"; };
 		1A6666A1CC6F773B3FAF4606 /* MMWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMWindowController.m; sourceTree = "<group>"; };
 		1A6666D18834C1E8379B4034 /* DataVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataVM.m; sourceTree = "<group>"; };
 		1A6666E7EAC4AD42C0DF7B6C /* Dto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dto.h; sourceTree = "<group>"; };
@@ -142,8 +146,10 @@
 		1A666863A4244D57F34B9170 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		1A6668855E9678E15D5A4EE6 /* MMPopupItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPopupItem.h; sourceTree = "<group>"; };
 		1A6668F4C4FE733FCB98D19C /* MMAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAlertView.h; sourceTree = "<group>"; };
+		1A666935286DE7265DC38710 /* SmallPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmallPlayerView.h; sourceTree = "<group>"; };
 		1A666968785FD2E414D0F313 /* PlayerCategroryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerCategroryCell.h; sourceTree = "<group>"; };
 		1A6669BD5C17C0A569888E59 /* PlayerNormalDataVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerNormalDataVM.m; sourceTree = "<group>"; };
+		1A6669D0EADABD219E8F7DAA /* SmallPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmallPlayerView.m; sourceTree = "<group>"; };
 		1A6669DBB62572AE71EBD1E4 /* MMSheetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSheetView.m; sourceTree = "<group>"; };
 		1A666A2EE6949B244B8C1A94 /* PlayerCategroryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerCategroryCell.m; sourceTree = "<group>"; };
 		1A666A8B2C4000521DABCCCB /* MMPopupCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPopupCategory.h; sourceTree = "<group>"; };
@@ -252,6 +258,7 @@
 			children = (
 				1A666BD582D7D7DEE49A45EB /* PlayerNormalView */,
 				1A66695EB559CDE6A8EC7625 /* PlayerSimpleView */,
+				1A666776A06B115C51DA40CC /* SmallPlayer */,
 			);
 			path = PlayerViews;
 			sourceTree = "<group>";
@@ -296,8 +303,27 @@
 				1A666D171F1D95C3EE51BD12 /* List */,
 				1A666F6D5926D514870E08AA /* Player */,
 				1A6667E1A3C3D17FC950E617 /* ScrollPlayer */,
+				1A66678595BEF040EC25002D /* ScrollPlayer2SmallPlayer */,
 			);
 			path = Demo;
+			sourceTree = "<group>";
+		};
+		1A666776A06B115C51DA40CC /* SmallPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				1A6669D0EADABD219E8F7DAA /* SmallPlayerView.m */,
+				1A666935286DE7265DC38710 /* SmallPlayerView.h */,
+			);
+			path = SmallPlayer;
+			sourceTree = "<group>";
+		};
+		1A66678595BEF040EC25002D /* ScrollPlayer2SmallPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				1A6662B57ECA372719D35450 /* ScrollPlayer2SmallPlayerController.m */,
+				1A6666960E4E1044032C5EC2 /* ScrollPlayer2SmallPlayerController.h */,
+			);
+			path = ScrollPlayer2SmallPlayer;
 			sourceTree = "<group>";
 		};
 		1A6667E1A3C3D17FC950E617 /* ScrollPlayer */ = {
@@ -673,6 +699,8 @@
 				1A6665CED2ABE0468B36A5D6 /* PlayerSimpleViewCell.m in Sources */,
 				1A666B8DDEE35815F470AD50 /* TableViewPlaceHolderCell.m in Sources */,
 				1A66632B898F6168847279EB /* VideoDto.m in Sources */,
+				1A6667543C566B5161F332BB /* ScrollPlayer2SmallPlayerController.m in Sources */,
+				1A666A3E5A208405FFB9654E /* SmallPlayerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

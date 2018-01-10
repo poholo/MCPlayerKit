@@ -4,9 +4,11 @@
 //
 
 #import "PlayerCategroiesDataVM.h"
+
 #import "PlayerCategroryDto.h"
 #import "PlayerNormalController.h"
 #import "ScrollPlayerController.h"
+#import "ScrollPlayer2SmallPlayerController.h"
 
 
 @implementation PlayerCategroiesDataVM {
@@ -39,7 +41,7 @@
     {
         PlayerCategroryDto *dto = [PlayerCategroryDto new];
         dto.name = @"ScrollView 滚动 + 小窗切换";
-        dto.actionClass = [PlayerNormalController class];
+        dto.actionClass = [ScrollPlayer2SmallPlayerController class];
         [self.dataList addObject:dto];
     }
 
