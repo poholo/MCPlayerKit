@@ -4,6 +4,7 @@
 //
 
 #import "PlayerViewConfig.h"
+#import "MMPopupCategory.h"
 
 
 /** 字体大小 */
@@ -68,27 +69,41 @@ NSString *const _k_player_IJKPlayer = @"ijkplay";
 }
 
 + (UIColor *)colorI {
-    return nil;
+    return [PlayerViewConfig colorWithHex:0xffffff];
 }
 
 + (UIColor *)colorII {
-    return nil;
+    return[PlayerViewConfig colorWithHex:0xffffff];
 }
 
 + (UIColor *)colorIII {
-    return nil;
+    return [PlayerViewConfig colorWithHex:0xffffff];
 }
 
 + (UIColor *)colorIV {
-    return nil;
+    return [PlayerViewConfig colorWithHex:0x5cc0f2];
 }
 
 + (UIColor *)colorV {
-    return nil;
+    return [PlayerViewConfig colorWithHex:0x232629];
 }
 
 + (UIColor *)colorVI {
-    return nil;
+    return [PlayerViewConfig colorWithHex:0x737b80];
+}
+
++ (UIColor *)colorVII {
+    return [PlayerViewConfig colorWithHex:0x97a2a8];
+}
+
++ (UIColor *)colorWithHex:(NSUInteger)hex {
+
+    float r = (hex & 0xff000000) >> 24;
+    float g = (hex & 0x00ff0000) >> 16;
+    float b = (hex & 0x0000ff00) >> 8;
+    float a = (hex & 0x000000ff);
+
+    return [UIColor colorWithRed:r / 255.0f green:g / 255.0f blue:b / 255.0f alpha:a / 255.0f];
 }
 
 @end

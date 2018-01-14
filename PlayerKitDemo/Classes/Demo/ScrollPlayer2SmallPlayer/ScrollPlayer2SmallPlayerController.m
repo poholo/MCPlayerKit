@@ -23,6 +23,7 @@
 
 @property(nonatomic, strong) UITableView *tableView;
 
+@property(nonatomic, strong) PlayerSimpleViewCell *playerSimpleViewCell;
 @property(nonatomic, strong) ScrollPlayerDataVM *dataVM;
 @end
 
@@ -40,6 +41,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.tableView];
+    [self.view addSubview:self.smallPLayerView];
+    self.smallPLayerView.hidden = YES;
 
     [self.dataVM refresh];
     [self.tableView reloadData];
@@ -54,12 +57,22 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     Dto *dto = self.dataVM.dataList[indexPath.row];
     if ([dto isKindOfClass:[VideoDto class]]) {
-        PlayerSimpleViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[PlayerSimpleViewCell identifier] forIndexPath:indexPath];
-        [cell updatePlayerView:self.playerView];
-        return cell;
+        self.playerSimpleViewCell = [tableView dequeueReusableCellWithIdentifier:[PlayerSimpleViewCell identifier] forIndexPath:indexPath];
+        [self.playerSimpleViewCell updatePlayerView:self.playerView];
+        return self.playerSimpleViewCell;
     } else {
         TableViewPlaceHolderCell *cell = [tableView dequeueReusableCellWithIdentifier:[TableViewPlaceHolderCell identifier] forIndexPath:indexPath];
         return cell;
+    }
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if ([[self.tableView visibleCells] containsObject:self.playerSimpleViewCell]) {
+        self.smallPLayerView.hidden = YES;
+        [self.playerKit updatePlayerView:self.playerView];
+    } else {
+        [self.playerKit updatePlayerView:self.smallPLayerView];
+        self.smallPLayerView.hidden = NO;
     }
 }
 
@@ -76,14 +89,26 @@
 #pragma mark - getter
 
 - (PlayerKit *)playerKit {
+    if (!_playerKit) {
+        _playerKit = [[PlayerKit alloc] initWithPlayerView:self.playerView];
+        _playerKit.playerCoreType = PlayerCoreAVPlayer;
+        _playerKit.playerStatusDelegate = self;
+    }
     return _playerKit;
 }
 
 - (PlayerSimpleView *)playerView {
+    if (!_playerView) {
+        _playerView = [[PlayerSimpleView alloc] init];
+    }
     return _playerView;
 }
 
 - (SmallPlayerView *)smallPLayerView {
+    if (!_smallPLayerView) {
+        _smallPLayerView = [[SmallPlayerView alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.view.frame) - 300, CGRectGetHeight(self.view.frame) - 250 * 9 / 16.0f - 40, 250, 250 * 9 / 16.0f)];
+        _smallPLayerView.playerStyle = PlayerStyleSizeRegularAuto;
+    }
     return _smallPLayerView;
 }
 
@@ -104,7 +129,6 @@
     }
     return _dataVM;
 }
-
 
 
 @end

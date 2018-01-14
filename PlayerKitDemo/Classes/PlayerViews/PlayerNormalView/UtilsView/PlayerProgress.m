@@ -35,7 +35,7 @@
     _slider.maximumTrackTintColor = [UIColor clearColor];
 
     _bufferProgressView.progressTintColor = [PlayerViewConfig colorVI];
-    _bufferProgressView.trackTintColor = [PlayerViewConfig colorVI];
+    _bufferProgressView.trackTintColor = [PlayerViewConfig colorVII];
     _progressView.progressTintColor = [PlayerViewConfig colorIV];
     _progressView.trackTintColor = [UIColor clearColor];
 }

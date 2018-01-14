@@ -106,4 +106,6 @@ extern NSString *const _k_player_IJKPlayer;
 
 + (UIColor *)colorVI;
 
++ (UIColor *)colorVII;
+
 @end

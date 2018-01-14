@@ -22,7 +22,7 @@
         VideoDto *dto = [VideoDto new];
         [self.dataList addObject:dto];
     }
-    for (NSInteger idx = 0; idx < 10; idx++) {
+    for (NSInteger idx = 0; idx < 30; idx++) {
         Dto *dto = [Dto new];
         [self.dataList addObject:dto];
     }
