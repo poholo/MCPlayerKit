@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A666218D974219382864CA4 /* PlayerKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A666376F09B76A6789EC910 /* PlayerKit.swift */; };
 		1A6664E295823058C475D597 /* SafeKVOController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A666C2284AD8E666B73BFAD /* SafeKVOController.h */; };
 		1A666571BF57152EF92CCD95 /* SafeKVOController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6669CE18330F621264E989 /* SafeKVOController.m */; };
 		1A666577D3F35E14F8DD18BE /* SafeNotificationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A66618095ACE602C956B74D /* SafeNotificationManager.h */; };
 		1A666A6F447D67DC2D721674 /* SafeNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A66664668A48D215F687DED /* SafeNotificationManager.m */; };
+		1A666BF638B38606CDBB4682 /* AVPlayerX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6661968F9C198D6010E6E7 /* AVPlayerX.swift */; };
+		1A666ED55223597903476F4E /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A666CEAB23A1D1D6DF081E7 /* Player.swift */; };
 		1A666F708625330761CCA013 /* PlayerBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6669FEBDB3EF7A394DE19D /* PlayerBaseView.m */; };
 		1A666FA9F71AF23BE7F5DD0B /* PlayerBaseView.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A6664FFE47F902FDB97D351 /* PlayerBaseView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		250A48A81FDFDFB700F56C17 /* MCPlayerKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 250A48A61FDFDFB700F56C17 /* MCPlayerKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -49,11 +52,14 @@
 
 /* Begin PBXFileReference section */
 		1A66618095ACE602C956B74D /* SafeNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafeNotificationManager.h; sourceTree = "<group>"; };
+		1A6661968F9C198D6010E6E7 /* AVPlayerX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVPlayerX.swift; sourceTree = "<group>"; };
+		1A666376F09B76A6789EC910 /* PlayerKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerKit.swift; sourceTree = "<group>"; };
 		1A6664FFE47F902FDB97D351 /* PlayerBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerBaseView.h; sourceTree = "<group>"; };
 		1A66664668A48D215F687DED /* SafeNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SafeNotificationManager.m; sourceTree = "<group>"; };
 		1A6669CE18330F621264E989 /* SafeKVOController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SafeKVOController.m; sourceTree = "<group>"; };
 		1A6669FEBDB3EF7A394DE19D /* PlayerBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerBaseView.m; sourceTree = "<group>"; };
 		1A666C2284AD8E666B73BFAD /* SafeKVOController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafeKVOController.h; sourceTree = "<group>"; };
+		1A666CEAB23A1D1D6DF081E7 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		250A48A31FDFDFB700F56C17 /* MCPlayerKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MCPlayerKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		250A48A61FDFDFB700F56C17 /* MCPlayerKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MCPlayerKit.h; sourceTree = "<group>"; };
 		250A48A71FDFDFB700F56C17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -189,6 +195,9 @@
 				250A48C11FDFE04C00F56C17 /* PlayerConfig.m */,
 				250A48C21FDFE04C00F56C17 /* PlayerKit.h */,
 				250A48C31FDFE04C00F56C17 /* PlayerKit.m */,
+				1A666CEAB23A1D1D6DF081E7 /* Player.swift */,
+				1A6661968F9C198D6010E6E7 /* AVPlayerX.swift */,
+				1A666376F09B76A6789EC910 /* PlayerKit.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -327,6 +336,9 @@
 				1A666F708625330761CCA013 /* PlayerBaseView.m in Sources */,
 				1A666A6F447D67DC2D721674 /* SafeNotificationManager.m in Sources */,
 				1A666571BF57152EF92CCD95 /* SafeKVOController.m in Sources */,
+				1A666ED55223597903476F4E /* Player.swift in Sources */,
+				1A666BF638B38606CDBB4682 /* AVPlayerX.swift in Sources */,
+				1A666218D974219382864CA4 /* PlayerKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
