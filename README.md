@@ -71,6 +71,17 @@ Run `pod install`
 }];
 [self.playerKit playUrls:@[@"http://aliuwmp3.changba.com/userdata/video/45F6BD5E445E4C029C33DC5901307461.mp4"]];
 ```
+## 类结构
+```
+PlayerKit --------------- 播放器核心，AVPlayer与IJKPlayer抽象
+    -- Core               Player抽象与实现以及PlayerKit播放器控制
+    -- Extend             辅助类
+    -- PlayerView         播放器界面父类，Custom播放器界面View必须继承与此类
+
+PlayerKitDemo ------------ Demo展示类，部分成熟的UI
+
+```
+
 
 ## more
 

@@ -164,7 +164,6 @@
 		1A666C6EC1DF4E1D8A0C30ED /* PlayerTerminalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerTerminalView.m; sourceTree = "<group>"; };
 		1A666C76157D10A31788B33D /* MMAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAlertView.m; sourceTree = "<group>"; };
 		1A666C816BCFB80DE1C269B9 /* MMPopupDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPopupDefine.h; sourceTree = "<group>"; };
-		1A666C8645C2775F2243B750 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		1A666D0F02247EA05D824F1D /* PlayerViewUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewUtils.h; sourceTree = "<group>"; };
 		1A666D15B47C8EAD955B0F15 /* MMPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPopupView.m; sourceTree = "<group>"; };
 		1A666D23CB6CE466D76F3B15 /* MMPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPopupView.h; sourceTree = "<group>"; };
@@ -456,7 +455,6 @@
 				1A666455D4EE0B61850DA629 /* Classes */,
 				7062D7D4308A7A0511E5863E /* Pods */,
 				F1F52EFE25A5E7898BEEBC34 /* Frameworks */,
-				1A666C8645C2775F2243B750 /* README.md */,
 			);
 			sourceTree = "<group>";
 		};
