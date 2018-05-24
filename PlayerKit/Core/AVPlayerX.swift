@@ -19,6 +19,11 @@ class AVPlayerX: Player {
         }
     }
 
+    override init() {
+        super.init()
+
+    }
+
     override func playURL(url: String) {
         super.playURL(url: url)
         self.player = AVPlayer(url: URL(string: url)!)

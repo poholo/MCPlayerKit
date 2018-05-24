@@ -30,7 +30,9 @@ protocol PlayerProtocol {
 }
 
 class Player: PlayerProtocol {
-    var playerStatus: PlayerStatus = PlayerStatus.Unknow
+    var playerStatus: PlayerStatus
+    var drawView: UIView
+
     var rate: Float {
         set {
             self.rate = newValue
@@ -39,13 +41,9 @@ class Player: PlayerProtocol {
             return self.rate
         }
     }
-    lazy var drawView: UIView {
-        get {
-            if self.drawView == nil {
-                self.drawView = UIView(frame: CGRect.zero)
-            }
-            return self.drawView
-        }
+    init() {
+        self.playerStatus = PlayerStatus.Unknow
+        self.drawView = UIView(frame: CGRect.zero)
     }
 
     func playURL(url: String) {
