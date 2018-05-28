@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A6660327F1DDC13053E1F39 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A666E194ED6ACEC592063B0 /* TableViewCell.swift */; };
 		1A66604F7EB9AFB1448161B6 /* MMPopupItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A66643BBCCBBBAF86AEFE03 /* MMPopupItem.m */; };
 		1A6660523BCAA97E19AE5546 /* Dto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A666B34E34EEC46FF78EF82 /* Dto.swift */; };
 		1A6661B6AFC812F1D759377A /* PlayerNormalDataVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6669BD5C17C0A569888E59 /* PlayerNormalDataVM.m */; };
 		1A6662244167B0FFD5E73030 /* MCController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6661CD4D11FEEA5CF3442E /* MCController.swift */; };
-		1A6662E8F24D7C317039CD72 /* PlayerCategroiesTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6662581C5E76CB7ACFA7DC /* PlayerCategroiesTableController.m */; };
 		1A66632B898F6168847279EB /* VideoDto.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666BFE2BC2E95523B943A9 /* VideoDto.m */; };
 		1A6663AC2BC2373F75B64B10 /* MMAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666C76157D10A31788B33D /* MMAlertView.m */; };
 		1A6663C8401920FCA3598762 /* PlayerNormalController+AutoRotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666415603B64106A02A1CE /* PlayerNormalController+AutoRotate.m */; };
@@ -19,25 +19,24 @@
 		1A66649A71107434CF6CC2E4 /* PlayerSimpleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6662D33D66E3759816D291 /* PlayerSimpleView.m */; };
 		1A66649D6B19C60372EAC2E6 /* MMPopupWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6661EA3478B83201013912 /* MMPopupWindow.m */; };
 		1A6664C5226E76FBB05BB20E /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A666B264A253FFFC536D338 /* CollectionCell.swift */; };
-		1A6665349C923267F1099327 /* MCController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666174ACC750AAF5718B64 /* MCController.m */; };
 		1A6665629A6B42392F1B5105 /* DataVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6668E0D091536A4B550E87 /* DataVM.swift */; };
+		1A66657CE6015EC014E84F32 /* PlayerCategroryDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A666499B7D6E4C86D51AB24 /* PlayerCategroryDto.swift */; };
 		1A6665CED2ABE0468B36A5D6 /* PlayerSimpleViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6660445F254D108DD53ADD /* PlayerSimpleViewCell.m */; };
 		1A6667543C566B5161F332BB /* ScrollPlayer2SmallPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6662B57ECA372719D35450 /* ScrollPlayer2SmallPlayerController.m */; };
 		1A6667E54C0212DFCC4480BA /* PlayerViewUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666B0EFE60784483C79F13 /* PlayerViewUtils.m */; };
+		1A66680468523F67AA505EE1 /* PlayerCategroryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A666CF3E6F4334EABEF6FAD /* PlayerCategroryCell.swift */; };
 		1A6668ACE3EA635D3C6BB1D7 /* ScrollPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666DFFB0BFB0E5F27599A0 /* ScrollPlayerController.m */; };
-		1A6668C7509B3EDFD134DA69 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666AD9BBC7C18286C4540E /* TableViewCell.m */; };
 		1A6669B7A22EFBEBC87B8E3C /* PlayerProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666130E7CDF5F3866F4E63 /* PlayerProgress.m */; };
 		1A666A18A48F26E0EF9EAF80 /* MMPopupCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666F06F23F98032435F20E /* MMPopupCategory.m */; };
 		1A666A3E5A208405FFB9654E /* SmallPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6669D0EADABD219E8F7DAA /* SmallPlayerView.m */; };
 		1A666A7427E5A27BDB29A472 /* PlayerNormalDto.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6667219B28351BBCC9880F /* PlayerNormalDto.m */; };
-		1A666A75043323A1A00323E1 /* PlayerCategroiesDataVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A66622C4F1CED60053B1051 /* PlayerCategroiesDataVM.m */; };
-		1A666AF97D02E0B0EB838792 /* PlayerCategroryDto.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666BEB79A7C3CA783BF82E /* PlayerCategroryDto.m */; };
 		1A666B153AD34B6B2B2C6502 /* MMWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6666A1CC6F773B3FAF4606 /* MMWindowController.m */; };
 		1A666B8B3C2335C3486B0FAF /* PlayerNormalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666DE85E3238F9516F7DD0 /* PlayerNormalView.m */; };
 		1A666B8DDEE35815F470AD50 /* TableViewPlaceHolderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666AD8E55B754E87E27812 /* TableViewPlaceHolderCell.m */; };
+		1A666BE987CE6B2182C25787 /* PlayerCategroiesDataVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A666BBB03D91CE396E53390 /* PlayerCategroiesDataVM.swift */; };
 		1A666D0CF395EA3722AD1F19 /* MMSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6669DBB62572AE71EBD1E4 /* MMSheetView.m */; };
 		1A666DACEB3C6FAB2D333453 /* MMPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666D15B47C8EAD955B0F15 /* MMPopupView.m */; };
-		1A666DEACDC5322B48375EF6 /* PlayerCategroryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666A2EE6949B244B8C1A94 /* PlayerCategroryCell.m */; };
+		1A666EDFE137BFB396ABD1C4 /* PlayerCategroiesTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A66674451C5C4B1D674AB84 /* PlayerCategroiesTableController.swift */; };
 		1A666EE276F447E29E15925E /* PlayerNormalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666BFAC0B27A1493AFD0FB /* PlayerNormalController.m */; };
 		1A666EF1F800565628B441C1 /* ScrollPlayerDataVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A66683138A99EE426D9BAB1 /* ScrollPlayerDataVM.m */; };
 		1A666EFAF6CE45D69FDDCBAB /* PlayerTerminalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666C6EC1DF4E1D8A0C30ED /* PlayerTerminalView.m */; };
@@ -108,16 +107,10 @@
 		08E35018D0726C1C19647408 /* libPods-PlayerKitDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PlayerKitDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A6660445F254D108DD53ADD /* PlayerSimpleViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerSimpleViewCell.m; sourceTree = "<group>"; };
 		1A66605C540551184D6B3264 /* TableViewPlaceHolderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewPlaceHolderCell.h; sourceTree = "<group>"; };
-		1A6660A4C7A12F7043499D5B /* PlayerCategroiesTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerCategroiesTableController.h; sourceTree = "<group>"; };
 		1A6660DD1196B32016077846 /* PlayerNormalDataVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerNormalDataVM.h; sourceTree = "<group>"; };
 		1A666130E7CDF5F3866F4E63 /* PlayerProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerProgress.m; sourceTree = "<group>"; };
-		1A666174ACC750AAF5718B64 /* MCController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCController.m; sourceTree = "<group>"; };
-		1A66618C650B605AC424E426 /* PlayerCategroiesDataVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerCategroiesDataVM.h; sourceTree = "<group>"; };
-		1A6661AA32E15F20EA59BE82 /* MCController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCController.h; sourceTree = "<group>"; };
 		1A6661CD4D11FEEA5CF3442E /* MCController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MCController.swift; sourceTree = "<group>"; };
 		1A6661EA3478B83201013912 /* MMPopupWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPopupWindow.m; sourceTree = "<group>"; };
-		1A66622C4F1CED60053B1051 /* PlayerCategroiesDataVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerCategroiesDataVM.m; sourceTree = "<group>"; };
-		1A6662581C5E76CB7ACFA7DC /* PlayerCategroiesTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerCategroiesTableController.m; sourceTree = "<group>"; };
 		1A6662B57ECA372719D35450 /* ScrollPlayer2SmallPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollPlayer2SmallPlayerController.m; sourceTree = "<group>"; };
 		1A6662D33D66E3759816D291 /* PlayerSimpleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerSimpleView.m; sourceTree = "<group>"; };
 		1A666415603B64106A02A1CE /* PlayerNormalController+AutoRotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PlayerNormalController+AutoRotate.m"; sourceTree = "<group>"; };
@@ -126,7 +119,7 @@
 		1A666459030A6BD99333596A /* MMWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMWindowController.h; sourceTree = "<group>"; };
 		1A66646A54F94904B9866D34 /* ScrollPlayerDataVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollPlayerDataVM.h; sourceTree = "<group>"; };
 		1A666476457AF101CFBE214F /* PlayerSimpleViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerSimpleViewCell.h; sourceTree = "<group>"; };
-		1A6664A1FA3FA8F463ED9B69 /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
+		1A666499B7D6E4C86D51AB24 /* PlayerCategroryDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerCategroryDto.swift; sourceTree = "<group>"; };
 		1A6664A374578BE38CA77005 /* PlayerTerminalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerTerminalView.h; sourceTree = "<group>"; };
 		1A66653C1D02E9A917428D8F /* PlayerProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerProgress.h; sourceTree = "<group>"; };
 		1A6665448EBA033DE1EC48C5 /* MMSheetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSheetView.h; sourceTree = "<group>"; };
@@ -137,37 +130,36 @@
 		1A6666A1CC6F773B3FAF4606 /* MMWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMWindowController.m; sourceTree = "<group>"; };
 		1A66670FFC6E7F08B4F600A7 /* MMPopupWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPopupWindow.h; sourceTree = "<group>"; };
 		1A6667219B28351BBCC9880F /* PlayerNormalDto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerNormalDto.m; sourceTree = "<group>"; };
+		1A66674451C5C4B1D674AB84 /* PlayerCategroiesTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerCategroiesTableController.swift; sourceTree = "<group>"; };
 		1A6667621E9700F37A34101A /* PlayerNormalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerNormalView.h; sourceTree = "<group>"; };
 		1A66683138A99EE426D9BAB1 /* ScrollPlayerDataVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollPlayerDataVM.m; sourceTree = "<group>"; };
 		1A6668855E9678E15D5A4EE6 /* MMPopupItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPopupItem.h; sourceTree = "<group>"; };
 		1A6668E0D091536A4B550E87 /* DataVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataVM.swift; sourceTree = "<group>"; };
 		1A6668F4C4FE733FCB98D19C /* MMAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAlertView.h; sourceTree = "<group>"; };
 		1A666935286DE7265DC38710 /* SmallPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmallPlayerView.h; sourceTree = "<group>"; };
-		1A666968785FD2E414D0F313 /* PlayerCategroryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerCategroryCell.h; sourceTree = "<group>"; };
 		1A6669BD5C17C0A569888E59 /* PlayerNormalDataVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerNormalDataVM.m; sourceTree = "<group>"; };
 		1A6669D0EADABD219E8F7DAA /* SmallPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmallPlayerView.m; sourceTree = "<group>"; };
 		1A6669DBB62572AE71EBD1E4 /* MMSheetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSheetView.m; sourceTree = "<group>"; };
-		1A666A2EE6949B244B8C1A94 /* PlayerCategroryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerCategroryCell.m; sourceTree = "<group>"; };
 		1A666A8B2C4000521DABCCCB /* MMPopupCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPopupCategory.h; sourceTree = "<group>"; };
 		1A666AD8E55B754E87E27812 /* TableViewPlaceHolderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewPlaceHolderCell.m; sourceTree = "<group>"; };
-		1A666AD9BBC7C18286C4540E /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
 		1A666B0EFE60784483C79F13 /* PlayerViewUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewUtils.m; sourceTree = "<group>"; };
 		1A666B264A253FFFC536D338 /* CollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
 		1A666B34E34EEC46FF78EF82 /* Dto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dto.swift; sourceTree = "<group>"; };
 		1A666B5696B81F3782AC4733 /* PlayerViewConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewConfig.m; sourceTree = "<group>"; };
-		1A666BEB79A7C3CA783BF82E /* PlayerCategroryDto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerCategroryDto.m; sourceTree = "<group>"; };
+		1A666BBB03D91CE396E53390 /* PlayerCategroiesDataVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerCategroiesDataVM.swift; sourceTree = "<group>"; };
 		1A666BFAC0B27A1493AFD0FB /* PlayerNormalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerNormalController.m; sourceTree = "<group>"; };
 		1A666BFE2BC2E95523B943A9 /* VideoDto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoDto.m; sourceTree = "<group>"; };
 		1A666C6EC1DF4E1D8A0C30ED /* PlayerTerminalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerTerminalView.m; sourceTree = "<group>"; };
 		1A666C76157D10A31788B33D /* MMAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAlertView.m; sourceTree = "<group>"; };
 		1A666C816BCFB80DE1C269B9 /* MMPopupDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPopupDefine.h; sourceTree = "<group>"; };
+		1A666CF3E6F4334EABEF6FAD /* PlayerCategroryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerCategroryCell.swift; sourceTree = "<group>"; };
 		1A666D0F02247EA05D824F1D /* PlayerViewUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewUtils.h; sourceTree = "<group>"; };
 		1A666D15B47C8EAD955B0F15 /* MMPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPopupView.m; sourceTree = "<group>"; };
 		1A666D23CB6CE466D76F3B15 /* MMPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPopupView.h; sourceTree = "<group>"; };
 		1A666DE85E3238F9516F7DD0 /* PlayerNormalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerNormalView.m; sourceTree = "<group>"; };
 		1A666DFFB0BFB0E5F27599A0 /* ScrollPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollPlayerController.m; sourceTree = "<group>"; };
+		1A666E194ED6ACEC592063B0 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		1A666E197CA29C1B91F6BEC2 /* PlayerViewConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewConfig.h; sourceTree = "<group>"; };
-		1A666EB9DEF7D30111054B56 /* PlayerCategroryDto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerCategroryDto.h; sourceTree = "<group>"; };
 		1A666F06F23F98032435F20E /* MMPopupCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPopupCategory.m; sourceTree = "<group>"; };
 		1A666F0B4E3B58083E516C7D /* ScrollPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollPlayerController.h; sourceTree = "<group>"; };
 		1A666F217FD41BD1585C54B0 /* PlayerNormalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerNormalController.h; sourceTree = "<group>"; };
@@ -233,14 +225,11 @@
 		1A6662419D6E31B10076EB89 /* Commen */ = {
 			isa = PBXGroup;
 			children = (
-				1A666174ACC750AAF5718B64 /* MCController.m */,
-				1A6661AA32E15F20EA59BE82 /* MCController.h */,
-				1A666AD9BBC7C18286C4540E /* TableViewCell.m */,
-				1A6664A1FA3FA8F463ED9B69 /* TableViewCell.h */,
 				1A666B34E34EEC46FF78EF82 /* Dto.swift */,
 				1A6668E0D091536A4B550E87 /* DataVM.swift */,
 				1A666B264A253FFFC536D338 /* CollectionCell.swift */,
 				1A6661CD4D11FEEA5CF3442E /* MCController.swift */,
+				1A666E194ED6ACEC592063B0 /* TableViewCell.swift */,
 			);
 			path = Commen;
 			sourceTree = "<group>";
@@ -375,14 +364,10 @@
 		1A666D171F1D95C3EE51BD12 /* List */ = {
 			isa = PBXGroup;
 			children = (
-				1A666EB9DEF7D30111054B56 /* PlayerCategroryDto.h */,
-				1A6662581C5E76CB7ACFA7DC /* PlayerCategroiesTableController.m */,
-				1A666968785FD2E414D0F313 /* PlayerCategroryCell.h */,
-				1A66618C650B605AC424E426 /* PlayerCategroiesDataVM.h */,
-				1A6660A4C7A12F7043499D5B /* PlayerCategroiesTableController.h */,
-				1A66622C4F1CED60053B1051 /* PlayerCategroiesDataVM.m */,
-				1A666A2EE6949B244B8C1A94 /* PlayerCategroryCell.m */,
-				1A666BEB79A7C3CA783BF82E /* PlayerCategroryDto.m */,
+				1A666BBB03D91CE396E53390 /* PlayerCategroiesDataVM.swift */,
+				1A666499B7D6E4C86D51AB24 /* PlayerCategroryDto.swift */,
+				1A666CF3E6F4334EABEF6FAD /* PlayerCategroryCell.swift */,
+				1A66674451C5C4B1D674AB84 /* PlayerCategroiesTableController.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -615,12 +600,6 @@
 			files = (
 				25A536DE1FDA9DFA002511DF /* main.m in Sources */,
 				25A536D01FDA9DFA002511DF /* AppDelegate.m in Sources */,
-				1A6665349C923267F1099327 /* MCController.m in Sources */,
-				1A6668C7509B3EDFD134DA69 /* TableViewCell.m in Sources */,
-				1A6662E8F24D7C317039CD72 /* PlayerCategroiesTableController.m in Sources */,
-				1A666A75043323A1A00323E1 /* PlayerCategroiesDataVM.m in Sources */,
-				1A666DEACDC5322B48375EF6 /* PlayerCategroryCell.m in Sources */,
-				1A666AF97D02E0B0EB838792 /* PlayerCategroryDto.m in Sources */,
 				1A666EE276F447E29E15925E /* PlayerNormalController.m in Sources */,
 				1A6661B6AFC812F1D759377A /* PlayerNormalDataVM.m in Sources */,
 				1A666A7427E5A27BDB29A472 /* PlayerNormalDto.m in Sources */,
@@ -651,6 +630,11 @@
 				1A6665629A6B42392F1B5105 /* DataVM.swift in Sources */,
 				1A6664C5226E76FBB05BB20E /* CollectionCell.swift in Sources */,
 				1A6662244167B0FFD5E73030 /* MCController.swift in Sources */,
+				1A6660327F1DDC13053E1F39 /* TableViewCell.swift in Sources */,
+				1A666BE987CE6B2182C25787 /* PlayerCategroiesDataVM.swift in Sources */,
+				1A66657CE6015EC014E84F32 /* PlayerCategroryDto.swift in Sources */,
+				1A66680468523F67AA505EE1 /* PlayerCategroryCell.swift in Sources */,
+				1A666EDFE137BFB396ABD1C4 /* PlayerCategroiesTableController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,15 +6,15 @@
 import Foundation
 
 class DataVM {
-    var dataList: [Dto]!
-    private var isRefresh = false
+    var dataList: Array<Dto>!
+    var isRefresh = false
 
     init() {
         self.dataList = Array<Dto>()
     }
 
     func refresh() {
-
+        self.isRefresh = true
     }
 
 }

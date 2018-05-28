@@ -7,6 +7,10 @@ import Foundation
 
 
 class Dto {
-    var entityId: String!
+    var id: String
+
+    init(_ entityId: String) {
+        id = entityId
+    }
 
 }
