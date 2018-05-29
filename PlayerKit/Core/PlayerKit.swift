@@ -6,18 +6,18 @@
 import Foundation
 
 
-enum PlayerCoreType {
+public enum PlayerCoreType {
     case CoreAVPlayer
     case CoreIJKPlayer
 }
 
-class PlayerKit: PlayerProtocol {
-    weak var playerView: PlayerBaseView?
-    var player: Player?
-    var coreType: PlayerCoreType = PlayerCoreType.CoreAVPlayer
-    var timer: Timer?
+open class PlayerKit: PlayerProtocol {
+    weak open var playerView: PlayerBaseView?
+    open var player: Player?
+    open var coreType: PlayerCoreType = PlayerCoreType.CoreAVPlayer
+    open var timer: Timer?
 
-    var rate: Float {
+    open var rate: Float {
         get {
             return self.player!.rate
         }
@@ -26,7 +26,7 @@ class PlayerKit: PlayerProtocol {
         }
     }
 
-    func playURL(url: String) {
+    open func playURL(url: String) {
         self.destory()
 
         switch self.coreType {
@@ -40,31 +40,31 @@ class PlayerKit: PlayerProtocol {
         self.playerView!.addSubview(self.player!.drawView)
     }
 
-    func play() {
+    open func play() {
         self.player!.play()
     }
 
-    func pause() {
+    open func pause() {
         self.player!.pause()
     }
 
-    func currentTime() -> TimeInterval {
+    open func currentTime() -> TimeInterval {
         return self.player!.currentTime()
     }
 
-    func duration() -> TimeInterval {
+    open func duration() -> TimeInterval {
         return self.player!.duration()
     }
 
-    func seek(time: TimeInterval) {
+    open func seek(time: TimeInterval) {
         self.player!.seek(time: time)
     }
 
-    func updateFrame(frame: CGRect) {
+    open func updateFrame(frame: CGRect) {
         self.player!.updateFrame(frame: frame)
     }
 
-    func destory() {
+    open func destory() {
         self.invlidateTime()
         self.playerView!.willRemoveSubview(self.player!.drawView)
         self.player!.destory()

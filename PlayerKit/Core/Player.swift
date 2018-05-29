@@ -6,17 +6,17 @@
 
 import Foundation
 
-enum PlayerStatus {
+public enum PlayerStatus {
     case Unknow, Loading, Caching, Seeking, Playing, Pausing, Error
 }
 
-enum PlayerCategory {
+public enum PlayerCategory {
     case PlayerCategoryAVPlayer, PlayerCategoryIJKPlayer
 }
 
 protocol PlayerProtocol {
 
-    var rate: Float = 1.0
+    var rate: Float { set get }
 
     func playURL(url: String)
     func play()
@@ -29,11 +29,11 @@ protocol PlayerProtocol {
 
 }
 
-class Player: PlayerProtocol {
-    var playerStatus: PlayerStatus
-    var drawView: UIView
+open class Player: PlayerProtocol {
+    open var playerStatus: PlayerStatus
+    open var drawView: UIView
 
-    var rate: Float {
+    open var rate: Float {
         set {
             self.rate = newValue
         }
@@ -41,39 +41,43 @@ class Player: PlayerProtocol {
             return self.rate
         }
     }
-    init() {
+
+    public init() {
         self.playerStatus = PlayerStatus.Unknow
         self.drawView = UIView(frame: CGRect.zero)
     }
 
-    func playURL(url: String) {
+    open func playURL(url: String) {
 
     }
 
-    func play() {
+    open func play() {
     }
 
-    func pause() {
+    open func pause() {
     }
 
-    func status() -> PlayerStatus {
+    open func status() -> PlayerStatus {
         return self.playerStatus
     }
 
-    func currentTime() -> TimeInterval {
+    open func currentTime() -> TimeInterval {
+        return 0
     }
 
-    func duration() -> TimeInterval {
+    open func duration() -> TimeInterval {
+        return 0
     }
 
-    func seek(time: TimeInterval) {
+    open func seek(time: TimeInterval) {
+
     }
 
-    func updateFrame(frame: CGRect) {
+    open func updateFrame(frame: CGRect) {
         self.drawView.frame = frame
     }
 
-    func destory() {
+    open func destory() {
         self.drawView.removeFromSuperview()
     }
 }

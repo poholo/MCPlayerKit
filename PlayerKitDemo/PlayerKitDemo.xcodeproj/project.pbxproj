@@ -10,7 +10,6 @@
 		1A6660327F1DDC13053E1F39 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A666E194ED6ACEC592063B0 /* TableViewCell.swift */; };
 		1A66604F7EB9AFB1448161B6 /* MMPopupItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A66643BBCCBBBAF86AEFE03 /* MMPopupItem.m */; };
 		1A6660523BCAA97E19AE5546 /* Dto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A666B34E34EEC46FF78EF82 /* Dto.swift */; };
-		1A6661B6AFC812F1D759377A /* PlayerNormalDataVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6669BD5C17C0A569888E59 /* PlayerNormalDataVM.m */; };
 		1A6662244167B0FFD5E73030 /* MCController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6661CD4D11FEEA5CF3442E /* MCController.swift */; };
 		1A66632B898F6168847279EB /* VideoDto.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666BFE2BC2E95523B943A9 /* VideoDto.m */; };
 		1A6663AC2BC2373F75B64B10 /* MMAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666C76157D10A31788B33D /* MMAlertView.m */; };
@@ -22,14 +21,15 @@
 		1A6665629A6B42392F1B5105 /* DataVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6668E0D091536A4B550E87 /* DataVM.swift */; };
 		1A66657CE6015EC014E84F32 /* PlayerCategroryDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A666499B7D6E4C86D51AB24 /* PlayerCategroryDto.swift */; };
 		1A6665CED2ABE0468B36A5D6 /* PlayerSimpleViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6660445F254D108DD53ADD /* PlayerSimpleViewCell.m */; };
+		1A6665EC1DEB9134E5D8A823 /* PlayerNormalDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A666274A3057B6C600995A0 /* PlayerNormalDto.swift */; };
 		1A6667543C566B5161F332BB /* ScrollPlayer2SmallPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6662B57ECA372719D35450 /* ScrollPlayer2SmallPlayerController.m */; };
 		1A6667E54C0212DFCC4480BA /* PlayerViewUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666B0EFE60784483C79F13 /* PlayerViewUtils.m */; };
 		1A66680468523F67AA505EE1 /* PlayerCategroryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A666CF3E6F4334EABEF6FAD /* PlayerCategroryCell.swift */; };
 		1A6668ACE3EA635D3C6BB1D7 /* ScrollPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666DFFB0BFB0E5F27599A0 /* ScrollPlayerController.m */; };
+		1A666907ED520018213DC085 /* PlayerNormalDataVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6668C40AA9DDAD971C4D64 /* PlayerNormalDataVM.swift */; };
 		1A6669B7A22EFBEBC87B8E3C /* PlayerProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666130E7CDF5F3866F4E63 /* PlayerProgress.m */; };
 		1A666A18A48F26E0EF9EAF80 /* MMPopupCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666F06F23F98032435F20E /* MMPopupCategory.m */; };
 		1A666A3E5A208405FFB9654E /* SmallPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6669D0EADABD219E8F7DAA /* SmallPlayerView.m */; };
-		1A666A7427E5A27BDB29A472 /* PlayerNormalDto.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6667219B28351BBCC9880F /* PlayerNormalDto.m */; };
 		1A666B153AD34B6B2B2C6502 /* MMWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6666A1CC6F773B3FAF4606 /* MMWindowController.m */; };
 		1A666B8B3C2335C3486B0FAF /* PlayerNormalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666DE85E3238F9516F7DD0 /* PlayerNormalView.m */; };
 		1A666B8DDEE35815F470AD50 /* TableViewPlaceHolderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666AD8E55B754E87E27812 /* TableViewPlaceHolderCell.m */; };
@@ -38,6 +38,7 @@
 		1A666DACEB3C6FAB2D333453 /* MMPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666D15B47C8EAD955B0F15 /* MMPopupView.m */; };
 		1A666EDFE137BFB396ABD1C4 /* PlayerCategroiesTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A66674451C5C4B1D674AB84 /* PlayerCategroiesTableController.swift */; };
 		1A666EE276F447E29E15925E /* PlayerNormalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666BFAC0B27A1493AFD0FB /* PlayerNormalController.m */; };
+		1A666EF1A6FAC54D54AB9DB6 /* PlayerNormalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A666AD1602A942735D577CE /* PlayerNormalController.swift */; };
 		1A666EF1F800565628B441C1 /* ScrollPlayerDataVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A66683138A99EE426D9BAB1 /* ScrollPlayerDataVM.m */; };
 		1A666EFAF6CE45D69FDDCBAB /* PlayerTerminalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666C6EC1DF4E1D8A0C30ED /* PlayerTerminalView.m */; };
 		1A666F2BE1EA683F111BA3EA /* PlayerLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666454703B71F719B2FB93 /* PlayerLoadingView.m */; };
@@ -56,35 +57,35 @@
 		250A49DF1FE3DDE300F56C17 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 250A49DE1FE3DDE300F56C17 /* UIKit.framework */; };
 		250A49E31FE3DF9900F56C17 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 250A49E21FE3DF9900F56C17 /* libc++.tbd */; };
 		250F1E9A1FFCE6A300F564AD /* Player.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 250F1E991FFCE6A300F564AD /* Player.xcassets */; };
+		25225A5720BD2FEA00488B70 /* MCPlayerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25225A5320BD2F5E00488B70 /* MCPlayerKit.framework */; };
+		25225A5820BD2FEA00488B70 /* MCPlayerKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 25225A5320BD2F5E00488B70 /* MCPlayerKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		25A536D01FDA9DFA002511DF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A536CF1FDA9DFA002511DF /* AppDelegate.m */; };
 		25A536D81FDA9DFA002511DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25A536D71FDA9DFA002511DF /* Assets.xcassets */; };
 		25A536DB1FDA9DFA002511DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25A536D91FDA9DFA002511DF /* LaunchScreen.storyboard */; };
 		25A536DE1FDA9DFA002511DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A536DD1FDA9DFA002511DF /* main.m */; };
-		25C1F18A1FE8E412007F39C2 /* MCPlayerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 250A49BD1FE3D38700F56C17 /* MCPlayerKit.framework */; };
-		25C1F18B1FE8E412007F39C2 /* MCPlayerKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 250A49BD1FE3D38700F56C17 /* MCPlayerKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3B3F235F10699A53D5F36D28 /* libPods-PlayerKitDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E35018D0726C1C19647408 /* libPods-PlayerKitDemo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		250A49BC1FE3D38700F56C17 /* PBXContainerItemProxy */ = {
+		25225A5220BD2F5E00488B70 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 250A49B81FE3D38700F56C17 /* MCPlayerKit.xcodeproj */;
+			containerPortal = 25225A4E20BD2F5E00488B70 /* MCPlayerKit.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 250A48A31FDFDFB700F56C17;
+			remoteGlobalIDString = 25225A3920BD2E6F00488B70;
 			remoteInfo = MCPlayerKit;
 		};
-		25C1F1871FE8E3E8007F39C2 /* PBXContainerItemProxy */ = {
+		25225A5420BD2F6B00488B70 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 250A49B81FE3D38700F56C17 /* MCPlayerKit.xcodeproj */;
+			containerPortal = 25225A4E20BD2F5E00488B70 /* MCPlayerKit.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 250A48A21FDFDFB700F56C17;
+			remoteGlobalIDString = 25225A3820BD2E6F00488B70;
 			remoteInfo = MCPlayerKit;
 		};
-		25C1F18C1FE8E412007F39C2 /* PBXContainerItemProxy */ = {
+		25225A5920BD2FEA00488B70 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 250A49B81FE3D38700F56C17 /* MCPlayerKit.xcodeproj */;
+			containerPortal = 25225A4E20BD2F5E00488B70 /* MCPlayerKit.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 250A48A21FDFDFB700F56C17;
+			remoteGlobalIDString = 25225A3820BD2E6F00488B70;
 			remoteInfo = MCPlayerKit;
 		};
 /* End PBXContainerItemProxy section */
@@ -96,7 +97,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				25C1F18B1FE8E412007F39C2 /* MCPlayerKit.framework in Embed Frameworks */,
+				25225A5820BD2FEA00488B70 /* MCPlayerKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -107,10 +108,10 @@
 		08E35018D0726C1C19647408 /* libPods-PlayerKitDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PlayerKitDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A6660445F254D108DD53ADD /* PlayerSimpleViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerSimpleViewCell.m; sourceTree = "<group>"; };
 		1A66605C540551184D6B3264 /* TableViewPlaceHolderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewPlaceHolderCell.h; sourceTree = "<group>"; };
-		1A6660DD1196B32016077846 /* PlayerNormalDataVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerNormalDataVM.h; sourceTree = "<group>"; };
 		1A666130E7CDF5F3866F4E63 /* PlayerProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerProgress.m; sourceTree = "<group>"; };
 		1A6661CD4D11FEEA5CF3442E /* MCController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MCController.swift; sourceTree = "<group>"; };
 		1A6661EA3478B83201013912 /* MMPopupWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPopupWindow.m; sourceTree = "<group>"; };
+		1A666274A3057B6C600995A0 /* PlayerNormalDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerNormalDto.swift; sourceTree = "<group>"; };
 		1A6662B57ECA372719D35450 /* ScrollPlayer2SmallPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollPlayer2SmallPlayerController.m; sourceTree = "<group>"; };
 		1A6662D33D66E3759816D291 /* PlayerSimpleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerSimpleView.m; sourceTree = "<group>"; };
 		1A666415603B64106A02A1CE /* PlayerNormalController+AutoRotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PlayerNormalController+AutoRotate.m"; sourceTree = "<group>"; };
@@ -129,18 +130,18 @@
 		1A6666960E4E1044032C5EC2 /* ScrollPlayer2SmallPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollPlayer2SmallPlayerController.h; sourceTree = "<group>"; };
 		1A6666A1CC6F773B3FAF4606 /* MMWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMWindowController.m; sourceTree = "<group>"; };
 		1A66670FFC6E7F08B4F600A7 /* MMPopupWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPopupWindow.h; sourceTree = "<group>"; };
-		1A6667219B28351BBCC9880F /* PlayerNormalDto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerNormalDto.m; sourceTree = "<group>"; };
 		1A66674451C5C4B1D674AB84 /* PlayerCategroiesTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerCategroiesTableController.swift; sourceTree = "<group>"; };
 		1A6667621E9700F37A34101A /* PlayerNormalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerNormalView.h; sourceTree = "<group>"; };
 		1A66683138A99EE426D9BAB1 /* ScrollPlayerDataVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollPlayerDataVM.m; sourceTree = "<group>"; };
 		1A6668855E9678E15D5A4EE6 /* MMPopupItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPopupItem.h; sourceTree = "<group>"; };
+		1A6668C40AA9DDAD971C4D64 /* PlayerNormalDataVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerNormalDataVM.swift; sourceTree = "<group>"; };
 		1A6668E0D091536A4B550E87 /* DataVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataVM.swift; sourceTree = "<group>"; };
 		1A6668F4C4FE733FCB98D19C /* MMAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAlertView.h; sourceTree = "<group>"; };
 		1A666935286DE7265DC38710 /* SmallPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmallPlayerView.h; sourceTree = "<group>"; };
-		1A6669BD5C17C0A569888E59 /* PlayerNormalDataVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerNormalDataVM.m; sourceTree = "<group>"; };
 		1A6669D0EADABD219E8F7DAA /* SmallPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmallPlayerView.m; sourceTree = "<group>"; };
 		1A6669DBB62572AE71EBD1E4 /* MMSheetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSheetView.m; sourceTree = "<group>"; };
 		1A666A8B2C4000521DABCCCB /* MMPopupCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPopupCategory.h; sourceTree = "<group>"; };
+		1A666AD1602A942735D577CE /* PlayerNormalController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerNormalController.swift; sourceTree = "<group>"; };
 		1A666AD8E55B754E87E27812 /* TableViewPlaceHolderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewPlaceHolderCell.m; sourceTree = "<group>"; };
 		1A666B0EFE60784483C79F13 /* PlayerViewUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewUtils.m; sourceTree = "<group>"; };
 		1A666B264A253FFFC536D338 /* CollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
@@ -163,11 +164,9 @@
 		1A666F06F23F98032435F20E /* MMPopupCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPopupCategory.m; sourceTree = "<group>"; };
 		1A666F0B4E3B58083E516C7D /* ScrollPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollPlayerController.h; sourceTree = "<group>"; };
 		1A666F217FD41BD1585C54B0 /* PlayerNormalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerNormalController.h; sourceTree = "<group>"; };
-		1A666F43E67FB2BB15CEC664 /* PlayerNormalDto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerNormalDto.h; sourceTree = "<group>"; };
 		1A666F7306F27A4BDA1B8B35 /* MCMediaNotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCMediaNotify.h; sourceTree = "<group>"; };
 		1A666F7C0E11008A9674E9FB /* PlayerLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerLoadingView.h; sourceTree = "<group>"; };
 		1A666FABAEEFD416B93A5D7C /* MCMediaNotify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCMediaNotify.m; sourceTree = "<group>"; };
-		250A49B81FE3D38700F56C17 /* MCPlayerKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MCPlayerKit.xcodeproj; path = ../PlayerKit/MCPlayerKit.xcodeproj; sourceTree = "<group>"; };
 		250A49C81FE3DD2200F56C17 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		250A49CA1FE3DD4400F56C17 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		250A49CC1FE3DD4C00F56C17 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -183,6 +182,7 @@
 		250A49E21FE3DF9900F56C17 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		250A49E41FE3DFD400F56C17 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		250F1E991FFCE6A300F564AD /* Player.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Player.xcassets; sourceTree = "<group>"; };
+		25225A4E20BD2F5E00488B70 /* MCPlayerKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MCPlayerKit.xcodeproj; path = ../PlayerKit/MCPlayerKit.xcodeproj; sourceTree = "<group>"; };
 		25A536CB1FDA9DFA002511DF /* PlayerKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayerKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25A536CE1FDA9DFA002511DF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		25A536CF1FDA9DFA002511DF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -206,8 +206,8 @@
 				250A49DF1FE3DDE300F56C17 /* UIKit.framework in Frameworks */,
 				250A49DD1FE3DDDA00F56C17 /* QuartzCore.framework in Frameworks */,
 				250A49DB1FE3DDD100F56C17 /* OpenGLES.framework in Frameworks */,
+				25225A5720BD2FEA00488B70 /* MCPlayerKit.framework in Frameworks */,
 				250A49D91FE3DDC600F56C17 /* MobileCoreServices.framework in Frameworks */,
-				25C1F18A1FE8E412007F39C2 /* MCPlayerKit.framework in Frameworks */,
 				250A49D71FE3DDBC00F56C17 /* MediaPlayer.framework in Frameworks */,
 				250A49D51FE3DDB100F56C17 /* libz.tbd in Frameworks */,
 				250A49D31FE3DDA800F56C17 /* libbz2.tbd in Frameworks */,
@@ -385,22 +385,13 @@
 			children = (
 				1A666BFAC0B27A1493AFD0FB /* PlayerNormalController.m */,
 				1A666F217FD41BD1585C54B0 /* PlayerNormalController.h */,
-				1A6669BD5C17C0A569888E59 /* PlayerNormalDataVM.m */,
-				1A6660DD1196B32016077846 /* PlayerNormalDataVM.h */,
-				1A6667219B28351BBCC9880F /* PlayerNormalDto.m */,
-				1A666F43E67FB2BB15CEC664 /* PlayerNormalDto.h */,
 				1A666415603B64106A02A1CE /* PlayerNormalController+AutoRotate.m */,
 				1A6666154010E62100FC8852 /* PlayerNormalController+AutoRotate.h */,
+				1A666274A3057B6C600995A0 /* PlayerNormalDto.swift */,
+				1A6668C40AA9DDAD971C4D64 /* PlayerNormalDataVM.swift */,
+				1A666AD1602A942735D577CE /* PlayerNormalController.swift */,
 			);
 			path = Player;
-			sourceTree = "<group>";
-		};
-		250A49B91FE3D38700F56C17 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				250A49BD1FE3D38700F56C17 /* MCPlayerKit.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		250F1E981FFCE6A300F564AD /* Resources */ = {
@@ -411,12 +402,20 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		25225A4F20BD2F5E00488B70 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				25225A5320BD2F5E00488B70 /* MCPlayerKit.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		25A536C21FDA9DFA002511DF = {
 			isa = PBXGroup;
 			children = (
+				25225A4E20BD2F5E00488B70 /* MCPlayerKit.xcodeproj */,
 				250F1E981FFCE6A300F564AD /* Resources */,
 				25C1F18F1FE8E546007F39C2 /* lib */,
-				250A49B81FE3D38700F56C17 /* MCPlayerKit.xcodeproj */,
 				25A536CD1FDA9DFA002511DF /* PlayerKitDemo */,
 				25A536CC1FDA9DFA002511DF /* Products */,
 				1A666455D4EE0B61850DA629 /* Classes */,
@@ -502,8 +501,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				25C1F1881FE8E3E8007F39C2 /* PBXTargetDependency */,
-				25C1F18D1FE8E412007F39C2 /* PBXTargetDependency */,
+				25225A5520BD2F6B00488B70 /* PBXTargetDependency */,
+				25225A5A20BD2FEA00488B70 /* PBXTargetDependency */,
 			);
 			name = PlayerKitDemo;
 			productName = PlayerKitDemo;
@@ -538,8 +537,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 250A49B91FE3D38700F56C17 /* Products */;
-					ProjectRef = 250A49B81FE3D38700F56C17 /* MCPlayerKit.xcodeproj */;
+					ProductGroup = 25225A4F20BD2F5E00488B70 /* Products */;
+					ProjectRef = 25225A4E20BD2F5E00488B70 /* MCPlayerKit.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -550,11 +549,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		250A49BD1FE3D38700F56C17 /* MCPlayerKit.framework */ = {
+		25225A5320BD2F5E00488B70 /* MCPlayerKit.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = MCPlayerKit.framework;
-			remoteRef = 250A49BC1FE3D38700F56C17 /* PBXContainerItemProxy */;
+			remoteRef = 25225A5220BD2F5E00488B70 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -601,8 +600,6 @@
 				25A536DE1FDA9DFA002511DF /* main.m in Sources */,
 				25A536D01FDA9DFA002511DF /* AppDelegate.m in Sources */,
 				1A666EE276F447E29E15925E /* PlayerNormalController.m in Sources */,
-				1A6661B6AFC812F1D759377A /* PlayerNormalDataVM.m in Sources */,
-				1A666A7427E5A27BDB29A472 /* PlayerNormalDto.m in Sources */,
 				1A666FA14A28B6FB67C420B7 /* MCMediaNotify.m in Sources */,
 				1A6669B7A22EFBEBC87B8E3C /* PlayerProgress.m in Sources */,
 				1A6667E54C0212DFCC4480BA /* PlayerViewUtils.m in Sources */,
@@ -635,21 +632,24 @@
 				1A66657CE6015EC014E84F32 /* PlayerCategroryDto.swift in Sources */,
 				1A66680468523F67AA505EE1 /* PlayerCategroryCell.swift in Sources */,
 				1A666EDFE137BFB396ABD1C4 /* PlayerCategroiesTableController.swift in Sources */,
+				1A6665EC1DEB9134E5D8A823 /* PlayerNormalDto.swift in Sources */,
+				1A666907ED520018213DC085 /* PlayerNormalDataVM.swift in Sources */,
+				1A666EF1A6FAC54D54AB9DB6 /* PlayerNormalController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		25C1F1881FE8E3E8007F39C2 /* PBXTargetDependency */ = {
+		25225A5520BD2F6B00488B70 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = MCPlayerKit;
-			targetProxy = 25C1F1871FE8E3E8007F39C2 /* PBXContainerItemProxy */;
+			targetProxy = 25225A5420BD2F6B00488B70 /* PBXContainerItemProxy */;
 		};
-		25C1F18D1FE8E412007F39C2 /* PBXTargetDependency */ = {
+		25225A5A20BD2FEA00488B70 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = MCPlayerKit;
-			targetProxy = 25C1F18C1FE8E412007F39C2 /* PBXContainerItemProxy */;
+			targetProxy = 25225A5920BD2FEA00488B70 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -773,6 +773,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 658AF439C28156EB4B42FE20 /* Pods-PlayerKitDemo.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D8RJFY6RH2;
@@ -793,6 +794,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B00A8E2810ED2A8E4D854DF1 /* Pods-PlayerKitDemo.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D8RJFY6RH2;

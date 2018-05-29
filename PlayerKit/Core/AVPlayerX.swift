@@ -6,11 +6,11 @@
 import Foundation
 import AVFoundation
 
-class AVPlayerX: Player {
+open class AVPlayerX: Player {
     var player: AVPlayer?
     var playerLayer: AVPlayerLayer?
 
-    override var rate: Float {
+    override open var rate: Float {
         get {
             return self.player!.rate
         }
@@ -19,46 +19,46 @@ class AVPlayerX: Player {
         }
     }
 
-    override init() {
+    override public init() {
         super.init()
 
     }
 
-    override func playURL(url: String) {
+    override open func playURL(url: String) {
         super.playURL(url: url)
         self.player = AVPlayer(url: URL(string: url)!)
         self.playerLayer = AVPlayerLayer(player: self.player)
         self.drawView.layer.addSublayer(self.playerLayer!)
     }
 
-    override func play() {
+    override open func play() {
         super.play()
         self.player!.play()
     }
 
-    override func pause() {
+    override open func pause() {
         super.pause()
         self.player!.pause()
     }
 
-    override func currentTime() -> TimeInterval {
+    override open func currentTime() -> TimeInterval {
         return Double(self.player!.currentTime().value)
     }
 
-    override func duration() -> TimeInterval {
+    override open func duration() -> TimeInterval {
         return Double(self.player!.currentItem!.duration.value)
     }
 
-    override func seek(time: TimeInterval) {
+    override open func seek(time: TimeInterval) {
         self.player!.seek(to: CMTime(seconds: time, preferredTimescale: 1))
     }
 
-    override func updateFrame(frame: CGRect) {
+    override open func updateFrame(frame: CGRect) {
         super.updateFrame(frame: frame)
         self.playerLayer!.frame = CGRect(origin: CGPoint.zero, size: frame.size)
     }
 
-    override func destory() {
+    override open func destory() {
         self.pause()
         self.playerLayer!.removeFromSuperlayer()
         self.playerLayer = nil

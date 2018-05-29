@@ -5,17 +5,21 @@
 
 import Foundation
 
-class PlayerBaseView: UIView {
-    var contentView: UIView
-    var drawView: UIView
-    var controlContentView: UIView
+open class PlayerBaseView: UIView {
+    var contentView: UIView!
+    var drawView: UIView!
+    var controlContentView: UIView!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.prepareUI()
     }
 
-    func prepareUI() {
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+
+    open func prepareUI() {
         self.contentView = UIView(frame: self.bounds)
         self.addSubview(self.contentView)
 
@@ -25,11 +29,11 @@ class PlayerBaseView: UIView {
         self.addSubview(self.contentView)
     }
 
-    override func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews()
 
         self.contentView.frame = self.bounds
         self.drawView.frame = self.contentView.bounds
-        self.controlContentView = self.contentView.bounds
+        self.controlContentView.frame = self.contentView.bounds
     }
 }
