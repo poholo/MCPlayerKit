@@ -118,7 +118,7 @@
 
 - (NSTimer *)timer {
     if (_timer == nil) {
-        _timer = [NSTimer scheduledTimerWithTimeInterval:.2 target:self selector:@selector(timeTick) userInfo:nil repeats:YES];
+        _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timeTick) userInfo:nil repeats:YES];
         [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSDefaultRunLoopMode];
     }
     return _timer;
@@ -239,7 +239,7 @@
             break;
         case PlayerStateStarting     : {
             [self pause];
-            [self isPlaySmarty];
+            [self playSmarty];
             [self timer];
 
             if ([_playerView respondsToSelector:@selector(showStateStarting)]) {
@@ -249,15 +249,6 @@
             if ([self.playerStatusDelegate respondsToSelector:@selector(playerStartplay)]) {
                 [self.playerStatusDelegate playerStartplay];
             }
-            [self updatePlayerLayer];
-
-
-//            if(self.changeDefinitionTypeCurrentTime > 0) {
-//                [self  seekSeconds:self.changeDefinitionTypeCurrentTime];
-//            }
-//            else if([_playerDelegate respondsToSelector:@selector(jumpHistoryPlayRecordTime)]) {
-//                [_playerDelegate jumpHistoryPlayRecordTime];
-//            }
         }
             break;
         case PlayerStatePlaying      : {
@@ -355,7 +346,7 @@
 
 }
 
-- (void)isPlaySmarty {
+- (void)playSmarty {
     [self pause];
     [self play];
 }
@@ -388,11 +379,12 @@
         } else {
             player = [[IJKPlayer alloc] init];
         }
+        player.delegate = self;
         player;
     });
     _player.actionAtItemEnd = self.actionAtItemEnd;
     [_player playUrls:urls isLiveOptions:isLiveOptions];
-    _player.delegate = self;
+
     if ([_playerView respondsToSelector:@selector(showLoading)]) {
         [_playerView showLoading];
     }
@@ -414,7 +406,6 @@
         return;
     }
     [self timer];
-    [_player preparePlay];
     [_player play];
     if ([_playerView respondsToSelector:@selector(showPlayBtnPlay:)]) {
         [_playerView showPlayBtnPlay:YES];

@@ -87,5 +87,4 @@
     _drawView.frame = frame;
     _drawLayer.frame = frame;
 }
-
 @end

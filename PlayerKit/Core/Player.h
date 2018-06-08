@@ -43,7 +43,7 @@
 
 - (BOOL)playerCanAutoPlay;
 
-- (void)isPlaySmarty;
+- (void)playSmarty;
 
 - (void)finishCirclePlay;
 
@@ -63,29 +63,27 @@
 @property(nonatomic, assign) CGFloat cacheProgress; ///< 0.0 ~ 1.0
 @property(nonatomic, assign) CGFloat rate;
 @property(nonatomic, nullable, weak) id <PlayerDelegate> delegate;
-@property(nonatomic, assign) BOOL isRecording;
-@property(nonatomic, copy) NSString *recordFilePath;
 
 @property(nonatomic, assign) PlayerActionAtItemEnd actionAtItemEnd;
 @property(nonatomic, assign) BOOL notNeedSetProbesize;
 
-/***
- * must set before 'playUrls:'
- * @param enable
- */
-- (void)enableVideoToolBox:(BOOL)enable;
-
-- (void)releaseSpace;
-
-/***
- * must set before 'playUrls:'
- * @param enable
- */
-- (void)enableVideoToolBox:(BOOL)enable;
+#pragma mark - play
 
 - (void)playUrls:(nonnull NSArray<NSString *> *)urls;
 
 - (void)playUrls:(nonnull NSArray<NSString *> *)urls isLiveOptions:(BOOL)isLiveOptions;
+
+#pragma mark -config
+
+- (void)enableVideoToolBox:(BOOL)enable;
+
+- (nonnull CALayer *)playerLayer;
+
+- (nonnull UIView *)playerView;
+
+- (PlayerCoreType)playerType;
+
+#pragma mark - control
 
 - (void)preparePlay;
 
@@ -98,19 +96,12 @@
 - (void)seekSeconds:(CGFloat)seconds;
 
 - (void)playRate:(CGFloat)playRate;
-
 - (CGFloat)rate;
-
-- (void)destory;
 
 - (NSTimeInterval)currentTime; //sec
 - (NSTimeInterval)duration;    //sec
 
-- (nonnull CALayer *)playerLayer;
-
-- (nonnull UIView *)playerView;
-
-- (PlayerCoreType)playerType;
+#pragma mark - PlayStatus
 
 - (NSInteger)currentPlayerItemIndex;
 
@@ -133,5 +124,12 @@
 - (void)changeAudioVolume:(CGFloat)volume;
 
 - (CGSize)naturalSize;
+
+#pragma mark - memory
+
+- (void)destory;
+
+- (void)releaseSpace;
+
 
 @end

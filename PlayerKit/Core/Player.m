@@ -31,11 +31,13 @@
 
 - (void)playUrls:(nonnull NSArray<NSString *> *)urls {
     [self destory];
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
 }
 
 
 - (void)playUrls:(nonnull NSArray<NSString *> *)urls isLiveOptions:(BOOL)isLiveOptions {
     [self destory];
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
 }
 
 - (CGFloat)rate {
@@ -158,7 +160,5 @@
 - (CGSize)naturalSize {
     return CGSizeZero;
 }
-
-
 
 @end

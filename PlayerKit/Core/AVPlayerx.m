@@ -17,7 +17,7 @@
 @interface AVPlayerx ()
 
 @property(nonatomic, strong) AVQueuePlayer *player;
-@property(nonatomic, strong) AVPlayerLayer *avplayerLayer;
+@property(nonatomic, strong) AVPlayerLayer *playerLayer;
 @property(nonatomic, strong) NSMutableArray<AVPlayerItem *> *playerItems;
 @property(nonatomic, strong) NSMutableArray<SafeKVOController *> *playerItemsKVOManagers;
 @property(nonatomic, strong) SafeKVOController *playerKVOManager;
@@ -75,7 +75,7 @@
     if ([[UIDevice currentDevice] systemVersion].floatValue >= 10) {
         self.player.automaticallyWaitsToMinimizeStalling = NO;
     }
-    self.avplayerLayer = [AVPlayerLayer playerLayerWithPlayer:self.player];
+    self.playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.player];
 
     [self configurePlayerObserver];
     [self configurePlayerItemObserver:self.player.currentItem];
@@ -158,12 +158,12 @@
     [self pause];
     [self.player removeAllItems];
     [self.notificationManager removeAllObservers:self];
-    [self.avplayerLayer removeFromSuperlayer];
+    [self.playerLayer removeFromSuperlayer];
 
     self.playerKVOManager = nil;
     self.notificationManager = nil;
     self.playerItems = nil;
-    self.avplayerLayer = nil;
+    self.playerLayer = nil;
     self.player = nil;
 }
 
@@ -173,10 +173,6 @@
 
 - (NSTimeInterval)duration {
     return CMTimeGetSeconds(self.player.currentItem.duration);
-}
-
-- (CALayer *)playerLayer {
-    return self.avplayerLayer;
 }
 
 - (PlayerCoreType)playerType {
@@ -259,6 +255,7 @@
 }
 
 - (void)setPlayerState:(PlayerState)playerState {
+    if (_playerState == playerState) return;
     _playerState = playerState;
     [self changePlayerState:playerState];
 }
@@ -289,9 +286,6 @@
 #pragma mark - private
 
 - (AVPlayerItem *)playerItemFromPath:(NSString *)path {
-    if ([path isEqualToString:@"live_small"]) {
-        return nil;
-    }
     AVPlayerItem *playerItem = [AVPlayerItem playerItemWithURL:[NSURL source4URI:path]];
     playerItem.preferredPeakBitRate = 800.0f;
     return playerItem;
@@ -339,7 +333,6 @@
         }
         return;
     } else if (object == self.player && [keyPath isEqualToString:@"externalPlaybackActive"]) {
-
         return;
     } else if (object == self.player && [keyPath isEqualToString:@"currentItem"]) {
         if ([change[@"new"] isEqual:NSNull.null]) {
@@ -353,7 +346,6 @@
         return;
     }
 
-
     if ([keyPath isEqualToString:@"status"]) {
         if (self.player.currentItem.status == AVPlayerStatusFailed) {
             self.playerState = PlayerStateError;
@@ -366,21 +358,11 @@
     } else if ([keyPath isEqualToString:@"playbackLikelyToKeepUp"] && self.player.currentItem.playbackLikelyToKeepUp) {
         if ([_delegate respondsToSelector:@selector(playerCanAutoPlay)] && [_delegate playerCanAutoPlay]) {
             self.playerState = PlayerStateStarting;
-            if ([_delegate respondsToSelector:@selector(isPlaySmarty)]) {
-                [_delegate isPlaySmarty];
-            }
         }
 
     } else if ([keyPath isEqualToString:@"loadedTimeRanges"]) {
-        //缓冲进度
-        float durationTime = CMTimeGetSeconds([[self.player currentItem] duration]);
-        float bufferTime = [self availableDuration];
-        self.cacheProgress = bufferTime / durationTime;
         if ([_delegate respondsToSelector:@selector(playerCanAutoPlay)] && [_delegate playerCanAutoPlay]) {
             self.playerState = PlayerStatePlaying;
-            if ([_delegate respondsToSelector:@selector(isPlaySmarty)]) {
-                [_delegate isPlaySmarty];
-            }
         }
 
     }
@@ -391,14 +373,20 @@
     NSArray *loadedTimeRanges = [[self.player currentItem] loadedTimeRanges];
     // Check to see if the timerange is not an empty array, fix for when video goes on airplay
     // and video doesn't include any time ranges
-    if ([loadedTimeRanges count] > 0) {
-        CMTimeRange timeRange = [[loadedTimeRanges objectAtIndex:0] CMTimeRangeValue];
-        CGFloat startSeconds = CMTimeGetSeconds(timeRange.start);
-        CGFloat durationSeconds = CMTimeGetSeconds(timeRange.duration);
+    if (loadedTimeRanges.count > 0) {
+        CMTimeRange timeRange = [loadedTimeRanges.firstObject CMTimeRangeValue];
+        CGFloat startSeconds = @(CMTimeGetSeconds(timeRange.start)).floatValue;
+        CGFloat durationSeconds = @(CMTimeGetSeconds(timeRange.duration)).floatValue;
         return (startSeconds + durationSeconds);
     } else {
         return 0.0f;
     }
+}
+
+- (CGFloat)cacheProgress {
+    double durationTime = CMTimeGetSeconds([[self.player currentItem] duration]);
+    double bufferTime = [self availableDuration];
+    return (CGFloat) (bufferTime / durationTime);
 }
 
 @end
