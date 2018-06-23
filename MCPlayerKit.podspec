@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name         = "MCPlayerKit"
   s.version      = "0.0.1"
-  s.summary      = "iOS Player, PlayerCoreType: AVPlayer can use play some video, IJKPlayer type can play video, Live ..."
+  s.summary      = "MCPlayerKit is iOS Player, PlayerCoreType: AVPlayer can use play some video, IJKPlayer type can play video, Live ..."
   s.homepage     = "https://github.com/poholo/PlayerKit"
   s.license      = "MIT"
   s.author             = { "majiancheng" => "675936746@qq.com" }
@@ -12,8 +12,5 @@ Pod::Spec.new do |s|
   s.public_header_files = "PlayerKit/**/*.h"
   s.frameworks = "UIKit", "Foundation", "VideoToolbox", "QuartzCore", "OpenGLES", "MobileCoreServices", 
                  "MediaPlayer", "CoreVideo", "CoreMedia", "CoreGraphics", "AVFoundation", "AudioToolbox"
-  #s.libraries = "libbz2", "libz"
   s.requires_arc = true
-  # s.dependency "JSONKit", "~> 1.4"
-
 end

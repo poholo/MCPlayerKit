@@ -21,8 +21,8 @@ PlayerKit是基于AVPlayer和IJKPlayer做的一款播放内核播放模块，做
 
 To integrate PlayerKit into your Xcode project using CocoaPods, specify it in your Podfile:
 
-```ruby
-pod 'PlayerKit', '~> 0.0.1'
+```
+pod 'MCPlayerKit', '~> 0.0.2'
 ```
 
 Run `pod install`

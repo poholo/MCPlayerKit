@@ -167,11 +167,13 @@
 		1A666D0F02247EA05D824F1D /* PlayerViewUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewUtils.h; sourceTree = "<group>"; };
 		1A666D15B47C8EAD955B0F15 /* MMPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPopupView.m; sourceTree = "<group>"; };
 		1A666D23CB6CE466D76F3B15 /* MMPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPopupView.h; sourceTree = "<group>"; };
+		1A666DE1C95A6C8406800B42 /* MCPlayerKit.podspec */ = {isa = PBXFileReference; lastKnownFileType = file.podspec; name = MCPlayerKit.podspec; path = ../MCPlayerKit.podspec; sourceTree = "<group>"; };
 		1A666DE85E3238F9516F7DD0 /* PlayerNormalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerNormalView.m; sourceTree = "<group>"; };
 		1A666DFFB0BFB0E5F27599A0 /* ScrollPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollPlayerController.m; sourceTree = "<group>"; };
 		1A666E197CA29C1B91F6BEC2 /* PlayerViewConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewConfig.h; sourceTree = "<group>"; };
 		1A666E446841CEA5B56BC65C /* MCControllerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCControllerProtocol.h; sourceTree = "<group>"; };
 		1A666E6133394DEA527F1554 /* DataVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataVM.h; sourceTree = "<group>"; };
+		1A666E6D57BF2501FF33F988 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		1A666EB9DEF7D30111054B56 /* PlayerCategroryDto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerCategroryDto.h; sourceTree = "<group>"; };
 		1A666F06F23F98032435F20E /* MMPopupCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPopupCategory.m; sourceTree = "<group>"; };
 		1A666F0B4E3B58083E516C7D /* ScrollPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollPlayerController.h; sourceTree = "<group>"; };
@@ -455,6 +457,8 @@
 				1A666455D4EE0B61850DA629 /* Classes */,
 				7062D7D4308A7A0511E5863E /* Pods */,
 				F1F52EFE25A5E7898BEEBC34 /* Frameworks */,
+				1A666E6D57BF2501FF33F988 /* README.md */,
+				1A666DE1C95A6C8406800B42 /* MCPlayerKit.podspec */,
 			);
 			sourceTree = "<group>";
 		};
