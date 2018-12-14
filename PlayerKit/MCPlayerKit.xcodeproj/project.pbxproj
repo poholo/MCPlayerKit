@@ -91,7 +91,6 @@
 		250A499B1FE26F8300F56C17 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		250A499D1FE2727A00F56C17 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = ../../../../../../usr/lib/libz.dylib; sourceTree = "<group>"; };
 		250A499F1FE2728A00F56C17 /* libbz2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.dylib; path = ../../../../../../usr/lib/libbz2.dylib; sourceTree = "<group>"; };
-		250A49C31FE3D8B100F56C17 /* IJKMediaFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IJKMediaFramework.framework; path = ../../PlayerKitDemo/IJKMediaFramework.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,7 +122,6 @@
 			children = (
 				250A48B91FDFE04C00F56C17 /* Core */,
 				250A48B11FDFE04C00F56C17 /* Extend */,
-				250A48C71FDFE04D00F56C17 /* lib */,
 				250A48AE1FDFE04C00F56C17 /* PlayerView */,
 				250A48A51FDFDFB700F56C17 /* MCPlayerKit */,
 				250A48A41FDFDFB700F56C17 /* Products */,
@@ -191,14 +189,6 @@
 				250A48C31FDFE04C00F56C17 /* PlayerKit.m */,
 			);
 			path = Core;
-			sourceTree = "<group>";
-		};
-		250A48C71FDFE04D00F56C17 /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				250A49C31FE3D8B100F56C17 /* IJKMediaFramework.framework */,
-			);
-			path = lib;
 			sourceTree = "<group>";
 		};
 		250A491C1FE0CF7500F56C17 /* Frameworks */ = {
