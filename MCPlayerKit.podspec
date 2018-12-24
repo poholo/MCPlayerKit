@@ -19,6 +19,13 @@ Pod::Spec.new do |s|
                       
     ss.public_header_files = "MCPlayerKit/PlayerKit/**/*.h"
                              "MCPlayerKit/PlayerKit/*.h"
+    ss.xcconfig = {
+         'VALID_ARCHS' => 'arm64 x86_64',
+
+    }
+    ss.pod_target_xcconfig = {
+          'VALID_ARCHS' => 'arm64 x86_64'
+    }
   end
 
   s.frameworks = "UIKit", "Foundation", "VideoToolbox", "QuartzCore", "OpenGLES", "MobileCoreServices", 

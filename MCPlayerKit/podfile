@@ -4,7 +4,7 @@ platform :ios, "8.0"
 
 target "PlayerKitDemo" do
  pod "IJKMediaFramework"
- #pod "MCPlayerKit", git: "https://github.com/poholo/PlayerKit"
+ pod "MCPlayerKit", "0.0.3"
  pod "SDWebImage", "3.8.2"
  pod "Masonry", "1.0.2"
  pod "MBProgressHUD", "1.0.0"
