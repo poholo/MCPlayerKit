@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
 
   s.requires_arc = true
 
-  s.platform     = :ios, "9.0"
+  s.platform     = :ios, "8.0"
   s.source       = { :git => "https://github.com/poholo/PlayerKit.git", :tag => "#{s.version}" }
 
   s.subspec "PlayerKit" do |ss|
