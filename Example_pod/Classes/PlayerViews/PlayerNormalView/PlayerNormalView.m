@@ -33,7 +33,7 @@
 
 @implementation PlayerNormalView
 - (void)dealloc {
-    PKLog(@"[%@]dealloc", NSStringFromClass([self class]));
+    MCLog(@"[%@]dealloc", NSStringFromClass([self class]));
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(fadeHiddenLockAnimation:) object:@(YES)];
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(fadeHiddenControlViewAnimation:) object:@(YES)];
 }
@@ -267,59 +267,6 @@
     self.playerTerminalView.delegate = playerTermailDelegate;
 }
 
-- (void)setPlayerStyle:(PlayerStyle)playerStyle {
-    _playerStyle = playerStyle;
-    switch (_playerStyle) {
-        case PlayerStyleSizeClassCompact: {
-            _airplayBtn.alpha = 0.0;
-            _definitionBtn.alpha = _moreBtn.alpha;
-            _shareBtn.alpha = _moreBtn.alpha;
-            _downloadBtn.alpha = _moreBtn.alpha;
-            _collectionBtn.alpha = _moreBtn.alpha;
-            _titleLabel.alpha = _moreBtn.alpha;
-            _lockBtn.alpha = _moreBtn.alpha;
-            _loopBtn.alpha = 0.0;
-            _playPauseBtn.alpha = _moreBtn.alpha;
-            _portraitPlayPauseBtn.alpha = 0.0;
-            _nextBtn.alpha = _moreBtn.alpha;
-        }
-            break;
-        case PlayerStyleSizeClassRegular: {
-            _airplayBtn.alpha = 0.0;
-            _definitionBtn.alpha = _moreBtn.alpha;
-            _shareBtn.alpha = _moreBtn.alpha;
-            _downloadBtn.alpha = _moreBtn.alpha;
-            _collectionBtn.alpha = _moreBtn.alpha;
-            _titleLabel.alpha = _moreBtn.alpha;
-            _lockBtn.alpha = _moreBtn.alpha;
-            _loopBtn.alpha = _moreBtn.alpha;
-            _playPauseBtn.alpha = 0.0;
-            _portraitPlayPauseBtn.alpha = _moreBtn.alpha;
-            _nextBtn.alpha = 0.0f;
-
-        }
-            break;
-        case PlayerStyleSizeClassRegularHalf: {
-            _definitionBtn.alpha = 0.0;
-            _airplayBtn.alpha = _moreBtn.alpha;
-            _shareBtn.alpha = 0.0;
-            _downloadBtn.alpha = 0.0;
-            _collectionBtn.alpha = 0.0;
-            _titleLabel.alpha = 0.0;
-            _lockBtn.alpha = 0.0;
-            _loopBtn.alpha = _moreBtn.alpha;
-            _playPauseBtn.alpha = 0.0;
-            _portraitPlayPauseBtn.alpha = _moreBtn.alpha;
-            _nextBtn.alpha = 0.0;
-        }
-            break;
-    }
-
-    [self setNeedsUpdateConstraints];
-    [self updateConstraintsIfNeeded];
-    [self layoutIfNeeded];
-}
-
 - (void)updateLayerIndex {
     [self insertSubview:_waterImageView atIndex:PlayerLayerLevelWater];
     [self insertSubview:_containerView atIndex:PlayerLayerLevelNormalControlBar];
@@ -346,9 +293,9 @@
     }];
 
     CGFloat top = 0;
-    if (self.playerStyle == PlayerStyleSizeClassRegularHalf || self.playerStyle == PlayerStyleSizeClassRegular) {
-        top = 15;
-    }
+//    if (self.playerStyle == PlayerStyleSizeClassRegularHalf || self.playerStyle == PlayerStyleSizeClassRegular) {
+//        top = 15;
+//    }
     [_backBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self).offset(top);
         make.left.equalTo(self).offset(0);
@@ -370,11 +317,11 @@
     }];
 
     [_airplayBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-        if (self.playerStyle == PlayerStyleSizeClassRegularHalf) {
-            make.right.equalTo(self->_moreBtn.mas_left).offset(-10);
-        } else {
-            make.right.equalTo(self->_shareBtn.mas_left).offset(-10);
-        }
+//        if (self.playerStyle == PlayerStyleSizeClassRegularHalf) {
+//            make.right.equalTo(self->_moreBtn.mas_left).offset(-10);
+//        } else {
+//            make.right.equalTo(self->_shareBtn.mas_left).offset(-10);
+//        }
         make.top.equalTo(self->_backBtn);
         make.width.height.mas_equalTo(btnWidth);
     }];
@@ -406,20 +353,20 @@
 
     CGFloat bottomHeight = ({
         CGFloat w = 25;
-        switch (self.playerStyle) {
-            case PlayerStyleSizeClassRegularHalf : {
-                w = 25;
-            }
-                break;
-            case PlayerStyleSizeClassRegular: {
-                w = 35;
-            }
-                break;
-            case PlayerStyleSizeClassCompact: {
-                w = 40;
-            }
-                break;
-        }
+//        switch (self.playerStyle) {
+//            case PlayerStyleSizeClassRegularHalf : {
+//                w = 25;
+//            }
+//                break;
+//            case PlayerStyleSizeClassRegular: {
+//                w = 35;
+//            }
+//                break;
+//            case PlayerStyleSizeClassCompact: {
+//                w = 40;
+//            }
+//                break;
+//        }
         w;
     });
     [_playPauseBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -441,11 +388,11 @@
     }];
 
     [_leftLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        if (_playerStyle != PlayerStyleSizeClassCompact) {
-            make.left.equalTo(self->_containerView.mas_left).offset(5);
-        } else {
-            make.left.equalTo(self->_nextBtn.mas_right).offset(5);
-        }
+//        if (_playerStyle != PlayerStyleSizeClassCompact) {
+//            make.left.equalTo(self->_containerView.mas_left).offset(5);
+//        } else {
+//            make.left.equalTo(self->_nextBtn.mas_right).offset(5);
+//        }
         make.centerY.equalTo(self->_playPauseBtn);
     }];
 
@@ -465,11 +412,11 @@
     }];
 
     [_rightLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        if (self.playerStyle == PlayerStyleSizeClassRegularHalf) {
-            make.right.equalTo(self->_fullScreenBtn.mas_left).offset(-5);
-        } else {
-            make.right.equalTo(self->_definitionBtn.mas_left).offset(-5);
-        }
+//        if (self.playerStyle == PlayerStyleSizeClassRegularHalf) {
+//            make.right.equalTo(self->_fullScreenBtn.mas_left).offset(-5);
+//        } else {
+//            make.right.equalTo(self->_definitionBtn.mas_left).offset(-5);
+//        }
         make.centerY.equalTo(self->_playPauseBtn);
     }];
 
@@ -498,12 +445,12 @@
     [_waterImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
         CGFloat top = 15;
         make.right.equalTo(self).offset(-10);
-        if (self.playerStyle == PlayerStyleSizeClassCompact) {
-            top = 20;
-            _waterImageView.image = [UIImage imageNamed:_k_AV_water_land_image];
-        } else {
-            _waterImageView.image = [UIImage imageNamed:_k_AV_water_image];
-        }
+//        if (self.playerStyle == PlayerStyleSizeClassCompact) {
+//            top = 20;
+//            _waterImageView.image = [UIImage imageNamed:_k_AV_water_land_image];
+//        } else {
+//            _waterImageView.image = [UIImage imageNamed:_k_AV_water_image];
+//        }
 
         make.top.equalTo(self).offset(top);
         make.size.mas_equalTo(_waterImageView.image.size);
@@ -545,21 +492,6 @@
         return;
     }
     if (!isPlay) {
-        switch (self.playerStyle) {
-            case PlayerStyleSizeClassRegularHalf: {
-            }
-                break;  ///<  16:9 半屏幕
-            case PlayerStyleSizeClassRegular: {
-            }
-                break;      ///<  竖屏全屏
-            case PlayerStyleSizeClassCompact: {
-            }
-
-                break;
-            default: {
-            }
-                break;
-        }
     }
 }
 
@@ -641,8 +573,8 @@
     [self removeTapGesture];
     [self removePanGesture];
 
-    [self.playerTerminalView updatePlayerTerminal:PlayerState3GUnenable title:_titleLabel.text];
-    [self fadeHiddenControlViewAnimation:@(NO)];
+//    [self.playerTerminalView updatePlayerTerminal:PlayerState3GUnenable title:_titleLabel.text];
+//    [self fadeHiddenControlViewAnimation:@(NO)];
 
 }
 
@@ -654,7 +586,7 @@
     [self removeTapGesture];
     [self removePanGesture];
 
-    [self.playerTerminalView updatePlayerTerminal:PlayerStateNetError title:_titleLabel.text];
+//    [self.playerTerminalView updatePlayerTerminal:PlayerStateNetError title:_titleLabel.text];
     [self fadeHiddenControlViewAnimation:@(NO)];
 }
 
@@ -662,7 +594,7 @@
 - (void)showUrlError {
     self.playerTerminalView.hidden = NO;
     [_loadingView endRotating];
-    [self.playerTerminalView updatePlayerTerminal:PlayerStateUrlError title:_titleLabel.text];
+//    [self.playerTerminalView updatePlayerTerminal:PlayerStateUrlError title:_titleLabel.text];
     [self fadeHiddenControlViewAnimation:@(NO)];
 }
 
@@ -694,7 +626,7 @@
             secs += [obj integerValue] * pow(10, idx - 1);
         }];
         if (secs == 10) {
-            PKLog(@"[PlayerFollowView again]%@", leftTime);
+            MCLog(@"[PlayerFollowView again]%@", leftTime);
         }
     } else if (_playerType == PlayerAd) {
     } else if (_playerType == PlayerUnionAd) {
@@ -805,7 +737,7 @@
     _fullScreenBtn.alpha = alpha;
     _topControlView.alpha = alpha;
     _bottomControlView.alpha = alpha;
-    if (self.playerStyle == PlayerStyleSizeClassRegularHalf) {
+    if (1) {
         _backBtn.alpha = 1.0;
         _titleLabel.alpha = 0;
         _definitionBtn.alpha = 0;
@@ -834,7 +766,7 @@
             _lockBtn.alpha = alpha;
         }
 
-        if (self.playerStyle == PlayerStyleSizeClassCompact) {
+        if (1) {
             _playPauseBtn.alpha = alpha;
             _portraitPlayPauseBtn.alpha = 0.0;
             _nextBtn.alpha = alpha;
@@ -901,7 +833,7 @@
             }
 
             _panOrigin = [panGesture locationInView:self];
-            _timeSliding = floor([self.playerControlDelegate currentTime]);
+//            _timeSliding = floor([self.playerControlDelegate currentTime]);
         }
             break;
         case UIGestureRecognizerStateChanged: {
@@ -919,10 +851,10 @@
             break;
         case UIGestureRecognizerStateEnded: {
             self.hobbleStartTimeInterval = 0;
-            if ([self.playerControlDelegate respondsToSelector:@selector(seekSeconds:)] && _isWillSeeking) {
-                [self.playerControlDelegate seekSeconds:(CGFloat) _timeSliding];
-                [self fadeShowAndThenHiddenAnimation];
-            }
+//            if ([self.playerControlDelegate respondsToSelector:@selector(seekSeconds:)] && _isWillSeeking) {
+//                [self.playerControlDelegate seekSeconds:(CGFloat) _timeSliding];
+//                [self fadeShowAndThenHiddenAnimation];
+//            }
 
             _isWillSeeking = NO;
             _isChangingBright = NO;
@@ -989,21 +921,21 @@
 
 //调整进度
 - (void)resetVideorogressWithPanTransPoint:(CGPoint)panTransPoint {
-    if (_isChangingBright || _ischangingVolume || [self.playerControlDelegate duration] <= 0.0) {
-        return;
-    }
-
-    double duration = [self.playerControlDelegate duration];
-    _timeSliding += 0.01 * panTransPoint.x;
-    if (panTransPoint.x < 0) {
-        //后退
-        _timeSliding = MAX(_timeSliding, 0);
-        [MCMediaNotify showImage:[UIImage imageNamed:@"video_retreat"] message:[NSString stringWithFormat:@"%@/%@", [self stringFormattedTimeFromSeconds:&_timeSliding], [self stringFormattedTimeFromSeconds:&duration]] mediaNotifyType:MediaProgress inView:self];
-    } else {
-        _timeSliding = MIN(_timeSliding, duration);//video_forward
-        [MCMediaNotify showImage:[UIImage imageNamed:@"video_forward"]
-                         message:[NSString stringWithFormat:@"%@/%@", [self stringFormattedTimeFromSeconds:&_timeSliding], [self stringFormattedTimeFromSeconds:&duration]] mediaNotifyType:MediaProgress inView:self];
-    }
+//    if (_isChangingBright || _ischangingVolume || [self.playerControlDelegate duration] <= 0.0) {
+//        return;
+//    }
+//
+//    double duration = [self.playerControlDelegate duration];
+//    _timeSliding += 0.01 * panTransPoint.x;
+//    if (panTransPoint.x < 0) {
+//        //后退
+//        _timeSliding = MAX(_timeSliding, 0);
+//        [MCMediaNotify showImage:[UIImage imageNamed:@"video_retreat"] message:[NSString stringWithFormat:@"%@/%@", [self stringFormattedTimeFromSeconds:&_timeSliding], [self stringFormattedTimeFromSeconds:&duration]] mediaNotifyType:MediaProgress inView:self];
+//    } else {
+//        _timeSliding = MIN(_timeSliding, duration);//video_forward
+//        [MCMediaNotify showImage:[UIImage imageNamed:@"video_forward"]
+//                         message:[NSString stringWithFormat:@"%@/%@", [self stringFormattedTimeFromSeconds:&_timeSliding], [self stringFormattedTimeFromSeconds:&duration]] mediaNotifyType:MediaProgress inView:self];
+//    }
     _isWillSeeking = YES;
 }
 
@@ -1050,7 +982,7 @@
 #pragma mark - action
 
 - (void)btnMoreClick {
-    PKLog(@"btnMoreClick");
+    MCLog(@"btnMoreClick");
 }
 
 - (void)btnBackClick {
@@ -1105,9 +1037,9 @@
 }
 
 - (void)playerPauseViewPlay {
-    if ([self.playerControlDelegate respondsToSelector:@selector(play)]) {
-        [self.playerControlDelegate play];
-    }
+//    if ([self.playerControlDelegate respondsToSelector:@selector(play)]) {
+//        [self.playerControlDelegate play];
+//    }
 }
 
 - (void)closeAndAddPanGesture {
@@ -1119,16 +1051,16 @@
     _playPauseBtn.selected = !_playPauseBtn.selected;
     _portraitPlayPauseBtn.selected = _playPauseBtn.selected;
     if (!_playPauseBtn.selected) {
-        if ([self.playerControlDelegate respondsToSelector:@selector(play)]) {
-            [self.playerControlDelegate play];
-        }
+//        if ([self.playerControlDelegate respondsToSelector:@selector(play)]) {
+//            [self.playerControlDelegate play];
+//        }
         if ([self.playerNormalViewDelegate respondsToSelector:@selector(logPlay)]) {
             [self.playerNormalViewDelegate logPlay];
         }
     } else {
-        if ([self.playerControlDelegate respondsToSelector:@selector(pause)]) {
-            [self.playerControlDelegate pause];
-        }
+//        if ([self.playerControlDelegate respondsToSelector:@selector(pause)]) {
+//            [self.playerControlDelegate pause];
+//        }
 
         if ([self.playerNormalViewDelegate respondsToSelector:@selector(playerStatusPause)]) {
             [self.playerNormalViewDelegate playerStatusPause];
@@ -1170,9 +1102,9 @@
 #pragma  mark -
 
 - (void)changeRate:(CGFloat)rate {
-    if ([self.playerControlDelegate respondsToSelector:@selector(playRate:)]) {
-        [self.playerControlDelegate playRate:rate];
-    }
+//    if ([self.playerControlDelegate respondsToSelector:@selector(playRate:)]) {
+//        [self.playerControlDelegate playRate:rate];
+//    }
 }
 
 - (void)showAirplay {
@@ -1351,9 +1283,9 @@
 }
 
 - (void)dragProgressToProgress:(float)progress {
-    if ([self.playerControlDelegate respondsToSelector:@selector(seekSeconds:)] && [self.playerControlDelegate respondsToSelector:@selector(duration)]) {
-        [self.playerControlDelegate seekSeconds:self.playerControlDelegate.duration * progress];
-    }
+//    if ([self.playerControlDelegate respondsToSelector:@selector(seekSeconds:)] && [self.playerControlDelegate respondsToSelector:@selector(duration)]) {
+//        [self.playerControlDelegate seekSeconds:self.playerControlDelegate.duration * progress];
+//    }
     _isWait2Seek = NO;
 
     self.hobbleStartTimeInterval = 0;

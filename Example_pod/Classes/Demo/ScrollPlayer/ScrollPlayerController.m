@@ -15,7 +15,7 @@
 #import "ScrollPlayerDataVM.h"
 #import "VideoDto.h"
 
-@interface ScrollPlayerController () <UITableViewDataSource, UITableViewDelegate, PlayerStatusDelegate>
+@interface ScrollPlayerController () <UITableViewDataSource, UITableViewDelegate>
 
 @property(nonatomic, strong) UITableView *tableView;
 
@@ -29,7 +29,7 @@
 }
 
 - (void)dealloc {
-    [_playerKit destoryPlayer];
+    [_playerKit destory];
 }
 
 - (void)viewDidLoad {
@@ -86,7 +86,7 @@
 - (PlayerKit *)playerKit {
     if (!_playerKit) {
         _playerKit = [[PlayerKit alloc] initWithPlayerView:self.playerView];
-        _playerKit.playerStatusDelegate = self;
+        _playerKit.delegate = self;
         _playerKit.playerCoreType = PlayerCoreAVPlayer;
     }
     return _playerKit;

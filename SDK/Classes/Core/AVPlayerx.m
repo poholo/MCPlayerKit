@@ -5,13 +5,10 @@
 
 #import "AVPlayerx.h"
 
-#import <AVFoundation/AVFoundation.h>
-#import <MobileCoreServices/MobileCoreServices.h>
-
-#import "PlayerKitLog.h"
 #import "NSURL+Extend.h"
 #import "SafeKVOController.h"
 #import "SafeNotificationManager.h"
+#import "MCPlayerKit.h"
 
 
 @interface AVPlayerx ()
@@ -22,9 +19,7 @@
 @property(nonatomic, strong) NSMutableArray<SafeKVOController *> *playerItemsKVOManagers;
 @property(nonatomic, strong) SafeKVOController *playerKVOManager;
 @property(nonatomic, strong) SafeNotificationManager *notificationManager;
-
-@property(nonatomic, assign) CFAbsoluteTime startTime;
-
+@property(nonatomic, strong) id boundaryTime;
 
 - (AVPlayerItem *)playerItemFromPath:(NSString *)path;
 
@@ -44,7 +39,7 @@
 
 - (void)dealloc {
     [self releaseSpace];
-    PKLog(@"%@--%s--%d dealloc", [self class], __func__, __LINE__);
+    MCLog(@"%@--%s--%d dealloc", [self class], __func__, __LINE__);
 }
 
 - (void)releaseSpace {
@@ -55,6 +50,7 @@
 }
 
 - (void)playUrls:(nonnull NSArray<NSString *> *)urls {
+    self.startTime = CFAbsoluteTimeGetCurrent();
     self.playerState = PlayerStateLoading;
     [super playUrls:urls];
     for (NSString *url in urls) {
@@ -65,60 +61,56 @@
     }
 
     if (self.playerItems.count == 0) {
-        self.playerState = PlayerStateUrlError;
+        self.playerState = PlayerStateError;
         return;
     }
     self.player = [AVQueuePlayer queuePlayerWithItems:self.playerItems];
+    [self.player play];
+
     if (self.actionAtItemEnd == PlayerActionAtItemEndCircle) {
         self.player.actionAtItemEnd = AVPlayerActionAtItemEndPause;
     }
     if ([[UIDevice currentDevice] systemVersion].floatValue >= 10) {
         self.player.automaticallyWaitsToMinimizeStalling = NO;
     }
-    self.playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.player];
+    self.playerLayer = [self configPlayerLayer:self.player];
 
     [self configurePlayerObserver];
     [self configurePlayerItemObserver:self.player.currentItem];
     [self preparePlay];
 }
 
+- (AVPlayerLayer *)configPlayerLayer:(AVPlayer *)player {
+    AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:player];
+    switch (self.playerLayerVideoGravity) {
+        case PlayerLayerVideoGravityResizeAspect: {
+            playerLayer.videoGravity = AVLayerVideoGravityResizeAspect;
+        }
+            break;
+        case PlayerLayerVideoGravityResizeAspectFill: {
+            playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+        }
+            break;
+        case PlayerLayerVideoGravityResize: {
+            playerLayer.videoGravity = AVLayerVideoGravityResize;
+        }
+            break;
+    }
+    return playerLayer;
+}
+
 - (void)playUrls:(NSArray<NSString *> *)urls isLiveOptions:(BOOL)isLiveOptions {
     [self playUrls:urls];
 }
 
-- (void)preparePlay {
-    [self setupAudio];
-    [super preparePlay];
-    [self updatePlayerLayer];
-}
-
-- (void)setupAudio {
-    /* Set audio session to mediaplayback */
-    NSError *error = nil;
-    if (![[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&error]) {
-        NSLog(@"AVPlayerx: AVAudioSession.setCategory() failed: %@\n", error ? [error localizedDescription] : @"nil");
-        return;
-    }
-
-    error = nil;
-    if (![[AVAudioSession sharedInstance] setActive:YES error:&error]) {
-        NSLog(@"AVPlayerx: AVAudioSession.setActive(YES) failed: %@\n", error ? [error localizedDescription] : @"nil");
-        return;
-    }
-}
-
 - (void)play {
     [super play];
-    [self.player setRate:self.rate];
     [self.player play];
 }
 
 - (void)pause {
-    if ([self isPlaying]) {
-        [super pause];
-        self.player.rate = 0.0f;
-        [self.player pause];
-    }
+    [super pause];
+    [self.player pause];
 }
 
 - (BOOL)isPlaying {
@@ -130,7 +122,7 @@
 }
 
 - (void)seekSeconds:(CGFloat)seconds {
-    [self.player seekToTime:CMTimeMake(seconds, 1)];
+    [self.player seekToTime:CMTimeMake((NSInteger) (seconds * 1000), 1000)];
 }
 
 - (void)playRate:(CGFloat)playRate {
@@ -139,7 +131,6 @@
         [self play];
     }
 }
-
 
 - (CGFloat)rate {
     return self.player.rate;
@@ -152,19 +143,21 @@
 
 - (void)destory {
     [super destory];
-    [self removePlayerItemsObserver];
-    [self.playerKVOManager safelyRemoveAllObservers];
-    [self.playerItems removeAllObjects];
-    [self pause];
-    [self.player removeAllItems];
-    [self.notificationManager removeAllObservers:self];
-    [self.playerLayer removeFromSuperlayer];
+    if (self.playerKVOManager) {
+        [self removePlayerItemsObserver];
+        [self.playerKVOManager safelyRemoveAllObservers];
+        [self.playerItems removeAllObjects];
+        [self pause];
+        [self.player removeAllItems];
+        [self.notificationManager removeAllObservers:self];
+        [self.playerLayer removeFromSuperlayer];
 
-    self.playerKVOManager = nil;
-    self.notificationManager = nil;
-    self.playerItems = nil;
-    self.playerLayer = nil;
-    self.player = nil;
+        self.playerKVOManager = nil;
+        self.notificationManager = nil;
+        self.playerItems = nil;
+        self.playerLayer = nil;
+        self.player = nil;
+    }
 }
 
 - (NSTimeInterval)currentTime {
@@ -179,27 +172,6 @@
     return PlayerCoreAVPlayer;
 }
 
-- (NSInteger)currentPlayerItemIndex {
-    return [self indexOfItem:self.player.currentItem];
-}
-
-- (BOOL)hasNextVideoItem {
-    NSInteger currentItemIndex = [self indexOfItem:self.player.currentItem] + 1;
-    if (NSNotFound == currentItemIndex || currentItemIndex >= self.playerItems.count) {
-        return NO;
-    } else if (currentItemIndex < self.playerItems.count) {
-        return YES;
-    }
-    return NO;
-}
-
-- (void)playNextVideoItem {
-    [self removePlayerItemsObserver];
-    [self.player advanceToNextItem];
-    [self configurePlayerItemObserver:self.player.currentItem];
-    [self preparePlay];
-}
-
 - (void)playFinish:(NSNotification *)notification {
     if (notification.object != self.player.currentItem) return;
     [self playFinishX];
@@ -208,23 +180,16 @@
 - (void)playFinishX {
     switch (self.actionAtItemEnd) {
         case PlayerActionAtItemEndAdvance : {
-            [super playFinish];
-        }
-            break;
-        case PlayerActionAtItemEndPause : {
-            [self pause];
+            self.playerState = PlayerStatePlayEnd;
         }
             break;
         case PlayerActionAtItemEndCircle : {
-            if ([self.delegate respondsToSelector:@selector(finishCirclePlay)]) {
-                [self.delegate finishCirclePlay];
-            }
-            [self seekSeconds:0.0f];
-            [self play];
+            self.startTime = CFAbsoluteTimeGetCurrent();
+            self.playerState = PlayerStatePlayEnd;
         }
             break;
         case PlayerActionAtItemEndNone : {
-            [super playFinish];
+            self.playerState = PlayerStatePlayEnd;
         }
             break;
     }
@@ -257,7 +222,6 @@
 - (void)setPlayerState:(PlayerState)playerState {
     if (_playerState == playerState) return;
     _playerState = playerState;
-    [self changePlayerState:playerState];
 }
 
 - (CGSize)naturalSize {
@@ -287,7 +251,6 @@
 
 - (AVPlayerItem *)playerItemFromPath:(NSString *)path {
     AVPlayerItem *playerItem = [AVPlayerItem playerItemWithURL:[NSURL source4URI:path]];
-    playerItem.preferredPeakBitRate = 800.0f;
     return playerItem;
 }
 
@@ -296,6 +259,15 @@
     [self.playerKVOManager safelyAddObserver:self forKeyPath:_k_Player_Status options:NSKeyValueObservingOptionNew context:nil];
     [self.playerKVOManager safelyAddObserver:self forKeyPath:_k_Player_CurrentItem options:NSKeyValueObservingOptionNew context:nil];
     [self.notificationManager addObserver:self selector:@selector(playFinish:) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
+
+    __weak typeof(self) weakSelf = self;
+    self.boundaryTime = [self.player addBoundaryTimeObserverForTimes:@[[NSValue valueWithCMTime:CMTimeMake(1, 100)]] queue:dispatch_get_main_queue() usingBlock:^{
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        strongSelf.startEndTime = CFAbsoluteTimeGetCurrent();
+        MCLog(@"[AVPlayer] %llf startDuration %llf", [strongSelf currentTime], strongSelf.startEndTime - strongSelf.startTime);
+        strongSelf.playerState = PlayerStateStarting;
+    }];
+
 }
 
 - (void)configurePlayerItemObserver:(AVPlayerItem *)playerItem {
@@ -305,9 +277,14 @@
     [ijkkvoController safelyAddObserver:self forKeyPath:_k_PlayerItem_PlaybackLikelyToKeepUp options:NSKeyValueObservingOptionNew context:nil];
     [ijkkvoController safelyAddObserver:self forKeyPath:_k_PlayerItem_LoadedTimeRanges options:NSKeyValueObservingOptionNew context:nil];
     [self.playerItemsKVOManagers addObject:ijkkvoController];
+
 }
 
 - (void)removePlayerItemsObserver {
+    if (self.boundaryTime) {
+        [self.player removeTimeObserver:self.boundaryTime];
+        self.boundaryTime = nil;
+    }
     for (SafeKVOController *ijkkvoController in self.playerItemsKVOManagers) {
         [ijkkvoController safelyRemoveAllObservers];
     }
@@ -336,7 +313,7 @@
         return;
     } else if (object == self.player && [keyPath isEqualToString:@"currentItem"]) {
         if ([change[@"new"] isEqual:NSNull.null]) {
-            PKLog(@"%@", change[@"new"]);
+            MCLog(@"%@", change[@"new"]);
             self.playerState = PlayerStateError;
             return;
         }
@@ -349,22 +326,15 @@
     if ([keyPath isEqualToString:@"status"]) {
         if (self.player.currentItem.status == AVPlayerStatusFailed) {
             self.playerState = PlayerStateError;
-        } else if (self.player.currentItem.status == AVPlayerStatusReadyToPlay) {
-            self.playerState = PlayerStateStarting;
         }
 
     } else if ([keyPath isEqualToString:@"playbackBufferEmpty"] && self.player.currentItem.playbackBufferEmpty) {
-        self.playerState = PlayerStateLoadingNoBg;
+        self.playerState = PlayerStateBuffering;
     } else if ([keyPath isEqualToString:@"playbackLikelyToKeepUp"] && self.player.currentItem.playbackLikelyToKeepUp) {
-        if ([_delegate respondsToSelector:@selector(playerCanAutoPlay)] && [_delegate playerCanAutoPlay]) {
-            self.playerState = PlayerStateStarting;
-        }
+        self.playerState = PlayerStatePlaying;
 
     } else if ([keyPath isEqualToString:@"loadedTimeRanges"]) {
-        if ([_delegate respondsToSelector:@selector(playerCanAutoPlay)] && [_delegate playerCanAutoPlay]) {
-            self.playerState = PlayerStatePlaying;
-        }
-
+        MCLog(@"[Player] loadedTimeRanges");
     }
 
 }

@@ -11,9 +11,9 @@
 #import "PlayerNormalView.h"
 #import "PlayerNormalController+AutoRotate.h"
 #import "PlayerKit.h"
-#import "PlayerStatusDelegate.h"
 
-@interface PlayerNormalController () <PlayerNormalViewDelegate, PlayerStatusDelegate>
+
+@interface PlayerNormalController () <PlayerNormalViewDelegate>
 
 @property(nonatomic, strong) PlayerKit *playerKit;
 @property(nonatomic, strong) PlayerNormalView *playerView;
@@ -26,7 +26,7 @@
 }
 
 - (void)dealloc {
-    [_playerKit destoryPlayer];
+    [_playerKit destory];
 }
 
 - (void)viewDidLoad {
@@ -92,11 +92,11 @@
 }
 
 - (void)playerPopViewController {
-    if (self.playerView.playerStyle != PlayerStyleSizeClassRegularHalf) {
-        [self updatePlayerRegularHalf];
-    } else {
-        [self.navigationController popViewControllerAnimated:YES];
-    }
+//    if (self.playerView.playerStyle != PlayerStyleSizeClassRegularHalf) {
+//        [self updatePlayerRegularHalf];
+//    } else {
+//        [self.navigationController popViewControllerAnimated:YES];
+//    }
 }
 
 - (void)change2FullScreen {
@@ -237,7 +237,7 @@
     if (!_playerKit) {
         _playerKit = [[PlayerKit alloc] initWithPlayerView:self.playerView];
         _playerKit.playerCoreType = PlayerCoreAVPlayer;
-        _playerKit.playerStatusDelegate = self;
+        _playerKit.delegate = self;
     }
     return _playerKit;
 }
@@ -248,7 +248,6 @@
         CGFloat height = width * 9 / 16.0f;
         _playerView = [[PlayerNormalView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
         _playerView.playerNormalViewDelegate = self;
-        _playerView.playerStyle = PlayerStyleSizeClassRegularHalf;
 
         [_playerView updateTitle:@"标题"];
         [_playerView updateSave:YES];

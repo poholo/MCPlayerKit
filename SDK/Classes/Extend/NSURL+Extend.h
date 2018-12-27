@@ -9,4 +9,6 @@
 
 + (NSURL *)source4URI:(NSString *)uri;
 
++ (void)__openURL:(NSURL*)url completionHandler:(void (^ __nullable)(BOOL success))completion;
+
 @end

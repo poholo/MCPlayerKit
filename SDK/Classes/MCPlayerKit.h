@@ -10,12 +10,12 @@
 
 FOUNDATION_EXPORT double MCPlayerKitVersionNumber;
 FOUNDATION_EXPORT const unsigned char MCPlayerKitVersionString[];
+#ifdef DEBUG
+#define MCLog(fmt, ...) NSLog([NSString stringWithFormat:@"[INFO] %s(%d) %@", __FUNCTION__, __LINE__, fmt],##__VA_ARGS__,nil)
+#else
+#define MCLog(fmt, ...)
+#endif
 
-
-#import "PlayerViewControlDelegate.h"
-#import "PlayerStatusDelegate.h"
-#import "PlayerViewDelegate.h"
-#import "PlayerKitLog.h"
 #import "PlayerConfig.h"
 #import "PlayerKit.h"
 #import "PlayerBaseView.h"

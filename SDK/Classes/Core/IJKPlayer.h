@@ -8,8 +8,6 @@
 
 @interface IJKPlayer : Player
 
-@property(nonatomic, strong) NSURL *URL;
-
 - (void)releaseSpace;
 
 @end

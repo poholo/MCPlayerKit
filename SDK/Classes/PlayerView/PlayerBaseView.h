@@ -8,29 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-#import "PlayerViewDelegate.h"
-#import "PlayerConfig.h"
-
-@protocol PlayerViewControlDelegate;
-
-
 /**
  *  播放器UI父类
  */
-@interface PlayerBaseView : UIView <PlayerViewDelegate> {
+@interface PlayerBaseView : UIView {
 @public
-    UIView *_contentView;
-    UIView *_drawView;
-    CALayer *_drawLayer;
-    PlayerStyle _playerStyle;
+    __weak CALayer *_drawLayer;
+    __weak UIView *_glView;
 }
-
-
-@property(nonatomic, assign) PlayerStyle playerStyle;
-@property(nonatomic, weak) id <PlayerViewControlDelegate> playerControlDelegate;
 
 - (void)prepareUI;
 
-- (void)updateConstraints;
+- (void)updatePlayerView:(UIView *)drawPlayerView;
+
+- (void)updatePlayerLayer:(CALayer *)layer;
 
 @end

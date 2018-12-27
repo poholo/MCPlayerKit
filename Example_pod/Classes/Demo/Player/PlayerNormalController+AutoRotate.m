@@ -25,9 +25,9 @@
 
 - (BOOL)isSizeClassRegular {
     //如果是横屏全屏切换给切换机会
-    if (self.playerView.playerStyle == PlayerStyleSizeClassCompact) {
-        return NO;
-    }
+//    if (self.playerView.playerStyle == PlayerStyleSizeClassCompact) {
+//        return NO;
+//    }
 
     CGSize naturalSize = self.playerKit.naturalSize;
     if (naturalSize.width < naturalSize.height) {
@@ -86,7 +86,7 @@
 //    if(self.playerView.playerStyle == PlayerStyleSizeClassCompact) {
 //        return;
 //    }
-    [self.playerView setPlayerStyle:PlayerStyleSizeClassCompact];
+//    [self.playerView setPlayerStyle:PlayerStyleSizeClassCompact];
     [self.playerView updateFullScreenBtnStatus:YES];
     [self setStatusBarHidden:YES];
 
@@ -102,7 +102,7 @@
 
 //竖屏
 - (void)rotate2Portrait {
-    [self.playerView setPlayerStyle:PlayerStyleSizeClassRegularHalf];
+//    [self.playerView setPlayerStyle:PlayerStyleSizeClassRegularHalf];
     [self.playerView updateFullScreenBtnStatus:NO];
     [self setStatusBarHidden:NO];
 
@@ -116,7 +116,7 @@
 }
 
 - (void)rotate2PortraitFullScreen {
-    [self.playerView setPlayerStyle:PlayerStyleSizeClassRegular];
+//    [self.playerView setPlayerStyle:PlayerStyleSizeClassRegular];
     [self.playerView updateFullScreenBtnStatus:YES];
     [self setStatusBarHidden:YES];
 
@@ -138,24 +138,24 @@
 }
 
 - (void)changePlayerRotate {
-    switch (self.playerView.playerStyle) {
-        case PlayerStyleSizeClassRegular : {
-            [self updatePlayerRegularHalf];
-        }
-            break;
-        case PlayerStyleSizeClassCompact : {
-            [self updatePlayerRegularHalf];
-        }
-            break;
-        case PlayerStyleSizeClassRegularHalf : {
-            [self updatePlayerRegular];
-        }
-            break;
-        default : {
-        }
-            break;
-
-    }
+//    switch (self.playerView.playerStyle) {
+//        case PlayerStyleSizeClassRegular : {
+//            [self updatePlayerRegularHalf];
+//        }
+//            break;
+//        case PlayerStyleSizeClassCompact : {
+//            [self updatePlayerRegularHalf];
+//        }
+//            break;
+//        case PlayerStyleSizeClassRegularHalf : {
+//            [self updatePlayerRegular];
+//        }
+//            break;
+//        default : {
+//        }
+//            break;
+//
+//    }
     [self.view layoutIfNeeded];
 }
 
@@ -163,10 +163,10 @@
 
 - (void)updatePlayerRegularHalf {
     //横屏时切换竖屏
-    if (/*[self isSizeClassRegular] &&*/ self.playerView.playerStyle == PlayerStyleSizeClassRegular) {
-        [self rotate2Portrait];
-        return;
-    }
+//    if (/*[self isSizeClassRegular] &&*/ self.playerView.playerStyle == PlayerStyleSizeClassRegular) {
+//        [self rotate2Portrait];
+//        return;
+//    }
     if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
         SEL selector = NSSelectorFromString(@"setOrientation:");
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];
@@ -181,10 +181,10 @@
 }
 
 - (void)updatePlayerRegular {
-    if ([self isSizeClassRegular] && self.playerView.playerStyle == PlayerStyleSizeClassRegularHalf) {
-        [self rotate2PortraitFullScreen];
-        return;
-    }
+//    if ([self isSizeClassRegular] && self.playerView.playerStyle == PlayerStyleSizeClassRegularHalf) {
+//        [self rotate2PortraitFullScreen];
+//        return;
+//    }
     //竖屏时切换成横屏
     if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
         SEL selector = NSSelectorFromString(@"setOrientation:");

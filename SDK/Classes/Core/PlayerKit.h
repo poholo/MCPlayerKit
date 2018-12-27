@@ -7,41 +7,61 @@
 //
 
 
-#import <Foundation/Foundation.h>
-
 #import "PlayerConfig.h"
 
-@protocol PlayerViewDelegate;
 @class Player;
 @class PlayerBaseView;
-@protocol PlayerStatusDelegate;
+
+
+@protocol PlayerDelegate <NSObject>
+
+- (void)playLoading;
+
+- (void)playBuffer;
+
+- (void)playStart;
+
+- (void)playPlay;
+
+- (void)playEnd;
+
+- (void)playError;
+
+- (void)updatePlayView;
+
+- (void)currentTime:(double)time;
+
+@end
 
 @interface PlayerKit : NSObject {
+@public
     Player *_player;
-    __weak PlayerBaseView <PlayerViewDelegate> *_playerView;
+    __weak PlayerBaseView *_playerView;
 }
 
-@property(nonatomic, weak) id <PlayerStatusDelegate> playerStatusDelegate;
 @property(nonatomic, assign) PlayerEnvironment playerEnvironment;
-@property(nonatomic, assign) PlayerUserStatus playerUserStatus;
 @property(nonatomic, assign) PlayerCoreType playerCoreType; ///< default IJKPlayer
-@property(nonatomic, strong, readonly) NSArray<NSString *> *urls;
 @property(nonatomic, assign) PlayerActionAtItemEnd actionAtItemEnd;
+@property(nonatomic, assign) PlayerLayerVideoGravity playerLayerVideoGravity;
 @property(nonatomic, assign) BOOL notNeedSetProbesize;
+@property(nonatomic, weak) id <PlayerDelegate> delegate;
 
-- (instancetype)initWithPlayerView:(PlayerBaseView <PlayerViewDelegate> *)playerView;
 
-- (void)updatePlayerView:(PlayerBaseView <PlayerViewDelegate> *)playerView;
+- (instancetype)initWithPlayerView:(PlayerBaseView *)playerView;
+
+- (void)updatePlayerView:(PlayerBaseView *)playerView;
 
 - (void)playUrls:(nonnull NSArray<NSString *> *)urls;
 
 - (void)playUrls:(nonnull NSArray<NSString *> *)urls isLiveOptions:(BOOL)isLiveOptions;
 
+- (void)preparePlay;
+
 - (void)play;
 
 - (void)pause;
 
-- (void)destoryPlayer;
+- (void)destory;
 
 - (NSTimeInterval)duration;
 

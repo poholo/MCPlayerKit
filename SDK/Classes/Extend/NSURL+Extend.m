@@ -5,6 +5,8 @@
 
 #import "NSURL+Extend.h"
 
+#import <UIKit/UIKit.h>
+
 
 @implementation NSURL (Extend)
 
@@ -24,6 +26,20 @@
         URL = [NSURL fileURLWithPath:relativePath];
     }
     return URL;
+}
+
++ (void)__openURL:(NSURL *)url completionHandler:(void (^ __nullable)(BOOL success))completion {
+    if (@available(*, iOS 10)) {
+        [[UIApplication sharedApplication] openURL:url
+                                           options:nil
+                                 completionHandler:completion];
+    } else {
+        BOOL open = [[UIApplication sharedApplication] openURL:url];
+        if (completion) {
+            completion(open);
+        }
+    }
+
 }
 
 @end

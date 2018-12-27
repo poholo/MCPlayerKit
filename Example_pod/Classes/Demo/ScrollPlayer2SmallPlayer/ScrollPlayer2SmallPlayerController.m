@@ -35,7 +35,7 @@
 #pragma mak -
 
 - (void)dealloc {
-    [_playerKit destoryPlayer];
+    [_playerKit destory];
 }
 
 - (void)viewDidLoad {
@@ -92,7 +92,7 @@
     if (!_playerKit) {
         _playerKit = [[PlayerKit alloc] initWithPlayerView:self.playerView];
         _playerKit.playerCoreType = PlayerCoreAVPlayer;
-        _playerKit.playerStatusDelegate = self;
+        _playerKit.delegate = self;
     }
     return _playerKit;
 }
@@ -107,7 +107,6 @@
 - (SmallPlayerView *)smallPLayerView {
     if (!_smallPLayerView) {
         _smallPLayerView = [[SmallPlayerView alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.view.frame) - 300, CGRectGetHeight(self.view.frame) - 250 * 9 / 16.0f - 40, 250, 250 * 9 / 16.0f)];
-        _smallPLayerView.playerStyle = PlayerStyleSizeRegularAuto;
     }
     return _smallPLayerView;
 }

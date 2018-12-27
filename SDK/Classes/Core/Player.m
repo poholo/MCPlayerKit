@@ -5,22 +5,26 @@
 
 #import "Player.h"
 
-#import <UIKit/UIKit.h>
 #import <AudioToolbox/AudioToolbox.h>
-
-#import "IJKPlayer.h"
-#import "AVPlayerx.h"
 
 @implementation Player
 
-@synthesize playerState = _playerState, cacheProgress = _cacheProgress, rate = _rate, delegate = _delegate;
+@synthesize playerState = _playerState, cacheProgress = _cacheProgress, rate = _rate;
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.rate = 1.0f;
+        self.playerState = PlayerStateNone;
+    }
+    return self;
+}
 
 - (void)dealloc {
     [self releaseSpace];
 }
 
 - (void)releaseSpace {
-    _delegate = nil;
     [self destory];
 }
 
@@ -45,7 +49,7 @@
 }
 
 - (void)preparePlay {
-    [UIApplication sharedApplication].idleTimerDisabled = YES;
+    self.playerState = PlayerStateLoading;
 }
 
 - (void)play {
@@ -61,11 +65,6 @@
 }
 
 - (void)seekSeconds:(CGFloat)seconds {
-}
-
-
-- (void)stop {
-    [UIApplication sharedApplication].idleTimerDisabled = NO;
 }
 
 - (void)playRate:(CGFloat)playRate {
@@ -101,53 +100,6 @@
 
 - (PlayerCoreType)playerType {
     return PlayerCoreNone;
-}
-
-- (NSInteger)currentPlayerItemIndex {
-    return NSNotFound;
-}
-
-- (BOOL)hasNextVideoItem {
-    return NO;
-}
-
-- (void)playNextVideoItem {
-}
-
-- (void)changePlayerState:(PlayerState)playerState {
-    if ([_delegate respondsToSelector:@selector(changePlayerState:)]) {
-        [_delegate changePlayerState:playerState];
-    }
-}
-
-- (void)playFinish {
-    if ([_delegate respondsToSelector:@selector(playFinish)]) {
-        [_delegate playFinish];
-    }
-    [self destory];
-}
-
-- (void)playError {
-    [self destory];
-    if ([_delegate respondsToSelector:@selector(playError)]) {
-        [_delegate playError];
-    }
-}
-
-- (void)updatePlayerLayer {
-    if ([_delegate respondsToSelector:@selector(updatePlayerLayer)]) {
-        [_delegate updatePlayerLayer];
-    }
-
-    if ([_delegate respondsToSelector:@selector(adpaterPlayRate)]) {
-        [_delegate adpaterPlayRate];
-    }
-}
-
-- (void)changePlayer:(PlayerCoreType)currentPlayerType {
-    if ([_delegate respondsToSelector:@selector(changePlayer:)]) {
-        [_delegate changePlayer:currentPlayerType];
-    }
 }
 
 - (void)cancelLoading {
