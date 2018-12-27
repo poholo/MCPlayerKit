@@ -3,14 +3,14 @@
 // Copyright (c) 2016 mjc inc. All rights reserved.
 //
 
-#import "IJKPlayer.h"
+#import "MCIJKPlayer.h"
 
 #import <IJKMediaFramework/IJKFFMoviePlayerController.h>
 
 #import "NSURL+Extend.h"
-#import "MCPlayerKit.h"
+#import "MCPlayerKitDef.h"
 
-@interface IJKPlayer ()
+@interface MCIJKPlayer ()
 
 @property(nonatomic, strong) NSArray *playUrls;
 @property(nonatomic, strong) IJKFFMoviePlayerController *ijkPlayer;
@@ -28,7 +28,7 @@
 
 @end
 
-@implementation IJKPlayer
+@implementation MCIJKPlayer
 
 
 - (void)dealloc {

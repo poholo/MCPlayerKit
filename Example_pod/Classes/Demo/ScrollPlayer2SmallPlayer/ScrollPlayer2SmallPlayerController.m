@@ -6,7 +6,7 @@
 
 #import "ScrollPlayer2SmallPlayerController.h"
 
-#import "PlayerKit.h"
+#import "MCPlayerKit.h"
 
 #import "PlayerSimpleView.h"
 #import "SmallPlayerView.h"
@@ -17,7 +17,7 @@
 
 @interface ScrollPlayer2SmallPlayerController () <UITableViewDelegate, UITableViewDataSource>
 
-@property(nonatomic, strong) PlayerKit *playerKit;
+@property(nonatomic, strong) MCPlayerKit *playerKit;
 @property(nonatomic, strong) PlayerSimpleView *playerView;
 @property(nonatomic, strong) SmallPlayerView *smallPLayerView;
 
@@ -88,9 +88,9 @@
 
 #pragma mark - getter
 
-- (PlayerKit *)playerKit {
+- (MCPlayerKit *)playerKit {
     if (!_playerKit) {
-        _playerKit = [[PlayerKit alloc] initWithPlayerView:self.playerView];
+        _playerKit = [[MCPlayerKit alloc] initWithPlayerView:self.playerView];
         _playerKit.playerCoreType = PlayerCoreAVPlayer;
         _playerKit.delegate = self;
     }

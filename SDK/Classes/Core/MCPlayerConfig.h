@@ -1,5 +1,5 @@
 //
-//  PlayerConfig.h
+//  MCPlayerConfig.h
 //  WaQuVideo
 //
 //  Created by imooc on 16/5/4.
@@ -59,6 +59,6 @@ extern NSString *const _k_PlayerItem_PlaybackBufferEmpty;
 extern NSString *const _k_PlayerItem_PlaybackLikelyToKeepUp;
 extern NSString *const _k_PlayerItem_LoadedTimeRanges;
 
-@interface PlayerConfig : NSObject
+@interface MCPlayerConfig : NSObject
 
 @end

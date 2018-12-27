@@ -6,7 +6,7 @@
 
 #import "PlayerNormalController+AutoRotate.h"
 
-#import "PlayerKit.h"
+#import "MCPlayerKit.h"
 #import <Masonry.h>
 
 #import "PlayerNormalView.h"

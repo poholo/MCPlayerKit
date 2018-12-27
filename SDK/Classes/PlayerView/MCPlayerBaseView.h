@@ -11,7 +11,7 @@
 /**
  *  播放器UI父类
  */
-@interface PlayerBaseView : UIView {
+@interface MCPlayerBaseView : UIView {
 @public
     __weak CALayer *_drawLayer;
     __weak UIView *_glView;

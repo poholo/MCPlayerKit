@@ -1,5 +1,5 @@
 //
-//  PlayerKit.m
+//  MCPlayerKit.m
 //  WaQuVideo
 //
 //  Created by majiancheng on 2017/3/17.
@@ -7,15 +7,15 @@
 //
 
 
-#import "PlayerKit.h"
-
-#import "IJKPlayer.h"
-#import "AVPlayerx.h"
-#import "PlayerBaseView.h"
 #import "MCPlayerKit.h"
 
+#import "MCIJKPlayer.h"
+#import "MCAVPlayerx.h"
+#import "MCPlayerBaseView.h"
+#import "MCPlayerKitDef.h"
 
-@interface PlayerKit ()
+
+@interface MCPlayerKit ()
 
 /** 计时器 */
 @property(nonatomic, strong) NSTimer *timer;
@@ -26,13 +26,13 @@
 
 @end
 
-@implementation PlayerKit
+@implementation MCPlayerKit
 
 - (void)dealloc {
     [self destory];
 }
 
-- (instancetype)initWithPlayerView:(PlayerBaseView *)playerView {
+- (instancetype)initWithPlayerView:(MCPlayerBaseView *)playerView {
     self = [super init];
     if (self) {
         _playerView = playerView;
@@ -41,7 +41,7 @@
     return self;
 }
 
-- (void)updatePlayerView:(PlayerBaseView *)playerView {
+- (void)updatePlayerView:(MCPlayerBaseView *)playerView {
     _playerView = playerView;
     self.playerEnvironment = PlayerEnvironmentOnBecomeActiveStatus;
 
@@ -178,13 +178,13 @@
     self.playerState = PlayerStateNone;
     self.urls = urls;
     _player = ({
-        Player *player;
+        MCPlayer *player;
         if (self.playerCoreType == PlayerCoreIJKPlayer) {
-            player = [[IJKPlayer alloc] init];
+            player = [[MCIJKPlayer alloc] init];
         } else if (self.playerCoreType == PlayerCoreAVPlayer) {
-            player = [[AVPlayerx alloc] init];
+            player = [[MCAVPlayerx alloc] init];
         } else {
-            player = [[IJKPlayer alloc] init];
+            player = [[MCIJKPlayer alloc] init];
         }
         player;
     });

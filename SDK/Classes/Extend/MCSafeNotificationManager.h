@@ -8,7 +8,7 @@
 /**
  * from ijk
  */
-@interface SafeNotificationManager : NSObject
+@interface MCSafeNotificationManager : NSObject
 
 - (void)addObserver:(nonnull id)observer selector:(nonnull SEL)aSelector name:(nullable NSString *)aName object:(nullable id)anObject;
 

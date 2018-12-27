@@ -3,11 +3,11 @@
 // Copyright (c) 2016 mjc inc. All rights reserved.
 //
 
-#import "Player.h"
+#import "MCPlayer.h"
 
 #import <AudioToolbox/AudioToolbox.h>
 
-@implementation Player
+@implementation MCPlayer
 
 @synthesize playerState = _playerState, cacheProgress = _cacheProgress, rate = _rate;
 

@@ -5,7 +5,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "PlayerConfig.h"
+#import "MCPlayerConfig.h"
 
 
 @protocol PlayerTerminalDelegate <NSObject>

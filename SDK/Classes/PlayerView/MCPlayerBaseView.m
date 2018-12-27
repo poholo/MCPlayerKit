@@ -6,10 +6,10 @@
 //  Copyright © 2017年 mjc inc. All rights reserved.
 //
 
-#import "PlayerBaseView.h"
+#import "MCPlayerBaseView.h"
 
 
-@implementation PlayerBaseView
+@implementation MCPlayerBaseView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];

@@ -5,9 +5,9 @@
 
 #import <AVFoundation/AVFoundation.h>
 
-#import "PlayerConfig.h"
+#import "MCPlayerConfig.h"
 
-@interface Player : NSObject {
+@interface MCPlayer : NSObject {
     PlayerState _playerState;
     CGFloat _cacheProgress;
     CGFloat _rate;

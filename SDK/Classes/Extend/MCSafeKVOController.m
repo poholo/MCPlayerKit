@@ -3,7 +3,7 @@
 // Copyright (c) 2017 majiancheng. All rights reserved.
 //
 
-#import "SafeKVOController.h"
+#import "MCSafeKVOController.h"
 
 @interface KVOEntry : NSObject
 @property(nonatomic, weak) NSObject *observer;
@@ -16,7 +16,7 @@
 @end
 
 
-@implementation SafeKVOController {
+@implementation MCSafeKVOController {
     __weak NSObject *_target;
     NSMutableArray *_observerArray;
 }

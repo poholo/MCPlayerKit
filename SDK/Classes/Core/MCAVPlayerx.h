@@ -3,9 +3,9 @@
 // Copyright (c) 2016 mjc inc. All rights reserved.
 //
 
-#import "Player.h"
+#import "MCPlayer.h"
 
-@interface AVPlayerx : Player
+@interface MCAVPlayerx : MCPlayer
 
 - (void)releaseSpace;
 

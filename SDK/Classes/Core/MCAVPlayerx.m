@@ -3,22 +3,22 @@
 // Copyright (c) 2016 mjc inc. All rights reserved.
 //
 
-#import "AVPlayerx.h"
+#import "MCAVPlayerx.h"
 
 #import "NSURL+Extend.h"
-#import "SafeKVOController.h"
-#import "SafeNotificationManager.h"
-#import "MCPlayerKit.h"
+#import "MCSafeKVOController.h"
+#import "MCSafeNotificationManager.h"
+#import "MCPlayerKitDef.h"
 
 
-@interface AVPlayerx ()
+@interface MCAVPlayerx ()
 
 @property(nonatomic, strong) AVQueuePlayer *player;
 @property(nonatomic, strong) AVPlayerLayer *playerLayer;
 @property(nonatomic, strong) NSMutableArray<AVPlayerItem *> *playerItems;
-@property(nonatomic, strong) NSMutableArray<SafeKVOController *> *playerItemsKVOManagers;
-@property(nonatomic, strong) SafeKVOController *playerKVOManager;
-@property(nonatomic, strong) SafeNotificationManager *notificationManager;
+@property(nonatomic, strong) NSMutableArray<MCSafeKVOController *> *playerItemsKVOManagers;
+@property(nonatomic, strong) MCSafeKVOController *playerKVOManager;
+@property(nonatomic, strong) MCSafeNotificationManager *notificationManager;
 @property(nonatomic, strong) id boundaryTime;
 
 - (AVPlayerItem *)playerItemFromPath:(NSString *)path;
@@ -35,7 +35,7 @@
 
 @end
 
-@implementation AVPlayerx
+@implementation MCAVPlayerx
 
 - (void)dealloc {
     [self releaseSpace];
@@ -204,7 +204,7 @@
     return _playerItems;
 }
 
-- (NSMutableArray<SafeKVOController *> *)playerItemsKVOManagers {
+- (NSMutableArray<MCSafeKVOController *> *)playerItemsKVOManagers {
     if (_playerItemsKVOManagers == nil) {
         _playerItemsKVOManagers = [[NSMutableArray alloc] init];
     }
@@ -212,9 +212,9 @@
 }
 
 
-- (SafeKVOController *)playerKVOManager {
+- (MCSafeKVOController *)playerKVOManager {
     if (_playerKVOManager == nil) {
-        _playerKVOManager = [[SafeKVOController alloc] initWithTarget:self.player];
+        _playerKVOManager = [[MCSafeKVOController alloc] initWithTarget:self.player];
     }
     return _playerKVOManager;
 }
@@ -240,9 +240,9 @@
     }
 }
 
-- (SafeNotificationManager *)notificationManager {
+- (MCSafeNotificationManager *)notificationManager {
     if (_notificationManager == nil) {
-        _notificationManager = [[SafeNotificationManager alloc] init];
+        _notificationManager = [[MCSafeNotificationManager alloc] init];
     }
     return _notificationManager;
 }
@@ -271,7 +271,7 @@
 }
 
 - (void)configurePlayerItemObserver:(AVPlayerItem *)playerItem {
-    SafeKVOController *ijkkvoController = [[SafeKVOController alloc] initWithTarget:playerItem];
+    MCSafeKVOController *ijkkvoController = [[MCSafeKVOController alloc] initWithTarget:playerItem];
     [ijkkvoController safelyAddObserver:self forKeyPath:_k_PlayerItem_Status options:NSKeyValueObservingOptionNew context:nil];
     [ijkkvoController safelyAddObserver:self forKeyPath:_k_PlayerItem_PlaybackBufferEmpty options:NSKeyValueObservingOptionNew context:nil];
     [ijkkvoController safelyAddObserver:self forKeyPath:_k_PlayerItem_PlaybackLikelyToKeepUp options:NSKeyValueObservingOptionNew context:nil];
@@ -285,7 +285,7 @@
         [self.player removeTimeObserver:self.boundaryTime];
         self.boundaryTime = nil;
     }
-    for (SafeKVOController *ijkkvoController in self.playerItemsKVOManagers) {
+    for (MCSafeKVOController *ijkkvoController in self.playerItemsKVOManagers) {
         [ijkkvoController safelyRemoveAllObservers];
     }
     [self.playerItemsKVOManagers removeAllObjects];
@@ -334,7 +334,7 @@
         self.playerState = PlayerStatePlaying;
 
     } else if ([keyPath isEqualToString:@"loadedTimeRanges"]) {
-        MCLog(@"[Player] loadedTimeRanges");
+        MCLog(@"[MCPlayer] loadedTimeRanges");
     }
 
 }

@@ -6,12 +6,12 @@
 #import "MCController.h"
 
 @class PlayerNormalView;
-@class PlayerKit;
+@class MCPlayerKit;
 
 
 @interface PlayerNormalController : MCController
 
-@property(nonatomic, readonly) PlayerKit *playerKit;
+@property(nonatomic, readonly) MCPlayerKit *playerKit;
 @property(nonatomic, readonly) PlayerNormalView *playerView;
 
 @end

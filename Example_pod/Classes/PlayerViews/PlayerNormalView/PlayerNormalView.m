@@ -8,7 +8,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <Masonry.h>
 
-#import "MCPlayerKit.h"
+#import "MCPlayerKitDef.h"
 #import "PlayerProgress.h"
 #import "PlayerTerminalView.h"
 #import "MCMediaNotify.h"

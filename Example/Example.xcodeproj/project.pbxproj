@@ -48,15 +48,15 @@
 		250CCEFA21D4D1C800ECDF83 /* MMPopupWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCED021D4D1C800ECDF83 /* MMPopupWindow.m */; };
 		250CCEFB21D4D1C800ECDF83 /* MMPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCED421D4D1C800ECDF83 /* MMPopupView.m */; };
 		250CCEFC21D4D1C800ECDF83 /* MMPopupItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCED721D4D1C800ECDF83 /* MMPopupItem.m */; };
-		250CCFBB21D4D65D00ECDF83 /* PlayerBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCFA621D4D65C00ECDF83 /* PlayerBaseView.m */; };
-		250CCFBC21D4D65D00ECDF83 /* SafeKVOController.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCFAA21D4D65C00ECDF83 /* SafeKVOController.m */; };
+		250CCFBB21D4D65D00ECDF83 /* MCPlayerBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCFA621D4D65C00ECDF83 /* MCPlayerBaseView.m */; };
+		250CCFBC21D4D65D00ECDF83 /* MCSafeKVOController.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCFAA21D4D65C00ECDF83 /* MCSafeKVOController.m */; };
 		250CCFBD21D4D65D00ECDF83 /* NSURL+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCFAB21D4D65C00ECDF83 /* NSURL+Extend.m */; };
-		250CCFBE21D4D65D00ECDF83 /* SafeNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCFAC21D4D65C00ECDF83 /* SafeNotificationManager.m */; };
-		250CCFBF21D4D65D00ECDF83 /* AVPlayerx.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCFB321D4D65D00ECDF83 /* AVPlayerx.m */; };
-		250CCFC021D4D65D00ECDF83 /* PlayerKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCFB521D4D65D00ECDF83 /* PlayerKit.m */; };
-		250CCFC121D4D65D00ECDF83 /* PlayerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCFB621D4D65D00ECDF83 /* PlayerConfig.m */; };
-		250CCFC221D4D65D00ECDF83 /* IJKPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCFB721D4D65D00ECDF83 /* IJKPlayer.m */; };
-		250CCFC321D4D65D00ECDF83 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCFB821D4D65D00ECDF83 /* Player.m */; };
+		250CCFBE21D4D65D00ECDF83 /* MCSafeNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCFAC21D4D65C00ECDF83 /* MCSafeNotificationManager.m */; };
+		250CCFBF21D4D65D00ECDF83 /* MCAVPlayerx.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCFB321D4D65D00ECDF83 /* MCAVPlayerx.m */; };
+		250CCFC021D4D65D00ECDF83 /* MCPlayerKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCFB521D4D65D00ECDF83 /* MCPlayerKit.m */; };
+		250CCFC121D4D65D00ECDF83 /* MCPlayerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCFB621D4D65D00ECDF83 /* MCPlayerConfig.m */; };
+		250CCFC221D4D65D00ECDF83 /* MCIJKPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCFB721D4D65D00ECDF83 /* MCIJKPlayer.m */; };
+		250CCFC321D4D65D00ECDF83 /* MCPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCFB821D4D65D00ECDF83 /* MCPlayer.m */; };
 		D7DBD630B23A61CE15B177E9 /* libPods-Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ED9BE8F97E79AD678A827B71 /* libPods-Example.a */; };
 /* End PBXBuildFile section */
 
@@ -143,25 +143,25 @@
 		250CCED621D4D1C800ECDF83 /* MMPopupCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPopupCategory.h; sourceTree = "<group>"; };
 		250CCED721D4D1C800ECDF83 /* MMPopupItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPopupItem.m; sourceTree = "<group>"; };
 		250CCED821D4D1C800ECDF83 /* MMWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMWindowController.h; sourceTree = "<group>"; };
-		250CCFA521D4D65C00ECDF83 /* PlayerBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerBaseView.h; sourceTree = "<group>"; };
-		250CCFA621D4D65C00ECDF83 /* PlayerBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerBaseView.m; sourceTree = "<group>"; };
-		250CCFA821D4D65C00ECDF83 /* SafeNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafeNotificationManager.h; sourceTree = "<group>"; };
+		250CCFA521D4D65C00ECDF83 /* MCPlayerBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCPlayerBaseView.h; sourceTree = "<group>"; };
+		250CCFA621D4D65C00ECDF83 /* MCPlayerBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCPlayerBaseView.m; sourceTree = "<group>"; };
+		250CCFA821D4D65C00ECDF83 /* MCSafeNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCSafeNotificationManager.h; sourceTree = "<group>"; };
 		250CCFA921D4D65C00ECDF83 /* NSURL+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+Extend.h"; sourceTree = "<group>"; };
-		250CCFAA21D4D65C00ECDF83 /* SafeKVOController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SafeKVOController.m; sourceTree = "<group>"; };
+		250CCFAA21D4D65C00ECDF83 /* MCSafeKVOController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCSafeKVOController.m; sourceTree = "<group>"; };
 		250CCFAB21D4D65C00ECDF83 /* NSURL+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+Extend.m"; sourceTree = "<group>"; };
-		250CCFAC21D4D65C00ECDF83 /* SafeNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SafeNotificationManager.m; sourceTree = "<group>"; };
-		250CCFAE21D4D65C00ECDF83 /* SafeKVOController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafeKVOController.h; sourceTree = "<group>"; };
-		250CCFB021D4D65C00ECDF83 /* PlayerConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerConfig.h; sourceTree = "<group>"; };
-		250CCFB121D4D65C00ECDF83 /* PlayerKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerKit.h; sourceTree = "<group>"; };
-		250CCFB221D4D65D00ECDF83 /* IJKPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJKPlayer.h; sourceTree = "<group>"; };
-		250CCFB321D4D65D00ECDF83 /* AVPlayerx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVPlayerx.m; sourceTree = "<group>"; };
-		250CCFB421D4D65D00ECDF83 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
-		250CCFB521D4D65D00ECDF83 /* PlayerKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerKit.m; sourceTree = "<group>"; };
-		250CCFB621D4D65D00ECDF83 /* PlayerConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerConfig.m; sourceTree = "<group>"; };
-		250CCFB721D4D65D00ECDF83 /* IJKPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJKPlayer.m; sourceTree = "<group>"; };
-		250CCFB821D4D65D00ECDF83 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
-		250CCFB921D4D65D00ECDF83 /* AVPlayerx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVPlayerx.h; sourceTree = "<group>"; };
-		250CCFBA21D4D65D00ECDF83 /* MCPlayerKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCPlayerKit.h; sourceTree = "<group>"; };
+		250CCFAC21D4D65C00ECDF83 /* MCSafeNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCSafeNotificationManager.m; sourceTree = "<group>"; };
+		250CCFAE21D4D65C00ECDF83 /* MCSafeKVOController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCSafeKVOController.h; sourceTree = "<group>"; };
+		250CCFB021D4D65C00ECDF83 /* MCPlayerConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCPlayerConfig.h; sourceTree = "<group>"; };
+		250CCFB121D4D65C00ECDF83 /* MCPlayerKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCPlayerKit.h; sourceTree = "<group>"; };
+		250CCFB221D4D65D00ECDF83 /* MCIJKPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCIJKPlayer.h; sourceTree = "<group>"; };
+		250CCFB321D4D65D00ECDF83 /* MCAVPlayerx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCAVPlayerx.m; sourceTree = "<group>"; };
+		250CCFB421D4D65D00ECDF83 /* MCPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCPlayer.h; sourceTree = "<group>"; };
+		250CCFB521D4D65D00ECDF83 /* MCPlayerKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCPlayerKit.m; sourceTree = "<group>"; };
+		250CCFB621D4D65D00ECDF83 /* MCPlayerConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCPlayerConfig.m; sourceTree = "<group>"; };
+		250CCFB721D4D65D00ECDF83 /* MCIJKPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCIJKPlayer.m; sourceTree = "<group>"; };
+		250CCFB821D4D65D00ECDF83 /* MCPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCPlayer.m; sourceTree = "<group>"; };
+		250CCFB921D4D65D00ECDF83 /* MCAVPlayerx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCAVPlayerx.h; sourceTree = "<group>"; };
+		250CCFBA21D4D65D00ECDF83 /* MCPlayerKitDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCPlayerKitDef.h; sourceTree = "<group>"; };
 		BE3B23BD55CA410FABC1114A /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
 		ED9BE8F97E79AD678A827B71 /* libPods-Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4A21944DAD33ABB52FCB71B /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.debug.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -440,7 +440,7 @@
 				250CCFA421D4D65C00ECDF83 /* PlayerView */,
 				250CCFA721D4D65C00ECDF83 /* Extend */,
 				250CCFAF21D4D65C00ECDF83 /* Core */,
-				250CCFBA21D4D65D00ECDF83 /* MCPlayerKit.h */,
+				250CCFBA21D4D65D00ECDF83 /* MCPlayerKitDef.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -448,8 +448,8 @@
 		250CCFA421D4D65C00ECDF83 /* PlayerView */ = {
 			isa = PBXGroup;
 			children = (
-				250CCFA521D4D65C00ECDF83 /* PlayerBaseView.h */,
-				250CCFA621D4D65C00ECDF83 /* PlayerBaseView.m */,
+				250CCFA521D4D65C00ECDF83 /* MCPlayerBaseView.h */,
+				250CCFA621D4D65C00ECDF83 /* MCPlayerBaseView.m */,
 			);
 			path = PlayerView;
 			sourceTree = "<group>";
@@ -457,12 +457,12 @@
 		250CCFA721D4D65C00ECDF83 /* Extend */ = {
 			isa = PBXGroup;
 			children = (
-				250CCFA821D4D65C00ECDF83 /* SafeNotificationManager.h */,
+				250CCFA821D4D65C00ECDF83 /* MCSafeNotificationManager.h */,
 				250CCFA921D4D65C00ECDF83 /* NSURL+Extend.h */,
-				250CCFAA21D4D65C00ECDF83 /* SafeKVOController.m */,
+				250CCFAA21D4D65C00ECDF83 /* MCSafeKVOController.m */,
 				250CCFAB21D4D65C00ECDF83 /* NSURL+Extend.m */,
-				250CCFAC21D4D65C00ECDF83 /* SafeNotificationManager.m */,
-				250CCFAE21D4D65C00ECDF83 /* SafeKVOController.h */,
+				250CCFAC21D4D65C00ECDF83 /* MCSafeNotificationManager.m */,
+				250CCFAE21D4D65C00ECDF83 /* MCSafeKVOController.h */,
 			);
 			path = Extend;
 			sourceTree = "<group>";
@@ -470,16 +470,16 @@
 		250CCFAF21D4D65C00ECDF83 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				250CCFB021D4D65C00ECDF83 /* PlayerConfig.h */,
-				250CCFB121D4D65C00ECDF83 /* PlayerKit.h */,
-				250CCFB221D4D65D00ECDF83 /* IJKPlayer.h */,
-				250CCFB321D4D65D00ECDF83 /* AVPlayerx.m */,
-				250CCFB421D4D65D00ECDF83 /* Player.h */,
-				250CCFB521D4D65D00ECDF83 /* PlayerKit.m */,
-				250CCFB621D4D65D00ECDF83 /* PlayerConfig.m */,
-				250CCFB721D4D65D00ECDF83 /* IJKPlayer.m */,
-				250CCFB821D4D65D00ECDF83 /* Player.m */,
-				250CCFB921D4D65D00ECDF83 /* AVPlayerx.h */,
+				250CCFB021D4D65C00ECDF83 /* MCPlayerConfig.h */,
+				250CCFB121D4D65C00ECDF83 /* MCPlayerKit.h */,
+				250CCFB221D4D65D00ECDF83 /* MCIJKPlayer.h */,
+				250CCFB321D4D65D00ECDF83 /* MCAVPlayerx.m */,
+				250CCFB421D4D65D00ECDF83 /* MCPlayer.h */,
+				250CCFB521D4D65D00ECDF83 /* MCPlayerKit.m */,
+				250CCFB621D4D65D00ECDF83 /* MCPlayerConfig.m */,
+				250CCFB721D4D65D00ECDF83 /* MCIJKPlayer.m */,
+				250CCFB821D4D65D00ECDF83 /* MCPlayer.m */,
+				250CCFB921D4D65D00ECDF83 /* MCAVPlayerx.h */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -603,16 +603,16 @@
 				250CCEEE21D4D1C800ECDF83 /* PlayerViewConfig.m in Sources */,
 				250CCEF921D4D1C800ECDF83 /* MMPopupCategory.m in Sources */,
 				250CCEE221D4D1C800ECDF83 /* PlayerNormalController+AutoRotate.m in Sources */,
-				250CCFBB21D4D65D00ECDF83 /* PlayerBaseView.m in Sources */,
-				250CCFBF21D4D65D00ECDF83 /* AVPlayerx.m in Sources */,
+				250CCFBB21D4D65D00ECDF83 /* MCPlayerBaseView.m in Sources */,
+				250CCFBF21D4D65D00ECDF83 /* MCAVPlayerx.m in Sources */,
 				250CCEFA21D4D1C800ECDF83 /* MMPopupWindow.m in Sources */,
 				250CCEE721D4D1C800ECDF83 /* SmallPlayerView.m in Sources */,
-				250CCFBC21D4D65D00ECDF83 /* SafeKVOController.m in Sources */,
+				250CCFBC21D4D65D00ECDF83 /* MCSafeKVOController.m in Sources */,
 				250CCEEB21D4D1C800ECDF83 /* PlayerLoadingView.m in Sources */,
 				250CCEE921D4D1C800ECDF83 /* PlayerTerminalView.m in Sources */,
 				250CCEF521D4D1C800ECDF83 /* UIColor+Hex.m in Sources */,
 				250CCEFB21D4D1C800ECDF83 /* MMPopupView.m in Sources */,
-				250CCFC221D4D65D00ECDF83 /* IJKPlayer.m in Sources */,
+				250CCFC221D4D65D00ECDF83 /* MCIJKPlayer.m in Sources */,
 				250CCEEF21D4D1C800ECDF83 /* PlayerNormalView.m in Sources */,
 				250CCEDD21D4D1C800ECDF83 /* TableViewPlaceHolderCell.m in Sources */,
 				250CCEE521D4D1C800ECDF83 /* PlayerNormalController.m in Sources */,
@@ -621,13 +621,13 @@
 				250CCDF621D4CE2000ECDF83 /* main.m in Sources */,
 				250CCEF321D4D1C800ECDF83 /* Dto.m in Sources */,
 				250CCED921D4D1C800ECDF83 /* PlayerCategroryDto.m in Sources */,
-				250CCFC121D4D65D00ECDF83 /* PlayerConfig.m in Sources */,
+				250CCFC121D4D65D00ECDF83 /* MCPlayerConfig.m in Sources */,
 				250CCEDC21D4D1C800ECDF83 /* PlayerCategroryCell.m in Sources */,
 				250CCEF621D4D1C800ECDF83 /* MMAlertView.m in Sources */,
 				250CCEE821D4D1C800ECDF83 /* PlayerSimpleView.m in Sources */,
 				250CCFBD21D4D65D00ECDF83 /* NSURL+Extend.m in Sources */,
 				250CCEDF21D4D1C800ECDF83 /* PlayerSimpleViewCell.m in Sources */,
-				250CCFBE21D4D65D00ECDF83 /* SafeNotificationManager.m in Sources */,
+				250CCFBE21D4D65D00ECDF83 /* MCSafeNotificationManager.m in Sources */,
 				250CCDF521D4CE2000ECDF83 /* AppDelegate.m in Sources */,
 				250CCEEA21D4D1C800ECDF83 /* PlayerProgress.m in Sources */,
 				250CCEF721D4D1C800ECDF83 /* MMSheetView.m in Sources */,
@@ -640,10 +640,10 @@
 				250CCEF221D4D1C800ECDF83 /* CollectionCell.m in Sources */,
 				250CCEE121D4D1C800ECDF83 /* VideoDto.m in Sources */,
 				250CCEDA21D4D1C800ECDF83 /* PlayerCategroiesDataVM.m in Sources */,
-				250CCFC321D4D65D00ECDF83 /* Player.m in Sources */,
+				250CCFC321D4D65D00ECDF83 /* MCPlayer.m in Sources */,
 				250CCEDE21D4D1C800ECDF83 /* ScrollPlayerDataVM.m in Sources */,
 				250CCEE621D4D1C800ECDF83 /* ScrollPlayer2SmallPlayerController.m in Sources */,
-				250CCFC021D4D65D00ECDF83 /* PlayerKit.m in Sources */,
+				250CCFC021D4D65D00ECDF83 /* MCPlayerKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

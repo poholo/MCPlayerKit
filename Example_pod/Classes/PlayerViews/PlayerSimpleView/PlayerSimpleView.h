@@ -4,11 +4,11 @@
 //
 
 
-#import "PlayerBaseView.h"
+#import "MCPlayerBaseView.h"
 
 /***
  * 简介版本
  */
-@interface PlayerSimpleView : PlayerBaseView
+@interface PlayerSimpleView : MCPlayerBaseView
 
 @end

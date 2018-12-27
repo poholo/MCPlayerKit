@@ -3,10 +3,10 @@
 // Copyright (c) 2017 majiancheng. All rights reserved.
 //
 
-#import "SafeNotificationManager.h"
+#import "MCSafeNotificationManager.h"
 
 
-@implementation SafeNotificationManager {
+@implementation MCSafeNotificationManager {
     NSMutableDictionary *_registeredNotifications;
 }
 

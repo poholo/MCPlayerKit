@@ -16,6 +16,6 @@ FOUNDATION_EXPORT const unsigned char MCPlayerKitVersionString[];
 #define MCLog(fmt, ...)
 #endif
 
-#import "PlayerConfig.h"
-#import "PlayerKit.h"
-#import "PlayerBaseView.h"
+#import "MCPlayerConfig.h"
+#import "MCPlayerKit.h"
+#import "MCPlayerBaseView.h"

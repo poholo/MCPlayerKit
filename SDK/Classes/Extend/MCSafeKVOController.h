@@ -8,7 +8,7 @@
 /***
  * from ijk
  */
-@interface SafeKVOController : NSObject
+@interface MCSafeKVOController : NSObject
 
 - (id)initWithTarget:(NSObject *)target;
 

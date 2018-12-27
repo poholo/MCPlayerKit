@@ -1,5 +1,5 @@
 //
-//  PlayerKit.h
+//  MCPlayerKit.h
 //  WaQuVideo
 //
 //  Created by majiancheng on 2017/3/17.
@@ -7,10 +7,10 @@
 //
 
 
-#import "PlayerConfig.h"
+#import "MCPlayerConfig.h"
 
-@class Player;
-@class PlayerBaseView;
+@class MCPlayer;
+@class MCPlayerBaseView;
 
 
 @protocol PlayerDelegate <NSObject>
@@ -33,10 +33,10 @@
 
 @end
 
-@interface PlayerKit : NSObject {
+@interface MCPlayerKit : NSObject {
 @public
-    Player *_player;
-    __weak PlayerBaseView *_playerView;
+    MCPlayer *_player;
+    __weak MCPlayerBaseView *_playerView;
 }
 
 @property(nonatomic, assign) PlayerEnvironment playerEnvironment;
@@ -47,9 +47,9 @@
 @property(nonatomic, weak) id <PlayerDelegate> delegate;
 
 
-- (instancetype)initWithPlayerView:(PlayerBaseView *)playerView;
+- (instancetype)initWithPlayerView:(MCPlayerBaseView *)playerView;
 
-- (void)updatePlayerView:(PlayerBaseView *)playerView;
+- (void)updatePlayerView:(MCPlayerBaseView *)playerView;
 
 - (void)playUrls:(nonnull NSArray<NSString *> *)urls;
 

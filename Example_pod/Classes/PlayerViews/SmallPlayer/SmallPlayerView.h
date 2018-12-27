@@ -5,9 +5,9 @@
 
 
 
-#import "PlayerBaseView.h"
+#import "MCPlayerBaseView.h"
 
-@interface SmallPlayerView : PlayerBaseView
+@interface SmallPlayerView : MCPlayerBaseView
 
 
 @end

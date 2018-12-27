@@ -5,7 +5,7 @@
 
 #import "ScrollPlayerController.h"
 
-#import "PlayerKit.h"
+#import "MCPlayerKit.h"
 #import <Masonry.h>
 
 #import "PlayerSimpleView.h"
@@ -19,7 +19,7 @@
 
 @property(nonatomic, strong) UITableView *tableView;
 
-@property(nonatomic, strong) PlayerKit *playerKit;
+@property(nonatomic, strong) MCPlayerKit *playerKit;
 @property(nonatomic, strong) PlayerSimpleView *playerView;
 
 @end
@@ -83,9 +83,9 @@
     return _tableView;
 }
 
-- (PlayerKit *)playerKit {
+- (MCPlayerKit *)playerKit {
     if (!_playerKit) {
-        _playerKit = [[PlayerKit alloc] initWithPlayerView:self.playerView];
+        _playerKit = [[MCPlayerKit alloc] initWithPlayerView:self.playerView];
         _playerKit.delegate = self;
         _playerKit.playerCoreType = PlayerCoreAVPlayer;
     }
