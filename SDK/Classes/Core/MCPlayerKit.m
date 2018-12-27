@@ -48,12 +48,18 @@
     if ([self.delegate respondsToSelector:@selector(updatePlayView)]) {
         [self.delegate updatePlayView];
     }
+    if ([_playerView respondsToSelector:@selector(updatePlayerLayer:)] && [_player playerLayer]) {
+        [_playerView updatePlayerLayer:[_player playerLayer]];
+    }
+    if ([_playerView respondsToSelector:@selector(updatePlayerView:)] && [_player playerView]) {
+        [_playerView updatePlayerView:[_player playerView]];
+    }
 }
 
 - (void)destory {
     [self fireTimer];
     if (_player) {
-        [self removeObserver:_player forKeyPath:@"playerState"];
+        [_player removeObserver:self forKeyPath:@"playerState"];
         [_player destory];
         _player = nil;
     }
@@ -127,8 +133,8 @@
             if ([self.delegate respondsToSelector:@selector(playLoading)]) {
                 [self.delegate playLoading];
             }
-            if ([self.delegate respondsToSelector:@selector(updatePlayView)]) {
-                [self.delegate updatePlayView];
+            if (_playerView) {
+                [self updatePlayerView:_playerView];
             }
         }
             break;
@@ -192,7 +198,7 @@
     _player.playerLayerVideoGravity = self.playerLayerVideoGravity;
     [_player playUrls:urls isLiveOptions:isLiveOptions];
 
-    [self addObserver:_player forKeyPath:@"playerState" options:NSKeyValueObservingOptionNew context:nil];
+    [_player addObserver:self forKeyPath:@"playerState" options:NSKeyValueObservingOptionNew context:nil];
 }
 
 - (void)preparePlay {
@@ -218,7 +224,7 @@
 
 - (void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary<NSKeyValueChangeKey, id> *)change context:(nullable void *)context {
     if ([keyPath isEqualToString:@"playerState"]) {
-        PlayerState state = (PlayerState) [object integerValue];
+        PlayerState state = (PlayerState) [change[NSKeyValueChangeNewKey] integerValue];
         if (state == self.playerState)
             return;
         [self changePlayerState:state];

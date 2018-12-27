@@ -14,8 +14,9 @@
 #import "DataVM.h"
 #import "ScrollPlayerDataVM.h"
 #import "VideoDto.h"
+#import "MCPlayer.h"
 
-@interface ScrollPlayerController () <UITableViewDataSource, UITableViewDelegate>
+@interface ScrollPlayerController () <UITableViewDataSource, UITableViewDelegate, MCPlayerDelegate>
 
 @property(nonatomic, strong) UITableView *tableView;
 
@@ -82,6 +83,43 @@
     }
     return _tableView;
 }
+
+#pragma mark - MCPlayerDelegate
+
+- (void)playLoading {
+
+}
+
+- (void)playBuffer {
+
+}
+
+- (void)playStart {
+
+}
+
+- (void)playPlay {
+
+}
+
+- (void)playEnd {
+
+}
+
+- (void)playError {
+
+}
+
+- (void)updatePlayView {
+
+}
+
+- (void)currentTime:(double)time {
+
+}
+
+
+#pragma mark -getter
 
 - (MCPlayerKit *)playerKit {
     if (!_playerKit) {

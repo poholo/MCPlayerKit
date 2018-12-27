@@ -8,4 +8,5 @@ target "Example" do
  pod "Masonry", "1.0.2"
  pod "MBProgressHUD", "1.0.0"
  pod 'HWWeakTimer', '~> 1.0'
+ pod 'Reveal-iOS-SDK', :configurations => ['Debug']
 end

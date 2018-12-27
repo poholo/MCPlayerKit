@@ -13,7 +13,7 @@
 @class MCPlayerBaseView;
 
 
-@protocol PlayerDelegate <NSObject>
+@protocol MCPlayerDelegate <NSObject>
 
 - (void)playLoading;
 
@@ -44,7 +44,7 @@
 @property(nonatomic, assign) PlayerActionAtItemEnd actionAtItemEnd;
 @property(nonatomic, assign) PlayerLayerVideoGravity playerLayerVideoGravity;
 @property(nonatomic, assign) BOOL notNeedSetProbesize;
-@property(nonatomic, weak) id <PlayerDelegate> delegate;
+@property(nonatomic, weak) id <MCPlayerDelegate> delegate;
 
 
 - (instancetype)initWithPlayerView:(MCPlayerBaseView *)playerView;
