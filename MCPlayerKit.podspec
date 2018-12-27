@@ -12,22 +12,19 @@ Pod::Spec.new do |s|
   s.platform     = :ios, "8.0"
   s.source       = { :git => "https://github.com/poholo/PlayerKit.git", :tag => "#{s.version}" }
 
-  s.subspec "PlayerKit" do |ss|
-    ss.dependency "IJKMediaFramework"
-    ss.source_files = "MCPlayerKit/PlayerKit/**/*.{h,m,mm}"
-                      "MCPlayerKit/PlayerKit/*.{h,m,mm}"
-                      
-    ss.public_header_files = "MCPlayerKit/PlayerKit/**/*.h"
-                             "MCPlayerKit/PlayerKit/*.h"
-    ss.xcconfig = {
-         'VALID_ARCHS' => 'arm64 x86_64',
 
-    }
-    ss.pod_target_xcconfig = {
-          'VALID_ARCHS' => 'arm64 x86_64'
-    }
-  end
+  s.source_files = "SDK/Classes/**/*.{h,m,mm}",
+                   "SDK/Classes/*.{h,m,mm}"                  
+  s.public_header_files = "SDK/Classes/**/*.h"
+                          "SDK/Classes/*.h"
+  s.xcconfig = {
+       'VALID_ARCHS' => 'arm64 x86_64',
+  }
+  s.pod_target_xcconfig = {
+        'VALID_ARCHS' => 'arm64 x86_64'
+  }
 
+  s.dependency "IJKMediaFramework"
   s.frameworks = "UIKit", "Foundation", "VideoToolbox", "QuartzCore", "OpenGLES", "MobileCoreServices", 
                  "MediaPlayer", "CoreVideo", "CoreMedia", "CoreGraphics", "AVFoundation", "AudioToolbox"
 
