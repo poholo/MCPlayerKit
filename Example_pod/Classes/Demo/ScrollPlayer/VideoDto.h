@@ -7,4 +7,10 @@
 
 @interface VideoDto : Dto
 
+@property(nonatomic, strong) NSString *name;
+@property(nonatomic, strong) NSString *hd;
+@property(nonatomic, strong) NSString *shd;
+@property(nonatomic, strong) NSString *nomalUrl;
+@property(nonatomic, strong) NSString *imageUrl;
+
 @end

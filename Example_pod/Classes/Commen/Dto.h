@@ -12,4 +12,6 @@
 
 @property(nonatomic, strong) NSString *entityId;
 
++ (id)createDto:(NSDictionary *)dictionary;
+
 @end

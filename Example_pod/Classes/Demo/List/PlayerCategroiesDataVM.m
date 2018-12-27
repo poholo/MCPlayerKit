@@ -17,6 +17,14 @@
 
 - (void)refresh {
     [super refresh];
+
+    {
+        PlayerCategroryDto *dto = [PlayerCategroryDto new];
+        dto.name = @"抖音";
+        dto.actionClass = [PlayerNormalController class];
+        [self.dataList addObject:dto];
+    }
+
     {
         PlayerCategroryDto *dto = [PlayerCategroryDto new];
         dto.name = @"16:9 固定模式";

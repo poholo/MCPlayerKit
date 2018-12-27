@@ -17,4 +17,11 @@
     }
     return self;
 }
+
++ (id)createDto:(NSDictionary *)dictionary {
+    Dto *dto = [self new];
+    [dto setValuesForKeysWithDictionary:dictionary];
+    return dto;
+}
+
 @end

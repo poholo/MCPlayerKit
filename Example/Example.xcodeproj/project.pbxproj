@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A66626DA1A60DAF14625943 /* VideoList.json in Resources */ = {isa = PBXBuildFile; fileRef = 1A6664156E941836355B9AC7 /* VideoList.json */; };
+		1A6662B348D985B0C6ACD110 /* MCDouyinPlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666069573E98FDB9361047 /* MCDouyinPlayerCell.m */; };
+		1A66664348B963C8D360B47E /* MCDouyinPlayerDataVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A66610031227F7AA732D0C0 /* MCDouyinPlayerDataVM.m */; };
+		1A66675E53A569FCF0CB5974 /* MCDouyinPlayerListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A66630199912D41B7E81D7A /* MCDouyinPlayerListController.m */; };
+		1A66683911DDDF0E138BA38F /* MCDouyinPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666517B220B5FFE7708263 /* MCDouyinPlayerView.m */; };
 		250CCDF321D4CE2000ECDF83 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 250CCDCE21D4CE1F00ECDF83 /* LaunchScreen.storyboard */; };
 		250CCDF421D4CE2000ECDF83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 250CCDD021D4CE1F00ECDF83 /* Assets.xcassets */; };
 		250CCDF521D4CE2000ECDF83 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCDD121D4CE1F00ECDF83 /* AppDelegate.m */; };
@@ -61,6 +66,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A666069573E98FDB9361047 /* MCDouyinPlayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCDouyinPlayerCell.m; sourceTree = "<group>"; };
+		1A66610031227F7AA732D0C0 /* MCDouyinPlayerDataVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCDouyinPlayerDataVM.m; sourceTree = "<group>"; };
+		1A66630199912D41B7E81D7A /* MCDouyinPlayerListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCDouyinPlayerListController.m; sourceTree = "<group>"; };
+		1A6664156E941836355B9AC7 /* VideoList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = VideoList.json; sourceTree = "<group>"; };
+		1A66643D84A9616FA9F2B7E0 /* MCDouyinPlayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCDouyinPlayerCell.h; sourceTree = "<group>"; };
+		1A666517B220B5FFE7708263 /* MCDouyinPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCDouyinPlayerView.m; sourceTree = "<group>"; };
+		1A6667B55D4305D24EA5FCE9 /* MCDouyinPlayerDataVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCDouyinPlayerDataVM.h; sourceTree = "<group>"; };
+		1A6668CF5F862C99D57F7389 /* MCDouyinPlayerListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCDouyinPlayerListController.h; sourceTree = "<group>"; };
+		1A66696C669382CD9DFEEAD3 /* MCDouyinPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCDouyinPlayerView.h; sourceTree = "<group>"; };
 		250CCDB421D4CDAD00ECDF83 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		250CCDC521D4CDAE00ECDF83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		250CCDCF21D4CE1F00ECDF83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -179,6 +193,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A666A9669AD1B5D12A85267 /* Douyin */ = {
+			isa = PBXGroup;
+			children = (
+				1A66630199912D41B7E81D7A /* MCDouyinPlayerListController.m */,
+				1A6668CF5F862C99D57F7389 /* MCDouyinPlayerListController.h */,
+				1A666517B220B5FFE7708263 /* MCDouyinPlayerView.m */,
+				1A66696C669382CD9DFEEAD3 /* MCDouyinPlayerView.h */,
+				1A666069573E98FDB9361047 /* MCDouyinPlayerCell.m */,
+				1A66643D84A9616FA9F2B7E0 /* MCDouyinPlayerCell.h */,
+				1A66610031227F7AA732D0C0 /* MCDouyinPlayerDataVM.m */,
+				1A6667B55D4305D24EA5FCE9 /* MCDouyinPlayerDataVM.h */,
+			);
+			path = Douyin;
+			sourceTree = "<group>";
+		};
 		250CCDAB21D4CDAD00ECDF83 = {
 			isa = PBXGroup;
 			children = (
@@ -226,6 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				250CCDF121D4CE2000ECDF83 /* Player.xcassets */,
+				1A6664156E941836355B9AC7 /* VideoList.json */,
 			);
 			name = Resources;
 			path = ../Example_pod/Resources;
@@ -251,6 +281,7 @@
 				250CCE8B21D4D1C800ECDF83 /* ScrollPlayer */,
 				250CCE9621D4D1C800ECDF83 /* Player */,
 				250CCE9F21D4D1C800ECDF83 /* ScrollPlayer2SmallPlayer */,
+				1A666A9669AD1B5D12A85267 /* Douyin */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -562,6 +593,7 @@
 				250CCDF421D4CE2000ECDF83 /* Assets.xcassets in Resources */,
 				250CCE0121D4CE2000ECDF83 /* Player.xcassets in Resources */,
 				250CCDF321D4CE2000ECDF83 /* LaunchScreen.storyboard in Resources */,
+				1A66626DA1A60DAF14625943 /* VideoList.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -644,6 +676,10 @@
 				250CCEDE21D4D1C800ECDF83 /* ScrollPlayerDataVM.m in Sources */,
 				250CCEE621D4D1C800ECDF83 /* ScrollPlayer2SmallPlayerController.m in Sources */,
 				250CCFC021D4D65D00ECDF83 /* MCPlayerKit.m in Sources */,
+				1A66675E53A569FCF0CB5974 /* MCDouyinPlayerListController.m in Sources */,
+				1A66683911DDDF0E138BA38F /* MCDouyinPlayerView.m in Sources */,
+				1A6662B348D985B0C6ACD110 /* MCDouyinPlayerCell.m in Sources */,
+				1A66664348B963C8D360B47E /* MCDouyinPlayerDataVM.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
