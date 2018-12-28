@@ -5,8 +5,11 @@
 
 #import "TableViewCell.h"
 
+@class MCDouyinPlayerView;
+
 
 @interface MCDouyinPlayerCell : TableViewCell
 
+- (void)updatePlayerView:(__weak MCDouyinPlayerView *)playerView;
 
 @end

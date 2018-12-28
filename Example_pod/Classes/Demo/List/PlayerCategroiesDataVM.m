@@ -9,6 +9,7 @@
 #import "PlayerNormalController.h"
 #import "ScrollPlayerController.h"
 #import "ScrollPlayer2SmallPlayerController.h"
+#import "MCDouyinPlayerListController.h"
 
 
 @implementation PlayerCategroiesDataVM {
@@ -21,7 +22,7 @@
     {
         PlayerCategroryDto *dto = [PlayerCategroryDto new];
         dto.name = @"抖音";
-        dto.actionClass = [PlayerNormalController class];
+        dto.actionClass = [MCDouyinPlayerListController class];
         [self.dataList addObject:dto];
     }
 

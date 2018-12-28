@@ -133,9 +133,6 @@
             if ([self.delegate respondsToSelector:@selector(playLoading)]) {
                 [self.delegate playLoading];
             }
-            if (_playerView) {
-                [self updatePlayerView:_playerView];
-            }
         }
             break;
         case PlayerStateBuffering: {
@@ -147,6 +144,9 @@
         case PlayerStateStarting: {
             if ([self.delegate respondsToSelector:@selector(playStart)]) {
                 [self.delegate playStart];
+            }
+            if (_playerView) {
+                [self updatePlayerView:_playerView];
             }
         }
             break;
@@ -181,6 +181,7 @@
 
 - (void)playUrls:(nonnull NSArray<NSString *> *)urls isLiveOptions:(BOOL)isLiveOptions {
     [self destory];
+    MCLog(@"[Play]%@", urls);
     self.playerState = PlayerStateNone;
     self.urls = urls;
     _player = ({

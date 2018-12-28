@@ -5,8 +5,16 @@
 
 #import "MCDouyinPlayerCell.h"
 
+#import "MCDouyinPlayerView.h"
 
-@implementation MCDouyinPlayerCell {
+@implementation MCDouyinPlayerCell
 
+- (void)updatePlayerView:(__weak MCDouyinPlayerView *)playerView {
+    [self.contentView addSubview:playerView];
+}
+
+
++ (CGFloat)height {
+    return CGRectGetHeight([UIScreen mainScreen].bounds);
 }
 @end
