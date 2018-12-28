@@ -31,6 +31,8 @@
 - (void)pullToRefresh {
     [self.dataVM refresh];
     [self.tableView reloadData];
+    VideoDto *dto = self.dataVM.dataList[0];
+    [self.playerKit playUrls:@[dto.hd]];
 }
 
 - (void)configTable {

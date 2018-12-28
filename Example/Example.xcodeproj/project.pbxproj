@@ -264,7 +264,7 @@
 		250CCE8021D4D1C800ECDF83 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				250CCE8121D4D1C800ECDF83 /* Demo */,
+				250CCE8121D4D1C800ECDF83 /* Modules */,
 				250CCEA221D4D1C800ECDF83 /* PlayerViews */,
 				250CCEB921D4D1C800ECDF83 /* Commen */,
 				250CCEC521D4D1C800ECDF83 /* Categories */,
@@ -274,7 +274,7 @@
 			path = ../Example_pod/Classes;
 			sourceTree = "<group>";
 		};
-		250CCE8121D4D1C800ECDF83 /* Demo */ = {
+		250CCE8121D4D1C800ECDF83 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
 				250CCE8221D4D1C800ECDF83 /* List */,
@@ -283,7 +283,7 @@
 				250CCE9F21D4D1C800ECDF83 /* ScrollPlayer2SmallPlayer */,
 				1A666A9669AD1B5D12A85267 /* Douyin */,
 			);
-			path = Demo;
+			path = Modules;
 			sourceTree = "<group>";
 		};
 		250CCE8221D4D1C800ECDF83 /* List */ = {
