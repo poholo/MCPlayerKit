@@ -4,24 +4,24 @@
 //
 
 
-#import "PlayerNormalController.h"
+#import "MCPlayerNormalController.h"
 
 #import <Masonry.h>
 
-#import "PlayerNormalView.h"
-#import "PlayerNormalController+AutoRotate.h"
+#import "MCPlayerNormalView.h"
+#import "MCPlayerNormalController+AutoRotate.h"
 #import "MCPlayerKit.h"
 
 
-@interface PlayerNormalController () <PlayerNormalViewDelegate>
+@interface MCPlayerNormalController () <PlayerNormalViewDelegate, MCPlayerDelegate>
 
 @property(nonatomic, strong) MCPlayerKit *playerKit;
-@property(nonatomic, strong) PlayerNormalView *playerView;
+@property(nonatomic, strong) MCPlayerNormalView *playerView;
 
 @end
 
 
-@implementation PlayerNormalController {
+@implementation MCPlayerNormalController {
 
 }
 
@@ -63,13 +63,6 @@
 - (void)didEnterBackground:(NSNotification *)notification {
     [_playerKit pause];
     _playerKit.playerEnvironment = PlayerEnvironmentOnResignActiveStatus;
-
-//    __weak typeof(self) weakSelf = self;
-//    dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC);
-//    dispatch_after(time, dispatch_get_main_queue(), ^{
-//        __strong typeof(weakSelf) strongSelf = weakSelf;
-//        [strongSelf->_playerKit pause];
-//    });
 }
 
 - (void)willEnterForground:(NSNotification *)notification {
@@ -242,11 +235,11 @@
     return _playerKit;
 }
 
-- (PlayerNormalView *)playerView {
+- (MCPlayerNormalView *)playerView {
     if (!_playerView) {
         CGFloat width = MIN([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
         CGFloat height = width * 9 / 16.0f;
-        _playerView = [[PlayerNormalView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
+        _playerView = [[MCPlayerNormalView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
         _playerView.playerNormalViewDelegate = self;
 
         [_playerView updateTitle:@"标题"];

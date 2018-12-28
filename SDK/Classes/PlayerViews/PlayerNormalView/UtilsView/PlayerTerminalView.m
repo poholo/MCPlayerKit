@@ -143,40 +143,40 @@ typedef NS_ENUM(NSInteger, PTAirPlayEvent) {
 
     _videoTitle.text = videoTitle;
     [self showNormalStyle];
-//    switch(state) {
-//        case PlayerStatePlayEnd    : {
-//            _mentionInfo.text   = _k_AV_TerminalMentionPLayerStatePlayEnd;
-//            [self tapGestureRecognizer];
-//        } break;
-//
-//        case PlayerState3GUnenable : {
-//            _mentionInfo.text = _k_AV_TerminalMentionPlayerState3GUnenable;
-////            _mentionInfo.textColor = [UIColor greenColor];
-//            [self tapGestureRecognizer];
-//        } break;
-//
-//        case PlayerStateNetError   : {
-//            _mentionInfo.text = _k_AV_TerminalMentionPlayerStateNetError;
-////            _mentionInfo.textColor = [UIColor redColor];
-//            [self tapGestureRecognizer];
-//        } break;
-//
-//        case PlayerStateUrlError   : {
-//            _mentionInfo.text = _k_AV_TerminalMentionPlayerStateUrlError;
-////            _mentionInfo.textColor = [UIColor whiteColor];
-//            [self tapGestureRecognizer];
-//        } break;
-//
-//        case PlayerStateError      : {
-//            _mentionInfo.text = _k_AV_TerminalMentionPlayerStateError;
-////            _mentionInfo.textColor = [UIColor whiteColor];
-//            [self tapGestureRecognizer];
-//        } break;
-//
-//        default                      : {
-//
-//        } break;
-//    }
+    switch(state) {
+        case PlayerStatePlayEnd    : {
+            _mentionInfo.text   = _k_AV_TerminalMentionPLayerStatePlayEnd;
+            [self tapGestureRecognizer];
+        } break;
+
+        case PlayerState3GUnenable : {
+            _mentionInfo.text = _k_AV_TerminalMentionPlayerState3GUnenable;
+//            _mentionInfo.textColor = [UIColor greenColor];
+            [self tapGestureRecognizer];
+        } break;
+
+        case PlayerStateNetError   : {
+            _mentionInfo.text = _k_AV_TerminalMentionPlayerStateNetError;
+//            _mentionInfo.textColor = [UIColor redColor];
+            [self tapGestureRecognizer];
+        } break;
+
+        case PlayerStateUrlError   : {
+            _mentionInfo.text = _k_AV_TerminalMentionPlayerStateUrlError;
+//            _mentionInfo.textColor = [UIColor whiteColor];
+            [self tapGestureRecognizer];
+        } break;
+
+        case PlayerStateError      : {
+            _mentionInfo.text = _k_AV_TerminalMentionPlayerStateError;
+//            _mentionInfo.textColor = [UIColor whiteColor];
+            [self tapGestureRecognizer];
+        } break;
+
+        default                      : {
+
+        } break;
+    }
     _playerSate = state;
 }
 
@@ -241,28 +241,28 @@ typedef NS_ENUM(NSInteger, PTAirPlayEvent) {
 
 - (void)tapClick:(UITapGestureRecognizer *)tap {
     if(_delegate == nil) return;
-//    switch(_playerSate) {
-//        case PlayerStatePlayEnd     : {
-//            [_delegate terninalPlayEndReplay];
-//        } break;
-//
-//        case  PlayerState3GUnenable : {
-//            [_delegate terminal3GCanContinuePlay];
-//        } break;
-//
-//        case  PlayerStateNetError   : {
-//            [_delegate terminalNetErrorRetry];
-//        } break;
-//
-//        case  PlayerStateUrlError   : {
-//            [_delegate terminalUrlErrorRetry];
-//        } break;
-//
-//        case  PlayerStateError      : {
-//            [_delegate terminalErrorRetry];
-//        } break;
-//        default:break;
-//    }
+    switch(_playerSate) {
+        case PlayerStatePlayEnd     : {
+            [_delegate terninalPlayEndReplay];
+        } break;
+
+        case  PlayerState3GUnenable : {
+            [_delegate terminal3GCanContinuePlay];
+        } break;
+
+        case  PlayerStateNetError   : {
+            [_delegate terminalNetErrorRetry];
+        } break;
+
+        case  PlayerStateUrlError   : {
+            [_delegate terminalUrlErrorRetry];
+        } break;
+
+        case  PlayerStateError      : {
+            [_delegate terminalErrorRetry];
+        } break;
+        default:break;
+    }
 }
 
 - (void)btnClick:(UIButton *)btn {

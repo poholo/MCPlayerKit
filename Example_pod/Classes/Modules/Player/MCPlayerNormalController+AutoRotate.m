@@ -4,15 +4,15 @@
 //
 
 
-#import "PlayerNormalController+AutoRotate.h"
+#import "MCPlayerNormalController+AutoRotate.h"
 
 #import "MCPlayerKit.h"
 #import <Masonry.h>
 
-#import "PlayerNormalView.h"
+#import "MCPlayerNormalView.h"
 
 
-@implementation PlayerNormalController (AutoRotate)
+@implementation MCPlayerNormalController (AutoRotate)
 
 #pragma mark - AutoRoate
 

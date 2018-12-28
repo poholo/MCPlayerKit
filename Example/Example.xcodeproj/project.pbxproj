@@ -7,11 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A6660D1D2F2CA0FC31CE251 /* MCPlayerNormalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6669ADA49D05A0BF7BB6A3 /* MCPlayerNormalView.m */; };
+		1A666179DA7354BDB6C5D270 /* MCPlayerViewConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6661EA53F45E94609BE4AB /* MCPlayerViewConfig.m */; };
+		1A666244956F1A2101027A5F /* PlayerLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A66614C5C867956215A0AA1 /* PlayerLoadingView.m */; };
 		1A66626DA1A60DAF14625943 /* VideoList.json in Resources */ = {isa = PBXBuildFile; fileRef = 1A6664156E941836355B9AC7 /* VideoList.json */; };
 		1A6662B348D985B0C6ACD110 /* MCDouyinPlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666069573E98FDB9361047 /* MCDouyinPlayerCell.m */; };
+		1A66644A22E4543788425D4E /* PlayerViewUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A66675C4728E06AAFA9AAFC /* PlayerViewUtils.m */; };
+		1A6665980404102C66A01C2F /* CustomPlayerColor.json in Resources */ = {isa = PBXBuildFile; fileRef = 1A6667E55D386134FE2203AC /* CustomPlayerColor.json */; };
+		1A66662EC93FE1B684A46E8F /* CustomPlayerStyle.json in Resources */ = {isa = PBXBuildFile; fileRef = 1A666399843F156981DEE137 /* CustomPlayerStyle.json */; };
 		1A66664348B963C8D360B47E /* MCDouyinPlayerDataVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A66610031227F7AA732D0C0 /* MCDouyinPlayerDataVM.m */; };
 		1A66675E53A569FCF0CB5974 /* MCDouyinPlayerListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A66630199912D41B7E81D7A /* MCDouyinPlayerListController.m */; };
+		1A6667708B8BB3093EA92476 /* PlayerTerminalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666BB3E2C3E1498F327B58 /* PlayerTerminalView.m */; };
+		1A6667A12D09D26A10E2CD2C /* MCMediaNotify.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666EFED9D09D5A5B4FF32D /* MCMediaNotify.m */; };
 		1A66683911DDDF0E138BA38F /* MCDouyinPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666517B220B5FFE7708263 /* MCDouyinPlayerView.m */; };
+		1A6668A970D754D09CCFDDBB /* MCPlayerNormalHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A66616180FA5D619A3FFFBB /* MCPlayerNormalHeader.m */; };
+		1A6668B5BACF2DBB37CDDBE5 /* PlayerProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6663C8ED43AE5217F96BCC /* PlayerProgress.m */; };
+		1A6668D39CD922F906522403 /* PlayerNormalViewDataVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666A7FA0AAD9BA7021944C /* PlayerNormalViewDataVM.m */; };
+		1A666D1A3B171845BD3423C3 /* MCPlayerNormalFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666B62A167B56AB859469B /* MCPlayerNormalFooter.m */; };
+		1A666EDCC82FA58984216C48 /* CustomPlayerFont.json in Resources */ = {isa = PBXBuildFile; fileRef = 1A666EBDEA923272BFCB297D /* CustomPlayerFont.json */; };
 		250CCDF321D4CE2000ECDF83 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 250CCDCE21D4CE1F00ECDF83 /* LaunchScreen.storyboard */; };
 		250CCDF421D4CE2000ECDF83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 250CCDD021D4CE1F00ECDF83 /* Assets.xcassets */; };
 		250CCDF521D4CE2000ECDF83 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCDD121D4CE1F00ECDF83 /* AppDelegate.m */; };
@@ -26,20 +39,13 @@
 		250CCEDF21D4D1C800ECDF83 /* PlayerSimpleViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCE8F21D4D1C800ECDF83 /* PlayerSimpleViewCell.m */; };
 		250CCEE021D4D1C800ECDF83 /* ScrollPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCE9321D4D1C800ECDF83 /* ScrollPlayerController.m */; };
 		250CCEE121D4D1C800ECDF83 /* VideoDto.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCE9521D4D1C800ECDF83 /* VideoDto.m */; };
-		250CCEE221D4D1C800ECDF83 /* PlayerNormalController+AutoRotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCE9B21D4D1C800ECDF83 /* PlayerNormalController+AutoRotate.m */; };
-		250CCEE321D4D1C800ECDF83 /* PlayerNormalDataVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCE9C21D4D1C800ECDF83 /* PlayerNormalDataVM.m */; };
-		250CCEE421D4D1C800ECDF83 /* PlayerNormalDto.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCE9D21D4D1C800ECDF83 /* PlayerNormalDto.m */; };
-		250CCEE521D4D1C800ECDF83 /* PlayerNormalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCE9E21D4D1C800ECDF83 /* PlayerNormalController.m */; };
+		250CCEE221D4D1C800ECDF83 /* MCPlayerNormalController+AutoRotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCE9B21D4D1C800ECDF83 /* MCPlayerNormalController+AutoRotate.m */; };
+		250CCEE321D4D1C800ECDF83 /* MCPlayerNormalDataVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCE9C21D4D1C800ECDF83 /* MCPlayerNormalDataVM.m */; };
+		250CCEE421D4D1C800ECDF83 /* MCPlayerNormalDto.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCE9D21D4D1C800ECDF83 /* MCPlayerNormalDto.m */; };
+		250CCEE521D4D1C800ECDF83 /* MCPlayerNormalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCE9E21D4D1C800ECDF83 /* MCPlayerNormalController.m */; };
 		250CCEE621D4D1C800ECDF83 /* ScrollPlayer2SmallPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCEA121D4D1C800ECDF83 /* ScrollPlayer2SmallPlayerController.m */; };
 		250CCEE721D4D1C800ECDF83 /* SmallPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCEA421D4D1C800ECDF83 /* SmallPlayerView.m */; };
 		250CCEE821D4D1C800ECDF83 /* PlayerSimpleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCEA721D4D1C800ECDF83 /* PlayerSimpleView.m */; };
-		250CCEE921D4D1C800ECDF83 /* PlayerTerminalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCEAB21D4D1C800ECDF83 /* PlayerTerminalView.m */; };
-		250CCEEA21D4D1C800ECDF83 /* PlayerProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCEAD21D4D1C800ECDF83 /* PlayerProgress.m */; };
-		250CCEEB21D4D1C800ECDF83 /* PlayerLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCEAE21D4D1C800ECDF83 /* PlayerLoadingView.m */; };
-		250CCEEC21D4D1C800ECDF83 /* MCMediaNotify.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCEAF21D4D1C800ECDF83 /* MCMediaNotify.m */; };
-		250CCEED21D4D1C800ECDF83 /* PlayerViewUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCEB221D4D1C800ECDF83 /* PlayerViewUtils.m */; };
-		250CCEEE21D4D1C800ECDF83 /* PlayerViewConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCEB721D4D1C800ECDF83 /* PlayerViewConfig.m */; };
-		250CCEEF21D4D1C800ECDF83 /* PlayerNormalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCEB821D4D1C800ECDF83 /* PlayerNormalView.m */; };
 		250CCEF021D4D1C800ECDF83 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCEBB21D4D1C800ECDF83 /* TableViewCell.m */; };
 		250CCEF121D4D1C800ECDF83 /* MCController.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCEBE21D4D1C800ECDF83 /* MCController.m */; };
 		250CCEF221D4D1C800ECDF83 /* CollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCEBF21D4D1C800ECDF83 /* CollectionCell.m */; };
@@ -68,13 +74,36 @@
 /* Begin PBXFileReference section */
 		1A666069573E98FDB9361047 /* MCDouyinPlayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCDouyinPlayerCell.m; sourceTree = "<group>"; };
 		1A66610031227F7AA732D0C0 /* MCDouyinPlayerDataVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCDouyinPlayerDataVM.m; sourceTree = "<group>"; };
+		1A666122A263BE2C2761FCFB /* MCPlayerNormalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCPlayerNormalView.h; sourceTree = "<group>"; };
+		1A66614C5C867956215A0AA1 /* PlayerLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerLoadingView.m; sourceTree = "<group>"; };
+		1A66616180FA5D619A3FFFBB /* MCPlayerNormalHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCPlayerNormalHeader.m; sourceTree = "<group>"; };
+		1A6661E75675E3D2C6179C36 /* PlayerNormalViewDataVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerNormalViewDataVM.h; sourceTree = "<group>"; };
+		1A6661EA53F45E94609BE4AB /* MCPlayerViewConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCPlayerViewConfig.m; sourceTree = "<group>"; };
 		1A66630199912D41B7E81D7A /* MCDouyinPlayerListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCDouyinPlayerListController.m; sourceTree = "<group>"; };
+		1A666399843F156981DEE137 /* CustomPlayerStyle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CustomPlayerStyle.json; sourceTree = "<group>"; };
+		1A6663C8ED43AE5217F96BCC /* PlayerProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerProgress.m; sourceTree = "<group>"; };
+		1A6663F75661AB3F03237496 /* MCPlayerNormalFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCPlayerNormalFooter.h; sourceTree = "<group>"; };
 		1A6664156E941836355B9AC7 /* VideoList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = VideoList.json; sourceTree = "<group>"; };
 		1A66643D84A9616FA9F2B7E0 /* MCDouyinPlayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCDouyinPlayerCell.h; sourceTree = "<group>"; };
+		1A6664ED0F8A52338E2F6B90 /* PlayerProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerProgress.h; sourceTree = "<group>"; };
 		1A666517B220B5FFE7708263 /* MCDouyinPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCDouyinPlayerView.m; sourceTree = "<group>"; };
+		1A6665600943791525852D67 /* MCPlayerViewConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCPlayerViewConfig.h; sourceTree = "<group>"; };
+		1A6665D3418D18E34A5B5E2D /* PlayerViewUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewUtils.h; sourceTree = "<group>"; };
+		1A66662D8A9FE49566B86F0A /* PlayerLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerLoadingView.h; sourceTree = "<group>"; };
+		1A66675C4728E06AAFA9AAFC /* PlayerViewUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewUtils.m; sourceTree = "<group>"; };
 		1A6667B55D4305D24EA5FCE9 /* MCDouyinPlayerDataVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCDouyinPlayerDataVM.h; sourceTree = "<group>"; };
+		1A6667E55D386134FE2203AC /* CustomPlayerColor.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CustomPlayerColor.json; sourceTree = "<group>"; };
 		1A6668CF5F862C99D57F7389 /* MCDouyinPlayerListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCDouyinPlayerListController.h; sourceTree = "<group>"; };
 		1A66696C669382CD9DFEEAD3 /* MCDouyinPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCDouyinPlayerView.h; sourceTree = "<group>"; };
+		1A6669AAFA835DA27EF3B2CE /* PlayerTerminalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerTerminalView.h; sourceTree = "<group>"; };
+		1A6669ADA49D05A0BF7BB6A3 /* MCPlayerNormalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCPlayerNormalView.m; sourceTree = "<group>"; };
+		1A666A7FA0AAD9BA7021944C /* PlayerNormalViewDataVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerNormalViewDataVM.m; sourceTree = "<group>"; };
+		1A666B62A167B56AB859469B /* MCPlayerNormalFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCPlayerNormalFooter.m; sourceTree = "<group>"; };
+		1A666BB3E2C3E1498F327B58 /* PlayerTerminalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerTerminalView.m; sourceTree = "<group>"; };
+		1A666E7D7A189E9E39D42C3E /* MCPlayerNormalHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCPlayerNormalHeader.h; sourceTree = "<group>"; };
+		1A666EBDEA923272BFCB297D /* CustomPlayerFont.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CustomPlayerFont.json; sourceTree = "<group>"; };
+		1A666EFED9D09D5A5B4FF32D /* MCMediaNotify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCMediaNotify.m; sourceTree = "<group>"; };
+		1A666F446FB20A6CBA968744 /* MCMediaNotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCMediaNotify.h; sourceTree = "<group>"; };
 		250CCDB421D4CDAD00ECDF83 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		250CCDC521D4CDAE00ECDF83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		250CCDCF21D4CE1F00ECDF83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -101,34 +130,20 @@
 		250CCE9321D4D1C800ECDF83 /* ScrollPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollPlayerController.m; sourceTree = "<group>"; };
 		250CCE9421D4D1C800ECDF83 /* PlayerSimpleViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerSimpleViewCell.h; sourceTree = "<group>"; };
 		250CCE9521D4D1C800ECDF83 /* VideoDto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoDto.m; sourceTree = "<group>"; };
-		250CCE9721D4D1C800ECDF83 /* PlayerNormalController+AutoRotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PlayerNormalController+AutoRotate.h"; sourceTree = "<group>"; };
-		250CCE9821D4D1C800ECDF83 /* PlayerNormalDto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerNormalDto.h; sourceTree = "<group>"; };
-		250CCE9921D4D1C800ECDF83 /* PlayerNormalDataVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerNormalDataVM.h; sourceTree = "<group>"; };
-		250CCE9A21D4D1C800ECDF83 /* PlayerNormalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerNormalController.h; sourceTree = "<group>"; };
-		250CCE9B21D4D1C800ECDF83 /* PlayerNormalController+AutoRotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PlayerNormalController+AutoRotate.m"; sourceTree = "<group>"; };
-		250CCE9C21D4D1C800ECDF83 /* PlayerNormalDataVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerNormalDataVM.m; sourceTree = "<group>"; };
-		250CCE9D21D4D1C800ECDF83 /* PlayerNormalDto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerNormalDto.m; sourceTree = "<group>"; };
-		250CCE9E21D4D1C800ECDF83 /* PlayerNormalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerNormalController.m; sourceTree = "<group>"; };
+		250CCE9721D4D1C800ECDF83 /* MCPlayerNormalController+AutoRotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MCPlayerNormalController+AutoRotate.h"; sourceTree = "<group>"; };
+		250CCE9821D4D1C800ECDF83 /* MCPlayerNormalDto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCPlayerNormalDto.h; sourceTree = "<group>"; };
+		250CCE9921D4D1C800ECDF83 /* MCPlayerNormalDataVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCPlayerNormalDataVM.h; sourceTree = "<group>"; };
+		250CCE9A21D4D1C800ECDF83 /* MCPlayerNormalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCPlayerNormalController.h; sourceTree = "<group>"; };
+		250CCE9B21D4D1C800ECDF83 /* MCPlayerNormalController+AutoRotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MCPlayerNormalController+AutoRotate.m"; sourceTree = "<group>"; };
+		250CCE9C21D4D1C800ECDF83 /* MCPlayerNormalDataVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCPlayerNormalDataVM.m; sourceTree = "<group>"; };
+		250CCE9D21D4D1C800ECDF83 /* MCPlayerNormalDto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCPlayerNormalDto.m; sourceTree = "<group>"; };
+		250CCE9E21D4D1C800ECDF83 /* MCPlayerNormalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCPlayerNormalController.m; sourceTree = "<group>"; };
 		250CCEA021D4D1C800ECDF83 /* ScrollPlayer2SmallPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollPlayer2SmallPlayerController.h; sourceTree = "<group>"; };
 		250CCEA121D4D1C800ECDF83 /* ScrollPlayer2SmallPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollPlayer2SmallPlayerController.m; sourceTree = "<group>"; };
 		250CCEA421D4D1C800ECDF83 /* SmallPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmallPlayerView.m; sourceTree = "<group>"; };
 		250CCEA521D4D1C800ECDF83 /* SmallPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmallPlayerView.h; sourceTree = "<group>"; };
 		250CCEA721D4D1C800ECDF83 /* PlayerSimpleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerSimpleView.m; sourceTree = "<group>"; };
 		250CCEA821D4D1C800ECDF83 /* PlayerSimpleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerSimpleView.h; sourceTree = "<group>"; };
-		250CCEAB21D4D1C800ECDF83 /* PlayerTerminalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerTerminalView.m; sourceTree = "<group>"; };
-		250CCEAC21D4D1C800ECDF83 /* PlayerViewUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewUtils.h; sourceTree = "<group>"; };
-		250CCEAD21D4D1C800ECDF83 /* PlayerProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerProgress.m; sourceTree = "<group>"; };
-		250CCEAE21D4D1C800ECDF83 /* PlayerLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerLoadingView.m; sourceTree = "<group>"; };
-		250CCEAF21D4D1C800ECDF83 /* MCMediaNotify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCMediaNotify.m; sourceTree = "<group>"; };
-		250CCEB021D4D1C800ECDF83 /* PlayerTerminalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerTerminalView.h; sourceTree = "<group>"; };
-		250CCEB121D4D1C800ECDF83 /* PlayerProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerProgress.h; sourceTree = "<group>"; };
-		250CCEB221D4D1C800ECDF83 /* PlayerViewUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewUtils.m; sourceTree = "<group>"; };
-		250CCEB321D4D1C800ECDF83 /* PlayerLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerLoadingView.h; sourceTree = "<group>"; };
-		250CCEB421D4D1C800ECDF83 /* MCMediaNotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCMediaNotify.h; sourceTree = "<group>"; };
-		250CCEB521D4D1C800ECDF83 /* PlayerViewConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewConfig.h; sourceTree = "<group>"; };
-		250CCEB621D4D1C800ECDF83 /* PlayerNormalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerNormalView.h; sourceTree = "<group>"; };
-		250CCEB721D4D1C800ECDF83 /* PlayerViewConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewConfig.m; sourceTree = "<group>"; };
-		250CCEB821D4D1C800ECDF83 /* PlayerNormalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerNormalView.m; sourceTree = "<group>"; };
 		250CCEBA21D4D1C800ECDF83 /* CollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionCell.h; sourceTree = "<group>"; };
 		250CCEBB21D4D1C800ECDF83 /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
 		250CCEBC21D4D1C800ECDF83 /* DataVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataVM.h; sourceTree = "<group>"; };
@@ -193,6 +208,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A66655418AD26F1D0EE5420 /* PlayerNormalView */ = {
+			isa = PBXGroup;
+			children = (
+				1A666E6517C121B8B0DF3410 /* UtilsView */,
+				1A6665600943791525852D67 /* MCPlayerViewConfig.h */,
+				1A666122A263BE2C2761FCFB /* MCPlayerNormalView.h */,
+				1A6661EA53F45E94609BE4AB /* MCPlayerViewConfig.m */,
+				1A6669ADA49D05A0BF7BB6A3 /* MCPlayerNormalView.m */,
+				1A66616180FA5D619A3FFFBB /* MCPlayerNormalHeader.m */,
+				1A666E7D7A189E9E39D42C3E /* MCPlayerNormalHeader.h */,
+				1A666B62A167B56AB859469B /* MCPlayerNormalFooter.m */,
+				1A6663F75661AB3F03237496 /* MCPlayerNormalFooter.h */,
+				1A666A7FA0AAD9BA7021944C /* PlayerNormalViewDataVM.m */,
+				1A6661E75675E3D2C6179C36 /* PlayerNormalViewDataVM.h */,
+			);
+			path = PlayerNormalView;
+			sourceTree = "<group>";
+		};
+		1A66678CC8885D71B159FB7A /* Datas */ = {
+			isa = PBXGroup;
+			children = (
+				1A6667E55D386134FE2203AC /* CustomPlayerColor.json */,
+				1A666EBDEA923272BFCB297D /* CustomPlayerFont.json */,
+				1A666399843F156981DEE137 /* CustomPlayerStyle.json */,
+			);
+			path = Datas;
+			sourceTree = "<group>";
+		};
 		1A666A9669AD1B5D12A85267 /* Douyin */ = {
 			isa = PBXGroup;
 			children = (
@@ -206,6 +249,23 @@
 				1A6667B55D4305D24EA5FCE9 /* MCDouyinPlayerDataVM.h */,
 			);
 			path = Douyin;
+			sourceTree = "<group>";
+		};
+		1A666E6517C121B8B0DF3410 /* UtilsView */ = {
+			isa = PBXGroup;
+			children = (
+				1A666BB3E2C3E1498F327B58 /* PlayerTerminalView.m */,
+				1A6665D3418D18E34A5B5E2D /* PlayerViewUtils.h */,
+				1A6663C8ED43AE5217F96BCC /* PlayerProgress.m */,
+				1A66614C5C867956215A0AA1 /* PlayerLoadingView.m */,
+				1A666EFED9D09D5A5B4FF32D /* MCMediaNotify.m */,
+				1A6669AAFA835DA27EF3B2CE /* PlayerTerminalView.h */,
+				1A6664ED0F8A52338E2F6B90 /* PlayerProgress.h */,
+				1A66675C4728E06AAFA9AAFC /* PlayerViewUtils.m */,
+				1A66662D8A9FE49566B86F0A /* PlayerLoadingView.h */,
+				1A666F446FB20A6CBA968744 /* MCMediaNotify.h */,
+			);
+			path = UtilsView;
 			sourceTree = "<group>";
 		};
 		250CCDAB21D4CDAD00ECDF83 = {
@@ -321,14 +381,16 @@
 		250CCE9621D4D1C800ECDF83 /* Player */ = {
 			isa = PBXGroup;
 			children = (
-				250CCE9721D4D1C800ECDF83 /* PlayerNormalController+AutoRotate.h */,
-				250CCE9821D4D1C800ECDF83 /* PlayerNormalDto.h */,
-				250CCE9921D4D1C800ECDF83 /* PlayerNormalDataVM.h */,
-				250CCE9A21D4D1C800ECDF83 /* PlayerNormalController.h */,
-				250CCE9B21D4D1C800ECDF83 /* PlayerNormalController+AutoRotate.m */,
-				250CCE9C21D4D1C800ECDF83 /* PlayerNormalDataVM.m */,
-				250CCE9D21D4D1C800ECDF83 /* PlayerNormalDto.m */,
-				250CCE9E21D4D1C800ECDF83 /* PlayerNormalController.m */,
+				250CCE9721D4D1C800ECDF83 /* MCPlayerNormalController+AutoRotate.h */,
+				250CCE9821D4D1C800ECDF83 /* MCPlayerNormalDto.h */,
+				250CCE9921D4D1C800ECDF83 /* MCPlayerNormalDataVM.h */,
+				250CCE9A21D4D1C800ECDF83 /* MCPlayerNormalController.h */,
+				250CCE9B21D4D1C800ECDF83 /* MCPlayerNormalController+AutoRotate.m */,
+				250CCE9C21D4D1C800ECDF83 /* MCPlayerNormalDataVM.m */,
+				250CCE9D21D4D1C800ECDF83 /* MCPlayerNormalDto.m */,
+				250CCE9E21D4D1C800ECDF83 /* MCPlayerNormalController.m */,
+				1A66655418AD26F1D0EE5420 /* PlayerNormalView */,
+				1A66678CC8885D71B159FB7A /* Datas */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -347,7 +409,6 @@
 			children = (
 				250CCEA321D4D1C800ECDF83 /* SmallPlayer */,
 				250CCEA621D4D1C800ECDF83 /* PlayerSimpleView */,
-				250CCEA921D4D1C800ECDF83 /* PlayerNormalView */,
 			);
 			path = PlayerViews;
 			sourceTree = "<group>";
@@ -368,35 +429,6 @@
 				250CCEA821D4D1C800ECDF83 /* PlayerSimpleView.h */,
 			);
 			path = PlayerSimpleView;
-			sourceTree = "<group>";
-		};
-		250CCEA921D4D1C800ECDF83 /* PlayerNormalView */ = {
-			isa = PBXGroup;
-			children = (
-				250CCEAA21D4D1C800ECDF83 /* UtilsView */,
-				250CCEB521D4D1C800ECDF83 /* PlayerViewConfig.h */,
-				250CCEB621D4D1C800ECDF83 /* PlayerNormalView.h */,
-				250CCEB721D4D1C800ECDF83 /* PlayerViewConfig.m */,
-				250CCEB821D4D1C800ECDF83 /* PlayerNormalView.m */,
-			);
-			path = PlayerNormalView;
-			sourceTree = "<group>";
-		};
-		250CCEAA21D4D1C800ECDF83 /* UtilsView */ = {
-			isa = PBXGroup;
-			children = (
-				250CCEAB21D4D1C800ECDF83 /* PlayerTerminalView.m */,
-				250CCEAC21D4D1C800ECDF83 /* PlayerViewUtils.h */,
-				250CCEAD21D4D1C800ECDF83 /* PlayerProgress.m */,
-				250CCEAE21D4D1C800ECDF83 /* PlayerLoadingView.m */,
-				250CCEAF21D4D1C800ECDF83 /* MCMediaNotify.m */,
-				250CCEB021D4D1C800ECDF83 /* PlayerTerminalView.h */,
-				250CCEB121D4D1C800ECDF83 /* PlayerProgress.h */,
-				250CCEB221D4D1C800ECDF83 /* PlayerViewUtils.m */,
-				250CCEB321D4D1C800ECDF83 /* PlayerLoadingView.h */,
-				250CCEB421D4D1C800ECDF83 /* MCMediaNotify.h */,
-			);
-			path = UtilsView;
 			sourceTree = "<group>";
 		};
 		250CCEB921D4D1C800ECDF83 /* Commen */ = {
@@ -594,6 +626,9 @@
 				250CCE0121D4CE2000ECDF83 /* Player.xcassets in Resources */,
 				250CCDF321D4CE2000ECDF83 /* LaunchScreen.storyboard in Resources */,
 				1A66626DA1A60DAF14625943 /* VideoList.json in Resources */,
+				1A6665980404102C66A01C2F /* CustomPlayerColor.json in Resources */,
+				1A666EDCC82FA58984216C48 /* CustomPlayerFont.json in Resources */,
+				1A66662EC93FE1B684A46E8F /* CustomPlayerStyle.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -630,24 +665,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				250CCEF021D4D1C800ECDF83 /* TableViewCell.m in Sources */,
-				250CCEE321D4D1C800ECDF83 /* PlayerNormalDataVM.m in Sources */,
+				250CCEE321D4D1C800ECDF83 /* MCPlayerNormalDataVM.m in Sources */,
 				250CCEE021D4D1C800ECDF83 /* ScrollPlayerController.m in Sources */,
-				250CCEEE21D4D1C800ECDF83 /* PlayerViewConfig.m in Sources */,
 				250CCEF921D4D1C800ECDF83 /* MMPopupCategory.m in Sources */,
-				250CCEE221D4D1C800ECDF83 /* PlayerNormalController+AutoRotate.m in Sources */,
+				250CCEE221D4D1C800ECDF83 /* MCPlayerNormalController+AutoRotate.m in Sources */,
 				250CCFBB21D4D65D00ECDF83 /* MCPlayerBaseView.m in Sources */,
 				250CCFBF21D4D65D00ECDF83 /* MCAVPlayerx.m in Sources */,
 				250CCEFA21D4D1C800ECDF83 /* MMPopupWindow.m in Sources */,
 				250CCEE721D4D1C800ECDF83 /* SmallPlayerView.m in Sources */,
 				250CCFBC21D4D65D00ECDF83 /* MCSafeKVOController.m in Sources */,
-				250CCEEB21D4D1C800ECDF83 /* PlayerLoadingView.m in Sources */,
-				250CCEE921D4D1C800ECDF83 /* PlayerTerminalView.m in Sources */,
 				250CCEF521D4D1C800ECDF83 /* UIColor+Hex.m in Sources */,
 				250CCEFB21D4D1C800ECDF83 /* MMPopupView.m in Sources */,
 				250CCFC221D4D65D00ECDF83 /* MCIJKPlayer.m in Sources */,
-				250CCEEF21D4D1C800ECDF83 /* PlayerNormalView.m in Sources */,
 				250CCEDD21D4D1C800ECDF83 /* TableViewPlaceHolderCell.m in Sources */,
-				250CCEE521D4D1C800ECDF83 /* PlayerNormalController.m in Sources */,
+				250CCEE521D4D1C800ECDF83 /* MCPlayerNormalController.m in Sources */,
 				250CCEF821D4D1C800ECDF83 /* MMWindowController.m in Sources */,
 				250CCEF121D4D1C800ECDF83 /* MCController.m in Sources */,
 				250CCDF621D4CE2000ECDF83 /* main.m in Sources */,
@@ -661,12 +692,9 @@
 				250CCEDF21D4D1C800ECDF83 /* PlayerSimpleViewCell.m in Sources */,
 				250CCFBE21D4D65D00ECDF83 /* MCSafeNotificationManager.m in Sources */,
 				250CCDF521D4CE2000ECDF83 /* AppDelegate.m in Sources */,
-				250CCEEA21D4D1C800ECDF83 /* PlayerProgress.m in Sources */,
 				250CCEF721D4D1C800ECDF83 /* MMSheetView.m in Sources */,
 				250CCEFC21D4D1C800ECDF83 /* MMPopupItem.m in Sources */,
-				250CCEED21D4D1C800ECDF83 /* PlayerViewUtils.m in Sources */,
-				250CCEE421D4D1C800ECDF83 /* PlayerNormalDto.m in Sources */,
-				250CCEEC21D4D1C800ECDF83 /* MCMediaNotify.m in Sources */,
+				250CCEE421D4D1C800ECDF83 /* MCPlayerNormalDto.m in Sources */,
 				250CCEF421D4D1C800ECDF83 /* DataVM.m in Sources */,
 				250CCEDB21D4D1C800ECDF83 /* PlayerCategroiesTableController.m in Sources */,
 				250CCEF221D4D1C800ECDF83 /* CollectionCell.m in Sources */,
@@ -680,6 +708,16 @@
 				1A66683911DDDF0E138BA38F /* MCDouyinPlayerView.m in Sources */,
 				1A6662B348D985B0C6ACD110 /* MCDouyinPlayerCell.m in Sources */,
 				1A66664348B963C8D360B47E /* MCDouyinPlayerDataVM.m in Sources */,
+				1A6667708B8BB3093EA92476 /* PlayerTerminalView.m in Sources */,
+				1A6668B5BACF2DBB37CDDBE5 /* PlayerProgress.m in Sources */,
+				1A666244956F1A2101027A5F /* PlayerLoadingView.m in Sources */,
+				1A6667A12D09D26A10E2CD2C /* MCMediaNotify.m in Sources */,
+				1A66644A22E4543788425D4E /* PlayerViewUtils.m in Sources */,
+				1A666179DA7354BDB6C5D270 /* MCPlayerViewConfig.m in Sources */,
+				1A6660D1D2F2CA0FC31CE251 /* MCPlayerNormalView.m in Sources */,
+				1A6668A970D754D09CCFDDBB /* MCPlayerNormalHeader.m in Sources */,
+				1A666D1A3B171845BD3423C3 /* MCPlayerNormalFooter.m in Sources */,
+				1A6668D39CD922F906522403 /* PlayerNormalViewDataVM.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,8 +11,26 @@
 
 @implementation MCPlayerBaseView
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        [self prepareUI];
+        self.clipsToBounds = YES;
+    }
+    return self;
+}
+
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
+    if (self) {
+        [self prepareUI];
+        self.clipsToBounds = YES;
+    }
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
     if (self) {
         [self prepareUI];
         self.clipsToBounds = YES;

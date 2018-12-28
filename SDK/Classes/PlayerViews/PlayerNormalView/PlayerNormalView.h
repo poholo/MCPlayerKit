@@ -5,7 +5,7 @@
 
 
 
-#import "MCPlayerBaseView.h"
+#import "PlayerBaseView.h"
 
 #import "PlayerViewConfig.h"
 
@@ -80,7 +80,7 @@
 @end
 
 
-@interface PlayerNormalView : MCPlayerBaseView {
+@interface PlayerNormalView : PlayerBaseView {
     UIView *_containerView;
     UIView *_touchView;
     UIButton *_backBtn;
