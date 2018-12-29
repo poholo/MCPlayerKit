@@ -3,10 +3,10 @@
 // Copyright (c) 2018 majiancheng. All rights reserved.
 //
 
-#import "PlayerNormalViewDataVM.h"
+#import "MCPlayerNormalViewDataVM.h"
 
 
-@implementation PlayerNormalViewDataVM {
+@implementation MCPlayerNormalViewDataVM {
 
 }
 @end

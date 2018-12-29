@@ -9,6 +9,6 @@
 /**
  * View 数据处理类
  */
-@interface PlayerNormalViewDataVM : NSObject
+@interface MCPlayerNormalViewDataVM : NSObject
 
 @end
