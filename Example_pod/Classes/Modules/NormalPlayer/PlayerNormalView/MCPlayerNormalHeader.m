@@ -64,13 +64,13 @@ NSString *const kMCPlayerHeaderBack2Half = @"kMCPlayerHeaderBack2Half";
     if (CGRectIsEmpty(self.frame))
         return;
     UIEdgeInsets insets = [MCStyle contentInsetII];
-    CGFloat h = CGRectGetHeight(self.frame) - [MCPlayerNormalHeader top];
+    CGFloat h = CGRectGetHeight(self.frame) - self.top;
     CGFloat w = h - 2 * insets.top;
-    self.backBtn.frame = CGRectMake(insets.left, insets.top + [MCPlayerNormalHeader top], w, w);
+    self.backBtn.frame = CGRectMake(insets.left, insets.top + self.top, w, w);
 
     CGFloat startX = CGRectGetMaxX(self.backBtn.frame) - [MCStyle contentInsetIII].left;
     CGFloat maxTitleWidth = CGRectGetWidth(self.frame) - startX - [MCStyle contentInsetIII].right;
-    self.titleLabel.frame = CGRectMake(startX, (h - [MCFont fontV].lineHeight) / 2.0f + [MCPlayerNormalHeader top], maxTitleWidth, [MCFont fontV].lineHeight);
+    self.titleLabel.frame = CGRectMake(startX, (h - [MCFont fontV].lineHeight) / 2.0f + self.top, maxTitleWidth, [MCFont fontV].lineHeight);
 }
 
 - (void)layoutSubviews {
@@ -98,8 +98,12 @@ NSString *const kMCPlayerHeaderBack2Half = @"kMCPlayerHeaderBack2Half";
     return _titleLabel;
 }
 
-+ (NSInteger)top {
-    return 20;
+- (NSInteger)top {
+    if (self.styleSizeType == PlayerStyleSizeClassRegularHalf) {
+        return 20;
+    } else {
+        return 0;
+    }
 }
 
 @end

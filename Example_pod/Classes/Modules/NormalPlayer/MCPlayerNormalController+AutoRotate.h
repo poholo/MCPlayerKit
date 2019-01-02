@@ -35,13 +35,4 @@
 ///////////////////////// 自定旋转方法 /////////////////////
 - (void)rotate2PortraitFullScreen;
 
-//横屏时切换竖屏
-- (void)updatePlayerRegularHalf;
-
-//竖屏时切换成横屏
-- (void)updatePlayerRegular;
-
-//横屏时切换竖屏
-- (void)updatePlayerCompact;
-
 @end

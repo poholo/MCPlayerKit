@@ -10,6 +10,7 @@
 #import "MCPlayerNormalHeader.h"
 #import "MCPlayerNormalFooter.h"
 #import "MCPlayerNormalTouchView.h"
+#import "MCRotateHelper.h"
 
 @interface MCPlayerNormalView ()
 
@@ -32,9 +33,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        [self createViews];
-        [self addLayout];
-        [self addActions];
+        [self setup];
     }
     return self;
 }
@@ -42,8 +41,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        [self createViews];
-        [self addLayout];
+        [self setup];
     }
     return self;
 }
@@ -51,10 +49,15 @@
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        [self createViews];
-        [self addLayout];
+        [self setup];
     }
     return self;
+}
+
+- (void)setup {
+    [self createViews];
+    [self addLayout];
+    [self addActions];
 }
 
 - (void)updatePlayerStyle:(MCPlayerStyleSizeType)styleSizeType {
@@ -114,7 +117,7 @@
     CGFloat h = CGRectGetHeight(self.containerView.frame);
     CGFloat barRate = 0.1f;
     CGFloat barHeight = 44;
-    self.topView.frame = CGRectMake(0, 0, w, barHeight + [MCPlayerNormalHeader top]);
+    self.topView.frame = CGRectMake(0, 0, w, barHeight + self.topView.top);
     self.bottomView.frame = CGRectMake(0, h - barHeight, w, barHeight);
 
     CGFloat lockW = 44;
@@ -126,6 +129,24 @@
     __weak typeof(self) weakSelf = self;
     self.topView.callBack = ^(NSString *action, id value) {
         __strong typeof(weakSelf) strongself = weakSelf;
+        if ([action isEqualToString:kMCPlayerHeaderBack2Half]) {
+            [MCRotateHelper updatePlayerRegularHalf];
+            [strongself updatePlayerStyle:PlayerStyleSizeClassRegularHalf];
+        } else if ([action isEqualToString:kMCPlayerHeaderBack]) {
+            UIViewController *viewController = [UIApplication sharedApplication].keyWindow.rootViewController;
+            UINavigationController *navigationController;
+            if ([viewController isKindOfClass:[UINavigationController class]]) {
+                navigationController = (UINavigationController *) viewController;
+            } else if (viewController.navigationController) {
+                navigationController = viewController.navigationController;
+            }
+            if (navigationController) {
+                [navigationController popViewControllerAnimated:YES];
+            } else {
+                //TODO test presentDismiss
+                [viewController dismissViewControllerAnimated:YES completion:NULL];
+            }
+        }
         if (strongself.eventCallBack) {
             strongself.eventCallBack(action, value);
         }
@@ -140,6 +161,14 @@
 
     self.bottomView.callBack = ^(NSString *action, id value) {
         __strong typeof(weakSelf) strongself = weakSelf;
+        if ([action isEqualToString:kMCPlayer2HalfScreenAction]) {
+            [MCRotateHelper updatePlayerRegularHalf];
+            [strongself updatePlayerStyle:PlayerStyleSizeClassRegularHalf];
+        } else if ([action isEqualToString:kMCplayer2FullScreenAction]) {
+            //TODO:: 竖屏全屏
+            [MCRotateHelper updatePlayerRegular];
+            [strongself updatePlayerStyle:PlayerStyleSizeClassCompact];
+        }
         if (strongself.eventCallBack) {
             strongself.eventCallBack(action, value);
         }
@@ -216,5 +245,5 @@
     return nil;
 }
 
-
 @end
+

@@ -3,11 +3,15 @@
 // Copyright (c) 2018 majiancheng. All rights reserved.
 //
 
+
 #import "MCPlayerNormalFooter.h"
 
 #import <MCStyleDef.h>
 
 #import "MCPlayerProgress.h"
+
+NSString *const kMCPlayer2HalfScreenAction = @"kMCPlayer2HalfScreenAction";
+NSString *const kMCplayer2FullScreenAction = @"kMCplayer2FullScreenAction";
 
 @interface MCPlayerNormalFooter ()
 
@@ -30,6 +34,12 @@
     return self;
 }
 
+- (void)screenBtnClick {
+    if (self.callBack) {
+        self.callBack(self.screenBtn.selected ? kMCPlayer2HalfScreenAction : kMCplayer2FullScreenAction, nil);
+    }
+}
+
 - (void)updatePlayerStyle:(MCPlayerStyleSizeType)styleSizeType {
     switch (styleSizeType) {
         case PlayerStyleSizeClassRegularHalf: {
@@ -46,7 +56,6 @@
             break;
     }
 }
-
 
 - (void)createViews {
     [self addSubview:self.playBtn];
@@ -132,6 +141,7 @@
         _screenBtn = [UIButton new];
         [_screenBtn setImage:[MCStyle customImage:@"player_footer_1"] forState:UIControlStateNormal];
         [_screenBtn setImage:[MCStyle customImage:@"player_footer_1_s"] forState:UIControlStateSelected];
+        [_screenBtn addTarget:self action:@selector(screenBtnClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _screenBtn;
 }

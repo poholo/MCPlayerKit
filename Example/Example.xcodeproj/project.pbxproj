@@ -23,6 +23,7 @@
 		1A66683911DDDF0E138BA38F /* MCDouyinPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666517B220B5FFE7708263 /* MCDouyinPlayerView.m */; };
 		1A6668A970D754D09CCFDDBB /* MCPlayerNormalHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A66616180FA5D619A3FFFBB /* MCPlayerNormalHeader.m */; };
 		1A6668B5BACF2DBB37CDDBE5 /* MCPlayerProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6663C8ED43AE5217F96BCC /* MCPlayerProgress.m */; };
+		1A666BFF5EC7A3287B549B63 /* MCRotateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666F7F35518AB8679134D1 /* MCRotateHelper.m */; };
 		1A666D1A3B171845BD3423C3 /* MCPlayerNormalFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666B62A167B56AB859469B /* MCPlayerNormalFooter.m */; };
 		1A666EDCC82FA58984216C48 /* CustomPlayerFont.json in Resources */ = {isa = PBXBuildFile; fileRef = 1A666EBDEA923272BFCB297D /* CustomPlayerFont.json */; };
 		250CCDF321D4CE2000ECDF83 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 250CCDCE21D4CE1F00ECDF83 /* LaunchScreen.storyboard */; };
@@ -101,10 +102,12 @@
 		1A666A49F9A826852A4543DE /* MCPlayerNormalTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCPlayerNormalTouchView.h; sourceTree = "<group>"; };
 		1A666B62A167B56AB859469B /* MCPlayerNormalFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCPlayerNormalFooter.m; sourceTree = "<group>"; };
 		1A666BB3E2C3E1498F327B58 /* PlayerTerminalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerTerminalView.m; sourceTree = "<group>"; };
+		1A666D1D9BABA942AF0F497C /* MCRotateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCRotateHelper.h; sourceTree = "<group>"; };
 		1A666E7D7A189E9E39D42C3E /* MCPlayerNormalHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCPlayerNormalHeader.h; sourceTree = "<group>"; };
 		1A666EBDEA923272BFCB297D /* CustomPlayerFont.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CustomPlayerFont.json; sourceTree = "<group>"; };
 		1A666EFED9D09D5A5B4FF32D /* MCMediaNotify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCMediaNotify.m; sourceTree = "<group>"; };
 		1A666F446FB20A6CBA968744 /* MCMediaNotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCMediaNotify.h; sourceTree = "<group>"; };
+		1A666F7F35518AB8679134D1 /* MCRotateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCRotateHelper.m; sourceTree = "<group>"; };
 		250CCDB421D4CDAD00ECDF83 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		250CCDC521D4CDAE00ECDF83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		250CCDCF21D4CE1F00ECDF83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -224,6 +227,8 @@
 				1A6663F75661AB3F03237496 /* MCPlayerNormalFooter.h */,
 				1A6666D2F59EBC75A27832FC /* MCPlayerNormalTouchView.m */,
 				1A666A49F9A826852A4543DE /* MCPlayerNormalTouchView.h */,
+				1A666F7F35518AB8679134D1 /* MCRotateHelper.m */,
+				1A666D1D9BABA942AF0F497C /* MCRotateHelper.h */,
 			);
 			path = PlayerNormalView;
 			sourceTree = "<group>";
@@ -722,6 +727,7 @@
 				1A6668A970D754D09CCFDDBB /* MCPlayerNormalHeader.m in Sources */,
 				1A666D1A3B171845BD3423C3 /* MCPlayerNormalFooter.m in Sources */,
 				1A6662E949E4E53D192A1507 /* MCPlayerNormalTouchView.m in Sources */,
+				1A666BFF5EC7A3287B549B63 /* MCRotateHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

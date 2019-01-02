@@ -9,6 +9,7 @@
 #import "MCPlayerKit.h"
 
 #import "MCPlayerNormalView.h"
+#import "MCRotateHelper.h"
 
 
 @implementation MCPlayerNormalController (AutoRotate)
@@ -85,7 +86,7 @@
     if(self.playerView.styleSizeType == PlayerStyleSizeClassCompact) {
         return;
     }
-    [self setStatusBarHidden:YES];
+    [MCRotateHelper setStatusBarHidden:YES];
 
     [self.playerView updatePlayerStyle:PlayerStyleSizeClassCompact];
     self.playerView.frame = self.view.bounds;
@@ -93,99 +94,16 @@
 
 //竖屏
 - (void)rotate2Portrait {
-    [self setStatusBarHidden:NO];
+    [MCRotateHelper setStatusBarHidden:NO];
     CGSize size = [UIScreen mainScreen].bounds.size;
     [self.playerView updatePlayerStyle:PlayerStyleSizeClassRegularHalf];
     self.playerView.frame = CGRectMake(0, 0, size.width, size.width * 9 / 16);
 }
 
 - (void)rotate2PortraitFullScreen {
-    [self setStatusBarHidden:YES];
+    [MCRotateHelper setStatusBarHidden:YES];
     [self.playerView updatePlayerStyle:PlayerStyleSizeClassRegular];
     self.playerView.frame = self.view.bounds;
 }
 
-- (void)setStatusBarHidden:(BOOL)isHidden {
-    [[UIApplication sharedApplication] setStatusBarHidden:isHidden withAnimation:YES];
-}
-
-- (void)setViewOrientation {
-
-}
-
-- (void)changePlayerRotate {
-//    switch (self.playerView.playerStyle) {
-//        case PlayerStyleSizeClassRegular : {
-//            [self updatePlayerRegularHalf];
-//        }
-//            break;
-//        case PlayerStyleSizeClassCompact : {
-//            [self updatePlayerRegularHalf];
-//        }
-//            break;
-//        case PlayerStyleSizeClassRegularHalf : {
-//            [self updatePlayerRegular];
-//        }
-//            break;
-//        default : {
-//        }
-//            break;
-//
-//    }
-    [self.view layoutIfNeeded];
-}
-
-//设置横竖屏
-
-- (void)updatePlayerRegularHalf {
-    //横屏时切换竖屏
-//    if (/*[self isSizeClassRegular] &&*/ self.playerView.playerStyle == PlayerStyleSizeClassRegular) {
-//        [self rotate2Portrait];
-//        return;
-//    }
-    if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
-        SEL selector = NSSelectorFromString(@"setOrientation:");
-        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];
-        [invocation setSelector:selector];
-        [invocation setTarget:[UIDevice currentDevice]];
-        int val = UIInterfaceOrientationPortrait;
-        [invocation setArgument:&val atIndex:2];
-        [invocation invoke];
-    }
-    [self setStatusBarHidden:NO];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-}
-
-- (void)updatePlayerRegular {
-//    if ([self isSizeClassRegular] && self.playerView.playerStyle == PlayerStyleSizeClassRegularHalf) {
-//        [self rotate2PortraitFullScreen];
-//        return;
-//    }
-    //竖屏时切换成横屏
-    if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
-        SEL selector = NSSelectorFromString(@"setOrientation:");
-        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];
-        [invocation setSelector:selector];
-        [invocation setTarget:[UIDevice currentDevice]];
-        int val = UIInterfaceOrientationLandscapeRight;
-        [invocation setArgument:&val atIndex:2];
-        [invocation invoke];
-    }
-    [self setStatusBarHidden:YES];
-}
-
-- (void)updatePlayerCompact {
-    //横屏时切换竖屏
-    if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
-        SEL selector = NSSelectorFromString(@"setOrientation:");
-        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];
-        [invocation setSelector:selector];
-        [invocation setTarget:[UIDevice currentDevice]];
-        int val = UIInterfaceOrientationPortrait;
-        [invocation setArgument:&val atIndex:2];
-        [invocation invoke];
-    }
-    [self setStatusBarHidden:NO];
-
-}
 @end

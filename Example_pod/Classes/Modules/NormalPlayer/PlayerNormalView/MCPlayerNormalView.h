@@ -31,5 +31,4 @@ typedef NS_ENUM(NSInteger, MCPlayerStyleSizeType) {
 
 - (BOOL)isLock;
 
-
 @end

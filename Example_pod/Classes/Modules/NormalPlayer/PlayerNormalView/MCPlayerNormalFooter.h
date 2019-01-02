@@ -8,6 +8,9 @@
 
 @class MCPlayerProgress;
 
+extern NSString * const kMCPlayer2HalfScreenAction;
+extern NSString * const kMCplayer2FullScreenAction;
+
 @interface MCPlayerNormalFooter : UIView
 
 @property(nonatomic, copy) MCPlayerNormalViewEventCallBack callBack;

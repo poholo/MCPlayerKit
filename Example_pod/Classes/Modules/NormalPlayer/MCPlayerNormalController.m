@@ -110,14 +110,6 @@
 //    }
 }
 
-- (void)change2FullScreen {
-    if ([self isSizeClassRegular]) {
-        [self rotate2PortraitFullScreen];
-    } else {
-        [self updatePlayerRegular];
-    }
-}
-
 - (void)currentTime:(double)time {
 }
 

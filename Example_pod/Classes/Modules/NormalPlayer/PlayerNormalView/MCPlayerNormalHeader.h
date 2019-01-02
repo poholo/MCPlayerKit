@@ -18,6 +18,6 @@ extern NSString *const kMCPlayerHeaderBack2Half;
 
 - (void)updatePlayerStyle:(MCPlayerStyleSizeType)styleSizeType;
 
-+ (NSInteger)top;
+- (NSInteger)top;
 
 @end
