@@ -22,7 +22,7 @@
 		1A6667A12D09D26A10E2CD2C /* MCMediaNotify.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666EFED9D09D5A5B4FF32D /* MCMediaNotify.m */; };
 		1A66683911DDDF0E138BA38F /* MCDouyinPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666517B220B5FFE7708263 /* MCDouyinPlayerView.m */; };
 		1A6668A970D754D09CCFDDBB /* MCPlayerNormalHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A66616180FA5D619A3FFFBB /* MCPlayerNormalHeader.m */; };
-		1A6668B5BACF2DBB37CDDBE5 /* PlayerProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6663C8ED43AE5217F96BCC /* PlayerProgress.m */; };
+		1A6668B5BACF2DBB37CDDBE5 /* MCPlayerProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6663C8ED43AE5217F96BCC /* MCPlayerProgress.m */; };
 		1A6668D39CD922F906522403 /* MCPlayerNormalViewDataVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666A7FA0AAD9BA7021944C /* MCPlayerNormalViewDataVM.m */; };
 		1A666D1A3B171845BD3423C3 /* MCPlayerNormalFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666B62A167B56AB859469B /* MCPlayerNormalFooter.m */; };
 		1A666EDCC82FA58984216C48 /* CustomPlayerFont.json in Resources */ = {isa = PBXBuildFile; fileRef = 1A666EBDEA923272BFCB297D /* CustomPlayerFont.json */; };
@@ -69,6 +69,7 @@
 		250CCFC121D4D65D00ECDF83 /* MCPlayerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCFB621D4D65D00ECDF83 /* MCPlayerConfig.m */; };
 		250CCFC221D4D65D00ECDF83 /* MCIJKPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCFB721D4D65D00ECDF83 /* MCIJKPlayer.m */; };
 		250CCFC321D4D65D00ECDF83 /* MCPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 250CCFB821D4D65D00ECDF83 /* MCPlayer.m */; };
+		2516E3D821DC55FB00AFEF44 /* NormalPlayer.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2516E3D721DC55FB00AFEF44 /* NormalPlayer.xcassets */; };
 		D7DBD630B23A61CE15B177E9 /* libPods-Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ED9BE8F97E79AD678A827B71 /* libPods-Example.a */; };
 /* End PBXBuildFile section */
 
@@ -82,11 +83,11 @@
 		1A6661EA53F45E94609BE4AB /* MCPlayerViewConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCPlayerViewConfig.m; sourceTree = "<group>"; };
 		1A66630199912D41B7E81D7A /* MCDouyinPlayerListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCDouyinPlayerListController.m; sourceTree = "<group>"; };
 		1A666399843F156981DEE137 /* CustomPlayerStyle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CustomPlayerStyle.json; sourceTree = "<group>"; };
-		1A6663C8ED43AE5217F96BCC /* PlayerProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerProgress.m; sourceTree = "<group>"; };
+		1A6663C8ED43AE5217F96BCC /* MCPlayerProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCPlayerProgress.m; sourceTree = "<group>"; };
 		1A6663F75661AB3F03237496 /* MCPlayerNormalFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCPlayerNormalFooter.h; sourceTree = "<group>"; };
 		1A6664156E941836355B9AC7 /* VideoList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = VideoList.json; sourceTree = "<group>"; };
 		1A66643D84A9616FA9F2B7E0 /* MCDouyinPlayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCDouyinPlayerCell.h; sourceTree = "<group>"; };
-		1A6664ED0F8A52338E2F6B90 /* PlayerProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerProgress.h; sourceTree = "<group>"; };
+		1A6664ED0F8A52338E2F6B90 /* MCPlayerProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCPlayerProgress.h; sourceTree = "<group>"; };
 		1A666517B220B5FFE7708263 /* MCDouyinPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCDouyinPlayerView.m; sourceTree = "<group>"; };
 		1A6665600943791525852D67 /* MCPlayerViewConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCPlayerViewConfig.h; sourceTree = "<group>"; };
 		1A6665D3418D18E34A5B5E2D /* PlayerViewUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewUtils.h; sourceTree = "<group>"; };
@@ -194,6 +195,7 @@
 		250CCFB821D4D65D00ECDF83 /* MCPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCPlayer.m; sourceTree = "<group>"; };
 		250CCFB921D4D65D00ECDF83 /* MCAVPlayerx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCAVPlayerx.h; sourceTree = "<group>"; };
 		250CCFBA21D4D65D00ECDF83 /* MCPlayerKitDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCPlayerKitDef.h; sourceTree = "<group>"; };
+		2516E3D721DC55FB00AFEF44 /* NormalPlayer.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = NormalPlayer.xcassets; sourceTree = "<group>"; };
 		BE3B23BD55CA410FABC1114A /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
 		ED9BE8F97E79AD678A827B71 /* libPods-Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4A21944DAD33ABB52FCB71B /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.debug.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 				1A6667E55D386134FE2203AC /* CustomPlayerColor.json */,
 				1A666EBDEA923272BFCB297D /* CustomPlayerFont.json */,
 				1A666399843F156981DEE137 /* CustomPlayerStyle.json */,
+				2516E3D721DC55FB00AFEF44 /* NormalPlayer.xcassets */,
 			);
 			path = Datas;
 			sourceTree = "<group>";
@@ -261,11 +264,11 @@
 			children = (
 				1A666BB3E2C3E1498F327B58 /* PlayerTerminalView.m */,
 				1A6665D3418D18E34A5B5E2D /* PlayerViewUtils.h */,
-				1A6663C8ED43AE5217F96BCC /* PlayerProgress.m */,
+				1A6663C8ED43AE5217F96BCC /* MCPlayerProgress.m */,
 				1A66614C5C867956215A0AA1 /* PlayerLoadingView.m */,
 				1A666EFED9D09D5A5B4FF32D /* MCMediaNotify.m */,
 				1A6669AAFA835DA27EF3B2CE /* PlayerTerminalView.h */,
-				1A6664ED0F8A52338E2F6B90 /* PlayerProgress.h */,
+				1A6664ED0F8A52338E2F6B90 /* MCPlayerProgress.h */,
 				1A66675C4728E06AAFA9AAFC /* PlayerViewUtils.m */,
 				1A66662D8A9FE49566B86F0A /* PlayerLoadingView.h */,
 				1A666F446FB20A6CBA968744 /* MCMediaNotify.h */,
@@ -344,7 +347,7 @@
 			children = (
 				250CCE8221D4D1C800ECDF83 /* List */,
 				250CCE8B21D4D1C800ECDF83 /* ScrollPlayer */,
-				250CCE9621D4D1C800ECDF83 /* Player */,
+				250CCE9621D4D1C800ECDF83 /* NormalPlayer */,
 				250CCE9F21D4D1C800ECDF83 /* ScrollPlayer2SmallPlayer */,
 				1A666A9669AD1B5D12A85267 /* Douyin */,
 			);
@@ -383,7 +386,7 @@
 			path = ScrollPlayer;
 			sourceTree = "<group>";
 		};
-		250CCE9621D4D1C800ECDF83 /* Player */ = {
+		250CCE9621D4D1C800ECDF83 /* NormalPlayer */ = {
 			isa = PBXGroup;
 			children = (
 				250CCE9721D4D1C800ECDF83 /* MCPlayerNormalController+AutoRotate.h */,
@@ -397,7 +400,7 @@
 				1A66655418AD26F1D0EE5420 /* PlayerNormalView */,
 				1A66678CC8885D71B159FB7A /* Datas */,
 			);
-			path = Player;
+			path = NormalPlayer;
 			sourceTree = "<group>";
 		};
 		250CCE9F21D4D1C800ECDF83 /* ScrollPlayer2SmallPlayer */ = {
@@ -634,6 +637,7 @@
 				1A6665980404102C66A01C2F /* CustomPlayerColor.json in Resources */,
 				1A666EDCC82FA58984216C48 /* CustomPlayerFont.json in Resources */,
 				1A66662EC93FE1B684A46E8F /* CustomPlayerStyle.json in Resources */,
+				2516E3D821DC55FB00AFEF44 /* NormalPlayer.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -714,7 +718,7 @@
 				1A6662B348D985B0C6ACD110 /* MCDouyinPlayerCell.m in Sources */,
 				1A66664348B963C8D360B47E /* MCDouyinPlayerDataVM.m in Sources */,
 				1A6667708B8BB3093EA92476 /* PlayerTerminalView.m in Sources */,
-				1A6668B5BACF2DBB37CDDBE5 /* PlayerProgress.m in Sources */,
+				1A6668B5BACF2DBB37CDDBE5 /* MCPlayerProgress.m in Sources */,
 				1A666244956F1A2101027A5F /* PlayerLoadingView.m in Sources */,
 				1A6667A12D09D26A10E2CD2C /* MCMediaNotify.m in Sources */,
 				1A66644A22E4543788425D4E /* PlayerViewUtils.m in Sources */,

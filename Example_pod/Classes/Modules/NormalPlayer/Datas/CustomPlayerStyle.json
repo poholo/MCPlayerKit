@@ -1,0 +1,18 @@
+{
+  "success": true,
+  "data": {
+    "player_header_0": "player_header_0",
+    "player_header_1": "player_header_1",
+    "player_header_1_s": "player_header_1_s",
+    "player_body_0": "player_body_0",
+    "player_body_0_s": "player_body_0_s",
+    "player_body_1": "player_body_1",
+    "player_footer_0": "player_footer_0",
+    "player_footer_0_s": "player_footer_0_s",
+    "player_footer_1": "player_footer_1",
+    "player_footer_1_s": "player_footer_1_s",
+    "player_control_0": "player_control_0",
+    "player_control_1": "player_control_1",
+    "player_control_2": "player_control_2"
+  }
+}
