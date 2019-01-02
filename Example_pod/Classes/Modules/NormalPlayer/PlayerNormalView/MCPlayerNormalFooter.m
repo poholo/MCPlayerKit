@@ -121,7 +121,7 @@ NSString *const kMCPlayer2PauseAction = @"kMCPlayer2PauseAction";
 
     self.playerProgress.frame = CGRectMake(CGRectGetMaxX(self.currentLabel.frame) + [MCStyle contentInsetII].left,
             CGRectGetHeight(self.frame) * 0.25,
-            CGRectGetMinX(self.durationLabel.frame) - CGRectGetMaxX(self.currentLabel.frame) - [MCStyle contentInsetII].right,
+            CGRectGetMinX(self.durationLabel.frame) - CGRectGetMaxX(self.currentLabel.frame) - [MCStyle contentInsetII].right - [MCStyle contentInsetII].left,
             CGRectGetHeight(self.frame) * 0.5f);
 }
 
