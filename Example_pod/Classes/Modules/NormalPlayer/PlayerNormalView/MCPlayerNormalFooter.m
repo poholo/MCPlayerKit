@@ -11,7 +11,9 @@
 #import "MCPlayerProgress.h"
 
 NSString *const kMCPlayer2HalfScreenAction = @"kMCPlayer2HalfScreenAction";
-NSString *const kMCplayer2FullScreenAction = @"kMCplayer2FullScreenAction";
+NSString *const kMCPlayer2FullScreenAction = @"kMCPlayer2FullScreenAction";
+NSString *const kMCPlayer2PlayAction = @"kMCPlayer2PlayAction";
+NSString *const kMCPlayer2PauseAction = @"kMCPlayer2PauseAction";
 
 @interface MCPlayerNormalFooter ()
 
@@ -34,9 +36,16 @@ NSString *const kMCplayer2FullScreenAction = @"kMCplayer2FullScreenAction";
     return self;
 }
 
+- (void)playBtnClick {
+    if (self.callBack) {
+        self.callBack(self.playBtn.selected ? kMCPlayer2PlayAction : kMCPlayer2PauseAction, nil);
+    }
+    self.playBtn.selected = !self.playBtn.selected;
+}
+
 - (void)screenBtnClick {
     if (self.callBack) {
-        self.callBack(self.screenBtn.selected ? kMCPlayer2HalfScreenAction : kMCplayer2FullScreenAction, nil);
+        self.callBack(self.screenBtn.selected ? kMCPlayer2HalfScreenAction : kMCPlayer2FullScreenAction, nil);
     }
 }
 
@@ -107,6 +116,7 @@ NSString *const kMCplayer2FullScreenAction = @"kMCplayer2FullScreenAction";
         _playBtn = [UIButton new];
         [_playBtn setImage:[MCStyle customImage:@"player_footer_0"] forState:UIControlStateNormal];
         [_playBtn setImage:[MCStyle customImage:@"player_footer_0_s"] forState:UIControlStateSelected];
+        [_playBtn addTarget:self action:@selector(playBtnClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _playBtn;
 }

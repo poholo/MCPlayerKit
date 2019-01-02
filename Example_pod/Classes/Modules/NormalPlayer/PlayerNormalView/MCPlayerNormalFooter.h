@@ -8,8 +8,10 @@
 
 @class MCPlayerProgress;
 
-extern NSString * const kMCPlayer2HalfScreenAction;
-extern NSString * const kMCplayer2FullScreenAction;
+extern NSString *const kMCPlayer2HalfScreenAction;
+extern NSString *const kMCPlayer2FullScreenAction;
+extern NSString *const kMCPlayer2PlayAction;
+extern NSString *const kMCPlayer2PauseAction;
 
 @interface MCPlayerNormalFooter : UIView
 

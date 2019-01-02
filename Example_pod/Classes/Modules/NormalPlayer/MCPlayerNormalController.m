@@ -33,25 +33,25 @@
     [super viewDidLoad];
     __weak typeof(self) weakSelf = self;
     [MCStyleManager share].colorStyleDataCallback = ^NSDictionary *(void) {
-        NSString * path = [[NSBundle mainBundle] pathForResource:@"CustomPlayerColor" ofType:@"json"];
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"CustomPlayerColor" ofType:@"json"];
         NSError *error;
-        NSDictionary * dictionary = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:NSJSONReadingMutableContainers error:&error];
+        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:NSJSONReadingMutableContainers error:&error];
         NSAssert(!error, @"read json file error");
         return dictionary[@"data"];
     };
 
     [MCStyleManager share].fontStyleDataCallBack = ^NSDictionary *(void) {
-        NSString * path = [[NSBundle mainBundle] pathForResource:@"CustomPlayerFont" ofType:@"json"];
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"CustomPlayerFont" ofType:@"json"];
         NSError *error;
-        NSDictionary * dictionary = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:NSJSONReadingMutableContainers error:&error];
+        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:NSJSONReadingMutableContainers error:&error];
         NSAssert(!error, @"read json file error");
         return dictionary[@"data"];
     };
 
     [MCStyleManager share].styleDataCallback = ^NSDictionary *(void) {
-        NSString * path = [[NSBundle mainBundle] pathForResource:@"CustomPlayerStyle" ofType:@"json"];
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"CustomPlayerStyle" ofType:@"json"];
         NSError *error;
-        NSDictionary * dictionary = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:NSJSONReadingMutableContainers error:&error];
+        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:NSJSONReadingMutableContainers error:&error];
         NSAssert(!error, @"read json file error");
         return dictionary[@"data"];
     };
@@ -59,6 +59,15 @@
 
     [self.view addSubview:self.playerView];
     [self.playerKit playUrls:@[@"http://aliuwmp3.changba.com/userdata/video/45F6BD5E445E4C029C33DC5901307461.mp4"]];
+
+    self.playerView.eventCallBack = ^(NSString *action, id value) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        if ([action isEqualToString:kMCPlayer2PlayAction]) {
+            [strongSelf.playerKit play];
+        } else if ([action isEqualToString:kMCPlayer2PauseAction]) {
+            [strongSelf.playerKit pause];
+        }
+    };
 }
 
 - (void)viewWillAppear:(BOOL)animated {

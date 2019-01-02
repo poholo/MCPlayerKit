@@ -164,11 +164,12 @@
         if ([action isEqualToString:kMCPlayer2HalfScreenAction]) {
             [MCRotateHelper updatePlayerRegularHalf];
             [strongself updatePlayerStyle:PlayerStyleSizeClassRegularHalf];
-        } else if ([action isEqualToString:kMCplayer2FullScreenAction]) {
+        } else if ([action isEqualToString:kMCPlayer2FullScreenAction]) {
             //TODO:: 竖屏全屏
             [MCRotateHelper updatePlayerRegular];
             [strongself updatePlayerStyle:PlayerStyleSizeClassCompact];
         }
+
         if (strongself.eventCallBack) {
             strongself.eventCallBack(action, value);
         }

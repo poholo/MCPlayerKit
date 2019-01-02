@@ -10,6 +10,9 @@
 #import "MCPlayerViewConfig.h"
 
 
+extern NSString *const kMCPlayer2PlayAction;
+extern NSString *const kMCPlayer2PauseAction;
+
 typedef NS_ENUM(NSInteger, MCPlayerStyleSizeType) {
     PlayerStyleSizeClassRegularHalf,   ///<  16:9 半屏幕
     PlayerStyleSizeClassRegular,       ///<  竖屏全屏
