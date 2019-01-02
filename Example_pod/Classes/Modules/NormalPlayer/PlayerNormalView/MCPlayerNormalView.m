@@ -224,6 +224,7 @@
 - (MCPlayerBaseView *)playerView {
     if (!_playerView) {
         _playerView = [MCPlayerBaseView new];
+        _playerView.userInteractionEnabled = NO;
     }
     return _playerView;
 }

@@ -4,6 +4,7 @@
 //
 
 #import "MCPlayerNormalTouchView.h"
+#import "MCPlayerKitDef.h"
 
 NSString *const kMCTouchTapAction = @"kMCTouchTapAction";
 NSString *const kMCTouchSwipeAction = @"kMCTouchSwipeAction";
@@ -31,11 +32,11 @@ NSString *const kMCTouchSwipeAction = @"kMCTouchSwipeAction";
 }
 
 - (void)tapClick {
-
+    MCLog(@"[MCTouchView]tap");
 }
 
 - (void)swipe {
-
+    MCLog(@"[MCTouchView]swip");
 }
 
 - (UITapGestureRecognizer *)tapGestureRecognizer {
