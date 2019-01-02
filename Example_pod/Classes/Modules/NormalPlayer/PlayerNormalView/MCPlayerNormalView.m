@@ -24,7 +24,6 @@
 @property(nonatomic, strong) UIButton *lockBtn;
 @property(nonatomic, strong) UIView *definitionView;
 
-@property(nonatomic, assign) MCPlayerStyleSizeType styleSizeType;
 
 @end
 
@@ -65,7 +64,6 @@
     [self.bottomView updatePlayerStyle:styleSizeType];
     switch (self.styleSizeType) {
         case PlayerStyleSizeClassRegularHalf: {
-
         }
             break;
         case PlayerStyleSizeClassRegular: {
@@ -83,6 +81,9 @@
     self.topView.titleLabel.text = title;
 }
 
+- (BOOL)isLock {
+    return self.lockBtn.selected;
+}
 
 #pragma mark - views
 
@@ -150,6 +151,12 @@
     [self addLayout];
 }
 
+#pragma mark Actions
+
+- (void)lockBtnClick {
+    self.lockBtn.selected = !self.lockBtn.selected;
+    //TODO:: lock
+}
 
 #pragma mark - getter
 
@@ -200,6 +207,7 @@
         _lockBtn = [UIButton new];
         [_lockBtn setImage:[MCStyle customImage:@"player_body_0"] forState:UIControlStateNormal];
         [_lockBtn setImage:[MCStyle customImage:@"player_body_0_s"] forState:UIControlStateSelected];
+        [_lockBtn addTarget:self action:@selector(lockBtnClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _lockBtn;
 }

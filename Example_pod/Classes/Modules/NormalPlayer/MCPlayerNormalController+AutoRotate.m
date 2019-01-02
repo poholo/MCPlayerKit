@@ -7,7 +7,6 @@
 #import "MCPlayerNormalController+AutoRotate.h"
 
 #import "MCPlayerKit.h"
-#import <Masonry.h>
 
 #import "MCPlayerNormalView.h"
 
@@ -17,9 +16,9 @@
 #pragma mark - AutoRoate
 
 - (BOOL)canRotate {
-//    if ([self.playerView isLock]) {
-//        return NO;
-//    }
+    if ([self.playerView isLock]) {
+        return NO;
+    }
     return YES;
 }
 
@@ -83,33 +82,27 @@
 
 //横屏
 - (void)rotate2Landscape {
-//    if(self.playerView.playerStyle == PlayerStyleSizeClassCompact) {
-//        return;
-//    }
-//    [self.playerView setPlayerStyle:PlayerStyleSizeClassCompact];
-//    [self.playerView updateFullScreenBtnStatus:YES];
+    if(self.playerView.styleSizeType == PlayerStyleSizeClassCompact) {
+        return;
+    }
     [self setStatusBarHidden:YES];
 
-    self.playerView.frame = self.view.bounds;
     [self.playerView updatePlayerStyle:PlayerStyleSizeClassCompact];
+    self.playerView.frame = self.view.bounds;
 }
 
 //竖屏
 - (void)rotate2Portrait {
-//    [self.playerView setPlayerStyle:PlayerStyleSizeClassRegularHalf];
-//    [self.playerView updateFullScreenBtnStatus:NO];
     [self setStatusBarHidden:NO];
     CGSize size = [UIScreen mainScreen].bounds.size;
-    self.playerView.frame = CGRectMake(0, 0, size.width, size.width * 9 / 16);
     [self.playerView updatePlayerStyle:PlayerStyleSizeClassRegularHalf];
+    self.playerView.frame = CGRectMake(0, 0, size.width, size.width * 9 / 16);
 }
 
 - (void)rotate2PortraitFullScreen {
-//    [self.playerView setPlayerStyle:PlayerStyleSizeClassRegular];
-//    [self.playerView updateFullScreenBtnStatus:YES];
     [self setStatusBarHidden:YES];
-    self.playerView.frame = self.view.bounds;
     [self.playerView updatePlayerStyle:PlayerStyleSizeClassRegular];
+    self.playerView.frame = self.view.bounds;
 }
 
 - (void)setStatusBarHidden:(BOOL)isHidden {

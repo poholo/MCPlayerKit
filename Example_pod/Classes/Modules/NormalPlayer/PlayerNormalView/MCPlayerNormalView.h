@@ -21,12 +21,15 @@ typedef NS_ENUM(NSInteger, MCPlayerStyleSizeType) {
  */
 @interface MCPlayerNormalView : UIView
 
+@property(nonatomic, assign) MCPlayerStyleSizeType styleSizeType;
 @property(nonatomic, copy) MCPlayerNormalViewEventCallBack eventCallBack;
 @property(nonatomic, readonly) MCPlayerBaseView *playerView;
 
 - (void)updatePlayerStyle:(MCPlayerStyleSizeType)styleSizeType;
 
 - (void)updateTitle:(NSString *)title;
+
+- (BOOL)isLock;
 
 
 @end
