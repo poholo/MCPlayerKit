@@ -33,6 +33,9 @@ NSString *const kMCTouchSwipeAction = @"kMCTouchSwipeAction";
 
 - (void)tapClick {
     MCLog(@"[MCTouchView]tap");
+    if (self.callBack) {
+        self.callBack(kMCTouchTapAction, nil);
+    }
 }
 
 - (void)swipe {

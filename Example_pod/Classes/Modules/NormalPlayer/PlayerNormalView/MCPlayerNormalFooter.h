@@ -27,4 +27,8 @@ extern NSString *const kMCPlayer2PauseAction;
 
 - (void)updateBufferProgress:(float)progress;
 
+- (void)fadeHiddenControl;
+
+- (void)showControl;
+
 @end

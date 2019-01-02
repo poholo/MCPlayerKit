@@ -171,6 +171,9 @@
 
     self.touchView.callBack = ^(NSString *action, id value) {
         __strong typeof(weakSelf) strongself = weakSelf;
+        if ([action isEqualToString:kMCTouchTapAction]) {
+            [strongself showControl];
+        }
         if (strongself.eventCallBack) {
             strongself.eventCallBack(action, value);
         }
@@ -191,6 +194,20 @@
             strongself.eventCallBack(action, value);
         }
     };
+}
+
+- (void)fadeHiddenControl {
+    [self.topView fadeHiddenControl];
+    [self.bottomView fadeHiddenControl];
+    self.lockBtn.hidden = YES;
+}
+
+- (void)showControl {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(fadeHiddenControl) object:nil];
+    [self.topView showControl];
+    [self.bottomView showControl];
+    self.lockBtn.hidden = NO;
+    [self performSelector:@selector(fadeHiddenControl) withObject:nil afterDelay:3];
 }
 
 - (void)layoutSubviews {

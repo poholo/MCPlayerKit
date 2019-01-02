@@ -106,4 +106,11 @@ NSString *const kMCPlayerHeaderBack2Half = @"kMCPlayerHeaderBack2Half";
     }
 }
 
+- (void)fadeHiddenControl {
+}
+
+- (void)showControl {
+
+}
+
 @end

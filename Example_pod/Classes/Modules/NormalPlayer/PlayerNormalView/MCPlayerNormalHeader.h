@@ -20,4 +20,8 @@ extern NSString *const kMCPlayerHeaderBack2Half;
 
 - (NSInteger)top;
 
+- (void)fadeHiddenControl;
+
+- (void)showControl;
+
 @end

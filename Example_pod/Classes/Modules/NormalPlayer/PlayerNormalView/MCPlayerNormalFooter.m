@@ -85,6 +85,14 @@ NSString *const kMCPlayer2PauseAction = @"kMCPlayer2PauseAction";
     [self.playerProgress updateBufferProgress:progress];
 }
 
+- (void)fadeHiddenControl {
+    self.hidden = YES;
+}
+
+- (void)showControl {
+    self.hidden = NO;
+}
+
 
 - (void)createViews {
     [self addSubview:self.playBtn];
