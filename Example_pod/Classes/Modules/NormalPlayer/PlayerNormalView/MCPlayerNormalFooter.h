@@ -4,10 +4,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MCPlayerNormalView.h"
 
 @class MCPlayerProgress;
 
 @interface MCPlayerNormalFooter : UIView
 
+@property(nonatomic, copy) MCPlayerNormalViewEventCallBack callBack;
+
+- (void)updatePlayerStyle:(MCPlayerStyleSizeType)styleSizeType;
 
 @end

@@ -87,6 +87,8 @@ extern NSString *const _k_DT_UHD_name;
 extern NSString *const _k_player_WQAVPlayer;
 extern NSString *const _k_player_IJKPlayer;
 
+typedef void(^MCPlayerNormalViewEventCallBack)(NSString *action, id value);
+
 @interface MCPlayerViewConfig : NSObject
 
 @property(nonatomic, assign) DefinitionType definitionType;

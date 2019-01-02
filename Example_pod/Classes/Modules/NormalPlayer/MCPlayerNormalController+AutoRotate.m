@@ -90,14 +90,8 @@
 //    [self.playerView updateFullScreenBtnStatus:YES];
     [self setStatusBarHidden:YES];
 
-    CGSize size = [UIScreen mainScreen].bounds.size;
-    [self.playerView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(MIN(size.width, size.height));
-    }];
-
-    [self.playerView setNeedsUpdateConstraints];
-    [self.playerView updateConstraintsIfNeeded];
-    [self.playerView layoutIfNeeded];
+    self.playerView.frame = self.view.bounds;
+    [self.playerView updatePlayerStyle:PlayerStyleSizeClassCompact];
 }
 
 //竖屏
@@ -105,28 +99,17 @@
 //    [self.playerView setPlayerStyle:PlayerStyleSizeClassRegularHalf];
 //    [self.playerView updateFullScreenBtnStatus:NO];
     [self setStatusBarHidden:NO];
-
     CGSize size = [UIScreen mainScreen].bounds.size;
-    [self.playerView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(MIN(size.width, size.height) * 9 / 16);
-    }];
-    [self.playerView setNeedsUpdateConstraints];
-    [self.playerView updateConstraintsIfNeeded];
-    [self.playerView layoutIfNeeded];
+    self.playerView.frame = CGRectMake(0, 0, size.width, size.width * 9 / 16);
+    [self.playerView updatePlayerStyle:PlayerStyleSizeClassRegularHalf];
 }
 
 - (void)rotate2PortraitFullScreen {
 //    [self.playerView setPlayerStyle:PlayerStyleSizeClassRegular];
 //    [self.playerView updateFullScreenBtnStatus:YES];
     [self setStatusBarHidden:YES];
-
-    CGSize size = [UIScreen mainScreen].bounds.size;
-    [self.playerView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(MAX(size.width, size.height));
-    }];
-    [self.playerView setNeedsUpdateConstraints];
-    [self.playerView updateConstraintsIfNeeded];
-    [self.playerView layoutIfNeeded];
+    self.playerView.frame = self.view.bounds;
+    [self.playerView updatePlayerStyle:PlayerStyleSizeClassRegular];
 }
 
 - (void)setStatusBarHidden:(BOOL)isHidden {

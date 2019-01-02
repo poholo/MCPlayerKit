@@ -35,6 +35,7 @@
     if (self) {
         [self createViews];
         [self addLayout];
+        [self addActions];
     }
     return self;
 }
@@ -59,7 +60,29 @@
 
 - (void)updatePlayerStyle:(MCPlayerStyleSizeType)styleSizeType {
     if (self.styleSizeType == styleSizeType) return;
+    self.styleSizeType = styleSizeType;
+    [self.topView updatePlayerStyle:styleSizeType];
+    [self.bottomView updatePlayerStyle:styleSizeType];
+    switch (self.styleSizeType) {
+        case PlayerStyleSizeClassRegularHalf: {
+
+        }
+            break;
+        case PlayerStyleSizeClassRegular: {
+
+        }
+            break;
+        case PlayerStyleSizeClassCompact: {
+
+        }
+            break;
+    }
 }
+
+- (void)updateTitle:(NSString *)title {
+    self.topView.titleLabel.text = title;
+}
+
 
 #pragma mark - views
 
@@ -88,14 +111,38 @@
     self.playerView.frame = self.containerView.bounds;
     CGFloat w = CGRectGetWidth(self.containerView.frame);
     CGFloat h = CGRectGetHeight(self.containerView.frame);
-    CGFloat barRate = 0.2f;
-    CGFloat barHeight = 30;
+    CGFloat barRate = 0.1f;
+    CGFloat barHeight = 44;
     self.topView.frame = CGRectMake(0, 0, w, barHeight + [MCPlayerNormalHeader top]);
     self.bottomView.frame = CGRectMake(0, h - barHeight, w, barHeight);
 
     CGFloat lockW = 44;
     self.lockBtn.frame = CGRectMake(10, (h - lockW) / 2.0f, lockW, lockW);
     self.coverImageView.frame = self.containerView.bounds;
+}
+
+- (void)addActions {
+    __weak typeof(self) weakSelf = self;
+    self.topView.callBack = ^(NSString *action, id value) {
+        __strong typeof(weakSelf) strongself = weakSelf;
+        if (strongself.eventCallBack) {
+            strongself.eventCallBack(action, value);
+        }
+    };
+
+    self.touchView.callBack = ^(NSString *action, id value) {
+        __strong typeof(weakSelf) strongself = weakSelf;
+        if (strongself.eventCallBack) {
+            strongself.eventCallBack(action, value);
+        }
+    };
+
+    self.bottomView.callBack = ^(NSString *action, id value) {
+        __strong typeof(weakSelf) strongself = weakSelf;
+        if (strongself.eventCallBack) {
+            strongself.eventCallBack(action, value);
+        }
+    };
 }
 
 - (void)layoutSubviews {

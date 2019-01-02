@@ -30,6 +30,24 @@
     return self;
 }
 
+- (void)updatePlayerStyle:(MCPlayerStyleSizeType)styleSizeType {
+    switch (styleSizeType) {
+        case PlayerStyleSizeClassRegularHalf: {
+            self.screenBtn.selected = NO;
+        }
+            break;
+        case PlayerStyleSizeClassRegular: {
+            self.screenBtn.selected = YES;
+        }
+            break;
+        case PlayerStyleSizeClassCompact: {
+            self.screenBtn.selected = YES;
+        }
+            break;
+    }
+}
+
+
 - (void)createViews {
     [self addSubview:self.playBtn];
     [self addSubview:self.currentLabel];

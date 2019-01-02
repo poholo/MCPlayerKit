@@ -7,10 +7,15 @@
 
 #import <MCStyle/MCStyleDef.h>
 
+NSString *const kMCPlayerHeaderBack = @"kMCPlayerHeaderBack";
+NSString *const kMCPlayerHeaderBack2Half = @"kMCPlayerHeaderBack2Half";
+
 @interface MCPlayerNormalHeader ()
 
 @property(nonatomic, strong) UIButton *backBtn;
 @property(nonatomic, strong) UILabel *titleLabel;
+
+@property(nonatomic, assign) MCPlayerStyleSizeType styleSizeType;
 
 @end
 
@@ -26,6 +31,29 @@
     return self;
 }
 
+- (void)updatePlayerStyle:(MCPlayerStyleSizeType)styleSizeType {
+    self.styleSizeType = styleSizeType;
+    switch (styleSizeType) {
+        case PlayerStyleSizeClassRegularHalf: {
+        }
+            break;
+        case PlayerStyleSizeClassRegular: {
+        }
+            break;
+        case PlayerStyleSizeClassCompact: {
+        }
+            break;
+    }
+}
+
+- (void)backBtnClick {
+    if (!self.callBack) return;
+    if (self.styleSizeType == PlayerStyleSizeClassRegularHalf) {
+        self.callBack(kMCPlayerHeaderBack, nil);
+    } else {
+        self.callBack(kMCPlayerHeaderBack2Half, nil);
+    }
+}
 
 - (void)createViews {
     [self addSubview:self.backBtn];
@@ -56,6 +84,7 @@
     if (!_backBtn) {
         _backBtn = [UIButton new];
         [_backBtn setImage:[MCStyle customImage:@"player_header_0"] forState:UIControlStateNormal];
+        [_backBtn addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _backBtn;
 }

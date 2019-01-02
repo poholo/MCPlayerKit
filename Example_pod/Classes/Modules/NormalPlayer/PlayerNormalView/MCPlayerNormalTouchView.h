@@ -5,9 +5,17 @@
 
 #import <UIKit/UIKit.h>
 
+#import "MCPlayerViewConfig.h"
+
 /**
  * 管理播放器UI触摸事件
  */
 
+extern NSString *const kMCTouchTapAction;
+extern NSString *const kMCTouchSwipeAction;
+
 @interface MCPlayerNormalTouchView : UIView
+
+@property(nonatomic, copy) MCPlayerNormalViewEventCallBack callBack;
+
 @end
