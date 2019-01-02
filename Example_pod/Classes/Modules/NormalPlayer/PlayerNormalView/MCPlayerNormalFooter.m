@@ -77,6 +77,14 @@ NSString *const kMCPlayer2PauseAction = @"kMCPlayer2PauseAction";
     [self refreshTimeFrame];
 }
 
+- (void)updateProgress:(float)progress {
+    [self.playerProgress updateProgress:progress];
+}
+
+- (void)updateBufferProgress:(float)progress {
+    [self.playerProgress updateBufferProgress:progress];
+}
+
 
 - (void)createViews {
     [self addSubview:self.playBtn];

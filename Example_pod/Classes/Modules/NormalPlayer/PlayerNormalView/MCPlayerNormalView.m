@@ -96,6 +96,14 @@
     [self.bottomView duration:time];
 }
 
+- (void)updateProgress:(float)progress {
+    [self.bottomView updateProgress:progress];
+}
+
+- (void)updateBufferProgress:(float)progress {
+    [self.bottomView updateBufferProgress:progress];
+}
+
 
 #pragma mark - views
 

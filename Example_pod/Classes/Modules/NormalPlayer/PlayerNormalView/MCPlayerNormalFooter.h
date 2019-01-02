@@ -23,4 +23,8 @@ extern NSString *const kMCPlayer2PauseAction;
 
 - (void)duration:(double)time;
 
+- (void)updateProgress:(float)progress;
+
+- (void)updateBufferProgress:(float)progress;
+
 @end

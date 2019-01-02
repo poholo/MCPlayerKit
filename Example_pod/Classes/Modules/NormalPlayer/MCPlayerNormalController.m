@@ -133,6 +133,7 @@
 
 - (void)currentTime:(double)time {
     [self.playerView currentTime:time];
+    [self.playerView updateProgress:time / self.playerKit.duration];
 }
 
 
