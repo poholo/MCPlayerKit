@@ -37,6 +37,24 @@
     return self;
 }
 
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if(self) {
+        [self createViews];
+        [self addLayout];
+    }
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if(self) {
+        [self createViews];
+        [self addLayout];
+    }
+    return self;
+}
+
 - (void)updatePlayerStyle:(MCPlayerStyleSizeType)styleSizeType {
     if (self.styleSizeType == styleSizeType) return;
 }
@@ -61,6 +79,7 @@
     self.containerView.frame = self.bounds;
     //TODO:: 2018 devices
     self.touchView.frame = self.containerView.bounds;
+    self.playerView.frame = self.containerView.bounds;
     CGFloat w = CGRectGetWidth(self.containerView.frame);
     CGFloat h = CGRectGetHeight(self.containerView.frame);
     CGFloat barRate = 0.2f;

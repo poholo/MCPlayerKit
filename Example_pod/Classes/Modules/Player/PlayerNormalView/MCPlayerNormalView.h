@@ -21,6 +21,7 @@ typedef NS_ENUM(NSInteger, MCPlayerStyleSizeType) {
 @interface MCPlayerNormalView : UIView
 
 @property(nonatomic, copy) MCPlayerNormalViewEventCallBack eventCallBack;
+@property(nonatomic, readonly) MCPlayerBaseView *playerView;
 
 - (void)updatePlayerStyle:(MCPlayerStyleSizeType)styleSizeType;
 

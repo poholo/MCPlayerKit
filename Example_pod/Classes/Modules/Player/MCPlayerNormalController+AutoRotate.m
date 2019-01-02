@@ -17,9 +17,9 @@
 #pragma mark - AutoRoate
 
 - (BOOL)canRotate {
-    if ([self.playerView isLock]) {
-        return NO;
-    }
+//    if ([self.playerView isLock]) {
+//        return NO;
+//    }
     return YES;
 }
 
@@ -87,7 +87,7 @@
 //        return;
 //    }
 //    [self.playerView setPlayerStyle:PlayerStyleSizeClassCompact];
-    [self.playerView updateFullScreenBtnStatus:YES];
+//    [self.playerView updateFullScreenBtnStatus:YES];
     [self setStatusBarHidden:YES];
 
     CGSize size = [UIScreen mainScreen].bounds.size;
@@ -103,7 +103,7 @@
 //竖屏
 - (void)rotate2Portrait {
 //    [self.playerView setPlayerStyle:PlayerStyleSizeClassRegularHalf];
-    [self.playerView updateFullScreenBtnStatus:NO];
+//    [self.playerView updateFullScreenBtnStatus:NO];
     [self setStatusBarHidden:NO];
 
     CGSize size = [UIScreen mainScreen].bounds.size;
@@ -117,7 +117,7 @@
 
 - (void)rotate2PortraitFullScreen {
 //    [self.playerView setPlayerStyle:PlayerStyleSizeClassRegular];
-    [self.playerView updateFullScreenBtnStatus:YES];
+//    [self.playerView updateFullScreenBtnStatus:YES];
     [self setStatusBarHidden:YES];
 
     CGSize size = [UIScreen mainScreen].bounds.size;

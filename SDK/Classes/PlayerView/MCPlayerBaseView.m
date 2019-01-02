@@ -9,7 +9,7 @@
 #import "MCPlayerBaseView.h"
 
 
-@implementation MCPlayerBaseView
+@implementation  MCPlayerBaseView
 
 - (instancetype)init {
     self = [super init];
