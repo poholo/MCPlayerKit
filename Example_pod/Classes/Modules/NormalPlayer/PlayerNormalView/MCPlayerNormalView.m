@@ -88,6 +88,15 @@
     return self.lockBtn.selected;
 }
 
+- (void)currentTime:(double)time {
+    [self.bottomView currentTime:time];
+}
+
+- (void)duration:(double)time {
+    [self.bottomView duration:time];
+}
+
+
 #pragma mark - views
 
 - (void)createViews {

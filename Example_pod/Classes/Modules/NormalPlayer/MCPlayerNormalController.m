@@ -101,29 +101,38 @@
     }
 }
 
-#pragma mark - PlayerNormalViewDelegate
+#pragma mark - MCPlayerDelegate
 
-- (void)showShareView {
-
-}
-
-- (void)showAirplay {
+- (void)playLoading {
 
 }
 
-- (void)playerPopViewController {
-//    if (self.playerView.playerStyle != PlayerStyleSizeClassRegularHalf) {
-//        [self updatePlayerRegularHalf];
-//    } else {
-//        [self.navigationController popViewControllerAnimated:YES];
-//    }
+- (void)playBuffer {
+
+}
+
+- (void)playStart {
+    [self.playerView duration:self.playerKit.duration];
+}
+
+- (void)playPlay {
+
+}
+
+- (void)playEnd {
+
+}
+
+- (void)playError {
+
+}
+
+- (void)updatePlayView {
+
 }
 
 - (void)currentTime:(double)time {
-}
-
-- (BOOL)afterSeekNeed2Play {
-    return YES;
+    [self.playerView currentTime:time];
 }
 
 

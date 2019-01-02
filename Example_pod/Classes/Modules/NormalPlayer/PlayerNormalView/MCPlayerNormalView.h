@@ -32,6 +32,10 @@ typedef NS_ENUM(NSInteger, MCPlayerStyleSizeType) {
 
 - (void)updateTitle:(NSString *)title;
 
+- (void)currentTime:(double)time;
+
+- (void)duration:(double)time;
+
 - (BOOL)isLock;
 
 @end

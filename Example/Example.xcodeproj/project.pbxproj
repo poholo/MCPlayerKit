@@ -25,6 +25,7 @@
 		1A6668B5BACF2DBB37CDDBE5 /* MCPlayerProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6663C8ED43AE5217F96BCC /* MCPlayerProgress.m */; };
 		1A666BFF5EC7A3287B549B63 /* MCRotateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666F7F35518AB8679134D1 /* MCRotateHelper.m */; };
 		1A666D1A3B171845BD3423C3 /* MCPlayerNormalFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666B62A167B56AB859469B /* MCPlayerNormalFooter.m */; };
+		1A666D365CC431A88119C5C1 /* NSNumber+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666EC59F734D5D6F536CA4 /* NSNumber+Extend.m */; };
 		1A666EDCC82FA58984216C48 /* CustomPlayerFont.json in Resources */ = {isa = PBXBuildFile; fileRef = 1A666EBDEA923272BFCB297D /* CustomPlayerFont.json */; };
 		250CCDF321D4CE2000ECDF83 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 250CCDCE21D4CE1F00ECDF83 /* LaunchScreen.storyboard */; };
 		250CCDF421D4CE2000ECDF83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 250CCDD021D4CE1F00ECDF83 /* Assets.xcassets */; };
@@ -75,6 +76,7 @@
 
 /* Begin PBXFileReference section */
 		1A666069573E98FDB9361047 /* MCDouyinPlayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCDouyinPlayerCell.m; sourceTree = "<group>"; };
+		1A6660E6B0B9254B1248668B /* NSNumber+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+Extend.h"; sourceTree = "<group>"; };
 		1A66610031227F7AA732D0C0 /* MCDouyinPlayerDataVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCDouyinPlayerDataVM.m; sourceTree = "<group>"; };
 		1A666122A263BE2C2761FCFB /* MCPlayerNormalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCPlayerNormalView.h; sourceTree = "<group>"; };
 		1A66614C5C867956215A0AA1 /* PlayerLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerLoadingView.m; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 		1A666D1D9BABA942AF0F497C /* MCRotateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCRotateHelper.h; sourceTree = "<group>"; };
 		1A666E7D7A189E9E39D42C3E /* MCPlayerNormalHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCPlayerNormalHeader.h; sourceTree = "<group>"; };
 		1A666EBDEA923272BFCB297D /* CustomPlayerFont.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CustomPlayerFont.json; sourceTree = "<group>"; };
+		1A666EC59F734D5D6F536CA4 /* NSNumber+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+Extend.m"; sourceTree = "<group>"; };
 		1A666EFED9D09D5A5B4FF32D /* MCMediaNotify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCMediaNotify.m; sourceTree = "<group>"; };
 		1A666F446FB20A6CBA968744 /* MCMediaNotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCMediaNotify.h; sourceTree = "<group>"; };
 		1A666F7F35518AB8679134D1 /* MCRotateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCRotateHelper.m; sourceTree = "<group>"; };
@@ -462,6 +465,8 @@
 			children = (
 				250CCEC621D4D1C800ECDF83 /* UIColor+Hex.m */,
 				250CCEC721D4D1C800ECDF83 /* UIColor+Hex.h */,
+				1A666EC59F734D5D6F536CA4 /* NSNumber+Extend.m */,
+				1A6660E6B0B9254B1248668B /* NSNumber+Extend.h */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -728,6 +733,7 @@
 				1A666D1A3B171845BD3423C3 /* MCPlayerNormalFooter.m in Sources */,
 				1A6662E949E4E53D192A1507 /* MCPlayerNormalTouchView.m in Sources */,
 				1A666BFF5EC7A3287B549B63 /* MCRotateHelper.m in Sources */,
+				1A666D365CC431A88119C5C1 /* NSNumber+Extend.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

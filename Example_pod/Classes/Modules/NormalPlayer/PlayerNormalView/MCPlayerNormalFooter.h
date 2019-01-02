@@ -19,4 +19,8 @@ extern NSString *const kMCPlayer2PauseAction;
 
 - (void)updatePlayerStyle:(MCPlayerStyleSizeType)styleSizeType;
 
+- (void)currentTime:(double)time;
+
+- (void)duration:(double)time;
+
 @end

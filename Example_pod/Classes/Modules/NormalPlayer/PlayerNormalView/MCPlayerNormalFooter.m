@@ -9,6 +9,7 @@
 #import <MCStyleDef.h>
 
 #import "MCPlayerProgress.h"
+#import "NSNumber+Extend.h"
 
 NSString *const kMCPlayer2HalfScreenAction = @"kMCPlayer2HalfScreenAction";
 NSString *const kMCPlayer2FullScreenAction = @"kMCPlayer2FullScreenAction";
@@ -66,9 +67,21 @@ NSString *const kMCPlayer2PauseAction = @"kMCPlayer2PauseAction";
     }
 }
 
+- (void)currentTime:(double)time {
+    self.currentLabel.text = [@(time) hhMMss];
+    [self refreshTimeFrame];
+}
+
+- (void)duration:(double)time {
+    self.durationLabel.text = [@(time) hhMMss];
+    [self refreshTimeFrame];
+}
+
+
 - (void)createViews {
     [self addSubview:self.playBtn];
     [self addSubview:self.currentLabel];
+    [self addSubview:self.durationLabel];
     [self addSubview:self.playerProgress];
     [self addSubview:self.screenBtn];
 }
