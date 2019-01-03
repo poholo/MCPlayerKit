@@ -12,6 +12,7 @@ NSString *const kMCPlayerHeaderBack2Half = @"kMCPlayerHeaderBack2Half";
 
 @interface MCPlayerNormalHeader ()
 
+@property(nonatomic, strong) CAGradientLayer *gradientLayer;
 @property(nonatomic, strong) UIButton *backBtn;
 @property(nonatomic, strong) UILabel *titleLabel;
 
@@ -56,6 +57,7 @@ NSString *const kMCPlayerHeaderBack2Half = @"kMCPlayerHeaderBack2Half";
 }
 
 - (void)createViews {
+    [self.layer addSublayer:self.gradientLayer];
     [self addSubview:self.backBtn];
     [self addSubview:self.titleLabel];
 }
@@ -71,6 +73,7 @@ NSString *const kMCPlayerHeaderBack2Half = @"kMCPlayerHeaderBack2Half";
     CGFloat startX = CGRectGetMaxX(self.backBtn.frame) - [MCStyle contentInsetIII].left;
     CGFloat maxTitleWidth = CGRectGetWidth(self.frame) - startX - [MCStyle contentInsetIII].right;
     self.titleLabel.frame = CGRectMake(startX, (h - [MCFont fontV].lineHeight) / 2.0f + self.top, maxTitleWidth, [MCFont fontV].lineHeight);
+    self.gradientLayer.frame = CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
 }
 
 - (void)fadeHiddenControl {
@@ -104,6 +107,18 @@ NSString *const kMCPlayerHeaderBack2Half = @"kMCPlayerHeaderBack2Half";
         _titleLabel.textColor = [MCColor colorI];
     }
     return _titleLabel;
+}
+
+- (CAGradientLayer *)gradientLayer {
+    if (!_gradientLayer) {
+        _gradientLayer = [CAGradientLayer layer];
+        _gradientLayer.colors = @[(__bridge id) [MCColor rgba:0x00000099].CGColor, (__bridge id) [MCColor rgba:0x0000005].CGColor];
+        _gradientLayer.locations = @[@(.4)];
+        _gradientLayer.startPoint = CGPointMake(0, 0);
+        _gradientLayer.endPoint = CGPointMake(0, 1.0);
+        _gradientLayer.frame = CGRectMake(0, 0, CGRectGetHeight(self.frame), 50);
+    }
+    return _gradientLayer;
 }
 
 - (NSInteger)top {

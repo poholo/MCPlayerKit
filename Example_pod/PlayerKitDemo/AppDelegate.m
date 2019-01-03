@@ -7,7 +7,9 @@
 //
 
 #import "AppDelegate.h"
+
 #import "PlayerCategroiesTableController.h"
+#import "MCNavigationController.h"
 
 @interface AppDelegate ()
 
@@ -21,7 +23,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
 
     PlayerCategroiesTableController *playerCategroiesTableController = [[PlayerCategroiesTableController alloc] initWithParams:nil];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:playerCategroiesTableController];
+    MCNavigationController *navigationController = [[MCNavigationController alloc] initWithRootViewController:playerCategroiesTableController];
     self.window.rootViewController = navigationController;
 
     [self.window makeKeyAndVisible];

@@ -27,6 +27,7 @@
 		1A666BFF5EC7A3287B549B63 /* MCRotateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666F7F35518AB8679134D1 /* MCRotateHelper.m */; };
 		1A666D1A3B171845BD3423C3 /* MCPlayerNormalFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666B62A167B56AB859469B /* MCPlayerNormalFooter.m */; };
 		1A666D365CC431A88119C5C1 /* NSNumber+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666EC59F734D5D6F536CA4 /* NSNumber+Extend.m */; };
+		1A666DA387754B00E9D128B9 /* MCNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666616C9D8CC8AA680D681 /* MCNavigationController.m */; };
 		1A666EDCC82FA58984216C48 /* CustomPlayerFont.json in Resources */ = {isa = PBXBuildFile; fileRef = 1A666EBDEA923272BFCB297D /* CustomPlayerFont.json */; };
 		250CCDF321D4CE2000ECDF83 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 250CCDCE21D4CE1F00ECDF83 /* LaunchScreen.storyboard */; };
 		250CCDF421D4CE2000ECDF83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 250CCDD021D4CE1F00ECDF83 /* Assets.xcassets */; };
@@ -94,12 +95,14 @@
 		1A666517B220B5FFE7708263 /* MCDouyinPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCDouyinPlayerView.m; sourceTree = "<group>"; };
 		1A6665600943791525852D67 /* MCPlayerViewConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCPlayerViewConfig.h; sourceTree = "<group>"; };
 		1A6665D3418D18E34A5B5E2D /* PlayerViewUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewUtils.h; sourceTree = "<group>"; };
+		1A666616C9D8CC8AA680D681 /* MCNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCNavigationController.m; sourceTree = "<group>"; };
 		1A66662D8A9FE49566B86F0A /* PlayerLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerLoadingView.h; sourceTree = "<group>"; };
 		1A6666D2F59EBC75A27832FC /* MCPlayerNormalTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCPlayerNormalTouchView.m; sourceTree = "<group>"; };
 		1A66675C4728E06AAFA9AAFC /* PlayerViewUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewUtils.m; sourceTree = "<group>"; };
 		1A6667B55D4305D24EA5FCE9 /* MCDouyinPlayerDataVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCDouyinPlayerDataVM.h; sourceTree = "<group>"; };
 		1A6667E55D386134FE2203AC /* CustomPlayerColor.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CustomPlayerColor.json; sourceTree = "<group>"; };
 		1A6668CF5F862C99D57F7389 /* MCDouyinPlayerListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCDouyinPlayerListController.h; sourceTree = "<group>"; };
+		1A6668DD680BBA3C2ADA24A7 /* MCNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCNavigationController.h; sourceTree = "<group>"; };
 		1A66696C669382CD9DFEEAD3 /* MCDouyinPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCDouyinPlayerView.h; sourceTree = "<group>"; };
 		1A6669AAFA835DA27EF3B2CE /* PlayerTerminalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerTerminalView.h; sourceTree = "<group>"; };
 		1A6669ADA49D05A0BF7BB6A3 /* MCPlayerNormalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCPlayerNormalView.m; sourceTree = "<group>"; };
@@ -469,6 +472,8 @@
 				250CCEC221D4D1C800ECDF83 /* MCControllerProtocol.h */,
 				250CCEC321D4D1C800ECDF83 /* DataVM.m */,
 				250CCEC421D4D1C800ECDF83 /* TableViewCell.h */,
+				1A666616C9D8CC8AA680D681 /* MCNavigationController.m */,
+				1A6668DD680BBA3C2ADA24A7 /* MCNavigationController.h */,
 			);
 			path = Commen;
 			sourceTree = "<group>";
@@ -748,6 +753,7 @@
 				1A666BFF5EC7A3287B549B63 /* MCRotateHelper.m in Sources */,
 				1A666D365CC431A88119C5C1 /* NSNumber+Extend.m in Sources */,
 				1A66622BB9F203D4D4C7B796 /* MCTouchTestController.m in Sources */,
+				1A666DA387754B00E9D128B9 /* MCNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

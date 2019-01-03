@@ -246,8 +246,13 @@
 }
 
 - (void)showControlThenHide {
-    [self showControl];
-    [self performSelector:@selector(fadeHiddenControl) withObject:nil afterDelay:3];
+    if ([self isLock]) {
+        self.lockBtn.hidden = NO;
+        [self.lockBtn performSelector:@selector(setHidden:) withObject:@(YES) afterDelay:3];
+    } else {
+        [self showControl];
+        [self performSelector:@selector(fadeHiddenControl) withObject:nil afterDelay:3];
+    }
 }
 
 - (void)layoutSubviews {

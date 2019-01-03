@@ -12,6 +12,9 @@
     "colorIX": "#999999",
     "colorX": "#ffffff",
     "colorXI": "#ffffff",
-    "colorXII": "#ffffff"
+    "colorXII": "#ffffff",
+    "player_progress_color": "#5cc0f2",
+    "player_progress_buffer_trackcolor": "#97a2a8",
+    "player_progress_buffer_color": "#737b80"
   }
 }

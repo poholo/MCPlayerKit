@@ -24,6 +24,11 @@ typedef NS_ENUM(NSInteger, SliderStyle) {
     SliderShowProgress
 };
 
+/**
+    player_progress_color
+    player_progress_buffer_trackcolor
+    player_progress_buffer_color
+ */
 
 @interface MCPlayerProgress : UIView
 

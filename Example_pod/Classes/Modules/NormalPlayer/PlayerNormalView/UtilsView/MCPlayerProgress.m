@@ -141,7 +141,7 @@
 - (UIProgressView *)progressView {
     if (!_progressView) {
         _progressView = [UIProgressView new];
-        _progressView.progressTintColor = [MCColor colorVII];
+        _progressView.progressTintColor = [MCColor custom:@"player_progress_color"];
         _progressView.trackTintColor = [UIColor clearColor];
     }
     return _progressView;
@@ -150,8 +150,8 @@
 - (UIProgressView *)bufferProgressView {
     if (!_bufferProgressView) {
         _bufferProgressView = [UIProgressView new];
-        _bufferProgressView.progressTintColor = [MCColor colorIX];
-        _bufferProgressView.trackTintColor = [MCColor colorI];
+        _bufferProgressView.progressTintColor = [MCColor custom:@"player_progress_buffer_color"];
+        _bufferProgressView.trackTintColor = [MCColor custom:@"player_progress_buffer_trackcolor"];
     }
     return _bufferProgressView;
 }

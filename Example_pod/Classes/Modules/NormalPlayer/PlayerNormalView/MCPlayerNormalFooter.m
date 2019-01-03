@@ -21,6 +21,8 @@ NSString *const kMCControlProgressEndDragSlider = @"kMCControlProgressEndDragSli
 
 @interface MCPlayerNormalFooter () <PlayerProgressDelegate>
 
+@property(nonatomic, strong) CAGradientLayer *gradientLayer;
+
 @property(nonatomic, strong) UIButton *playBtn;
 @property(nonatomic, strong) UILabel *durationLabel;
 @property(nonatomic, strong) UILabel *currentLabel;
@@ -97,6 +99,7 @@ NSString *const kMCControlProgressEndDragSlider = @"kMCControlProgressEndDragSli
 }
 
 - (void)createViews {
+    [self.layer addSublayer:self.gradientLayer];
     [self addSubview:self.playBtn];
     [self addSubview:self.currentLabel];
     [self addSubview:self.durationLabel];
@@ -110,6 +113,7 @@ NSString *const kMCControlProgressEndDragSlider = @"kMCControlProgressEndDragSli
     CGFloat w = CGRectGetHeight(self.frame) - 2 * [MCStyle contentInsetII].top;
     self.playBtn.frame = CGRectMake([MCStyle contentInsetII].left, [MCStyle contentInsetII].top, w, w);
     self.screenBtn.frame = CGRectMake(CGRectGetWidth(self.frame) - w - [MCStyle contentInsetII].right, [MCStyle contentInsetII].top, w, w);
+    self.gradientLayer.frame = self.bounds;
     [self refreshTimeFrame];
 }
 
@@ -206,6 +210,17 @@ NSString *const kMCControlProgressEndDragSlider = @"kMCControlProgressEndDragSli
         [_screenBtn addTarget:self action:@selector(screenBtnClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _screenBtn;
+}
+
+- (CAGradientLayer *)gradientLayer {
+    if (!_gradientLayer) {
+        _gradientLayer = [CAGradientLayer layer];
+        _gradientLayer.colors = @[(__bridge id) [MCColor rgba:0x00000005].CGColor, (__bridge id) [MCColor rgba:0x00000099].CGColor];
+        _gradientLayer.locations = @[@(.3)];
+        _gradientLayer.startPoint = CGPointMake(0, 0);
+        _gradientLayer.endPoint = CGPointMake(0, 1.0);
+    }
+    return _gradientLayer;
 }
 
 @end
