@@ -101,7 +101,7 @@ NSString *const kMCPlayerHeaderBack2Half = @"kMCPlayerHeaderBack2Half";
     if (!_titleLabel) {
         _titleLabel = [UILabel new];
         _titleLabel.font = [MCFont fontV];
-        _titleLabel.textColor = [MCColor colorII];
+        _titleLabel.textColor = [MCColor colorI];
     }
     return _titleLabel;
 }

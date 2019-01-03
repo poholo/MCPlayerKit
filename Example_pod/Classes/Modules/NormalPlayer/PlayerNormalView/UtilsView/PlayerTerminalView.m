@@ -6,6 +6,7 @@
 #import "PlayerTerminalView.h"
 
 #import <Masonry.h>
+#import <MCStyle/MCStyleDef.h>
 
 #import "MCPlayerViewConfig.h"
 
@@ -20,15 +21,15 @@ typedef NS_ENUM(NSInteger, PTAirPlayEvent) {
 
 @interface PlayerTerminalView ()
 
-@property (nonatomic, strong) UILabel * videoTitle;
-@property (nonatomic, strong) UILabel * mentionInfo;
-@property (nonatomic, strong) UITapGestureRecognizer * tapGestureRecognizer;
-@property (nonatomic, assign) PlayerState playerSate;
+@property(nonatomic, strong) UILabel *videoTitle;
+@property(nonatomic, strong) UILabel *mentionInfo;
+@property(nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
+@property(nonatomic, assign) PlayerState playerSate;
 
-@property (nonatomic, strong) UIButton * quitAirPlayBtn;
-@property (nonatomic, strong) UIButton * volumeLargeBtn;
-@property (nonatomic, strong) UIButton * volumeSmallBtn;
-@property (nonatomic, strong) UIButton * playPauseBtn;
+@property(nonatomic, strong) UIButton *quitAirPlayBtn;
+@property(nonatomic, strong) UIButton *volumeLargeBtn;
+@property(nonatomic, strong) UIButton *volumeSmallBtn;
+@property(nonatomic, strong) UIButton *playPauseBtn;
 
 @end
 
@@ -42,15 +43,15 @@ typedef NS_ENUM(NSInteger, PTAirPlayEvent) {
     [_videoTitle removeFromSuperview];
     [_mentionInfo removeFromSuperview];
     [self removeTapGesture];
-    
+
     [_quitAirPlayBtn removeFromSuperview];
     [_volumeLargeBtn removeFromSuperview];
     [_volumeSmallBtn removeFromSuperview];
     [_playPauseBtn removeFromSuperview];
-    
+
     _videoTitle = nil;
     _mentionInfo = nil;
-    
+
     _quitAirPlayBtn = nil;
     _volumeLargeBtn = nil;
     _volumeSmallBtn = nil;
@@ -58,7 +59,7 @@ typedef NS_ENUM(NSInteger, PTAirPlayEvent) {
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
-    if(self = [super initWithFrame:frame]) {
+    if (self = [super initWithFrame:frame]) {
 
         _videoTitle = [[UILabel alloc] init];
         _mentionInfo = [[UILabel alloc] init];
@@ -75,16 +76,16 @@ typedef NS_ENUM(NSInteger, PTAirPlayEvent) {
         [self addSubview:_volumeSmallBtn];
         [self addSubview:_playPauseBtn];
 
-        _videoTitle.textColor = [MCPlayerViewConfig colorVI];
-        _videoTitle.font      = [UIFont systemFontOfSize:14];
+        _videoTitle.textColor = [MCColor colorI];
+        _videoTitle.font = [UIFont systemFontOfSize:14];
 
-        _mentionInfo.textColor = [MCPlayerViewConfig colorVI];
-        _mentionInfo.font      = [UIFont systemFontOfSize:12];
+        _mentionInfo.textColor = [MCColor colorII];
+        _mentionInfo.font = [UIFont systemFontOfSize:12];
 
         _videoTitle.textAlignment = NSTextAlignmentCenter;
         _mentionInfo.textAlignment = NSTextAlignmentCenter;
 
-        self.backgroundColor = [MCPlayerViewConfig colorI];
+        self.backgroundColor = [MCColor colorV];
 
         [self addAction];
         [self updateStyle];
@@ -109,17 +110,17 @@ typedef NS_ENUM(NSInteger, PTAirPlayEvent) {
 - (void)updateStyle {
     [_quitAirPlayBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
     [_quitAirPlayBtn setTitle:@"退出投屏播放" forState:UIControlStateNormal];
-    [_quitAirPlayBtn setTitleColor:[UIColor colorWithRed:36/255.0 green:218/255.0 blue:161/255.0 alpha:1] forState:UIControlStateNormal];
+    [_quitAirPlayBtn setTitleColor:[UIColor colorWithRed:36 / 255.0 green:218 / 255.0 blue:161 / 255.0 alpha:1] forState:UIControlStateNormal];
 
     _quitAirPlayBtn.layer.cornerRadius = 10;
-    _quitAirPlayBtn.layer.borderColor = [UIColor colorWithRed:36/255.0 green:218/255.0 blue:161/255.0 alpha:1].CGColor;
+    _quitAirPlayBtn.layer.borderColor = [UIColor colorWithRed:36 / 255.0 green:218 / 255.0 blue:161 / 255.0 alpha:1].CGColor;
     _quitAirPlayBtn.layer.masksToBounds = YES;
     _quitAirPlayBtn.layer.borderWidth = 1;
     _quitAirPlayBtn.titleLabel.font = [UIFont systemFontOfSize:12];
 
     [_volumeLargeBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
     [_volumeSmallBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
-    [_playPauseBtn   setImage:[UIImage imageNamed:@"ic_pause"] forState:UIControlStateNormal];
+    [_playPauseBtn setImage:[UIImage imageNamed:@"ic_pause"] forState:UIControlStateNormal];
     [_playPauseBtn setImage:[UIImage imageNamed:@"ic_play"] forState:UIControlStateSelected];
 
 
@@ -224,7 +225,7 @@ typedef NS_ENUM(NSInteger, PTAirPlayEvent) {
 #pragma mark private
 
 - (UITapGestureRecognizer *)tapGestureRecognizer {
-    if(_tapGestureRecognizer == nil) {
+    if (_tapGestureRecognizer == nil) {
         _tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapClick:)];
         [self addGestureRecognizer:_tapGestureRecognizer];
     }
@@ -232,7 +233,7 @@ typedef NS_ENUM(NSInteger, PTAirPlayEvent) {
 }
 
 - (void)removeTapGesture {
-    if(_tapGestureRecognizer) {
+    if (_tapGestureRecognizer) {
         [self removeGestureRecognizer:_tapGestureRecognizer];
         [_tapGestureRecognizer removeTarget:self action:@selector(tapClick:)];
         _tapGestureRecognizer = nil;
@@ -240,7 +241,7 @@ typedef NS_ENUM(NSInteger, PTAirPlayEvent) {
 }
 
 - (void)tapClick:(UITapGestureRecognizer *)tap {
-    if(_delegate == nil) return;
+    if (_delegate == nil) return;
 //    switch(_playerSate) {
 //        case PlayerStatePlayEnd     : {
 //            [_delegate terninalPlayEndReplay];
@@ -266,9 +267,9 @@ typedef NS_ENUM(NSInteger, PTAirPlayEvent) {
 }
 
 - (void)btnClick:(UIButton *)btn {
-    switch(btn.tag) {
+    switch (btn.tag) {
         case PTAPQuitAirPlayEvent : {
-            if([_delegate respondsToSelector:@selector(terminalQuitAirplay2Play)]) {
+            if ([_delegate respondsToSelector:@selector(terminalQuitAirplay2Play)]) {
                 [_delegate terminalQuitAirplay2Play];
             }
             self.hidden = YES;
@@ -277,7 +278,7 @@ typedef NS_ENUM(NSInteger, PTAirPlayEvent) {
         case PTAPAirPlayPlay : {
             btn.selected = !btn.selected;
             btn.tag = PTAPAirPlayPause;
-            if([_delegate respondsToSelector:@selector(terminalAirplayPlay)]) {
+            if ([_delegate respondsToSelector:@selector(terminalAirplayPlay)]) {
                 [_delegate terminalAirplayPlay];
             }
         }
@@ -285,19 +286,19 @@ typedef NS_ENUM(NSInteger, PTAirPlayEvent) {
         case PTAPAirPlayPause : {
             btn.selected = !btn.selected;
             btn.tag = PTAPAirPlayPlay;
-            if([_delegate respondsToSelector:@selector(terminalAirplayPause)]) {
+            if ([_delegate respondsToSelector:@selector(terminalAirplayPause)]) {
                 [_delegate terminalAirplayPause];
             }
         }
             break;
         case PTAPAirPlayVolumeLarge : {
-            if([_delegate respondsToSelector:@selector(terminalAirplayVolumeLarge)]) {
+            if ([_delegate respondsToSelector:@selector(terminalAirplayVolumeLarge)]) {
                 [_delegate terminalAirplayVolumeLarge];
             }
         }
             break;
         case PTAPAirPlayVolumeSmall : {
-            if([_delegate respondsToSelector:@selector(terminalAirplayVolumeSmall)]) {
+            if ([_delegate respondsToSelector:@selector(terminalAirplayVolumeSmall)]) {
                 [_delegate terminalAirplayVolumeSmall];
             }
         }

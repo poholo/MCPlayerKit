@@ -96,18 +96,4 @@ typedef id(^MCPlayerNormalViewEventCallBack)(NSString *action, id value);
 + (instancetype)sharedInstance;
 
 
-+ (UIColor *)colorI;
-
-+ (UIColor *)colorII;
-
-+ (UIColor *)colorIII;
-
-+ (UIColor *)colorIV;
-
-+ (UIColor *)colorV;
-
-+ (UIColor *)colorVI;
-
-+ (UIColor *)colorVII;
-
 @end

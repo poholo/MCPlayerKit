@@ -9,6 +9,7 @@
 #import <Masonry.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <MBProgressHUD/MBProgressHUD.h>
+#import <MCStyle/MCStyleDef.h>
 
 #import "MCPlayerViewConfig.h"
 #import "HWWeakTimer.h"
@@ -136,7 +137,7 @@
 - (MBProgressHUD *)progressHUD {
     if (_progressHUD == nil) {
         _progressHUD = [MBProgressHUD showHUDAddedTo:self animated:YES];
-        _progressHUD.contentColor = [MCPlayerViewConfig colorV];
+        _progressHUD.contentColor = [MCColor colorVII];
         _progressHUD.bezelView.color = [UIColor clearColor];
         _progressHUD.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
         _progressHUD.backgroundView.color = [UIColor clearColor];

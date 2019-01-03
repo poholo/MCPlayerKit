@@ -126,13 +126,16 @@
     //创建一个NSMutableAttributedString
     NSMutableAttributedString *attriString = [[NSMutableAttributedString alloc] initWithString:text];
 
+    NSRange range = [text rangeOfString:@"/"];
+
+
     [attriString addAttribute:(NSString *) NSForegroundColorAttributeName
                         value:(id) [UIColor whiteColor]
-                        range:NSMakeRange(0, 5)];
+                        range:NSMakeRange(0, range.location)];
 
     [attriString addAttribute:(NSString *) NSForegroundColorAttributeName
                         value:(id) [UIColor colorWithRed:153 / 255.0 green:153 / 255.0 blue:153 / 255.0 alpha:1]
-                        range:NSMakeRange(5, 6)];
+                        range:NSMakeRange(range.location + range.length, text.length - range.location - range.length)];
 
 //    NSRange rangeOfString = [text rangeOfString:text];
 //    [attriString addAttribute:(NSString *)NSFontAttributeName

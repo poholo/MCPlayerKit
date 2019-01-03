@@ -15,8 +15,11 @@ NSString *const kMCPlayer2HalfScreenAction = @"kMCPlayer2HalfScreenAction";
 NSString *const kMCPlayer2FullScreenAction = @"kMCPlayer2FullScreenAction";
 NSString *const kMCPlayer2PlayAction = @"kMCPlayer2PlayAction";
 NSString *const kMCPlayer2PauseAction = @"kMCPlayer2PauseAction";
+NSString *const kMCControlProgressStartDragSlider = @"kMCControlProgressStartDragSlider";
+NSString *const kMCDragProgressToProgress = @"kMCDragProgressToProgress";
+NSString *const kMCControlProgressEndDragSlider = @"kMCControlProgressEndDragSlider";
 
-@interface MCPlayerNormalFooter ()
+@interface MCPlayerNormalFooter () <PlayerProgressDelegate>
 
 @property(nonatomic, strong) UIButton *playBtn;
 @property(nonatomic, strong) UILabel *durationLabel;
@@ -93,7 +96,6 @@ NSString *const kMCPlayer2PauseAction = @"kMCPlayer2PauseAction";
     self.hidden = NO;
 }
 
-
 - (void)createViews {
     [self addSubview:self.playBtn];
     [self addSubview:self.currentLabel];
@@ -138,6 +140,26 @@ NSString *const kMCPlayer2PauseAction = @"kMCPlayer2PauseAction";
     [self addLayout];
 }
 
+#pragma mark - PlayerProgressDelegate
+
+- (void)controlProgressStartDragSlider {
+    if (self.callBack) {
+        self.callBack(kMCControlProgressStartDragSlider, nil);
+    }
+}
+
+- (void)dragProgressToProgress:(float)value {
+    if (self.callBack) {
+        self.callBack(kMCDragProgressToProgress, @(value));
+    }
+}
+
+- (void)controlProgressEndDragSlider {
+    if (self.callBack) {
+        self.callBack(kMCControlProgressEndDragSlider, nil);
+    }
+}
+
 #pragma mark - getter
 
 - (UIButton *)playBtn {
@@ -154,7 +176,7 @@ NSString *const kMCPlayer2PauseAction = @"kMCPlayer2PauseAction";
     if (!_durationLabel) {
         _durationLabel = [UILabel new];
         _durationLabel.font = [MCFont fontV];
-        _durationLabel.textColor = [MCColor colorIII];
+        _durationLabel.textColor = [MCColor colorI];
     }
     return _durationLabel;
 }
@@ -163,7 +185,7 @@ NSString *const kMCPlayer2PauseAction = @"kMCPlayer2PauseAction";
     if (!_currentLabel) {
         _currentLabel = [UILabel new];
         _currentLabel.font = [MCFont fontV];
-        _currentLabel.textColor = [MCColor colorIII];
+        _currentLabel.textColor = [MCColor colorI];
     }
     return _currentLabel;
 }
@@ -171,6 +193,7 @@ NSString *const kMCPlayer2PauseAction = @"kMCPlayer2PauseAction";
 - (MCPlayerProgress *)playerProgress {
     if (!_playerProgress) {
         _playerProgress = [MCPlayerProgress new];
+        _playerProgress.delegate = self;
     }
     return _playerProgress;
 }

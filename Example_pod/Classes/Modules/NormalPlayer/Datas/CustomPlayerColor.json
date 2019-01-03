@@ -1,17 +1,17 @@
 {
   "success": true,
   "data": {
-    "colorI": "#000000",
-    "colorII": "#000000",
-    "colorIII": "#000000",
-    "colorIV": "#000000",
-    "colorV": "#000000",
-    "colorVI": "#000000",
-    "colorVII": "#000000",
-    "colorVIII": "#000000",
-    "colorIX": "#000000",
-    "colorX": "#000000",
-    "colorXI": "#000000",
-    "colorXII": "#000000"
+    "colorI": "#ffffff",
+    "colorII": "#ffffff",
+    "colorIII": "#ffffff",
+    "colorIV": "#ffffff",
+    "colorV": "#edf1f5",
+    "colorVI": "#5cc0f2",
+    "colorVII": "#999999",
+    "colorVIII": "#ffffff",
+    "colorIX": "#999999",
+    "colorX": "#ffffff",
+    "colorXI": "#ffffff",
+    "colorXII": "#ffffff"
   }
 }

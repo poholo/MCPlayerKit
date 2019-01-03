@@ -12,6 +12,9 @@ extern NSString *const kMCPlayer2HalfScreenAction;
 extern NSString *const kMCPlayer2FullScreenAction;
 extern NSString *const kMCPlayer2PlayAction;
 extern NSString *const kMCPlayer2PauseAction;
+extern NSString *const kMCControlProgressStartDragSlider;
+extern NSString *const kMCDragProgressToProgress;
+extern NSString *const kMCControlProgressEndDragSlider;
 
 @interface MCPlayerNormalFooter : UIView
 

@@ -126,8 +126,6 @@
     [self.containerView addSubview:self.coverImageView];
     [self.containerView addSubview:self.loadingView];
 
-    self.topView.backgroundColor = [MCColor randomImageColor];
-    self.bottomView.backgroundColor = [MCColor randomImageColor];
     self.topView.titleLabel.text = @"Skipping code signing because the target does not have an Info.plist file. (in target 'App')";
 }
 
@@ -180,7 +178,7 @@
     self.touchView.callBack = ^id(NSString *action, id value) {
         __strong typeof(weakSelf) strongself = weakSelf;
         if ([action isEqualToString:kMCTouchTapAction]) {
-            [strongself showControl];
+            [strongself showControlThenHide];
         }
         if (strongself.eventCallBack) {
             return strongself.eventCallBack(action, value);
@@ -193,16 +191,22 @@
         if ([action isEqualToString:kMCPlayer2HalfScreenAction]) {
             [MCRotateHelper updatePlayerRegularHalf];
             [strongself updatePlayerStyle:PlayerStyleSizeClassRegularHalf];
-            [strongself showControl];
+            [strongself showControlThenHide];
         } else if ([action isEqualToString:kMCPlayer2FullScreenAction]) {
             //TODO:: 竖屏全屏
             [MCRotateHelper updatePlayerRegular];
             [strongself updatePlayerStyle:PlayerStyleSizeClassCompact];
-            [strongself showControl];
+            [strongself showControlThenHide];
         } else if ([action isEqualToString:kMCPlayer2PlayAction]) {
-            [strongself showControl];
+            [strongself showControlThenHide];
         } else if ([action isEqualToString:kMCPlayer2PauseAction]) {
+            [strongself showControlThenHide];
+        } else if ([action isEqualToString:kMCControlProgressStartDragSlider]) {
             [strongself showControl];
+        } else if ([action isEqualToString:kMCDragProgressToProgress]) {
+            [strongself.playerKit seekSeconds:strongself.playerKit.duration * [value floatValue]];
+        } else if ([action isEqualToString:kMCControlProgressEndDragSlider]) {
+            [strongself showControlThenHide];
         }
 
         if (strongself.eventCallBack) {
@@ -239,6 +243,10 @@
     [self.topView showControl];
     [self.bottomView showControl];
     self.lockBtn.hidden = NO;
+}
+
+- (void)showControlThenHide {
+    [self showControl];
     [self performSelector:@selector(fadeHiddenControl) withObject:nil afterDelay:3];
 }
 

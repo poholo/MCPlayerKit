@@ -5,6 +5,8 @@
 
 #import "MCPlayerProgress.h"
 
+#import <MCStyle/MCStyleDef.h>
+
 #import "MCPlayerViewConfig.h"
 #import "MCPlayerKitDef.h"
 
@@ -139,7 +141,7 @@
 - (UIProgressView *)progressView {
     if (!_progressView) {
         _progressView = [UIProgressView new];
-        _progressView.progressTintColor = [MCPlayerViewConfig colorIV];
+        _progressView.progressTintColor = [MCColor colorVII];
         _progressView.trackTintColor = [UIColor clearColor];
     }
     return _progressView;
@@ -148,8 +150,8 @@
 - (UIProgressView *)bufferProgressView {
     if (!_bufferProgressView) {
         _bufferProgressView = [UIProgressView new];
-        _bufferProgressView.progressTintColor = [MCPlayerViewConfig colorVI];
-        _bufferProgressView.trackTintColor = [MCPlayerViewConfig colorVII];
+        _bufferProgressView.progressTintColor = [MCColor colorIX];
+        _bufferProgressView.trackTintColor = [MCColor colorI];
     }
     return _bufferProgressView;
 }
