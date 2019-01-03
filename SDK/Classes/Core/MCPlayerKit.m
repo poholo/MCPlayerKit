@@ -17,7 +17,7 @@
 
 @interface MCPlayerKit ()
 
-/** 计时器 */
+@property(nonatomic, weak) MCPlayerBaseView *playerView;
 @property(nonatomic, strong) NSTimer *timer;
 
 @property(nonatomic, strong) NSArray<NSString *> *urls;
@@ -35,24 +35,24 @@
 - (instancetype)initWithPlayerView:(MCPlayerBaseView *)playerView {
     self = [super init];
     if (self) {
-        _playerView = playerView;
+        self.playerView = playerView;
         self.playerEnvironment = PlayerEnvironmentOnBecomeActiveStatus;
     }
     return self;
 }
 
 - (void)updatePlayerView:(MCPlayerBaseView *)playerView {
-    _playerView = playerView;
+    self.playerView = playerView;
     self.playerEnvironment = PlayerEnvironmentOnBecomeActiveStatus;
 
     if ([self.delegate respondsToSelector:@selector(updatePlayView)]) {
         [self.delegate updatePlayView];
     }
-    if ([_playerView respondsToSelector:@selector(updatePlayerLayer:)] && [_player playerLayer]) {
-        [_playerView updatePlayerLayer:[_player playerLayer]];
+    if ([self.playerView respondsToSelector:@selector(updatePlayerLayer:)] && [_player playerLayer]) {
+        [self.playerView updatePlayerLayer:[_player playerLayer]];
     }
-    if ([_playerView respondsToSelector:@selector(updatePlayerView:)] && [_player playerView]) {
-        [_playerView updatePlayerView:[_player playerView]];
+    if ([self.playerView respondsToSelector:@selector(updatePlayerView:)] && [_player playerView]) {
+        [self.playerView updatePlayerView:[_player playerView]];
     }
 }
 
@@ -145,8 +145,8 @@
             if ([self.delegate respondsToSelector:@selector(playStart)]) {
                 [self.delegate playStart];
             }
-            if (_playerView) {
-                [self updatePlayerView:_playerView];
+            if (self.playerView) {
+                [self updatePlayerView:self.playerView];
             }
         }
             break;

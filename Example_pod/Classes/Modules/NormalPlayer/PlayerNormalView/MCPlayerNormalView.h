@@ -9,6 +9,8 @@
 
 #import "MCPlayerViewConfig.h"
 
+@class MCPlayerKit;
+
 
 extern NSString *const kMCPlayer2PlayAction;
 extern NSString *const kMCPlayer2PauseAction;
@@ -45,5 +47,7 @@ typedef NS_ENUM(NSInteger, MCPlayerStyleSizeType) {
 - (void)updateBufferProgress:(float)progress;
 
 - (BOOL)isLock;
+
+- (void)updateAction:(MCPlayerKit *)playerKit;
 
 @end

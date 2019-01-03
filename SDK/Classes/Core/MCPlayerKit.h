@@ -36,7 +36,6 @@
 @interface MCPlayerKit : NSObject {
 @public
     MCPlayer *_player;
-    __weak MCPlayerBaseView *_playerView;
 }
 
 @property(nonatomic, assign) PlayerEnvironment playerEnvironment;

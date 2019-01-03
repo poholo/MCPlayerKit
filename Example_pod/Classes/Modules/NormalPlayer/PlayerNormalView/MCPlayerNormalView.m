@@ -11,6 +11,7 @@
 #import "MCPlayerNormalFooter.h"
 #import "MCPlayerNormalTouchView.h"
 #import "MCRotateHelper.h"
+#import "MCPlayerKit.h"
 
 @interface MCPlayerNormalView ()
 
@@ -24,6 +25,8 @@
 @property(nonatomic, strong) MCPlayerNormalFooter *bottomView;
 @property(nonatomic, strong) UIButton *lockBtn;
 @property(nonatomic, strong) UIView *definitionView;
+
+@property(nonatomic, weak) MCPlayerKit *playerKit;
 
 
 @end
@@ -102,6 +105,10 @@
 
 - (void)updateBufferProgress:(float)progress {
     [self.bottomView updateBufferProgress:progress];
+}
+
+- (void)updateAction:(MCPlayerKit *)playerKit {
+    self.playerKit = playerKit;
 }
 
 
@@ -200,6 +207,22 @@
 
         if (strongself.eventCallBack) {
             strongself.eventCallBack(action, value);
+        }
+        return nil;
+    };
+
+    self.eventCallBack = ^id(NSString *action, id value) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        if ([action isEqualToString:kMCPlayer2PlayAction]) {
+            [strongSelf.playerKit play];
+        } else if ([action isEqualToString:kMCPlayer2PauseAction]) {
+            [strongSelf.playerKit pause];
+        } else if ([action isEqualToString:kMCTouchCurrentTimeAction]) {
+            return @(strongSelf.playerKit.currentTime);
+        } else if ([action isEqualToString:kMCTouchDurationAction]) {
+            return @(strongSelf.playerKit.duration);
+        } else if ([action isEqualToString:kMCTouchSeekAction]) {
+            [strongSelf.playerKit seekSeconds:[value integerValue]];
         }
         return nil;
     };
