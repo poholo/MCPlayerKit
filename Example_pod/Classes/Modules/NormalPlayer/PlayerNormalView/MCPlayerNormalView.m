@@ -144,7 +144,7 @@
 
 - (void)addActions {
     __weak typeof(self) weakSelf = self;
-    self.topView.callBack = ^(NSString *action, id value) {
+    self.topView.callBack = ^id(NSString *action, id value) {
         __strong typeof(weakSelf) strongself = weakSelf;
         if ([action isEqualToString:kMCPlayerHeaderBack2Half]) {
             [MCRotateHelper updatePlayerRegularHalf];
@@ -167,19 +167,21 @@
         if (strongself.eventCallBack) {
             strongself.eventCallBack(action, value);
         }
+        return nil;
     };
 
-    self.touchView.callBack = ^(NSString *action, id value) {
+    self.touchView.callBack = ^id(NSString *action, id value) {
         __strong typeof(weakSelf) strongself = weakSelf;
         if ([action isEqualToString:kMCTouchTapAction]) {
             [strongself showControl];
         }
         if (strongself.eventCallBack) {
-            strongself.eventCallBack(action, value);
+            return strongself.eventCallBack(action, value);
         }
+        return nil;
     };
 
-    self.bottomView.callBack = ^(NSString *action, id value) {
+    self.bottomView.callBack = ^id(NSString *action, id value) {
         __strong typeof(weakSelf) strongself = weakSelf;
         if ([action isEqualToString:kMCPlayer2HalfScreenAction]) {
             [MCRotateHelper updatePlayerRegularHalf];
@@ -190,15 +192,16 @@
             [MCRotateHelper updatePlayerRegular];
             [strongself updatePlayerStyle:PlayerStyleSizeClassCompact];
             [strongself showControl];
-        } else if([action isEqualToString:kMCPlayer2PlayAction]) {
+        } else if ([action isEqualToString:kMCPlayer2PlayAction]) {
             [strongself showControl];
-        } else if([action isEqualToString:kMCPlayer2PauseAction]) {
+        } else if ([action isEqualToString:kMCPlayer2PauseAction]) {
             [strongself showControl];
         }
 
         if (strongself.eventCallBack) {
             strongself.eventCallBack(action, value);
         }
+        return nil;
     };
 }
 

@@ -12,6 +12,10 @@
 
 extern NSString *const kMCPlayer2PlayAction;
 extern NSString *const kMCPlayer2PauseAction;
+extern NSString *const kMCTouchBegin;
+extern NSString *const kMCTouchSeekAction;
+extern NSString *const kMCTouchCurrentTimeAction;
+extern NSString *const kMCTouchDurationAction;
 
 typedef NS_ENUM(NSInteger, MCPlayerStyleSizeType) {
     PlayerStyleSizeClassRegularHalf,   ///<  16:9 半屏幕

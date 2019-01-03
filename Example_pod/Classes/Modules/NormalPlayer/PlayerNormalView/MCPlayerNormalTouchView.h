@@ -12,11 +12,13 @@
  */
 
 extern NSString *const kMCTouchTapAction;
-extern NSString *const kMCTouchSwipeAction;
+extern NSString *const kMCTouchBegin;
+extern NSString *const kMCTouchSeekAction;
+extern NSString *const kMCTouchCurrentTimeAction;
+extern NSString *const kMCTouchDurationAction;
 
 @interface MCPlayerNormalTouchView : UIView
 
 @property(nonatomic, copy) MCPlayerNormalViewEventCallBack callBack;
-@property(nonatomic, copy) id (^touchCallBack)(NSString *action);
 
 @end

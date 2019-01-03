@@ -12,7 +12,6 @@
 #import "NSNumber+Extend.h"
 
 NSString *const kMCTouchTapAction = @"kMCTouchTapAction";
-NSString *const kMCTouchSwipeAction = @"kMCTouchSwipeAction";
 NSString *const kMCTouchBegin = @"kMCTouchBegin";
 NSString *const kMCTouchSeekAction = @"kMCTouchSeekAction";
 NSString *const kMCTouchCurrentTimeAction = @"kMCTouchCurrentTimeAction";
@@ -65,8 +64,8 @@ NSString *const kMCTouchDurationAction = @"kMCTouchDurationAction";
             }
 
             _panOrigin = [panGesture locationInView:self];
-            if (self.touchCallBack) {
-                _timeSliding = [self.touchCallBack(kMCTouchCurrentTimeAction) timeInterval];
+            if (self.callBack) {
+                _timeSliding = [self.callBack(kMCTouchCurrentTimeAction, nil) doubleValue];
             }
         }
             break;
@@ -152,8 +151,8 @@ NSString *const kMCTouchDurationAction = @"kMCTouchDurationAction";
 
 //调整进度
 - (void)resetVideorogressWithPanTransPoint:(CGPoint)panTransPoint {
-    if (!self.touchCallBack) return;
-    NSTimeInterval duration = [self.touchCallBack(kMCTouchDurationAction) timeInterval];
+    if (!self.callBack) return;
+    NSTimeInterval duration = [self.callBack(kMCTouchDurationAction, nil) doubleValue];
     if (_isChangingBright || _ischangingVolume || duration <= 0.0) {
         return;
     }
