@@ -109,8 +109,8 @@
 
 - (void)createViews {
     [self addSubview:self.containerView];
-    [self.containerView addSubview:self.touchView];
     [self.containerView addSubview:self.playerView];
+    [self.containerView addSubview:self.touchView];
     [self.containerView addSubview:self.topView];
     [self.containerView addSubview:self.bottomView];
     [self.containerView addSubview:self.lockBtn];
@@ -184,10 +184,16 @@
         if ([action isEqualToString:kMCPlayer2HalfScreenAction]) {
             [MCRotateHelper updatePlayerRegularHalf];
             [strongself updatePlayerStyle:PlayerStyleSizeClassRegularHalf];
+            [strongself showControl];
         } else if ([action isEqualToString:kMCPlayer2FullScreenAction]) {
             //TODO:: 竖屏全屏
             [MCRotateHelper updatePlayerRegular];
             [strongself updatePlayerStyle:PlayerStyleSizeClassCompact];
+            [strongself showControl];
+        } else if([action isEqualToString:kMCPlayer2PlayAction]) {
+            [strongself showControl];
+        } else if([action isEqualToString:kMCPlayer2PauseAction]) {
+            [strongself showControl];
         }
 
         if (strongself.eventCallBack) {

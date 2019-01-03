@@ -9,17 +9,20 @@
 @implementation NSNumber (Extend)
 
 - (NSString *)hhMMss {
+    static NSDateFormatter *formatter = nil;
     NSInteger duration = self.integerValue;
-    long long hour = duration / 3600;
-    long long minute = duration / 60;
-    long long second = duration % 60;
-    NSString *hhMMss = nil;
-    if (hour > 0) {
-        hhMMss = [NSString stringWithFormat:@"%lld:%02lld:%02lld", hour, minute - hour * 60, second];
-    } else {
-        hhMMss = [NSString stringWithFormat:@"%02lld:%02lld", minute, second];
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:duration];
+    if (!formatter) {
+        formatter = [[NSDateFormatter alloc] init];
+        [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
     }
-    return hhMMss;
+    if (duration >= 3600) {
+        [formatter setDateFormat:@"HH:mm:ss"];
+    } else {
+        [formatter setDateFormat:@"mm:ss"];
+    }
+    NSString *string = [formatter stringFromDate:date];
+    return string;
 }
 
 @end

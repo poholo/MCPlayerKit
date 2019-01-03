@@ -17,5 +17,6 @@ extern NSString *const kMCTouchSwipeAction;
 @interface MCPlayerNormalTouchView : UIView
 
 @property(nonatomic, copy) MCPlayerNormalViewEventCallBack callBack;
+@property(nonatomic, copy) id (^touchCallBack)(NSString *action);
 
 @end

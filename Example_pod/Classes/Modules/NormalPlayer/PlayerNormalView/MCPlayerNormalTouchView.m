@@ -4,15 +4,34 @@
 //
 
 #import "MCPlayerNormalTouchView.h"
+
+#import <MediaPlayer/MediaPlayer.h>
+
 #import "MCPlayerKitDef.h"
+#import "MCMediaNotify.h"
+#import "NSNumber+Extend.h"
 
 NSString *const kMCTouchTapAction = @"kMCTouchTapAction";
 NSString *const kMCTouchSwipeAction = @"kMCTouchSwipeAction";
+NSString *const kMCTouchBegin = @"kMCTouchBegin";
+NSString *const kMCTouchSeekAction = @"kMCTouchSeekAction";
+NSString *const kMCTouchCurrentTimeAction = @"kMCTouchCurrentTimeAction";
+NSString *const kMCTouchDurationAction = @"kMCTouchDurationAction";
 
-@interface MCPlayerNormalTouchView ()
+@interface MCPlayerNormalTouchView () <UIGestureRecognizerDelegate> {
+    CGPoint _panOrigin;
+    NSTimeInterval _timeSliding;
+
+    BOOL _ischangingVolume;        ///< 正在改变音量
+    BOOL _isChangingBright;        ///< 正在调节亮度
+    BOOL _isWillSeeking;           ///< 正在seek
+    BOOL _isWait2Seek;
+}
 
 @property(nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
-@property(nonatomic, strong) UISwipeGestureRecognizer *swipeGestureRecognizer;
+@property(nonatomic, strong) UIPanGestureRecognizer *panGestureRecognizer;
+
+@property(nonatomic, assign) CGPoint beginPoint;
 
 @end
 
@@ -28,7 +47,7 @@ NSString *const kMCTouchSwipeAction = @"kMCTouchSwipeAction";
 
 - (void)setup {
     [self addGestureRecognizer:self.tapGestureRecognizer];
-    [self addGestureRecognizer:self.swipeGestureRecognizer];
+    [self addGestureRecognizer:self.panGestureRecognizer];
 }
 
 - (void)tapClick {
@@ -38,9 +57,141 @@ NSString *const kMCTouchSwipeAction = @"kMCTouchSwipeAction";
     }
 }
 
-- (void)swipe {
-    MCLog(@"[MCTouchView]swip");
+- (void)pan:(UIPanGestureRecognizer *)panGesture {
+    switch (panGesture.state) {
+        case UIGestureRecognizerStateBegan: {
+            if (self.callBack) {
+                self.callBack(kMCTouchBegin, nil);
+            }
+
+            _panOrigin = [panGesture locationInView:self];
+            if (self.touchCallBack) {
+                _timeSliding = [self.touchCallBack(kMCTouchCurrentTimeAction) timeInterval];
+            }
+        }
+            break;
+        case UIGestureRecognizerStateChanged: {
+            if (panGesture.numberOfTouches != 1) {
+                // pinch 时 单指不动 另一指移动 也可能触发
+                return;
+            }
+            //矢量  带有方向 速度
+            CGPoint velocityPoint = [panGesture velocityInView:self];
+            //相对于起始位置计算移动距离 (当转换方向,但是位置未跨越起始位置,正负值 没有变化)
+            //        CGPoint panDiffPoint = [panGestureRecognizer translationInView:self.view];
+            //重新设置 视频相关属性
+            [self resetPlayerAttributeSettingWithPanTransPoint:velocityPoint];
+        }
+            break;
+        case UIGestureRecognizerStateEnded: {
+            if (self.callBack) {
+                self.callBack(kMCTouchSeekAction, @(_timeSliding));
+            }
+            _isWillSeeking = NO;
+            _isChangingBright = NO;
+            _ischangingVolume = NO;
+            [MCMediaNotify dismiss];
+
+        }
+            break;
+        case UIGestureRecognizerStatePossible:
+        case UIGestureRecognizerStateCancelled:
+        case UIGestureRecognizerStateFailed:
+        default:;
+            break;
+    }
 }
+
+
+#pragma mark  调节  进度 亮度 声音设置
+
+- (void)resetPlayerAttributeSettingWithPanTransPoint:(CGPoint)panTransPoint {
+    //滑动轨迹与水平线夹角在正负45度，都认为是水平滑动，超过45度，就认为是垂直滚动。
+    //fabs计算|x|, 当x不为负时返回x，否则返回-x
+    if ((fabs(panTransPoint.y) / fabs(panTransPoint.x)) <= 1) {
+        if (fabs(panTransPoint.x) < _k_AV_offsetChoseDirection) {
+            return;
+        }
+        // 判断角度     tan(45),这里需要通过正负来判断手势方向
+        //进度
+        [self resetVideorogressWithPanTransPoint:panTransPoint];
+    } else {
+        if (fabs(panTransPoint.y) < _k_AV_offsetChoseDirection) {
+            return;
+        }
+        //缓存列表直接打开横屏 获取宽度正常 / 竖屏下获取宽度正常 ; 竖屏切换到横屏 获取宽度异常
+        float middleX = CGRectGetMidX(self.frame);
+        if (_panOrigin.x < middleX) {
+            //亮度
+            [self resetBrightnessWithPanTransPoint:panTransPoint];
+        } else {
+            //声音
+            [self resetVolumeWithPanTransPoint:panTransPoint];
+        }
+
+    }
+}
+
+// 调节亮度
+- (void)resetBrightnessWithPanTransPoint:(CGPoint)panTransPoint {
+    if (_isWillSeeking || _ischangingVolume) {
+        return;
+    }
+    float brightness = 0;
+    if (panTransPoint.y < 0) {
+        //上
+        brightness = MIN(1., [UIScreen mainScreen].brightness - 0.0001 * panTransPoint.y);
+    } else {
+        //下
+        brightness = MAX(0, [UIScreen mainScreen].brightness - 0.0001 * panTransPoint.y);
+    }
+    [UIScreen mainScreen].brightness = brightness;
+    [MCMediaNotify showImage:[UIImage imageNamed:@"video_brightness"] message:[NSString stringWithFormat:@"%.f%%", brightness * 100] mediaNotifyType:MediaBrightness inView:self];
+    _isChangingBright = YES;
+}
+
+//调整进度
+- (void)resetVideorogressWithPanTransPoint:(CGPoint)panTransPoint {
+    if (!self.touchCallBack) return;
+    NSTimeInterval duration = [self.touchCallBack(kMCTouchDurationAction) timeInterval];
+    if (_isChangingBright || _ischangingVolume || duration <= 0.0) {
+        return;
+    }
+
+    _timeSliding += 0.01 * panTransPoint.x;
+    if (panTransPoint.x < 0) {
+        //后退
+        _timeSliding = MAX(_timeSliding, 0);
+        [MCMediaNotify showImage:[UIImage imageNamed:@"video_retreat"] message:[NSString stringWithFormat:@"%@/%@", [@(_timeSliding) hhMMss], [@(duration) hhMMss]] mediaNotifyType:MediaProgress inView:self];
+    } else {
+        _timeSliding = MIN(_timeSliding, duration);//video_forward
+        [MCMediaNotify showImage:[UIImage imageNamed:@"video_forward"]
+                         message:[NSString stringWithFormat:@"%@/%@", [@(_timeSliding) hhMMss], [@(duration) hhMMss]] mediaNotifyType:MediaProgress inView:self];
+    }
+    _isWillSeeking = YES;
+}
+
+//调控声音
+- (void)resetVolumeWithPanTransPoint:(CGPoint)panTransPoint {
+    if (_isChangingBright || _isWillSeeking) {
+        return;
+    }
+    MPMusicPlayerController *mp = [MPMusicPlayerController applicationMusicPlayer];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    if (panTransPoint.y < 0) {
+        //上
+        mp.volume = MIN(1, mp.volume - 0.0001 * panTransPoint.y);
+        //            [_videoPlayer setVolume:MIN(1, mp.volume - 0.001 * panTransPoint.y)];
+    } else {
+        //下
+        mp.volume = MAX(0, mp.volume - 0.0001 * panTransPoint.y);
+    }
+#pragma clang diagnostic pop
+    _ischangingVolume = YES;
+}
+
+#pragma mark - getter
 
 - (UITapGestureRecognizer *)tapGestureRecognizer {
     if (!_tapGestureRecognizer) {
@@ -49,15 +200,10 @@ NSString *const kMCTouchSwipeAction = @"kMCTouchSwipeAction";
     return _tapGestureRecognizer;
 }
 
-- (UISwipeGestureRecognizer *)swipeGestureRecognizer {
-    if (!_swipeGestureRecognizer) {
-        _swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe)];
-        _swipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft
-                | UISwipeGestureRecognizerDirectionRight
-                | UISwipeGestureRecognizerDirectionDown
-                | UISwipeGestureRecognizerDirectionUp;
+- (UIPanGestureRecognizer *)panGestureRecognizer {
+    if (!_panGestureRecognizer) {
+        _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
     }
-    return _swipeGestureRecognizer;
+    return _panGestureRecognizer;
 }
-
 @end

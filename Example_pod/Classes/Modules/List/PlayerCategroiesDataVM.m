@@ -10,6 +10,7 @@
 #import "ScrollPlayerController.h"
 #import "ScrollPlayer2SmallPlayerController.h"
 #import "MCDouyinPlayerListController.h"
+#import "MCTouchTestController.h"
 
 
 @implementation PlayerCategroiesDataVM {
@@ -65,6 +66,12 @@
         PlayerCategroryDto *dto = [PlayerCategroryDto new];
         dto.name = @"全局播放器";
         dto.actionClass = [MCPlayerNormalController class];
+        [self.dataList addObject:dto];
+    }
+    {
+        PlayerCategroryDto *dto = [PlayerCategroryDto new];
+        dto.name = @"Touch测试";
+        dto.actionClass = [MCTouchTestController class];
         [self.dataList addObject:dto];
     }
 

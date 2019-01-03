@@ -73,6 +73,14 @@ NSString *const kMCPlayerHeaderBack2Half = @"kMCPlayerHeaderBack2Half";
     self.titleLabel.frame = CGRectMake(startX, (h - [MCFont fontV].lineHeight) / 2.0f + self.top, maxTitleWidth, [MCFont fontV].lineHeight);
 }
 
+- (void)fadeHiddenControl {
+    self.hidden = YES;
+}
+
+- (void)showControl {
+    self.hidden = NO;
+}
+
 - (void)layoutSubviews {
     [super layoutSubviews];
     [self addLayout];
@@ -104,13 +112,6 @@ NSString *const kMCPlayerHeaderBack2Half = @"kMCPlayerHeaderBack2Half";
     } else {
         return 0;
     }
-}
-
-- (void)fadeHiddenControl {
-}
-
-- (void)showControl {
-
 }
 
 @end

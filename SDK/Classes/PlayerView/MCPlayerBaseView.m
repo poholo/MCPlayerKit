@@ -9,7 +9,7 @@
 #import "MCPlayerBaseView.h"
 
 
-@implementation  MCPlayerBaseView
+@implementation MCPlayerBaseView
 
 - (instancetype)init {
     self = [super init];
@@ -72,7 +72,7 @@
 }
 
 - (void)prepareUI {
-
+    self.backgroundColor = [UIColor blackColor];
 }
 
 - (void)layoutSubviews {
