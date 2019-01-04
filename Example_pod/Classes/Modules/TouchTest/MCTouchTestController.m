@@ -26,7 +26,7 @@
     self.touchView.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 300);
     self.playerLoadingView.frame = CGRectMake(0, 300, CGRectGetWidth(self.view.frame), 300);
 
-    [self.playerLoadingView startShowBg];
+    [self.playerLoadingView startRotating];
 }
 
 #pragma mark - getter

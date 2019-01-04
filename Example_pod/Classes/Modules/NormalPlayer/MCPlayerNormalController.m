@@ -13,7 +13,7 @@
 #import "MCPlayerKit.h"
 
 
-@interface MCPlayerNormalController () <MCPlayerDelegate>
+@interface MCPlayerNormalController ()
 
 @property(nonatomic, strong) MCPlayerKit *playerKit;
 @property(nonatomic, strong) MCPlayerNormalView *playerView;
@@ -92,42 +92,6 @@
         [_playerKit pause];
     }
 }
-
-#pragma mark - MCPlayerDelegate
-
-- (void)playLoading {
-
-}
-
-- (void)playBuffer {
-
-}
-
-- (void)playStart {
-    [self.playerView duration:self.playerKit.duration];
-}
-
-- (void)playPlay {
-
-}
-
-- (void)playEnd {
-
-}
-
-- (void)playError {
-
-}
-
-- (void)updatePlayView {
-
-}
-
-- (void)currentTime:(double)time {
-    [self.playerView currentTime:time];
-    [self.playerView updateProgress:time / self.playerKit.duration];
-}
-
 
 #pragma mark - getter
 

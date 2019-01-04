@@ -23,8 +23,6 @@
 @implementation MCPlayerLoadingView
 
 - (void)dealloc {
-    [self releaseSpace];
-    [self disposeTimer];
     [self disposeHUD];
 }
 
@@ -39,12 +37,6 @@
     [self.progressView stop];
     [self.progressView removeFromSuperview];
 }
-
-- (void)releaseSpace {
-    [self.loadingImageView removeFromSuperview];
-    self.loadingImageView = nil;
-}
-
 
 - (void)setup {
     [self createViews];
@@ -68,29 +60,19 @@
     [self addLayout];
 }
 
-- (void)startShowBg {
+/** loading有背景图 */
+- (void)startRotating {
     if (self.hidden == NO) return;
     self.hidden = NO;
     self.loadingImageView.hidden = NO;
-    [self startAnimationLoading];
-}
-
-/** loading有背景图 */
-- (void)startRotatingAndDefaultBg {
-    if (self.hidden == NO) return;
-    self.hidden = NO;
-    [self startAnimationLoading];
+    [self.progressView start];
 }
 
 /** loading无背景图 */
-- (void)startRotatingNoDefaultBg {
+- (void)startRotatingNoBg {
     if (self.hidden == NO) return;
     self.hidden = NO;
     self.loadingImageView.hidden = YES;
-    [self startAnimationLoading];
-}
-
-- (void)startAnimationLoading {
     [self.progressView start];
 }
 

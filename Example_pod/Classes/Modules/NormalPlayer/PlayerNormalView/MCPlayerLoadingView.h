@@ -8,20 +8,16 @@
 
 @interface MCPlayerLoadingView : UIView
 
-
-- (void)releaseSpace;
-
-- (void)startShowBg;
-
 /** loading有背景图 */
-- (void)startRotatingAndDefaultBg;
+- (void)startRotating;
 
 /** loading无背景图 */
-- (void)startRotatingNoDefaultBg;
+- (void)startRotatingNoBg;
 
 - (void)endRotating;
 
 - (void)updatePlayerPicture:(NSString *)url;
 
 - (void)hiddenRotateLoadingView:(BOOL)hiddenRotateLoadingView;
+
 @end

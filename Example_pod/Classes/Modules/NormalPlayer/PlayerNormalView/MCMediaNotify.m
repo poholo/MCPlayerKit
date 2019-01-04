@@ -60,7 +60,6 @@
 }
 
 - (void)showImage:(UIImage *)image message:(NSString *)message mediaNotifyType:(MediaNotifyType)mediaNotifyType inView:(UIView *)view duration:(CGFloat)duration {
-
     UIView *containerView = (UIView *) [[self class] sharedView];
     if (!textLabel) {
         textLabel = [[UILabel alloc] init];
@@ -102,8 +101,6 @@
 
     if (!textLabel.superview) {
         [containerView addSubview:textLabel];
-
-
     }
     [view addSubview:containerView];
 
@@ -123,7 +120,6 @@
 }
 
 - (NSMutableAttributedString *)getAttributedString:(NSString *)text {
-    //创建一个NSMutableAttributedString
     NSMutableAttributedString *attriString = [[NSMutableAttributedString alloc] initWithString:text];
 
     NSRange range = [text rangeOfString:@"/"];

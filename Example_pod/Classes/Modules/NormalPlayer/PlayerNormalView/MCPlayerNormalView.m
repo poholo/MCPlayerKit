@@ -12,14 +12,14 @@
 #import "MCPlayerNormalTouchView.h"
 #import "MCRotateHelper.h"
 #import "MCPlayerKit.h"
+#import "MCPlayerLoadingView.h"
 
-@interface MCPlayerNormalView ()
+@interface MCPlayerNormalView () <MCPlayerDelegate>
 
 @property(nonatomic, strong) UIView *containerView;
 @property(nonatomic, strong) MCPlayerNormalTouchView *touchView;
 @property(nonatomic, strong) MCPlayerBaseView *playerView;
-@property(nonatomic, strong) UIImageView *coverImageView;
-@property(nonatomic, strong) UIView *loadingView;
+@property(nonatomic, strong) MCPlayerLoadingView *loadingView;
 
 @property(nonatomic, strong) MCPlayerNormalHeader *topView;
 @property(nonatomic, strong) MCPlayerNormalFooter *bottomView;
@@ -61,6 +61,7 @@
     [self createViews];
     [self addLayout];
     [self addActions];
+    [self.loadingView startRotating];
 }
 
 - (void)updatePlayerStyle:(MCPlayerStyleSizeType)styleSizeType {
@@ -92,6 +93,7 @@
 }
 
 - (void)currentTime:(double)time {
+    [self updateProgress:time / self.playerKit.duration];
     [self.bottomView currentTime:time];
 }
 
@@ -109,6 +111,7 @@
 
 - (void)updateAction:(MCPlayerKit *)playerKit {
     self.playerKit = playerKit;
+    self.playerKit.delegate = self;
 }
 
 
@@ -123,7 +126,6 @@
     [self.containerView addSubview:self.lockBtn];
     [self.containerView addSubview:self.definitionView];
 
-    [self.containerView addSubview:self.coverImageView];
     [self.containerView addSubview:self.loadingView];
 
     self.topView.titleLabel.text = @"Skipping code signing because the target does not have an Info.plist file. (in target 'App')";
@@ -144,7 +146,7 @@
 
     CGFloat lockW = 44;
     self.lockBtn.frame = CGRectMake(10, (h - lockW) / 2.0f, lockW, lockW);
-    self.coverImageView.frame = self.containerView.bounds;
+    self.loadingView.frame = self.containerView.bounds;
 }
 
 - (void)addActions {
@@ -267,6 +269,38 @@
     //TODO:: lock
 }
 
+
+#pragma mark - MCPlayerDelegate
+
+- (void)playLoading {
+    [self.loadingView startRotating];
+}
+
+- (void)playBuffer {
+    [self.loadingView startRotatingNoBg];
+}
+
+- (void)playStart {
+    [self.loadingView endRotating];
+    [self duration:self.playerKit.duration];
+}
+
+- (void)playPlay {
+
+}
+
+- (void)playEnd {
+
+}
+
+- (void)playError {
+
+}
+
+- (void)updatePlayView {
+
+}
+
 #pragma mark - getter
 
 - (UIView *)containerView {
@@ -289,13 +323,6 @@
         _playerView.userInteractionEnabled = NO;
     }
     return _playerView;
-}
-
-- (UIImageView *)coverImageView {
-    if (!_coverImageView) {
-        _coverImageView = [UIImageView new];
-    }
-    return _coverImageView;
 }
 
 - (MCPlayerNormalHeader *)topView {
@@ -324,6 +351,13 @@
 
 - (UIView *)definitionView {
     return nil;
+}
+
+- (MCPlayerLoadingView *)loadingView {
+    if (!_loadingView) {
+        _loadingView = [MCPlayerLoadingView new];
+    }
+    return _loadingView;
 }
 
 @end
