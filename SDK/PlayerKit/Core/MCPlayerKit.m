@@ -11,13 +11,13 @@
 
 #import "MCIJKPlayer.h"
 #import "MCAVPlayerx.h"
-#import "MCPlayerBaseView.h"
+#import "MCPlayerView.h"
 #import "MCPlayerKitDef.h"
 
 
 @interface MCPlayerKit ()
 
-@property(nonatomic, weak) MCPlayerBaseView *playerView;
+@property(nonatomic, weak) MCPlayerView *playerView;
 @property(nonatomic, strong) NSTimer *timer;
 
 @property(nonatomic, strong) NSArray<NSString *> *urls;
@@ -32,7 +32,7 @@
     [self destory];
 }
 
-- (instancetype)initWithPlayerView:(MCPlayerBaseView *)playerView {
+- (instancetype)initWithPlayerView:(MCPlayerView *)playerView {
     self = [super init];
     if (self) {
         self.playerView = playerView;
@@ -41,7 +41,7 @@
     return self;
 }
 
-- (void)updatePlayerView:(MCPlayerBaseView *)playerView {
+- (void)updatePlayerView:(MCPlayerView *)playerView {
     self.playerView = playerView;
     self.playerEnvironment = PlayerEnvironmentOnBecomeActiveStatus;
 

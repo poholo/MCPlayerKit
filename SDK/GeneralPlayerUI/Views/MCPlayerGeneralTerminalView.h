@@ -1,5 +1,5 @@
 //
-// Created by imooc on 16/5/20.
+// Created by littleplayer on 16/5/20.
 // Copyright (c) 2016 mjc inc. All rights reserved.
 //
 
@@ -32,9 +32,10 @@
 - (void)terminalAirplayVolumeLarge;
 
 - (void)terminalAirplayVolumeSmall;
+
 @end
 
-@interface PlayerTerminalView : UIView
+@interface MCPlayerGeneralTerminalView : UIView
 
 @property(nonatomic, weak) id <PlayerTerminalDelegate> delegate;
 

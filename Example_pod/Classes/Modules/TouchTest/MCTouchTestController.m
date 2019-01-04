@@ -5,13 +5,13 @@
 
 #import "MCTouchTestController.h"
 
-#import "MCPlayerNormalTouchView.h"
+#import "MCPlayerGeneralTouchView.h"
 #import "MCPlayerLoadingView.h"
 
 
 @interface MCTouchTestController ()
 
-@property(nonatomic, strong) MCPlayerNormalTouchView *touchView;
+@property(nonatomic, strong) MCPlayerGeneralTouchView *touchView;
 
 @property(nonatomic, strong) MCPlayerLoadingView *playerLoadingView;
 
@@ -31,9 +31,9 @@
 
 #pragma mark - getter
 
-- (MCPlayerNormalTouchView *)touchView {
+- (MCPlayerGeneralTouchView *)touchView {
     if (!_touchView) {
-        _touchView = [MCPlayerNormalTouchView new];
+        _touchView = [MCPlayerGeneralTouchView new];
         _touchView.backgroundColor = [UIColor redColor];
     }
     return _touchView;

@@ -3,26 +3,26 @@
 // Copyright (c) 2017 mjc inc. All rights reserved.
 //
 
-#import "MCPlayerNormalView.h"
+#import "MCPlayerGeneralView.h"
 
 #import <MCStyle/MCStyleDef.h>
 
-#import "MCPlayerNormalHeader.h"
-#import "MCPlayerNormalFooter.h"
-#import "MCPlayerNormalTouchView.h"
+#import "MCPlayerGeneralHeader.h"
+#import "MCPlayerGeneralFooter.h"
+#import "MCPlayerGeneralTouchView.h"
 #import "MCRotateHelper.h"
 #import "MCPlayerKit.h"
 #import "MCPlayerLoadingView.h"
 
-@interface MCPlayerNormalView () <MCPlayerDelegate>
+@interface MCPlayerGeneralView () <MCPlayerDelegate>
 
 @property(nonatomic, strong) UIView *containerView;
-@property(nonatomic, strong) MCPlayerNormalTouchView *touchView;
-@property(nonatomic, strong) MCPlayerBaseView *playerView;
+@property(nonatomic, strong) MCPlayerGeneralTouchView *touchView;
+@property(nonatomic, strong) MCPlayerView *playerView;
 @property(nonatomic, strong) MCPlayerLoadingView *loadingView;
 
-@property(nonatomic, strong) MCPlayerNormalHeader *topView;
-@property(nonatomic, strong) MCPlayerNormalFooter *bottomView;
+@property(nonatomic, strong) MCPlayerGeneralHeader *topView;
+@property(nonatomic, strong) MCPlayerGeneralFooter *bottomView;
 @property(nonatomic, strong) UIButton *lockBtn;
 @property(nonatomic, strong) UIView *definitionView;
 
@@ -31,7 +31,7 @@
 
 @end
 
-@implementation MCPlayerNormalView
+@implementation MCPlayerGeneralView
 
 - (instancetype)init {
     self = [super init];
@@ -114,6 +114,36 @@
     self.playerKit.delegate = self;
 }
 
+- (void)updatePlayerPicture:(NSString *)url {
+    [self.loadingView updatePlayerPicture:url];
+}
+
+#pragma mark -
+
+//横屏
+- (void)rotate2Landscape {
+    if (self.styleSizeType == PlayerStyleSizeClassCompact) {
+        return;
+    }
+    [MCRotateHelper setStatusBarHidden:YES];
+
+    [self updatePlayerStyle:PlayerStyleSizeClassCompact];
+    self.frame = [UIScreen mainScreen].bounds;
+}
+
+//竖屏
+- (void)rotate2Portrait {
+    [MCRotateHelper setStatusBarHidden:NO];
+    CGSize size = [UIScreen mainScreen].bounds.size;
+    [self updatePlayerStyle:PlayerStyleSizeClassRegularHalf];
+    self.frame = CGRectMake(0, 0, size.width, size.width * 9 / 16);
+}
+
+- (void)rotate2PortraitFullScreen {
+    [MCRotateHelper setStatusBarHidden:YES];
+    [self updatePlayerStyle:PlayerStyleSizeClassRegular];
+    self.frame = [UIScreen mainScreen].bounds;
+}
 
 #pragma mark - views
 
@@ -294,7 +324,8 @@
 }
 
 - (void)playError {
-
+    [self.loadingView endRotating];
+    //TODO:: error
 }
 
 - (void)updatePlayView {
@@ -310,31 +341,31 @@
     return _containerView;
 }
 
-- (MCPlayerNormalTouchView *)touchView {
+- (MCPlayerGeneralTouchView *)touchView {
     if (!_touchView) {
-        _touchView = [MCPlayerNormalTouchView new];
+        _touchView = [MCPlayerGeneralTouchView new];
     }
     return _touchView;
 }
 
-- (MCPlayerBaseView *)playerView {
+- (MCPlayerView *)playerView {
     if (!_playerView) {
-        _playerView = [MCPlayerBaseView new];
+        _playerView = [MCPlayerView new];
         _playerView.userInteractionEnabled = NO;
     }
     return _playerView;
 }
 
-- (MCPlayerNormalHeader *)topView {
+- (MCPlayerGeneralHeader *)topView {
     if (!_topView) {
-        _topView = [MCPlayerNormalHeader new];
+        _topView = [MCPlayerGeneralHeader new];
     }
     return _topView;
 }
 
-- (MCPlayerNormalFooter *)bottomView {
+- (MCPlayerGeneralFooter *)bottomView {
     if (!_bottomView) {
-        _bottomView = [MCPlayerNormalFooter new];
+        _bottomView = [MCPlayerGeneralFooter new];
     }
     return _bottomView;
 }

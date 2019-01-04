@@ -5,7 +5,7 @@
 
 
 
-#import "MCPlayerBaseView.h"
+#import "MCPlayerView.h"
 
 #import "MCPlayerViewConfig.h"
 
@@ -31,11 +31,11 @@ typedef NS_ENUM(NSInteger, MCPlayerStyleSizeType) {
 /***
  * 通用播放器view
  */
-@interface MCPlayerNormalView : UIView
+@interface MCPlayerGeneralView : UIView
 
 @property(nonatomic, assign) MCPlayerStyleSizeType styleSizeType;
 @property(nonatomic, copy) MCPlayerNormalViewEventCallBack eventCallBack;
-@property(nonatomic, readonly) MCPlayerBaseView *playerView;
+@property(nonatomic, readonly) MCPlayerView *playerView;
 
 - (void)updatePlayerStyle:(MCPlayerStyleSizeType)styleSizeType;
 
@@ -53,4 +53,20 @@ typedef NS_ENUM(NSInteger, MCPlayerStyleSizeType) {
 
 - (void)updateAction:(MCPlayerKit *)playerKit;
 
+- (void)updatePlayerPicture:(NSString *)url;
+
+/**
+ * 横屏幕
+ */
+- (void)rotate2Landscape;
+
+/**
+ * 16 / 9 半屏
+ */
+- (void)rotate2Portrait;
+
+/**
+ * 竖屏全屏
+ */
+- (void)rotate2PortraitFullScreen;
 @end

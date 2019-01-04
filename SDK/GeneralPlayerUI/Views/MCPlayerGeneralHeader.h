@@ -5,12 +5,12 @@
 
 #import <UIKit/UIKit.h>
 
-#import "MCPlayerNormalView.h"
+#import "MCPlayerGeneralView.h"
 
 extern NSString *const kMCPlayerHeaderBack;
 extern NSString *const kMCPlayerHeaderBack2Half;
 
-@interface MCPlayerNormalHeader : UIView
+@interface MCPlayerGeneralHeader : UIView
 
 @property(nonatomic, readonly) UILabel *titleLabel;
 

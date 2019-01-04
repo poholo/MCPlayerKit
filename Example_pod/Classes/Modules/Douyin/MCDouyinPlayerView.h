@@ -3,9 +3,9 @@
 // Copyright (c) 2018 majiancheng. All rights reserved.
 //
 
-#import "MCPlayerBaseView.h"
+#import "MCPlayerView.h"
 
 
-@interface MCDouyinPlayerView : MCPlayerBaseView
+@interface MCDouyinPlayerView : MCPlayerView
 
 @end

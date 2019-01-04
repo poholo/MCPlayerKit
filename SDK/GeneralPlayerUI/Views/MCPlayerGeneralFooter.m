@@ -4,7 +4,7 @@
 //
 
 
-#import "MCPlayerNormalFooter.h"
+#import "MCPlayerGeneralFooter.h"
 
 #import <MCStyleDef.h>
 
@@ -19,7 +19,7 @@ NSString *const kMCControlProgressStartDragSlider = @"kMCControlProgressStartDra
 NSString *const kMCDragProgressToProgress = @"kMCDragProgressToProgress";
 NSString *const kMCControlProgressEndDragSlider = @"kMCControlProgressEndDragSlider";
 
-@interface MCPlayerNormalFooter () <PlayerProgressDelegate>
+@interface MCPlayerGeneralFooter () <PlayerProgressDelegate>
 
 @property(nonatomic, strong) CAGradientLayer *gradientLayer;
 
@@ -28,10 +28,11 @@ NSString *const kMCControlProgressEndDragSlider = @"kMCControlProgressEndDragSli
 @property(nonatomic, strong) UILabel *currentLabel;
 @property(nonatomic, strong) MCPlayerProgress *playerProgress;
 @property(nonatomic, strong) UIButton *screenBtn;
+@property(nonatomic, assign) MCPlayerStyleSizeType styleSizeType;
 
 @end
 
-@implementation MCPlayerNormalFooter
+@implementation MCPlayerGeneralFooter
 
 - (instancetype)init {
     self = [super init];
@@ -56,24 +57,32 @@ NSString *const kMCControlProgressEndDragSlider = @"kMCControlProgressEndDragSli
 }
 
 - (void)updatePlayerStyle:(MCPlayerStyleSizeType)styleSizeType {
+    self.styleSizeType = styleSizeType;
     switch (styleSizeType) {
         case PlayerStyleSizeClassRegularHalf: {
             self.screenBtn.selected = NO;
+            self.playBtn.hidden = YES;
         }
             break;
         case PlayerStyleSizeClassRegular: {
             self.screenBtn.selected = YES;
+            self.playBtn.hidden = NO;
         }
             break;
         case PlayerStyleSizeClassCompact: {
             self.screenBtn.selected = YES;
+            self.playBtn.hidden = NO;
         }
             break;
     }
 }
 
 - (void)currentTime:(double)time {
-    self.currentLabel.text = [@(time) hhMMss];
+    NSString *t = [@(time) hhMMss];
+    if (self.styleSizeType == PlayerStyleSizeClassRegularHalf) {
+        t = [t stringByAppendingString:@"/"];
+    }
+    self.currentLabel.text = t;
     [self refreshTimeFrame];
 }
 
@@ -119,23 +128,34 @@ NSString *const kMCControlProgressEndDragSlider = @"kMCControlProgressEndDragSli
 
 - (void)refreshTimeFrame {
     if (CGRectIsEmpty(self.frame)) return;
-
     CGSize durationSize = [self.durationLabel sizeThatFits:CGSizeMake(CGRectGetWidth(self.frame) * .5f, self.durationLabel.font.lineHeight)];
-    self.durationLabel.frame = CGRectMake(CGRectGetMinX(self.screenBtn.frame) - durationSize.width - [MCStyle contentInsetII].right,
+    CGSize currentSize = [self.currentLabel sizeThatFits:CGSizeMake(CGRectGetWidth(self.frame) * .5f, self.currentLabel.font.lineHeight)];
+    CGFloat durationX = CGRectGetMinX(self.screenBtn.frame) - durationSize.width - [MCStyle contentInsetII].right;
+    CGFloat currentX = CGRectGetMaxX(self.playBtn.frame) + [MCStyle contentInsetIII].left;
+    CGFloat progressX = CGRectGetMaxX(self.currentLabel.frame) + [MCStyle contentInsetII].left;
+    CGFloat progressW = CGRectGetMinX(self.durationLabel.frame) - CGRectGetMaxX(self.currentLabel.frame) - [MCStyle contentInsetII].right - [MCStyle contentInsetII].left;
+
+    if (self.playBtn.hidden) {
+        currentX = [MCStyle contentInsetIII].left;
+        durationX = currentX + currentSize.width;
+        progressX = CGRectGetMaxX(self.durationLabel.frame) + [MCStyle contentInsetII].left;
+        progressW = CGRectGetMinX(self.screenBtn.frame) - CGRectGetMaxX(self.durationLabel.frame) - [MCStyle contentInsetII].right - [MCStyle contentInsetII].left;
+    }
+
+    self.durationLabel.frame = CGRectMake(durationX,
             (CGRectGetHeight(self.frame) - self.durationLabel.font.lineHeight) / 2.0f,
             durationSize.width,
             self.durationLabel.font.lineHeight);
 
-    CGSize currentSize = [self.currentLabel sizeThatFits:CGSizeMake(CGRectGetWidth(self.frame) * .5f, self.currentLabel.font.lineHeight)];
-    self.currentLabel.frame = CGRectMake(CGRectGetMaxX(self.playBtn.frame) + [MCStyle contentInsetIII].left,
+    self.currentLabel.frame = CGRectMake(currentX,
             (CGRectGetHeight(self.frame) - self.currentLabel.font.lineHeight) / 2.0f,
             currentSize.width,
             self.currentLabel.font.lineHeight);
 
 
-    self.playerProgress.frame = CGRectMake(CGRectGetMaxX(self.currentLabel.frame) + [MCStyle contentInsetII].left,
+    self.playerProgress.frame = CGRectMake(progressX,
             CGRectGetHeight(self.frame) * 0.25,
-            CGRectGetMinX(self.durationLabel.frame) - CGRectGetMaxX(self.currentLabel.frame) - [MCStyle contentInsetII].right - [MCStyle contentInsetII].left,
+            progressW,
             CGRectGetHeight(self.frame) * 0.5f);
 }
 
@@ -172,6 +192,7 @@ NSString *const kMCControlProgressEndDragSlider = @"kMCControlProgressEndDragSli
         [_playBtn setImage:[MCStyle customImage:@"player_footer_0"] forState:UIControlStateNormal];
         [_playBtn setImage:[MCStyle customImage:@"player_footer_0_s"] forState:UIControlStateSelected];
         [_playBtn addTarget:self action:@selector(playBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        _playBtn.hidden = YES;
     }
     return _playBtn;
 }

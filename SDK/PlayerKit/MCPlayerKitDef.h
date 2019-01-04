@@ -18,4 +18,4 @@ FOUNDATION_EXPORT const unsigned char MCPlayerKitVersionString[];
 
 #import "MCPlayerConfig.h"
 #import "MCPlayerKit.h"
-#import "MCPlayerBaseView.h"
+#import "MCPlayerView.h"

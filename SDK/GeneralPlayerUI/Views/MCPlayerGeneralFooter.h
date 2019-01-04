@@ -4,7 +4,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MCPlayerNormalView.h"
+#import "MCPlayerGeneralView.h"
 
 @class MCPlayerProgress;
 
@@ -16,7 +16,7 @@ extern NSString *const kMCControlProgressStartDragSlider;
 extern NSString *const kMCDragProgressToProgress;
 extern NSString *const kMCControlProgressEndDragSlider;
 
-@interface MCPlayerNormalFooter : UIView
+@interface MCPlayerGeneralFooter : UIView
 
 @property(nonatomic, copy) MCPlayerNormalViewEventCallBack callBack;
 

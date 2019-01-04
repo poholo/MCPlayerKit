@@ -3,25 +3,23 @@
 // Copyright (c) 2018 majiancheng. All rights reserved.
 //
 
-
-#import "MCPlayerNormalController.h"
+#import "MCPlayerGeneralController.h"
 
 #import <MCStyle/MCStyleDef.h>
 
-#import "MCPlayerNormalView.h"
-#import "MCPlayerNormalController+AutoRotate.h"
+#import "MCPlayerGeneralView.h"
 #import "MCPlayerKit.h"
 
 
-@interface MCPlayerNormalController ()
+@interface MCPlayerGeneralController ()
 
 @property(nonatomic, strong) MCPlayerKit *playerKit;
-@property(nonatomic, strong) MCPlayerNormalView *playerView;
+@property(nonatomic, strong) MCPlayerGeneralView *playerView;
 
 @end
 
 
-@implementation MCPlayerNormalController {
+@implementation MCPlayerGeneralController {
 
 }
 
@@ -58,6 +56,7 @@
     [[MCStyleManager share] loadData];
 
     [self.view addSubview:self.playerView];
+    [self.playerView updatePlayerPicture:@"https://avatars0.githubusercontent.com/u/3861387?s=460&v=4"];
     [self.playerKit playUrls:@[@"http://aliuwmp3.changba.com/userdata/video/45F6BD5E445E4C029C33DC5901307461.mp4"]];
     [self.playerView updateAction:self.playerKit];
 }
@@ -93,22 +92,69 @@
     }
 }
 
+#pragma mark - Rotate
+
+- (BOOL)isSizeClassRegular {
+    //如果是横屏全屏切换给切换机会
+//    if (self.playerView.playerStyle == PlayerStyleSizeClassCompact) {
+//        return NO;
+//    }
+
+    CGSize naturalSize = self.playerKit.naturalSize;
+    if (naturalSize.width < naturalSize.height) {
+        return YES;
+    }
+    return NO;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+}
+
+- (BOOL)shouldAutorotate {
+    if ([self.playerView isLock]) {
+        return NO;
+    }
+    return YES;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskAll;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    return UIInterfaceOrientationPortrait;
+}
+
+- (void)willTransitionToTraitCollection:(UITraitCollection *)newCollection withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator {
+
+    __weak typeof(self) weakSelf = self;
+    [coordinator animateAlongsideTransition:^(id <UIViewControllerTransitionCoordinatorContext> context) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        if (newCollection.verticalSizeClass == UIUserInterfaceSizeClassCompact) {
+            [strongSelf.playerView rotate2Landscape];
+        } else {
+            [strongSelf.playerView rotate2Portrait];
+        }
+
+    }                            completion:nil];
+}
+
 #pragma mark - getter
 
 - (MCPlayerKit *)playerKit {
     if (!_playerKit) {
         _playerKit = [[MCPlayerKit alloc] initWithPlayerView:self.playerView.playerView];
         _playerKit.playerCoreType = PlayerCoreAVPlayer;
-        _playerKit.delegate = self;
     }
     return _playerKit;
 }
 
-- (MCPlayerNormalView *)playerView {
+- (MCPlayerGeneralView *)playerView {
     if (!_playerView) {
         CGFloat width = MIN([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
         CGFloat height = width * 9 / 16.0f;
-        _playerView = [[MCPlayerNormalView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
+        _playerView = [[MCPlayerGeneralView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
     }
     return _playerView;
 }

@@ -5,13 +5,13 @@
 
 #import "MCController.h"
 
-@class MCPlayerNormalView;
+@class MCPlayerGeneralView;
 @class MCPlayerKit;
 
 
-@interface MCPlayerNormalController : MCController
+@interface MCPlayerGeneralController : MCController
 
 @property(nonatomic, readonly) MCPlayerKit *playerKit;
-@property(nonatomic, readonly) MCPlayerNormalView *playerView;
+@property(nonatomic, readonly) MCPlayerGeneralView *playerView;
 
 @end

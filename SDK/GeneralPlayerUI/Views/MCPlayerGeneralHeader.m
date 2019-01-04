@@ -3,14 +3,14 @@
 // Copyright (c) 2018 majiancheng. All rights reserved.
 //
 
-#import "MCPlayerNormalHeader.h"
+#import "MCPlayerGeneralHeader.h"
 
 #import <MCStyle/MCStyleDef.h>
 
 NSString *const kMCPlayerHeaderBack = @"kMCPlayerHeaderBack";
 NSString *const kMCPlayerHeaderBack2Half = @"kMCPlayerHeaderBack2Half";
 
-@interface MCPlayerNormalHeader ()
+@interface MCPlayerGeneralHeader ()
 
 @property(nonatomic, strong) CAGradientLayer *gradientLayer;
 @property(nonatomic, strong) UIButton *backBtn;
@@ -21,7 +21,7 @@ NSString *const kMCPlayerHeaderBack2Half = @"kMCPlayerHeaderBack2Half";
 @end
 
 
-@implementation MCPlayerNormalHeader
+@implementation MCPlayerGeneralHeader
 
 - (instancetype)init {
     self = [super init];

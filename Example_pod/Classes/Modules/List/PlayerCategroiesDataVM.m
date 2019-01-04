@@ -6,7 +6,7 @@
 #import "PlayerCategroiesDataVM.h"
 
 #import "PlayerCategroryDto.h"
-#import "MCPlayerNormalController.h"
+#import "MCPlayerGeneralController.h"
 #import "ScrollPlayerController.h"
 #import "ScrollPlayer2SmallPlayerController.h"
 #import "MCDouyinPlayerListController.h"
@@ -30,7 +30,7 @@
     {
         PlayerCategroryDto *dto = [PlayerCategroryDto new];
         dto.name = @"16:9 固定模式";
-        dto.actionClass = [MCPlayerNormalController class];
+        dto.actionClass = [MCPlayerGeneralController class];
         [self.dataList addObject:dto];
     }
 
@@ -44,7 +44,7 @@
     {
         PlayerCategroryDto *dto = [PlayerCategroryDto new];
         dto.name = @"CollectionView 滚动";
-        dto.actionClass = [MCPlayerNormalController class];
+        dto.actionClass = [UIViewController class];
         [self.dataList addObject:dto];
     }
 
@@ -58,14 +58,14 @@
     {
         PlayerCategroryDto *dto = [PlayerCategroryDto new];
         dto.name = @"Music player";
-        dto.actionClass = [MCPlayerNormalController class];
+        dto.actionClass = [UIViewController class];
         [self.dataList addObject:dto];
     }
 
     {
         PlayerCategroryDto *dto = [PlayerCategroryDto new];
         dto.name = @"全局播放器";
-        dto.actionClass = [MCPlayerNormalController class];
+        dto.actionClass = [UIViewController class];
         [self.dataList addObject:dto];
     }
     {

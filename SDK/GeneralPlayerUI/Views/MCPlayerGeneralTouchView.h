@@ -17,7 +17,7 @@ extern NSString *const kMCTouchSeekAction;
 extern NSString *const kMCTouchCurrentTimeAction;
 extern NSString *const kMCTouchDurationAction;
 
-@interface MCPlayerNormalTouchView : UIView
+@interface MCPlayerGeneralTouchView : UIView
 
 @property(nonatomic, copy) MCPlayerNormalViewEventCallBack callBack;
 

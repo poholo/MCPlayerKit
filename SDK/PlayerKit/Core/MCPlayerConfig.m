@@ -2,7 +2,7 @@
 //  MCPlayerConfig.m
 //  litttleplayer
 //
-//  Created by imooc on 16/5/4.
+//  Created by littleplayer on 16/5/4.
 //  Copyright © 2016年 mjc inc. All rights reserved.
 //
 

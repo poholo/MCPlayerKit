@@ -10,7 +10,7 @@
 #import "MCPlayerConfig.h"
 
 @class MCPlayer;
-@class MCPlayerBaseView;
+@class MCPlayerView;
 
 
 @protocol MCPlayerDelegate <NSObject>
@@ -46,9 +46,9 @@
 @property(nonatomic, weak) id <MCPlayerDelegate> delegate;
 
 
-- (instancetype)initWithPlayerView:(MCPlayerBaseView *)playerView;
+- (instancetype)initWithPlayerView:(MCPlayerView *)playerView;
 
-- (void)updatePlayerView:(MCPlayerBaseView *)playerView;
+- (void)updatePlayerView:(MCPlayerView *)playerView;
 
 - (void)playUrls:(nonnull NSArray<NSString *> *)urls;
 

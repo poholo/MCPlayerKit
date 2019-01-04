@@ -1,8 +1,8 @@
-# PlayerKit
+# MCPlayerKit
 
 
 
-## PlayerKit 介绍
+## MCPlayerKit 介绍
 
 从事移动端开发以来，一直在做音视频类的开发，苹果的播放器基本定制型太强，需要定制在开源有kxmovie，授权的vitamio等，但层次不一，经过几年的发展，尤其是在这两年直播等投资热的趋势下，音视频技术逐渐趋于成熟，随便找几个库就能解决燃眉之急，开源的力量更进一步的推进了技术的发展，我也想写个简单的项目，写出一些心得。
 
@@ -19,7 +19,7 @@ PlayerKit是基于AVPlayer和IJKPlayer做的一款播放内核播放模块，做
 
 #### Installation with CocoaPods
 
-To integrate PlayerKit into your Xcode project using CocoaPods, specify it in your Podfile:
+To integrate MCPlayerKit into your Xcode project using CocoaPods, specify it in your Podfile:
 
 ```
 pod 'MCPlayerKit', '~> 0.0.2'
@@ -32,9 +32,9 @@ Run `pod install`
 
 
 ```
-- (PlayerKit *)playerKit {
+- (MCPlayerKit *)playerKit {
     if (!_playerKit) {
-        _playerKit = [[PlayerKit alloc] initWithPlayerView:self.playerView];
+        _playerKit = [[MCPlayerKit alloc] initWithPlayerView:self.playerView];
         _playerKit.playerCoreType = PlayerCoreAVPlayer;
         _playerKit.playerStatusDelegate = self;
     }
@@ -77,6 +77,10 @@ PlayerKit --------------- 播放器核心，AVPlayer与IJKPlayer抽象
     -- Core               Player抽象与实现以及PlayerKit播放器控制
     -- Extend             辅助类
     -- PlayerView         播放器界面父类，Custom播放器界面View必须继承与此类
+    
+GeneralPlayerUI----------- 通用播放组件UI
+    -- Views               通用UI subviews
+    -- MCPlayerGeneralView 通用播放界面
 
 PlayerKitDemo ------------ Demo展示类，部分成熟的UI
 

@@ -6,10 +6,10 @@
 //  Copyright © 2017年 mjc inc. All rights reserved.
 //
 
-#import "MCPlayerBaseView.h"
+#import "MCPlayerView.h"
 
 
-@implementation MCPlayerBaseView
+@implementation MCPlayerView
 
 - (instancetype)init {
     self = [super init];

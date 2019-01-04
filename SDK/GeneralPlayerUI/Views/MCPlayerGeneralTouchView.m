@@ -3,7 +3,7 @@
 // Copyright (c) 2018 majiancheng. All rights reserved.
 //
 
-#import "MCPlayerNormalTouchView.h"
+#import "MCPlayerGeneralTouchView.h"
 
 #import <MediaPlayer/MediaPlayer.h>
 
@@ -17,7 +17,7 @@ NSString *const kMCTouchSeekAction = @"kMCTouchSeekAction";
 NSString *const kMCTouchCurrentTimeAction = @"kMCTouchCurrentTimeAction";
 NSString *const kMCTouchDurationAction = @"kMCTouchDurationAction";
 
-@interface MCPlayerNormalTouchView () <UIGestureRecognizerDelegate> {
+@interface MCPlayerGeneralTouchView () <UIGestureRecognizerDelegate> {
     CGPoint _panOrigin;
     NSTimeInterval _timeSliding;
 
@@ -34,7 +34,7 @@ NSString *const kMCTouchDurationAction = @"kMCTouchDurationAction";
 
 @end
 
-@implementation MCPlayerNormalTouchView
+@implementation MCPlayerGeneralTouchView
 
 - (instancetype)init {
     self = [super init];
