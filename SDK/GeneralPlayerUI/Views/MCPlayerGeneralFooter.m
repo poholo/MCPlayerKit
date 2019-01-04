@@ -135,7 +135,7 @@ NSString *const kMCControlProgressEndDragSlider = @"kMCControlProgressEndDragSli
     CGFloat progressX = CGRectGetMaxX(self.currentLabel.frame) + [MCStyle contentInsetII].left;
     CGFloat progressW = CGRectGetMinX(self.durationLabel.frame) - CGRectGetMaxX(self.currentLabel.frame) - [MCStyle contentInsetII].right - [MCStyle contentInsetII].left;
 
-    if (self.playBtn.hidden) {
+    if (self.styleSizeType == PlayerStyleSizeClassRegularHalf) {
         currentX = [MCStyle contentInsetIII].left;
         durationX = currentX + currentSize.width;
         progressX = CGRectGetMaxX(self.durationLabel.frame) + [MCStyle contentInsetII].left;

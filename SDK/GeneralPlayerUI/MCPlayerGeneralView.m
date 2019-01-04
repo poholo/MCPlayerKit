@@ -24,6 +24,7 @@
 @property(nonatomic, strong) MCPlayerGeneralHeader *topView;
 @property(nonatomic, strong) MCPlayerGeneralFooter *bottomView;
 @property(nonatomic, strong) UIButton *lockBtn;
+@property(nonatomic, strong) UIButton *playBtn;
 @property(nonatomic, strong) UIView *definitionView;
 
 @property(nonatomic, weak) MCPlayerKit *playerKit;
@@ -71,14 +72,18 @@
     [self.bottomView updatePlayerStyle:styleSizeType];
     switch (self.styleSizeType) {
         case PlayerStyleSizeClassRegularHalf: {
+            self.lockBtn.hidden = YES;
+            self.playBtn.hidden = NO;
         }
             break;
         case PlayerStyleSizeClassRegular: {
-
+            self.lockBtn.hidden = NO;
+            self.playBtn.hidden = YES;
         }
             break;
         case PlayerStyleSizeClassCompact: {
-
+            self.lockBtn.hidden = NO;
+            self.playBtn.hidden = YES;
         }
             break;
     }
@@ -93,7 +98,7 @@
 }
 
 - (void)currentTime:(double)time {
-    [self updateProgress:time / self.playerKit.duration];
+    [self updateProgress:(float) (time / self.playerKit.duration)];
     [self.bottomView currentTime:time];
 }
 
@@ -120,7 +125,6 @@
 
 #pragma mark -
 
-//横屏
 - (void)rotate2Landscape {
     if (self.styleSizeType == PlayerStyleSizeClassCompact) {
         return;
@@ -131,7 +135,6 @@
     self.frame = [UIScreen mainScreen].bounds;
 }
 
-//竖屏
 - (void)rotate2Portrait {
     [MCRotateHelper setStatusBarHidden:NO];
     CGSize size = [UIScreen mainScreen].bounds.size;
@@ -154,11 +157,10 @@
     [self.containerView addSubview:self.topView];
     [self.containerView addSubview:self.bottomView];
     [self.containerView addSubview:self.lockBtn];
+    [self.containerView addSubview:self.playBtn];
     [self.containerView addSubview:self.definitionView];
 
     [self.containerView addSubview:self.loadingView];
-
-    self.topView.titleLabel.text = @"Skipping code signing because the target does not have an Info.plist file. (in target 'App')";
 }
 
 - (void)addLayout {
@@ -176,6 +178,8 @@
 
     CGFloat lockW = 44;
     self.lockBtn.frame = CGRectMake(10, (h - lockW) / 2.0f, lockW, lockW);
+    CGFloat playW = 44;
+    self.playBtn.frame = CGRectMake((CGRectGetWidth(self.frame) - playW) / 2.0f, (CGRectGetHeight(self.frame) - playW) / 2.0f, playW, playW);
     self.loadingView.frame = self.containerView.bounds;
 }
 
@@ -268,13 +272,18 @@
     [self.topView fadeHiddenControl];
     [self.bottomView fadeHiddenControl];
     self.lockBtn.hidden = YES;
+    self.playBtn.hidden = YES;
 }
 
 - (void)showControl {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(fadeHiddenControl) object:nil];
     [self.topView showControl];
     [self.bottomView showControl];
-    self.lockBtn.hidden = NO;
+    if (self.styleSizeType == PlayerStyleSizeClassRegularHalf) {
+        self.playBtn.hidden = NO;
+    } else {
+        self.lockBtn.hidden = NO;
+    }
 }
 
 - (void)showControlThenHide {
@@ -299,6 +308,14 @@
     //TODO:: lock
 }
 
+- (void)playBtnClick {
+    self.playBtn.selected = !self.playBtn.selected;
+    if (self.playBtn.selected) {
+        [self.playerKit pause];
+    } else {
+        [self.playerKit play];
+    }
+}
 
 #pragma mark - MCPlayerDelegate
 
@@ -376,8 +393,19 @@
         [_lockBtn setImage:[MCStyle customImage:@"player_body_0"] forState:UIControlStateNormal];
         [_lockBtn setImage:[MCStyle customImage:@"player_body_0_s"] forState:UIControlStateSelected];
         [_lockBtn addTarget:self action:@selector(lockBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        _lockBtn.hidden = YES;
     }
     return _lockBtn;
+}
+
+- (UIButton *)playBtn {
+    if (!_playBtn) {
+        _playBtn = [UIButton new];
+        [_playBtn setImage:[MCStyle customImage:@"player_body_1"] forState:UIControlStateNormal];
+        [_playBtn setImage:[MCStyle customImage:@"player_body_1_s"] forState:UIControlStateSelected];
+        [_playBtn addTarget:self action:@selector(playBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _playBtn;
 }
 
 - (UIView *)definitionView {
