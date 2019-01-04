@@ -1,6 +1,6 @@
 //
 //  PlayerView.m
-//  WaQuVideo
+//  litttleplayer
 //
 //  Created by majiancheng on 2017/3/17.
 //  Copyright © 2017年 mjc inc. All rights reserved.

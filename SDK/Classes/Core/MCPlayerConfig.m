@@ -1,6 +1,6 @@
 //
 //  MCPlayerConfig.m
-//  WaQuVideo
+//  litttleplayer
 //
 //  Created by imooc on 16/5/4.
 //  Copyright © 2016年 mjc inc. All rights reserved.

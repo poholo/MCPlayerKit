@@ -6,11 +6,8 @@
 #import <UIKit/UIKit.h>
 
 
-@interface PlayerLoadingView : UIView {
-    UIImageView *_loadingImageView;         ///< loading 图
-}
+@interface MCPlayerLoadingView : UIView
 
-@property(nonatomic, strong) UIImageView *loadingImageView;
 
 - (void)releaseSpace;
 
