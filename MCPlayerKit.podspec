@@ -19,6 +19,9 @@ Pod::Spec.new do |s|
                         'SDK/PlayerKit/**/*.{h,m,mm}'
     core.public_header_files = 'SDK/PlayerKit/*.h'
     core.dependency 'IJKMediaFramework'
+    core.xcconfig = {
+          'USER_HEADER_SEARCH_PATHS' => '$(inherited) $(SRCROOT)/SDK/PlayerKit'
+        }
   end
 
   s.subspec 'GeneralPlayerUI' do |general|
@@ -30,6 +33,9 @@ Pod::Spec.new do |s|
     general.dependency 'SDVersion'
     general.dependency 'MCStyle'
     general.dependency 'SDWebImage'
+    general.xcconfig = {
+              'USER_HEADER_SEARCH_PATHS' => '$(inherited) $(SRCROOT)/SDK/GeneralPlayerUI'
+            }
   end
 
   s.xcconfig = {
