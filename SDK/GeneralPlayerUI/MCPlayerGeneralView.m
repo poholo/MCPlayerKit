@@ -287,6 +287,7 @@
 
 - (void)showControl {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(fadeHiddenControl) object:nil];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self.lockBtn selector:@selector(setHidden:) object:@(YES)];
     [self.topView showControl];
     [self.bottomView showControl];
     self.bottomProgress.hidden = YES;
@@ -316,7 +317,11 @@
 
 - (void)lockBtnClick {
     self.lockBtn.selected = !self.lockBtn.selected;
-    //TODO:: lock
+    if (self.lockBtn.selected) {
+        [self fadeHiddenControl];
+    } else {
+        [self showControlThenHide];
+    }
 }
 
 - (void)playBtnClick {
