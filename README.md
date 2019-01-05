@@ -1,13 +1,11 @@
 # MCPlayerKit
 
-
-
 ## MCPlayerKit 介绍
 
 从事移动端开发以来，一直在做音视频类的开发，苹果的播放器基本定制型太强，需要定制在开源有kxmovie，授权的vitamio等，但层次不一，经过几年的发展，尤其是在这两年直播等投资热的趋势下，音视频技术逐渐趋于成熟，随便找几个库就能解决燃眉之急，开源的力量更进一步的推进了技术的发展，我也想写个简单的项目，写出一些心得。
 
 
-MCPlayerKit是基于AVPlayer和IJKPlayer做的一款播放内核播放模块，做IJKPlayer支持是因为AVPlayer对于一些格式协议的支持的补充，比如flv、RTMP等。
+[MCPlayerKit](https://github.com/poholo/MCPlayerKit) 是基于AVPlayer和IJKPlayer做的一款播放内核播放模块，做IJKPlayer支持是因为AVPlayer对于一些格式协议的支持的补充，比如flv、RTMP等。
 
 ## 特点
 
@@ -41,7 +39,15 @@ Run `pod install`
 ## 使用方法
 
 
-1. 纯播放功能，自定义UI
+### 1. 纯播放功能，自定义UI
+
+#### 1.1 功能
+```text
+    a. support AVPlayer & IJKPlayer
+    b. 统一渲染页面
+```
+
+#### 1.2 接入代码
 ```
 - (MCPlayerKit *)playerKit {
     if (!_playerKit) {
@@ -64,7 +70,19 @@ Run `pod install`
 [self.playerKit playUrls:@[@"http://aliuwmp3.changba.com/userdata/video/45F6BD5E445E4C029C33DC5901307461.mp4"]];
 ```
 
-2.GeneralPlayerUI 通用播放器UI 
+### 2.GeneralPlayerUI 通用播放器UI 
+#### 2.1 功能
+```text
+    a. 旋转
+    b. support 2018 Devices
+    c. loading
+    b. 播放中断重试
+    c. 用户可以自定义UI颜色、样式、字体大小
+TODO:
+    I. 投屏UI
+```
+
+#### 2.2 接入代码
 ```objectivec
     //颜色配置
     [MCStyleManager share].colorStyleDataCallback = ^NSDictionary *(void) {
@@ -123,6 +141,9 @@ Run `pod install`
     
     具体参照 Example/Classes/Modules/GeneralPlayer/MCPlayerGeneralController
 ```
+
+### 2.3 Screenshot
+![MCPlayerKit_GeneralPlayerUI](./Screenshot/MCPlayerKit.gif)
 
 ## 类结构
 ```
