@@ -73,6 +73,10 @@
     return [_player currentTime];
 }
 
+- (CGFloat)cacheProgress {
+    return [_player cacheProgress];
+}
+
 - (BOOL)isPlaying {
     return [_player isPlaying];
 }

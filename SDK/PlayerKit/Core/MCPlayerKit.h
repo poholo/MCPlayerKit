@@ -66,6 +66,8 @@
 
 - (NSTimeInterval)currentTime;
 
+- (CGFloat)cacheProgress;
+
 - (void)seekSeconds:(CGFloat)seconds;
 
 - (BOOL)isPlaying;

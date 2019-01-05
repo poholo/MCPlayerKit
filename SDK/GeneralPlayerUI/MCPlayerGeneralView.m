@@ -13,6 +13,7 @@
 #import "MCRotateHelper.h"
 #import "MCPlayerKit.h"
 #import "MCPlayerLoadingView.h"
+#import "MCPlayerProgress.h"
 
 @interface MCPlayerGeneralView () <MCPlayerDelegate>
 
@@ -23,6 +24,7 @@
 
 @property(nonatomic, strong) MCPlayerGeneralHeader *topView;
 @property(nonatomic, strong) MCPlayerGeneralFooter *bottomView;
+@property(nonatomic, strong) MCPlayerProgress *bottomProgress;
 @property(nonatomic, strong) UIButton *lockBtn;
 @property(nonatomic, strong) UIButton *playBtn;
 @property(nonatomic, strong) UIView *definitionView;
@@ -73,16 +75,16 @@
     switch (self.styleSizeType) {
         case PlayerStyleSizeClassRegularHalf: {
             self.lockBtn.hidden = YES;
-            self.playBtn.hidden = NO;
+            self.playBtn.hidden = self.bottomView.hidden;
         }
             break;
         case PlayerStyleSizeClassRegular: {
-            self.lockBtn.hidden = NO;
+            self.lockBtn.hidden = self.bottomView.hidden;
             self.playBtn.hidden = YES;
         }
             break;
         case PlayerStyleSizeClassCompact: {
-            self.lockBtn.hidden = NO;
+            self.lockBtn.hidden = self.bottomView.hidden;
             self.playBtn.hidden = YES;
         }
             break;
@@ -98,7 +100,12 @@
 }
 
 - (void)currentTime:(double)time {
-    [self updateProgress:(float) (time / self.playerKit.duration)];
+    float progress = (float) (time / self.playerKit.duration);
+    float buffer = (float) (self.playerKit.cacheProgress);
+    [self updateProgress:progress];
+    [self updateBufferProgress:buffer];
+    [self.bottomProgress updateProgress:progress];
+    [self.bottomProgress updateBufferProgress:buffer];
     [self.bottomView currentTime:time];
 }
 
@@ -158,6 +165,7 @@
     [self.containerView addSubview:self.bottomView];
     [self.containerView addSubview:self.lockBtn];
     [self.containerView addSubview:self.playBtn];
+    [self.containerView addSubview:self.bottomProgress];
     [self.containerView addSubview:self.definitionView];
 
     [self.containerView addSubview:self.loadingView];
@@ -175,6 +183,7 @@
     CGFloat barHeight = 44;
     self.topView.frame = CGRectMake(0, 0, w, barHeight + self.topView.top);
     self.bottomView.frame = CGRectMake(0, h - barHeight, w, barHeight);
+    self.bottomProgress.frame = CGRectMake(0, h - 2, w, 2);
 
     CGFloat lockW = 44;
     self.lockBtn.frame = CGRectMake(10, (h - lockW) / 2.0f, lockW, lockW);
@@ -273,16 +282,18 @@
     [self.bottomView fadeHiddenControl];
     self.lockBtn.hidden = YES;
     self.playBtn.hidden = YES;
+    self.bottomProgress.hidden = NO;
 }
 
 - (void)showControl {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(fadeHiddenControl) object:nil];
     [self.topView showControl];
     [self.bottomView showControl];
+    self.bottomProgress.hidden = YES;
     if (self.styleSizeType == PlayerStyleSizeClassRegularHalf) {
-        self.playBtn.hidden = NO;
+        self.playBtn.hidden = self.bottomView.hidden;
     } else {
-        self.lockBtn.hidden = NO;
+        self.lockBtn.hidden = self.bottomView.hidden;
     }
 }
 
@@ -329,6 +340,7 @@
 
 - (void)playStart {
     [self.loadingView endRotating];
+    [self showControlThenHide];
     [self duration:self.playerKit.duration];
 }
 
@@ -417,6 +429,15 @@
         _loadingView = [MCPlayerLoadingView new];
     }
     return _loadingView;
+}
+
+- (MCPlayerProgress *)bottomProgress {
+    if (!_bottomProgress) {
+        _bottomProgress = [MCPlayerProgress new];
+        [_bottomProgress changeSliderStyle:SliderShowProgress];
+        _bottomProgress.hidden = YES;
+    }
+    return _bottomProgress;
 }
 
 @end

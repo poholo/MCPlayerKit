@@ -86,10 +86,6 @@
         }
             break;
     }
-
-    [self setNeedsUpdateConstraints];
-    [self updateConstraintsIfNeeded];
-    [self layoutIfNeeded];
 }
 
 #pragma mark -
