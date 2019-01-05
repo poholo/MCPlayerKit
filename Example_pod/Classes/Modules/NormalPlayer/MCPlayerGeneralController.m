@@ -9,6 +9,7 @@
 
 #import "MCPlayerGeneralView.h"
 #import "MCPlayerKit.h"
+#import "MCDeviceUtils.h"
 
 
 @interface MCPlayerGeneralController ()
@@ -154,7 +155,7 @@
 - (MCPlayerGeneralView *)playerView {
     if (!_playerView) {
         CGFloat width = MIN([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
-        CGFloat height = width * 9 / 16.0f;
+        CGFloat height = width * 9 / 16.0f + [MCDeviceUtils xTop];
         _playerView = [[MCPlayerGeneralView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
     }
     return _playerView;

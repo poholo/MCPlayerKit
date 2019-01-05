@@ -14,6 +14,7 @@
 #import "MCPlayerKit.h"
 #import "MCPlayerLoadingView.h"
 #import "MCPlayerProgress.h"
+#import "MCDeviceUtils.h"
 
 @interface MCPlayerGeneralView () <MCPlayerDelegate>
 
@@ -146,7 +147,7 @@
     [MCRotateHelper setStatusBarHidden:NO];
     CGSize size = [UIScreen mainScreen].bounds.size;
     [self updatePlayerStyle:PlayerStyleSizeClassRegularHalf];
-    self.frame = CGRectMake(0, 0, size.width, size.width * 9 / 16);
+    self.frame = CGRectMake(0, 0, size.width, size.width * 9 / 16 + [MCDeviceUtils xTop]);
 }
 
 - (void)rotate2PortraitFullScreen {
@@ -173,8 +174,14 @@
 
 - (void)addLayout {
     if (CGRectIsEmpty(self.frame)) return;
-    self.containerView.frame = self.bounds;
-    //TODO:: 2018 devices
+
+    CGRect containerFrame ;
+    if(self.styleSizeType == PlayerStyleSizeClassRegularHalf) {
+        containerFrame = CGRectMake(0, [MCDeviceUtils xTop], CGRectGetWidth(self.frame), CGRectGetHeight(self.frame) - [MCDeviceUtils xTop]);
+    } else {
+        containerFrame = CGRectMake(0, 0, CGRectGetWidth(self.frame) - [MCDeviceUtils xTop] * 2, CGRectGetHeight(self.frame));
+    }
+    self.containerView.frame = containerFrame;
     self.touchView.frame = self.containerView.bounds;
     self.playerView.frame = self.containerView.bounds;
     CGFloat w = CGRectGetWidth(self.containerView.frame);

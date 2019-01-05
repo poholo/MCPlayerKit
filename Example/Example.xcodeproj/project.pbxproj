@@ -13,6 +13,7 @@
 		1A6662B348D985B0C6ACD110 /* MCDouyinPlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666069573E98FDB9361047 /* MCDouyinPlayerCell.m */; };
 		1A6662D8AD19E088B091AD17 /* MCCircleProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6666FEAD1AB275D9FD299D /* MCCircleProgress.m */; };
 		1A6663135A19936E87E01506 /* MCPlayerGeneralHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666384CA6ABB0391FC92CA /* MCPlayerGeneralHeader.m */; };
+		1A66637DA1F53F36510020AA /* MCDeviceUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666057E36A14F194E1A46E /* MCDeviceUtils.m */; };
 		1A666463162F76E8A2F2322D /* PlayerViewUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A66612EACCD038337A6E699 /* PlayerViewUtils.m */; };
 		1A6664CAB9912B9E3B934F65 /* MCPlayerGeneralTerminalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A66650B236A08A83D53C699 /* MCPlayerGeneralTerminalView.m */; };
 		1A6665980404102C66A01C2F /* CustomPlayerColor.json in Resources */ = {isa = PBXBuildFile; fileRef = 1A6667E55D386134FE2203AC /* CustomPlayerColor.json */; };
@@ -78,6 +79,7 @@
 
 /* Begin PBXFileReference section */
 		1A66604A5BE09B96FCA1E7F7 /* MCPlayerGeneralFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCPlayerGeneralFooter.h; sourceTree = "<group>"; };
+		1A666057E36A14F194E1A46E /* MCDeviceUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCDeviceUtils.m; sourceTree = "<group>"; };
 		1A666069573E98FDB9361047 /* MCDouyinPlayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCDouyinPlayerCell.m; sourceTree = "<group>"; };
 		1A6660AAAA139D5B7752691B /* MCCircleProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCCircleProgress.h; sourceTree = "<group>"; };
 		1A6660B1622B3E5F445940D8 /* MCPlayerProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCPlayerProgress.h; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 		1A66666C388F4DBA4544AF48 /* MCPlayerGeneralHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCPlayerGeneralHeader.h; sourceTree = "<group>"; };
 		1A666687A16AF0522B7FFF10 /* MCPlayerViewConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCPlayerViewConfig.h; sourceTree = "<group>"; };
 		1A6666D3F8DAF44DCD6A89C9 /* MCPlayerGeneralTerminalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCPlayerGeneralTerminalView.h; sourceTree = "<group>"; };
+		1A6666FC211079B5A90B7AC0 /* MCDeviceUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCDeviceUtils.h; sourceTree = "<group>"; };
 		1A6666FEAD1AB275D9FD299D /* MCCircleProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCCircleProgress.m; sourceTree = "<group>"; };
 		1A6667B4E71EA75D628FB682 /* MCPlayerKit.podspec */ = {isa = PBXFileReference; lastKnownFileType = file.podspec; name = MCPlayerKit.podspec; path = ../MCPlayerKit.podspec; sourceTree = "<group>"; };
 		1A6667B55D4305D24EA5FCE9 /* MCDouyinPlayerDataVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCDouyinPlayerDataVM.h; sourceTree = "<group>"; };
@@ -242,6 +245,15 @@
 				1A666ADBBCA8CEB77C4B0FC0 /* MCTouchTestController.h */,
 			);
 			path = TouchTest;
+			sourceTree = "<group>";
+		};
+		1A666A7871C70043AA2A7DF5 /* Commen */ = {
+			isa = PBXGroup;
+			children = (
+				1A6666FC211079B5A90B7AC0 /* MCDeviceUtils.h */,
+				1A666057E36A14F194E1A46E /* MCDeviceUtils.m */,
+			);
+			path = Commen;
 			sourceTree = "<group>";
 		};
 		1A666A9669AD1B5D12A85267 /* Douyin */ = {
@@ -527,6 +539,7 @@
 			children = (
 				250CCFA321D4D65C00ECDF83 /* PlayerKit */,
 				1A666CCA4547E1A2005EC77C /* GeneralPlayerUI */,
+				1A666A7871C70043AA2A7DF5 /* Commen */,
 			);
 			name = SDK;
 			path = ../SDK;
@@ -758,6 +771,7 @@
 				1A6664CAB9912B9E3B934F65 /* MCPlayerGeneralTerminalView.m in Sources */,
 				1A6665A15029EADBA595F868 /* MCPlayerViewConfig.m in Sources */,
 				1A666EC451E6EDB79CF2B5FB /* MCPlayerProgress.m in Sources */,
+				1A66637DA1F53F36510020AA /* MCDeviceUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
