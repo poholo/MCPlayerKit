@@ -11,7 +11,7 @@
 @protocol PlayerTerminalDelegate <NSObject>
 
 @required
-- (void)terninalPlayEndReplay;
+- (void)terminalPlayEndReplay;
 
 - (void)terminal3GCanContinuePlay;
 
@@ -39,8 +39,6 @@
 
 @property(nonatomic, weak) id <PlayerTerminalDelegate> delegate;
 
-- (void)releaseSpace;
-
-- (void)updatePlayerTerminal:(PlayerState)state title:(NSString *)videoTitle;
+- (void)updatePlayerTerminal:(PlayerTerminalState)state title:(NSString *)videoTitle;
 
 @end

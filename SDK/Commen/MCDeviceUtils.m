@@ -10,10 +10,10 @@
 @implementation MCDeviceUtils
 
 + (BOOL)iPhoneX {
-    return [SDiOSVersion deviceVersion] == iPhoneX
-            || [SDiOSVersion deviceVersion] == iPhoneXR
-            || [SDiOSVersion deviceVersion] == iPhoneXS
-            || [SDiOSVersion deviceVersion] == iPhoneXSMax;
+    return [SDiOSVersion deviceVersion] == iPhoneX;
+//            || [SDiOSVersion deviceVersion] == iPhoneXR
+//            || [SDiOSVersion deviceVersion] == iPhoneXS
+//            || [SDiOSVersion deviceVersion] == iPhoneXSMax;
 }
 
 + (CGFloat)xTop {

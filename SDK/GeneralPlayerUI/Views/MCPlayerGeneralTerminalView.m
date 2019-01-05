@@ -5,7 +5,6 @@
 
 #import "MCPlayerGeneralTerminalView.h"
 
-#import <Masonry.h>
 #import <MCStyle/MCStyleDef.h>
 
 #import "MCPlayerViewConfig.h"
@@ -24,7 +23,7 @@ typedef NS_ENUM(NSInteger, PTAirPlayEvent) {
 @property(nonatomic, strong) UILabel *videoTitle;
 @property(nonatomic, strong) UILabel *mentionInfo;
 @property(nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
-@property(nonatomic, assign) PlayerState playerSate;
+@property(nonatomic, assign) PlayerTerminalState playerSate;
 
 @property(nonatomic, strong) UIButton *quitAirPlayBtn;
 @property(nonatomic, strong) UIButton *volumeLargeBtn;
@@ -35,63 +34,107 @@ typedef NS_ENUM(NSInteger, PTAirPlayEvent) {
 
 @implementation MCPlayerGeneralTerminalView
 
-- (void)dealloc {
-    [self releaseSpace];
-}
-
-- (void)releaseSpace {
-    [_videoTitle removeFromSuperview];
-    [_mentionInfo removeFromSuperview];
-    [self removeTapGesture];
-
-    [_quitAirPlayBtn removeFromSuperview];
-    [_volumeLargeBtn removeFromSuperview];
-    [_volumeSmallBtn removeFromSuperview];
-    [_playPauseBtn removeFromSuperview];
-
-    _videoTitle = nil;
-    _mentionInfo = nil;
-
-    _quitAirPlayBtn = nil;
-    _volumeLargeBtn = nil;
-    _volumeSmallBtn = nil;
-    _playPauseBtn = nil;
-}
-
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-
-        _videoTitle = [[UILabel alloc] init];
-        _mentionInfo = [[UILabel alloc] init];
-
-        _quitAirPlayBtn = [[UIButton alloc] init];
-        _volumeLargeBtn = [[UIButton alloc] init];
-        _volumeSmallBtn = [[UIButton alloc] init];
-        _playPauseBtn = [[UIButton alloc] init];
-
-        [self addSubview:_videoTitle];
-        [self addSubview:_mentionInfo];
-        [self addSubview:_quitAirPlayBtn];
-        [self addSubview:_volumeLargeBtn];
-        [self addSubview:_volumeSmallBtn];
-        [self addSubview:_playPauseBtn];
-
-        _videoTitle.textColor = [MCColor colorI];
-        _videoTitle.font = [UIFont systemFontOfSize:14];
-
-        _mentionInfo.textColor = [MCColor colorII];
-        _mentionInfo.font = [UIFont systemFontOfSize:12];
-
-        _videoTitle.textAlignment = NSTextAlignmentCenter;
-        _mentionInfo.textAlignment = NSTextAlignmentCenter;
-
-        self.backgroundColor = [MCColor colorV];
-
-        [self addAction];
-        [self updateStyle];
-        [self showNormalStyle];
+        [self setup];
     }
     return self;
+}
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        [self setup];
+    }
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self setup];
+    }
+    return self;
+}
+
+- (void)setup {
+    [self createViews];
+    [self addLayout];
+    [self addAction];
+    [self updateStyle];
+    [self showNormalStyle];
+}
+
+- (void)createViews {
+
+    _videoTitle = [[UILabel alloc] init];
+    _mentionInfo = [[UILabel alloc] init];
+
+    _quitAirPlayBtn = [[UIButton alloc] init];
+    _volumeLargeBtn = [[UIButton alloc] init];
+    _volumeSmallBtn = [[UIButton alloc] init];
+    _playPauseBtn = [[UIButton alloc] init];
+
+    [self addSubview:_videoTitle];
+    [self addSubview:_mentionInfo];
+    [self addSubview:_quitAirPlayBtn];
+    [self addSubview:_volumeLargeBtn];
+    [self addSubview:_volumeSmallBtn];
+    [self addSubview:_playPauseBtn];
+
+    _videoTitle.textColor = [MCColor custom:@"player_terminal_titlecolor"];
+    _videoTitle.font = [UIFont systemFontOfSize:14];
+
+    _mentionInfo.textColor = [MCColor custom:@"player_terminal_mentioncolor"];
+    _mentionInfo.font = [UIFont systemFontOfSize:12];
+
+    _videoTitle.textAlignment = NSTextAlignmentCenter;
+    _mentionInfo.textAlignment = NSTextAlignmentCenter;
+
+    self.backgroundColor = [MCColor custom:@"player_terminal_bgcolor"];
+}
+
+- (void)addLayout {
+    if (CGRectIsEmpty(self.frame)) return;
+    UIEdgeInsets insets = [MCStyle contentInsetI];
+    CGFloat h = CGRectGetHeight(self.frame);
+    CGFloat w = CGRectGetWidth(self.frame);
+
+    self.videoTitle.frame = CGRectMake(insets.left,
+            (h - self.videoTitle.font.lineHeight) / 2.0f,
+            w - 2 * insets.left,
+            self.videoTitle.font.lineHeight);
+
+    self.mentionInfo.frame = CGRectMake(insets.left,
+            CGRectGetMaxY(self.videoTitle.frame) + insets.top,
+            CGRectGetWidth(self.videoTitle.frame),
+            self.mentionInfo.font.lineHeight);
+
+//
+//    [_quitAirPlayBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.mas_equalTo(self.mentionInfo.mas_bottom).offset(10);
+//        make.centerX.mas_equalTo(self);
+//        make.width.mas_equalTo(100);
+//        make.height.mas_equalTo(30);
+//    }];
+//
+//    [_volumeLargeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.right.mas_equalTo(self.mas_right).offset(-30);
+//        make.centerY.mas_equalTo(self.mas_centerY).offset(-40);
+//        make.width.height.mas_equalTo(40);
+//    }];
+//
+//    [_volumeSmallBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.right.mas_equalTo(self.mas_right).offset(-30);
+//        make.centerY.mas_equalTo(self.mas_centerY).offset(40);
+//        make.width.height.mas_equalTo(40);
+//    }];
+//
+//    [_playPauseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(self.mas_left).offset(30);
+//        make.bottom.mas_equalTo(self.mas_bottom).offset(-30);
+//        make.width.height.mas_equalTo(40);
+//    }];
 }
 
 - (void)addAction {
@@ -140,84 +183,56 @@ typedef NS_ENUM(NSInteger, PTAirPlayEvent) {
     _playPauseBtn.hidden = NO;
 }
 
-- (void)updatePlayerTerminal:(PlayerState)state title:(NSString *)videoTitle {
+- (void)updatePlayerTerminal:(PlayerTerminalState)state title:(NSString *)videoTitle {
 
     _videoTitle.text = videoTitle;
     [self showNormalStyle];
-//    switch(state) {
-//        case PlayerStatePlayEnd    : {
-//            _mentionInfo.text   = _k_AV_TerminalMentionPLayerStatePlayEnd;
-//            [self tapGestureRecognizer];
-//        } break;
-//
-//        case PlayerState3GUnenable : {
-//            _mentionInfo.text = _k_AV_TerminalMentionPlayerState3GUnenable;
-////            _mentionInfo.textColor = [UIColor greenColor];
-//            [self tapGestureRecognizer];
-//        } break;
-//
-//        case PlayerStateNetError   : {
-//            _mentionInfo.text = _k_AV_TerminalMentionPlayerStateNetError;
-////            _mentionInfo.textColor = [UIColor redColor];
-//            [self tapGestureRecognizer];
-//        } break;
-//
-//        case PlayerStateUrlError   : {
-//            _mentionInfo.text = _k_AV_TerminalMentionPlayerStateUrlError;
-////            _mentionInfo.textColor = [UIColor whiteColor];
-//            [self tapGestureRecognizer];
-//        } break;
-//
-//        case PlayerStateError      : {
-//            _mentionInfo.text = _k_AV_TerminalMentionPlayerStateError;
-////            _mentionInfo.textColor = [UIColor whiteColor];
-//            [self tapGestureRecognizer];
-//        } break;
-//
-//        default                      : {
-//
-//        } break;
-//    }
+    switch (state) {
+        case PlayerTerminalPlayEnd    : {
+            _mentionInfo.text = _k_AV_TerminalMentionPLayerStatePlayEnd;
+            [self tapGestureRecognizer];
+        }
+            break;
+
+        case PlayerTerminal3GUnenable : {
+            _mentionInfo.text = _k_AV_TerminalMentionPlayerState3GUnenable;
+            _mentionInfo.textColor = [MCColor custom:@"player_terminal_mentioncolor_alert"];
+            [self tapGestureRecognizer];
+        }
+            break;
+
+        case PlayerTerminalNetError   : {
+            _mentionInfo.text = _k_AV_TerminalMentionPlayerStateNetError;
+            _mentionInfo.textColor = [MCColor custom:@"player_terminal_mentioncolor_alert"];
+            [self tapGestureRecognizer];
+        }
+            break;
+
+        case PlayerTerminalUrlError   : {
+            _mentionInfo.text = _k_AV_TerminalMentionPlayerStateUrlError;
+            _mentionInfo.textColor = [MCColor custom:@"player_terminal_mentioncolor_alert"];
+            [self tapGestureRecognizer];
+        }
+            break;
+
+        case PlayerTerminalError      : {
+            _mentionInfo.text = _k_AV_TerminalMentionPlayerStateError;
+            _mentionInfo.textColor = [MCColor custom:@"player_terminal_mentioncolor_alert"];
+            [self tapGestureRecognizer];
+        }
+            break;
+
+        default: {
+
+        }
+            break;
+    }
     _playerSate = state;
 }
 
-- (void)updateConstraints {
-    [_videoTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(self);
-        make.centerY.mas_equalTo(self).offset(0);
-    }];
-
-    [_mentionInfo mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(self);
-        make.centerY.mas_equalTo(self).offset(20);
-    }];
-
-    [_quitAirPlayBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.mentionInfo.mas_bottom).offset(10);
-        make.centerX.mas_equalTo(self);
-        make.width.mas_equalTo(100);
-        make.height.mas_equalTo(30);
-    }];
-
-    [_volumeLargeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.mas_right).offset(-30);
-        make.centerY.mas_equalTo(self.mas_centerY).offset(-40);
-        make.width.height.mas_equalTo(40);
-    }];
-
-    [_volumeSmallBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.mas_right).offset(-30);
-        make.centerY.mas_equalTo(self.mas_centerY).offset(40);
-        make.width.height.mas_equalTo(40);
-    }];
-
-    [_playPauseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.mas_left).offset(30);
-        make.bottom.mas_equalTo(self.mas_bottom).offset(-30);
-        make.width.height.mas_equalTo(40);
-    }];
-
-    [super updateConstraints];
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    [self addLayout];
 }
 
 
@@ -242,28 +257,45 @@ typedef NS_ENUM(NSInteger, PTAirPlayEvent) {
 
 - (void)tapClick:(UITapGestureRecognizer *)tap {
     if (_delegate == nil) return;
-//    switch(_playerSate) {
-//        case PlayerStatePlayEnd     : {
-//            [_delegate terninalPlayEndReplay];
-//        } break;
-//
-//        case  PlayerState3GUnenable : {
-//            [_delegate terminal3GCanContinuePlay];
-//        } break;
-//
-//        case  PlayerStateNetError   : {
-//            [_delegate terminalNetErrorRetry];
-//        } break;
-//
-//        case  PlayerStateUrlError   : {
-//            [_delegate terminalUrlErrorRetry];
-//        } break;
-//
-//        case  PlayerStateError      : {
-//            [_delegate terminalErrorRetry];
-//        } break;
-//        default:break;
-//    }
+    switch (_playerSate) {
+        case PlayerTerminalPlayEnd     : {
+            if ([_delegate respondsToSelector:@selector(terminalPlayEndReplay)]) {
+                [_delegate terminalPlayEndReplay];
+            }
+        }
+            break;
+
+        case PlayerTerminal3GUnenable : {
+            if ([_delegate respondsToSelector:@selector(terminal3GCanContinuePlay)]) {
+
+                [_delegate terminal3GCanContinuePlay];
+            }
+        }
+            break;
+
+        case PlayerTerminalNetError   : {
+            if ([_delegate respondsToSelector:@selector(terminalNetErrorRetry)]) {
+                [_delegate terminalNetErrorRetry];
+            }
+        }
+            break;
+
+        case PlayerTerminalUrlError   : {
+            if ([_delegate respondsToSelector:@selector(terminalUrlErrorRetry)]) {
+                [_delegate terminalUrlErrorRetry];
+            }
+        }
+            break;
+
+        case PlayerTerminalError      : {
+            if ([_delegate respondsToSelector:@selector(terminalErrorRetry)]) {
+                [_delegate terminalErrorRetry];
+            }
+        }
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)btnClick:(UIButton *)btn {

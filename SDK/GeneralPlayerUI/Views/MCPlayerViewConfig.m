@@ -4,7 +4,6 @@
 //
 
 #import "MCPlayerViewConfig.h"
-#import "MMPopupCategory.h"
 
 
 /** 字体大小 */
@@ -22,7 +21,7 @@ NSString *const _k_AV_loading_default_image = @"ic_play_loading";
 NSString *const _k_AV_water_image = @"play_portrait_logo";
 NSString *const _k_AV_water_land_image = @"play_landscape_logo";
 
-CGFloat const _k_AV_offsetChoseDirection = 8.0;
+CGFloat const  _k_AV_offsetChoseDirection = 8.0;
 
 NSString *const _k_AV_TerminalMentionPLayerStatePlayEnd = @"点击重新播放";
 NSString *const _k_AV_TerminalMentionPlayerState3GUnenable = @"当前是移动网络,继续播放将产生流量,点击继续播放";

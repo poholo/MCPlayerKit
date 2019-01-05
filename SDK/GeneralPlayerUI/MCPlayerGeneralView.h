@@ -34,8 +34,10 @@ typedef NS_ENUM(NSInteger, MCPlayerStyleSizeType) {
 @interface MCPlayerGeneralView : UIView
 
 @property(nonatomic, assign) MCPlayerStyleSizeType styleSizeType;
-@property(nonatomic, copy) MCPlayerNormalViewEventCallBack eventCallBack;
 @property(nonatomic, readonly) MCPlayerView *playerView;
+
+@property(nonatomic, copy) MCPlayerNormalViewEventCallBack eventCallBack;
+@property(nonatomic, copy) NSString *(^retryPlayUrl)(void); ///< 获取url尝试重新播放
 
 - (void)updatePlayerStyle:(MCPlayerStyleSizeType)styleSizeType;
 

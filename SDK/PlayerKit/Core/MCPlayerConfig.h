@@ -33,6 +33,14 @@ typedef NS_ENUM(NSInteger, PlayerState) {
     PlayerStateNone,
 };
 
+typedef NS_ENUM(NSInteger, PlayerTerminalState) {
+    PlayerTerminalPlayEnd,
+    PlayerTerminal3GUnenable,
+    PlayerTerminalNetError,
+    PlayerTerminalUrlError,
+    PlayerTerminalError
+};
+
 /***
  * 播放器渲染模式
  */

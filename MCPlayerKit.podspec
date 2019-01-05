@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "MCPlayerKit"
-  s.version      = "0.0.5"
+  s.version      = "0.0.6"
   s.summary      = "MCPlayerKit is iOS Player, PlayerCoreType: AVPlayer can use play some video, IJKPlayer type can play video, Live ..."
   s.homepage     = "https://github.com/poholo/PlayerKit"
   s.license          = { :type => "MIT", :file => "LICENSE" }
@@ -12,11 +12,26 @@ Pod::Spec.new do |s|
   s.platform     = :ios, "8.0"
   s.source       = { :git => "https://github.com/poholo/PlayerKit.git", :tag => "#{s.version}" }
 
+  s.default_subspec = 'Core'
 
-  s.source_files = "SDK/Classes/**/*.{h,m,mm}",
-                   "SDK/Classes/*.{h,m,mm}"                  
-  s.public_header_files = "SDK/Classes/**/*.h"
-                          "SDK/Classes/*.h"
+  s.subspec 'Core' do |core|
+    core.source_files = 'SDK/PlayerKit/*.{h,m,mm}',
+                        'SDK/PlayerKit/**/*.{h,m,mm}'
+    core.public_header_files = 'SDK/PlayerKit/*.h'
+    core.dependency 'IJKMediaFramework'
+  end
+
+  s.subspec 'GeneralPlayerUI' do |general|
+    general.source_files = 'SDK/GeneralPlayerUI/**/*.{h,m,mm}',
+                           'SDK/GeneralPlayerUI/*.{h,m,mm}',
+                           'SDK/Commen/*.{h,m,mm}'
+    general.public_header_files = 'SDK/GeneralPlayerUI/*.h'
+    general.dependency 'MCPlayerKit/Core'
+    general.dependency 'SDVersion'
+    general.dependency 'MCStyle'
+    general.dependency 'SDWebImage'
+  end
+
   s.xcconfig = {
        'VALID_ARCHS' => 'arm64 x86_64',
   }
@@ -24,7 +39,6 @@ Pod::Spec.new do |s|
         'VALID_ARCHS' => 'arm64 x86_64'
   }
 
-  s.dependency "IJKMediaFramework"
   s.frameworks = "UIKit", "Foundation", "VideoToolbox", "QuartzCore", "OpenGLES", "MobileCoreServices", 
                  "MediaPlayer", "CoreVideo", "CoreMedia", "CoreGraphics", "AVFoundation", "AudioToolbox"
 

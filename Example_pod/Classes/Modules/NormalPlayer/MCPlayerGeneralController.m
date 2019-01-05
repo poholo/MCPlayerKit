@@ -58,9 +58,13 @@
 
     [self.view addSubview:self.playerView];
     [self.playerView updatePlayerPicture:@"https://avatars0.githubusercontent.com/u/3861387?s=460&v=4"];
-    [self.playerView updateTitle: @"Skipping code signing because the target does not have an Info.plist file. (in target 'App')"];
-    [self.playerKit playUrls:@[@"http://aliuwmp3.changba.com/userdata/video/45F6BD5E445E4C029C33DC5901307461.mp4"]];
+    [self.playerView updateTitle:@"Skipping code signing because the target does not have an Info.plist file. (in target 'App')"];
+//    [self.playerKit playUrls:@[@"http://aliuwmp3.changba.com/userdata/video/45F6BD5E445E4C029C33DC5901307461.mp4"]];
+    [self.playerKit playUrls:@[@"http://aaaaaliuwmp3.changba.com/userdata/video/45F6BD5E445E4C029C33DC5901307461.mp4"]];
     [self.playerView updateAction:self.playerKit];
+    self.playerView.retryPlayUrl = ^NSString *(void) {
+        return @"http://aliuwmp3.changba.com/userdata/video/45F6BD5E445E4C029C33DC5901307461.mp4";
+    };
 }
 
 - (void)viewWillAppear:(BOOL)animated {

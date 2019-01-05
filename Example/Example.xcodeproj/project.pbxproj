@@ -26,8 +26,8 @@
 		1A66675E53A569FCF0CB5974 /* MCDouyinPlayerListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A66630199912D41B7E81D7A /* MCDouyinPlayerListController.m */; };
 		1A66683911DDDF0E138BA38F /* MCDouyinPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666517B220B5FFE7708263 /* MCDouyinPlayerView.m */; };
 		1A6668A3904ED5B48327C33E /* MCPlayerGeneralView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A66652F880429A238902756 /* MCPlayerGeneralView.m */; };
+		1A666C4E1A7369D8CFCADE5F /* NSNumber+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A66612221AB80E878A9986B /* NSNumber+Extend.m */; };
 		1A666C906583699599FC3793 /* MCPlayerGeneralFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666CA816F5FA7E29221BCD /* MCPlayerGeneralFooter.m */; };
-		1A666D365CC431A88119C5C1 /* NSNumber+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666EC59F734D5D6F536CA4 /* NSNumber+Extend.m */; };
 		1A666DA387754B00E9D128B9 /* MCNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666616C9D8CC8AA680D681 /* MCNavigationController.m */; };
 		1A666EC451E6EDB79CF2B5FB /* MCPlayerProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A666AEBE9704F81F1AF031E /* MCPlayerProgress.m */; };
 		1A666EDCC82FA58984216C48 /* CustomPlayerFont.json in Resources */ = {isa = PBXBuildFile; fileRef = 1A666EBDEA923272BFCB297D /* CustomPlayerFont.json */; };
@@ -84,8 +84,8 @@
 		1A6660AAAA139D5B7752691B /* MCCircleProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCCircleProgress.h; sourceTree = "<group>"; };
 		1A6660B1622B3E5F445940D8 /* MCPlayerProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCPlayerProgress.h; sourceTree = "<group>"; };
 		1A6660CA1232B180A52D42EB /* MCMediaNotify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCMediaNotify.m; sourceTree = "<group>"; };
-		1A6660E6B0B9254B1248668B /* NSNumber+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+Extend.h"; sourceTree = "<group>"; };
 		1A66610031227F7AA732D0C0 /* MCDouyinPlayerDataVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCDouyinPlayerDataVM.m; sourceTree = "<group>"; };
+		1A66612221AB80E878A9986B /* NSNumber+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+Extend.m"; sourceTree = "<group>"; };
 		1A66612EACCD038337A6E699 /* PlayerViewUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewUtils.m; sourceTree = "<group>"; };
 		1A6661DD99EEB8D6445F8C8D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		1A66626F70FFC8299A08B788 /* MCTouchTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCTouchTestController.m; sourceTree = "<group>"; };
@@ -117,12 +117,12 @@
 		1A666AEBE9704F81F1AF031E /* MCPlayerProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCPlayerProgress.m; sourceTree = "<group>"; };
 		1A666B777B2129283604E138 /* MCPlayerViewConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCPlayerViewConfig.m; sourceTree = "<group>"; };
 		1A666CA816F5FA7E29221BCD /* MCPlayerGeneralFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCPlayerGeneralFooter.m; sourceTree = "<group>"; };
+		1A666CC79E4FC906AFABA37B /* NSNumber+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+Extend.h"; sourceTree = "<group>"; };
 		1A666CE2CE86674E51879C13 /* PlayerViewUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewUtils.h; sourceTree = "<group>"; };
 		1A666D1A8D8FBFD34097358C /* MCRotateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCRotateHelper.m; sourceTree = "<group>"; };
 		1A666E0C0F04F8DE686A8DDD /* MCPlayerGeneralTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCPlayerGeneralTouchView.h; sourceTree = "<group>"; };
 		1A666E248EA98ABA941AF962 /* MCPlayerGeneralTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCPlayerGeneralTouchView.m; sourceTree = "<group>"; };
 		1A666EBDEA923272BFCB297D /* CustomPlayerFont.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CustomPlayerFont.json; sourceTree = "<group>"; };
-		1A666EC59F734D5D6F536CA4 /* NSNumber+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+Extend.m"; sourceTree = "<group>"; };
 		1A666F163E5BA1F7AAD577AB /* MCMediaNotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCMediaNotify.h; sourceTree = "<group>"; };
 		250CCDB421D4CDAD00ECDF83 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		250CCDC521D4CDAE00ECDF83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -252,6 +252,8 @@
 			children = (
 				1A6666FC211079B5A90B7AC0 /* MCDeviceUtils.h */,
 				1A666057E36A14F194E1A46E /* MCDeviceUtils.m */,
+				1A666CC79E4FC906AFABA37B /* NSNumber+Extend.h */,
+				1A66612221AB80E878A9986B /* NSNumber+Extend.m */,
 			);
 			path = Commen;
 			sourceTree = "<group>";
@@ -498,8 +500,6 @@
 			children = (
 				250CCEC621D4D1C800ECDF83 /* UIColor+Hex.m */,
 				250CCEC721D4D1C800ECDF83 /* UIColor+Hex.h */,
-				1A666EC59F734D5D6F536CA4 /* NSNumber+Extend.m */,
-				1A6660E6B0B9254B1248668B /* NSNumber+Extend.h */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -756,7 +756,6 @@
 				1A66683911DDDF0E138BA38F /* MCDouyinPlayerView.m in Sources */,
 				1A6662B348D985B0C6ACD110 /* MCDouyinPlayerCell.m in Sources */,
 				1A66664348B963C8D360B47E /* MCDouyinPlayerDataVM.m in Sources */,
-				1A666D365CC431A88119C5C1 /* NSNumber+Extend.m in Sources */,
 				1A66622BB9F203D4D4C7B796 /* MCTouchTestController.m in Sources */,
 				1A666DA387754B00E9D128B9 /* MCNavigationController.m in Sources */,
 				1A6668A3904ED5B48327C33E /* MCPlayerGeneralView.m in Sources */,
@@ -772,6 +771,7 @@
 				1A6665A15029EADBA595F868 /* MCPlayerViewConfig.m in Sources */,
 				1A666EC451E6EDB79CF2B5FB /* MCPlayerProgress.m in Sources */,
 				1A66637DA1F53F36510020AA /* MCDeviceUtils.m in Sources */,
+				1A666C4E1A7369D8CFCADE5F /* NSNumber+Extend.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

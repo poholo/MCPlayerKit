@@ -15,8 +15,9 @@
 #import "MCPlayerLoadingView.h"
 #import "MCPlayerProgress.h"
 #import "MCDeviceUtils.h"
+#import "MCPlayerGeneralTerminalView.h"
 
-@interface MCPlayerGeneralView () <MCPlayerDelegate>
+@interface MCPlayerGeneralView () <MCPlayerDelegate, PlayerTerminalDelegate>
 
 @property(nonatomic, strong) UIView *containerView;
 @property(nonatomic, strong) MCPlayerGeneralTouchView *touchView;
@@ -26,6 +27,7 @@
 @property(nonatomic, strong) MCPlayerGeneralHeader *topView;
 @property(nonatomic, strong) MCPlayerGeneralFooter *bottomView;
 @property(nonatomic, strong) MCPlayerProgress *bottomProgress;
+@property(nonatomic, strong) MCPlayerGeneralTerminalView *terminalView;
 @property(nonatomic, strong) UIButton *lockBtn;
 @property(nonatomic, strong) UIButton *playBtn;
 @property(nonatomic, strong) UIView *definitionView;
@@ -170,13 +172,14 @@
     [self.containerView addSubview:self.definitionView];
 
     [self.containerView addSubview:self.loadingView];
+    [self.containerView addSubview:self.terminalView];
 }
 
 - (void)addLayout {
     if (CGRectIsEmpty(self.frame)) return;
 
-    CGRect containerFrame ;
-    if(self.styleSizeType == PlayerStyleSizeClassRegularHalf) {
+    CGRect containerFrame;
+    if (self.styleSizeType == PlayerStyleSizeClassRegularHalf) {
         containerFrame = CGRectMake(0, [MCDeviceUtils xTop], CGRectGetWidth(self.frame), CGRectGetHeight(self.frame) - [MCDeviceUtils xTop]);
     } else {
         containerFrame = CGRectMake(0, 0, CGRectGetWidth(self.frame) - [MCDeviceUtils xTop] * 2, CGRectGetHeight(self.frame));
@@ -184,6 +187,7 @@
     self.containerView.frame = containerFrame;
     self.touchView.frame = self.containerView.bounds;
     self.playerView.frame = self.containerView.bounds;
+    self.terminalView.frame = self.containerView.bounds;
     CGFloat w = CGRectGetWidth(self.containerView.frame);
     CGFloat h = CGRectGetHeight(self.containerView.frame);
     CGFloat barRate = 0.1f;
@@ -347,6 +351,7 @@
 
 - (void)playLoading {
     [self.loadingView startRotating];
+    self.terminalView.hidden = YES;
 }
 
 - (void)playBuffer {
@@ -364,15 +369,71 @@
 }
 
 - (void)playEnd {
-
+    [self.terminalView updatePlayerTerminal:PlayerTerminalPlayEnd title:self.topView.titleLabel.text];
+    self.terminalView.hidden = NO;
 }
 
 - (void)playError {
     [self.loadingView endRotating];
-    //TODO:: error
+    [self.terminalView updatePlayerTerminal:PlayerTerminalError title:self.topView.titleLabel.text];
+    self.terminalView.hidden = NO;
 }
 
 - (void)updatePlayView {
+
+}
+
+#pragma mark - PlayerTerminalDelegate
+
+- (void)retryPlay {
+    if (!self.retryPlayUrl) return;
+
+    NSString *url = self.retryPlayUrl();
+
+    if (!url) return;
+    [self.playerKit playUrls:@[url]];
+}
+
+- (void)terminalPlayEndReplay {
+    [self retryPlay];
+}
+
+- (void)terminal3GCanContinuePlay {
+}
+
+- (void)terminalNetErrorRetry {
+    [self retryPlay];
+}
+
+- (void)terminalUrlErrorRetry {
+    [self retryPlay];
+}
+
+- (void)terminalErrorRetry {
+    [self retryPlay];
+}
+
+- (void)terminalShowAirplay2Pause {
+
+}
+
+- (void)terminalQuitAirplay2Play {
+
+}
+
+- (void)terminalAirplayPlay {
+
+}
+
+- (void)terminalAirplayPause {
+
+}
+
+- (void)terminalAirplayVolumeLarge {
+
+}
+
+- (void)terminalAirplayVolumeSmall {
 
 }
 
@@ -453,6 +514,15 @@
         _bottomProgress.hidden = YES;
     }
     return _bottomProgress;
+}
+
+- (MCPlayerGeneralTerminalView *)terminalView {
+    if (!_terminalView) {
+        _terminalView = [MCPlayerGeneralTerminalView new];
+        _terminalView.delegate = self;
+        _terminalView.hidden = YES;
+    }
+    return _terminalView;
 }
 
 @end
