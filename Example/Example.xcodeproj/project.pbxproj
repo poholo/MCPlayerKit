@@ -385,7 +385,7 @@
 			children = (
 				250CCE8221D4D1C800ECDF83 /* List */,
 				250CCE8B21D4D1C800ECDF83 /* ScrollPlayer */,
-				250CCE9621D4D1C800ECDF83 /* NormalPlayer */,
+				250CCE9621D4D1C800ECDF83 /* GeneralPlayer */,
 				250CCE9F21D4D1C800ECDF83 /* ScrollPlayer2SmallPlayer */,
 				1A666A9669AD1B5D12A85267 /* Douyin */,
 				1A6668D415DEF937D09920C6 /* TouchTest */,
@@ -425,7 +425,7 @@
 			path = ScrollPlayer;
 			sourceTree = "<group>";
 		};
-		250CCE9621D4D1C800ECDF83 /* NormalPlayer */ = {
+		250CCE9621D4D1C800ECDF83 /* GeneralPlayer */ = {
 			isa = PBXGroup;
 			children = (
 				250CCE9821D4D1C800ECDF83 /* MCPlayerNormalDto.h */,
@@ -436,7 +436,7 @@
 				250CCE9E21D4D1C800ECDF83 /* MCPlayerGeneralController.m */,
 				1A66678CC8885D71B159FB7A /* Datas */,
 			);
-			path = NormalPlayer;
+			path = GeneralPlayer;
 			sourceTree = "<group>";
 		};
 		250CCE9F21D4D1C800ECDF83 /* ScrollPlayer2SmallPlayer */ = {
