@@ -18,6 +18,7 @@ extern NSString *const kMCControlProgressEndDragSlider;
 
 @interface MCPlayerGeneralFooter : UIView
 
+@property(nonatomic, readonly) UIButton *playBtn;
 @property(nonatomic, copy) MCPlayerNormalViewEventCallBack callBack;
 
 - (void)updatePlayerStyle:(MCPlayerStyleSizeType)styleSizeType;

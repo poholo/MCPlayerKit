@@ -44,10 +44,10 @@ NSString *const kMCControlProgressEndDragSlider = @"kMCControlProgressEndDragSli
 }
 
 - (void)playBtnClick {
-    if (self.callBack) {
-        self.callBack(self.playBtn.selected ? kMCPlayer2PlayAction : kMCPlayer2PauseAction, nil);
-    }
     self.playBtn.selected = !self.playBtn.selected;
+    if (self.callBack) {
+        self.callBack(self.playBtn.selected ? kMCPlayer2PauseAction : kMCPlayer2PlayAction, nil);
+    }
 }
 
 - (void)screenBtnClick {
@@ -151,7 +151,7 @@ NSString *const kMCControlProgressEndDragSlider = @"kMCControlProgressEndDragSli
 
     CGFloat progressX = CGRectGetMaxX(self.currentLabel.frame) + [MCStyle contentInsetII].left;
     CGFloat progressW = CGRectGetMinX(self.durationLabel.frame) - CGRectGetMaxX(self.currentLabel.frame) - [MCStyle contentInsetII].right - [MCStyle contentInsetII].left;
-    
+
     if (self.styleSizeType == PlayerStyleSizeClassRegularHalf) {
         progressX = CGRectGetMaxX(self.durationLabel.frame) + [MCStyle contentInsetII].left;
         progressW = CGRectGetMinX(self.screenBtn.frame) - CGRectGetMaxX(self.durationLabel.frame) - [MCStyle contentInsetII].right - [MCStyle contentInsetII].left;

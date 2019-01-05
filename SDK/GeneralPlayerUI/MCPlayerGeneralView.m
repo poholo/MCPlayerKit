@@ -243,8 +243,10 @@
             [strongself updatePlayerStyle:PlayerStyleSizeClassCompact];
             [strongself showControlThenHide];
         } else if ([action isEqualToString:kMCPlayer2PlayAction]) {
+            strongself.playBtn.selected = strongself.bottomView.playBtn.selected;
             [strongself showControlThenHide];
         } else if ([action isEqualToString:kMCPlayer2PauseAction]) {
+            strongself.playBtn.selected = strongself.bottomView.playBtn.selected;
             [strongself showControlThenHide];
         } else if ([action isEqualToString:kMCControlProgressStartDragSlider]) {
             [strongself showControl];
@@ -326,6 +328,7 @@
 
 - (void)playBtnClick {
     self.playBtn.selected = !self.playBtn.selected;
+    self.bottomView.playBtn.selected = self.playBtn.selected;
     if (self.playBtn.selected) {
         [self.playerKit pause];
     } else {
