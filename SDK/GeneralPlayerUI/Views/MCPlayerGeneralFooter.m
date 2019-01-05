@@ -132,14 +132,10 @@ NSString *const kMCControlProgressEndDragSlider = @"kMCControlProgressEndDragSli
     CGSize currentSize = [self.currentLabel sizeThatFits:CGSizeMake(CGRectGetWidth(self.frame) * .5f, self.currentLabel.font.lineHeight)];
     CGFloat durationX = CGRectGetMinX(self.screenBtn.frame) - durationSize.width - [MCStyle contentInsetII].right;
     CGFloat currentX = CGRectGetMaxX(self.playBtn.frame) + [MCStyle contentInsetIII].left;
-    CGFloat progressX = CGRectGetMaxX(self.currentLabel.frame) + [MCStyle contentInsetII].left;
-    CGFloat progressW = CGRectGetMinX(self.durationLabel.frame) - CGRectGetMaxX(self.currentLabel.frame) - [MCStyle contentInsetII].right - [MCStyle contentInsetII].left;
 
     if (self.styleSizeType == PlayerStyleSizeClassRegularHalf) {
         currentX = [MCStyle contentInsetIII].left;
         durationX = currentX + currentSize.width;
-        progressX = CGRectGetMaxX(self.durationLabel.frame) + [MCStyle contentInsetII].left;
-        progressW = CGRectGetMinX(self.screenBtn.frame) - CGRectGetMaxX(self.durationLabel.frame) - [MCStyle contentInsetII].right - [MCStyle contentInsetII].left;
     }
 
     self.durationLabel.frame = CGRectMake(durationX,
@@ -153,6 +149,13 @@ NSString *const kMCControlProgressEndDragSlider = @"kMCControlProgressEndDragSli
             self.currentLabel.font.lineHeight);
 
 
+    CGFloat progressX = CGRectGetMaxX(self.currentLabel.frame) + [MCStyle contentInsetII].left;
+    CGFloat progressW = CGRectGetMinX(self.durationLabel.frame) - CGRectGetMaxX(self.currentLabel.frame) - [MCStyle contentInsetII].right - [MCStyle contentInsetII].left;
+    
+    if (self.styleSizeType == PlayerStyleSizeClassRegularHalf) {
+        progressX = CGRectGetMaxX(self.durationLabel.frame) + [MCStyle contentInsetII].left;
+        progressW = CGRectGetMinX(self.screenBtn.frame) - CGRectGetMaxX(self.durationLabel.frame) - [MCStyle contentInsetII].right - [MCStyle contentInsetII].left;
+    }
     self.playerProgress.frame = CGRectMake(progressX,
             CGRectGetHeight(self.frame) * 0.25,
             progressW,
