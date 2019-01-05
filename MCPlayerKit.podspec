@@ -40,7 +40,7 @@ Pod::Spec.new do |s|
   }
 
   s.xcconfig = {
-              'USER_HEADER_SEARCH_PATHS' => '$(inherited) \"${PROJECT_DIR}/Pods\"/**'
+              'USER_HEADER_SEARCH_PATHS' => '${PROJECT_DIR}/Pods/**'
             }
   s.frameworks = "UIKit", "Foundation", "VideoToolbox", "QuartzCore", "OpenGLES", "MobileCoreServices", 
                  "MediaPlayer", "CoreVideo", "CoreMedia", "CoreGraphics", "AVFoundation", "AudioToolbox"
