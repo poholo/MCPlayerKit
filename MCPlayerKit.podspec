@@ -34,14 +34,12 @@ Pod::Spec.new do |s|
 
   s.xcconfig = {
        'VALID_ARCHS' => 'arm64 x86_64',
+       'USER_HEADER_SEARCH_PATHS' => '${PROJECT_DIR}/Pods/**'
   }
   s.pod_target_xcconfig = {
         'VALID_ARCHS' => 'arm64 x86_64'
   }
 
-  s.xcconfig = {
-              'USER_HEADER_SEARCH_PATHS' => '${PROJECT_DIR}/Pods/**'
-            }
   s.frameworks = "UIKit", "Foundation", "VideoToolbox", "QuartzCore", "OpenGLES", "MobileCoreServices", 
                  "MediaPlayer", "CoreVideo", "CoreMedia", "CoreGraphics", "AVFoundation", "AudioToolbox"
 
