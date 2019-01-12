@@ -122,7 +122,7 @@
 - (UISlider *)slider {
     if (!_slider) {
         _slider = [UISlider new];
-        [_slider setThumbImage:[UIImage imageNamed:@"player_slider"] forState:UIControlStateNormal];
+        [_slider setThumbImage:[MCStyle customImage:@"player_slider"] forState:UIControlStateNormal];
         _slider.minimumTrackTintColor = [UIColor clearColor];
         _slider.maximumTrackTintColor = [UIColor clearColor];
         [_slider addTarget:self action:@selector(progressSliderValueDidChanged:) forControlEvents:UIControlEventValueChanged];
