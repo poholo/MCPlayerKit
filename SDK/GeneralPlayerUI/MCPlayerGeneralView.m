@@ -215,6 +215,13 @@
             UINavigationController *navigationController;
             if ([viewController isKindOfClass:[UINavigationController class]]) {
                 navigationController = (UINavigationController *) viewController;
+                if ([navigationController.topViewController isKindOfClass:[UITabBarController class]]) {
+                    UITabBarController *tabBarController = (UITabBarController *) navigationController.topViewController;
+                    UIViewController *tabViewController = (tabBarController.viewControllers.count > tabBarController.selectedIndex ? tabBarController.viewControllers[tabBarController.selectedIndex] : nil);
+                    if ([tabViewController isKindOfClass:[UINavigationController class]]) {
+                        navigationController = (UINavigationController *) tabViewController;
+                    }
+                }
             } else if (viewController.navigationController) {
                 navigationController = viewController.navigationController;
             }
