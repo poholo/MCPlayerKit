@@ -66,13 +66,13 @@ NSString *const kMCPlayerHeaderBack2Half = @"kMCPlayerHeaderBack2Half";
     if (CGRectIsEmpty(self.frame))
         return;
     UIEdgeInsets insets = [MCStyle contentInsetII];
-    CGFloat h = CGRectGetHeight(self.frame) - self.top;
+    CGFloat h = CGRectGetHeight(self.frame);
     CGFloat w = h - 2 * insets.top;
-    self.backBtn.frame = CGRectMake(0, self.top, h, h);
+    self.backBtn.frame = CGRectMake(0, 0, h, h);
 
     CGFloat startX = CGRectGetMaxX(self.backBtn.frame) - [MCStyle contentInsetIII].left;
     CGFloat maxTitleWidth = CGRectGetWidth(self.frame) - startX - [MCStyle contentInsetIII].right;
-    self.titleLabel.frame = CGRectMake(startX, (h - [MCFont fontV].lineHeight) / 2.0f + self.top, maxTitleWidth, [MCFont fontV].lineHeight);
+    self.titleLabel.frame = CGRectMake(startX, (h - [MCFont fontV].lineHeight) / 2.0f, maxTitleWidth, [MCFont fontV].lineHeight);
     self.gradientLayer.frame = CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
 }
 
@@ -119,14 +119,6 @@ NSString *const kMCPlayerHeaderBack2Half = @"kMCPlayerHeaderBack2Half";
         _gradientLayer.frame = CGRectMake(0, 0, CGRectGetHeight(self.frame), 50);
     }
     return _gradientLayer;
-}
-
-- (NSInteger)top {
-    if (self.styleSizeType == PlayerStyleSizeClassRegularHalf) {
-        return 0;
-    } else {
-        return 0;
-    }
 }
 
 @end

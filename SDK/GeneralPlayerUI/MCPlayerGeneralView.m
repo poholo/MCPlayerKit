@@ -181,9 +181,9 @@
 
     CGRect containerFrame;
     if (self.styleSizeType == PlayerStyleSizeClassRegularHalf) {
-        containerFrame = CGRectMake(0, [MCDeviceUtils xStatusBarHeight], CGRectGetWidth(self.frame), CGRectGetHeight(self.frame) - [MCDeviceUtils xStatusBarHeight]);
+        containerFrame = CGRectMake(0, [MCDeviceUtils xTop], CGRectGetWidth(self.frame), CGRectGetHeight(self.frame) - [MCDeviceUtils xTop]);
     } else {
-        containerFrame = CGRectMake([MCDeviceUtils xStatusBarHeight], 0, CGRectGetWidth(self.frame) - [MCDeviceUtils xStatusBarHeight] * 2, CGRectGetHeight(self.frame));
+        containerFrame = CGRectMake([MCDeviceUtils xTop], 0, CGRectGetWidth(self.frame) - [MCDeviceUtils xTop] * 2, CGRectGetHeight(self.frame));
     }
     self.containerView.frame = containerFrame;
     self.touchView.frame = self.containerView.bounds;
@@ -193,7 +193,7 @@
     CGFloat h = CGRectGetHeight(self.containerView.frame);
     CGFloat barRate = 0.1f;
     CGFloat barHeight = 44;
-    self.topView.frame = CGRectMake(0, 0, w, barHeight + self.topView.top);
+    self.topView.frame = CGRectMake(0, [MCDeviceUtils iPhoneX] ? 0 : 20, w, barHeight);
     self.bottomView.frame = CGRectMake(0, h - barHeight, w, barHeight);
     self.bottomProgress.frame = CGRectMake(0, h - 2, w, 2);
 
