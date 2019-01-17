@@ -173,6 +173,7 @@
 
     [self.containerView addSubview:self.loadingView];
     [self.containerView addSubview:self.terminalView];
+    self.backgroundColor = [UIColor blackColor];
 }
 
 - (void)addLayout {
@@ -180,9 +181,9 @@
 
     CGRect containerFrame;
     if (self.styleSizeType == PlayerStyleSizeClassRegularHalf) {
-        containerFrame = CGRectMake(0, [MCDeviceUtils xTop], CGRectGetWidth(self.frame), CGRectGetHeight(self.frame) - [MCDeviceUtils xTop]);
+        containerFrame = CGRectMake(0, [MCDeviceUtils xStatusBarHeight], CGRectGetWidth(self.frame), CGRectGetHeight(self.frame) - [MCDeviceUtils xStatusBarHeight]);
     } else {
-        containerFrame = CGRectMake(0, 0, CGRectGetWidth(self.frame) - [MCDeviceUtils xTop] * 2, CGRectGetHeight(self.frame));
+        containerFrame = CGRectMake([MCDeviceUtils xStatusBarHeight], 0, CGRectGetWidth(self.frame) - [MCDeviceUtils xStatusBarHeight] * 2, CGRectGetHeight(self.frame));
     }
     self.containerView.frame = containerFrame;
     self.touchView.frame = self.containerView.bounds;

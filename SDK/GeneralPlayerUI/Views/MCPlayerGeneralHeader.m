@@ -68,7 +68,7 @@ NSString *const kMCPlayerHeaderBack2Half = @"kMCPlayerHeaderBack2Half";
     UIEdgeInsets insets = [MCStyle contentInsetII];
     CGFloat h = CGRectGetHeight(self.frame) - self.top;
     CGFloat w = h - 2 * insets.top;
-    self.backBtn.frame = CGRectMake(insets.left, insets.top + self.top, w, w);
+    self.backBtn.frame = CGRectMake(0, self.top, h, h);
 
     CGFloat startX = CGRectGetMaxX(self.backBtn.frame) - [MCStyle contentInsetIII].left;
     CGFloat maxTitleWidth = CGRectGetWidth(self.frame) - startX - [MCStyle contentInsetIII].right;
@@ -123,7 +123,7 @@ NSString *const kMCPlayerHeaderBack2Half = @"kMCPlayerHeaderBack2Half";
 
 - (NSInteger)top {
     if (self.styleSizeType == PlayerStyleSizeClassRegularHalf) {
-        return 20;
+        return 0;
     } else {
         return 0;
     }
