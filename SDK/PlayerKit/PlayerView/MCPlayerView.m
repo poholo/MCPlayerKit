@@ -78,7 +78,7 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     CGRect frame = CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
-    self.frame = frame;
     _drawLayer.frame = frame;
+    _glView.frame = frame;
 }
 @end

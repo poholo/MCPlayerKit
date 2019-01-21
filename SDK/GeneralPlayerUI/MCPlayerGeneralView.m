@@ -179,21 +179,28 @@
 - (void)addLayout {
     if (CGRectIsEmpty(self.frame)) return;
 
-    CGRect containerFrame;
-    if (self.styleSizeType == PlayerStyleSizeClassRegularHalf) {
-        containerFrame = CGRectMake(0, [MCDeviceUtils xTop], CGRectGetWidth(self.frame), CGRectGetHeight(self.frame) - [MCDeviceUtils xTop]);
-    } else {
+    CGRect containerFrame = self.bounds;
+    if (self.styleSizeType != PlayerStyleSizeClassRegularHalf) {
         containerFrame = CGRectMake([MCDeviceUtils xTop], 0, CGRectGetWidth(self.frame) - [MCDeviceUtils xTop] * 2, CGRectGetHeight(self.frame));
     }
     self.containerView.frame = containerFrame;
     self.touchView.frame = self.containerView.bounds;
-    self.playerView.frame = self.containerView.bounds;
     self.terminalView.frame = self.containerView.bounds;
+
     CGFloat w = CGRectGetWidth(self.containerView.frame);
     CGFloat h = CGRectGetHeight(self.containerView.frame);
     CGFloat barRate = 0.1f;
     CGFloat barHeight = 44;
-    self.topView.frame = CGRectMake(0, [MCDeviceUtils iPhoneX] ? 0 : 20, w, barHeight);
+
+    if (self.styleSizeType == PlayerStyleSizeClassRegularHalf) {
+        CGFloat py = [MCDeviceUtils iPhoneX] ? 24 : 0;
+        self.playerView.frame = CGRectMake(0, py, CGRectGetWidth(containerFrame), CGRectGetHeight(containerFrame) - py);
+        self.topView.frame = CGRectMake(0, 0, w, barHeight + [MCDeviceUtils xStatusBarHeight]);
+    } else {
+        self.playerView.frame = self.containerView.bounds;
+        self.topView.frame = CGRectMake(0, 0, w, barHeight);
+    }
+
     self.bottomView.frame = CGRectMake(0, h - barHeight, w, barHeight);
     self.bottomProgress.frame = CGRectMake(0, h - 2, w, 2);
 

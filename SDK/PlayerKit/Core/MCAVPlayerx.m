@@ -328,7 +328,7 @@
         self.playerState = PlayerStatePlaying;
 
     } else if ([keyPath isEqualToString:@"loadedTimeRanges"]) {
-        MCLog(@"[MCPlayer] loadedTimeRanges");
+//        MCLog(@"[MCPlayer] loadedTimeRanges");
     }
 
 }
