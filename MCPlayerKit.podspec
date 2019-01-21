@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "MCPlayerKit"
-  s.version      = "0.0.7"
+  s.version      = "0.0.8"
   s.summary      = "MCPlayerKit is iOS Player, PlayerCoreType: AVPlayer can use play some video, IJKPlayer type can play video, Live ..."
   s.homepage     = "https://github.com/poholo/PlayerKit"
   s.license          = { :type => "MIT", :file => "LICENSE" }
@@ -30,6 +30,7 @@ Pod::Spec.new do |s|
     general.dependency 'SDVersion'
     general.dependency 'MCStyle'
     general.dependency 'SDWebImage'
+    general.dependency 'GCDMulticastDelegate'
   end
 
   s.xcconfig = {
