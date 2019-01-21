@@ -126,7 +126,7 @@
 
 - (void)updateAction:(MCPlayerKit *)playerKit {
     self.playerKit = playerKit;
-    self.playerKit.delegate = self;
+    [self.playerKit addDelegate:self];
 }
 
 - (void)updatePlayerPicture:(NSString *)url {

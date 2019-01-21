@@ -9,6 +9,8 @@
 
 #import "MCPlayerKit.h"
 
+#import <GCDMulticastDelegate.h>
+
 #import "MCIJKPlayer.h"
 #import "MCAVPlayerx.h"
 #import "MCPlayerView.h"
@@ -24,11 +26,14 @@
 
 @property(nonatomic, assign) PlayerState playerState;
 
+@property(nonatomic, strong) GCDMulticastDelegate <MCPlayerDelegate> *multicastDelegate;
+
 @end
 
 @implementation MCPlayerKit
 
 - (void)dealloc {
+    [self.multicastDelegate removeAllDelegates];
     [self destory];
 }
 
@@ -45,8 +50,8 @@
     self.playerView = playerView;
     self.playerEnvironment = PlayerEnvironmentOnBecomeActiveStatus;
 
-    if ([self.delegate respondsToSelector:@selector(updatePlayView)]) {
-        [self.delegate updatePlayView];
+    if ([self.multicastDelegate respondsToSelector:@selector(updatePlayView)]) {
+        [self.multicastDelegate updatePlayView];
     }
     if ([self.playerView respondsToSelector:@selector(updatePlayerLayer:)] && [_player playerLayer]) {
         [self.playerView updatePlayerLayer:[_player playerLayer]];
@@ -54,6 +59,14 @@
     if ([self.playerView respondsToSelector:@selector(updatePlayerView:)] && [_player playerView]) {
         [self.playerView updatePlayerView:[_player playerView]];
     }
+}
+
+- (void)addDelegate:(id <MCPlayerDelegate>)multicastDelegate {
+    [self.multicastDelegate addDelegate:multicastDelegate delegateQueue:dispatch_get_main_queue()];
+}
+
+- (void)removeDelegate:(id <MCPlayerDelegate>)multicastDelegate {
+    [self.multicastDelegate removeDelegate:multicastDelegate delegateQueue:dispatch_get_main_queue()];
 }
 
 - (void)destory {
@@ -123,9 +136,7 @@
 - (void)timeTick {
     double curSecs = _player.currentTime;
     double sumSecs = _player.duration;
-    if ([self.delegate respondsToSelector:@selector(currentTime:)]) {
-        [self.delegate currentTime:curSecs];
-    }
+    [self.multicastDelegate currentTime:curSecs];
 }
 
 
@@ -134,42 +145,30 @@
     switch (playerState) {
         case PlayerStateLoading : {
             [self timer];
-            if ([self.delegate respondsToSelector:@selector(playLoading)]) {
-                [self.delegate playLoading];
-            }
+            [self.multicastDelegate playLoading];
         }
             break;
         case PlayerStateBuffering: {
-            if ([self.delegate respondsToSelector:@selector(playBuffer)]) {
-                [self.delegate playBuffer];
-            }
+            [self.multicastDelegate playBuffer];
         }
             break;
         case PlayerStateStarting: {
-            if ([self.delegate respondsToSelector:@selector(playStart)]) {
-                [self.delegate playStart];
-            }
+            [self.multicastDelegate playStart];
             if (self.playerView) {
                 [self updatePlayerView:self.playerView];
             }
         }
             break;
         case PlayerStatePlaying: {
-            if ([self.delegate respondsToSelector:@selector(playPlay)]) {
-                [self.delegate playPlay];
-            }
+            [self.multicastDelegate playPlay];
         }
             break;
         case PlayerStatePlayEnd: {
-            if ([self.delegate respondsToSelector:@selector(playEnd)]) {
-                [self.delegate playEnd];
-            }
+            [self.multicastDelegate playEnd];
         }
             break;
         case PlayerStateError: {
-            if ([self.delegate respondsToSelector:@selector(playError)]) {
-                [self.delegate playError];
-            }
+            [self.multicastDelegate playError];
             [self fireTimer];
         }
             break;
@@ -235,6 +234,15 @@
         [self changePlayerState:state];
         self.playerState = state;
     }
+}
+
+#pragma mark - getter
+
+- (GCDMulticastDelegate <MCPlayerDelegate> *)multicastDelegate {
+    if (!_multicastDelegate) {
+        _multicastDelegate = (GCDMulticastDelegate <MCPlayerDelegate> *) [GCDMulticastDelegate new];
+    }
+    return _multicastDelegate;
 }
 
 

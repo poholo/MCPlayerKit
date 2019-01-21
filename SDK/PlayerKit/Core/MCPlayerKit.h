@@ -43,12 +43,14 @@
 @property(nonatomic, assign) PlayerActionAtItemEnd actionAtItemEnd;
 @property(nonatomic, assign) PlayerLayerVideoGravity playerLayerVideoGravity;
 @property(nonatomic, assign) BOOL notNeedSetProbesize;
-@property(nonatomic, weak) id <MCPlayerDelegate> delegate;
-
 
 - (instancetype)initWithPlayerView:(MCPlayerView *)playerView;
 
 - (void)updatePlayerView:(MCPlayerView *)playerView;
+
+- (void)addDelegate:(id <MCPlayerDelegate>)delegate;
+
+- (void)removeDelegate:(id <MCPlayerDelegate>)delegate;
 
 - (void)playUrls:(nonnull NSArray<NSString *> *)urls;
 
