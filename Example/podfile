@@ -10,5 +10,6 @@ target "Example" do
  pod "MBProgressHUD", "1.0.0"
  pod 'HWWeakTimer', '~> 1.0'
  pod 'SDVersion', git: 'https://github.com/cguess/SDVersion'
+ pod 'GCDMulticastDelegate'
  pod 'Reveal-iOS-SDK', :configurations => ['Debug']
 end

@@ -311,12 +311,6 @@
         return;
     } else if (object == self.player && [keyPath isEqualToString:@"externalPlaybackActive"]) {
         return;
-    } else if (object == self.player && [keyPath isEqualToString:@"currentItem"]) {
-        if ([change[@"new"] isEqual:NSNull.null]) {
-            MCLog(@"%@", change[@"new"]);
-            self.playerState = PlayerStateError;
-            return;
-        }
     }
 
     if (object != [self.player currentItem]) {
