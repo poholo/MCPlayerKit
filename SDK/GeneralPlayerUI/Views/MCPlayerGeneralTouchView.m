@@ -6,6 +6,7 @@
 #import "MCPlayerGeneralTouchView.h"
 
 #import <MediaPlayer/MediaPlayer.h>
+#import <MCStyle/MCStyle.h>
 
 #import "MCPlayerKitDef.h"
 #import "MCMediaNotify.h"
@@ -145,7 +146,7 @@ NSString *const kMCTouchDurationAction = @"kMCTouchDurationAction";
         brightness = MAX(0, [UIScreen mainScreen].brightness - 0.0001 * panTransPoint.y);
     }
     [UIScreen mainScreen].brightness = brightness;
-    [MCMediaNotify showImage:[UIImage imageNamed:@"video_brightness"] message:[NSString stringWithFormat:@"%.f%%", brightness * 100] mediaNotifyType:MediaBrightness inView:self];
+    [MCMediaNotify showImage:[MCStyle customImage:@"player_control_0"] message:[NSString stringWithFormat:@"%.f%%", brightness * 100] mediaNotifyType:MediaBrightness inView:self];
     _isChangingBright = YES;
 }
 
@@ -161,11 +162,10 @@ NSString *const kMCTouchDurationAction = @"kMCTouchDurationAction";
     if (panTransPoint.x < 0) {
         //后退
         _timeSliding = MAX(_timeSliding, 0);
-        [MCMediaNotify showImage:[UIImage imageNamed:@"video_retreat"] message:[NSString stringWithFormat:@"%@/%@", [@(_timeSliding) hhMMss], [@(duration) hhMMss]] mediaNotifyType:MediaProgress inView:self];
+        [MCMediaNotify showImage:[MCStyle customImage:@"player_control_2"] message:[NSString stringWithFormat:@"%@/%@", [@(_timeSliding) hhMMss], [@(duration) hhMMss]] mediaNotifyType:MediaProgress inView:self];
     } else {
         _timeSliding = MIN(_timeSliding, duration);//video_forward
-        [MCMediaNotify showImage:[UIImage imageNamed:@"video_forward"]
-                         message:[NSString stringWithFormat:@"%@/%@", [@(_timeSliding) hhMMss], [@(duration) hhMMss]] mediaNotifyType:MediaProgress inView:self];
+        [MCMediaNotify showImage:[MCStyle customImage:@"player_control_1"] message:[NSString stringWithFormat:@"%@/%@", [@(_timeSliding) hhMMss], [@(duration) hhMMss]] mediaNotifyType:MediaProgress inView:self];
     }
     _isWillSeeking = YES;
 }
