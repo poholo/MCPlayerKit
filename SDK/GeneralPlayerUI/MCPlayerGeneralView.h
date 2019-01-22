@@ -10,6 +10,7 @@
 #import "MCPlayerViewConfig.h"
 
 @class MCPlayerKit;
+@class MCPlayerGeneralHeader;
 
 
 extern NSString *const kMCPlayer2PlayAction;
@@ -35,6 +36,8 @@ typedef NS_ENUM(NSInteger, MCPlayerStyleSizeType) {
 
 @property(nonatomic, assign) MCPlayerStyleSizeType styleSizeType;
 @property(nonatomic, readonly) MCPlayerView *playerView;
+@property(nonatomic, readonly) MCPlayerGeneralHeader *topView;
+
 
 @property(nonatomic, copy) MCPlayerNormalViewEventCallBack eventCallBack;
 @property(nonatomic, copy) NSString *(^retryPlayUrl)(void); ///< 获取url尝试重新播放

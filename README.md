@@ -78,6 +78,7 @@ Run `pod install`
     c. loading
     b. 播放中断重试
     c. 用户可以自定义UI颜色、样式、字体大小
+    e. 自定义topRightView
 TODO:
     I. 投屏UI
 ```
@@ -141,6 +142,21 @@ TODO:
     
     具体参照 Example/Classes/Modules/GeneralPlayer/MCPlayerGeneralController
 ```
+
+#### 2.2.1 自定义播放器headerView右侧view
+```objectivec
+{
+        MCPlayerCommonButton *btn = [MCPlayerCommonButton new];
+        [btn setTitle:@"清晰度1" forState:UIControlStateNormal];
+        [btn setBackgroundColor:[UIColor orangeColor]];
+        btn.size = CGSizeMake(60, 30);
+        btn.tag = 99;
+        [self.playerView.topView.rightView addCustom:btn];
+        btn.titleLabel.font = [UIFont systemFontOfSize:12];
+    }
+    具体参照MCPlayerCommonButton.h 注释
+```
+
 
 ### 2.3 Screenshot
 ![MCPlayerKit_GeneralPlayerUI](./Screenshot/MCPlayerKit.gif)

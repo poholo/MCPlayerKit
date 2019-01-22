@@ -7,12 +7,16 @@
 
 #import "MCPlayerGeneralView.h"
 
+@class MCTopRightView;
+
 extern NSString *const kMCPlayerHeaderBack;
 extern NSString *const kMCPlayerHeaderBack2Half;
 
 @interface MCPlayerGeneralHeader : UIView
 
 @property(nonatomic, readonly) UILabel *titleLabel;
+
+@property(nonatomic, readonly) MCTopRightView *rightView;
 
 @property(nonatomic, copy) MCPlayerNormalViewEventCallBack callBack;
 

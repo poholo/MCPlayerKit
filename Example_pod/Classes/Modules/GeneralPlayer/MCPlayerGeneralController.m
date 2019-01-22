@@ -8,14 +8,19 @@
 #import <MCStyle/MCStyleDef.h>
 
 #import "MCPlayerGeneralView.h"
+#import "MCPlayerGeneralHeader.h"
 #import "MCPlayerKit.h"
 #import "MCDeviceUtils.h"
+#import "MCPlayerCommonButton.h"
+#import "MCTopRightView.h"
 
 
 @interface MCPlayerGeneralController ()
 
 @property(nonatomic, strong) MCPlayerKit *playerKit;
 @property(nonatomic, strong) MCPlayerGeneralView *playerView;
+
+@property(nonatomic, strong) MCPlayerCommonButton *btn;
 
 @end
 
@@ -65,6 +70,28 @@
     self.playerView.retryPlayUrl = ^NSString *(void) {
         return @"https://api.huoshan.com/hotsoon/item/video/_playback/?video_id=bea0903abb954f58ac0e17c21226a3c3&line=1&app_id=1115&quality=720p";
     };
+
+    [self.playerView.topView.rightView addCustom:self.btn];
+
+    {
+        MCPlayerCommonButton *btn = [MCPlayerCommonButton new];
+        [btn setTitle:@"清晰度1" forState:UIControlStateNormal];
+        [btn setBackgroundColor:[UIColor orangeColor]];
+        btn.size = CGSizeMake(60, 30);
+        btn.tag = 99;
+        [self.playerView.topView.rightView addCustom:btn];
+        btn.titleLabel.font = [UIFont systemFontOfSize:12];
+    }
+
+    {
+        MCPlayerCommonButton *btn = [MCPlayerCommonButton new];
+        [btn setTitle:@"清晰度2" forState:UIControlStateNormal];
+        [btn setBackgroundColor:[UIColor orangeColor]];
+        btn.size = CGSizeMake(60, 30);
+        btn.tag = 0;
+        [self.playerView.topView.rightView addCustom:btn];
+        btn.titleLabel.font = [UIFont systemFontOfSize:12];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -166,6 +193,18 @@
         };
     }
     return _playerView;
+}
+
+- (MCPlayerCommonButton *)btn {
+    if (!_btn) {
+        _btn = [MCPlayerCommonButton new];
+        [_btn setTitle:@"清晰度" forState:UIControlStateNormal];
+        [_btn setBackgroundColor:[UIColor orangeColor]];
+        _btn.size = CGSizeMake(60, 30);
+        _btn.showFullScreen = YES;
+        _btn.showHalfScreen = NO;
+    }
+    return _btn;
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

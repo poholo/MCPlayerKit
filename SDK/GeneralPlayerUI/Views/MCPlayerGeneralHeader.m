@@ -5,6 +5,7 @@
 
 #import "MCPlayerGeneralHeader.h"
 #import "MCDeviceUtils.h"
+#import "MCTopRightView.h"
 
 #import <MCStyle/MCStyleDef.h>
 
@@ -16,6 +17,7 @@ NSString *const kMCPlayerHeaderBack2Half = @"kMCPlayerHeaderBack2Half";
 @property(nonatomic, strong) CAGradientLayer *gradientLayer;
 @property(nonatomic, strong) UIButton *backBtn;
 @property(nonatomic, strong) UILabel *titleLabel;
+@property(nonatomic, strong) MCTopRightView *rightView;
 
 @property(nonatomic, assign) MCPlayerStyleSizeType styleSizeType;
 
@@ -35,6 +37,7 @@ NSString *const kMCPlayerHeaderBack2Half = @"kMCPlayerHeaderBack2Half";
 
 - (void)updatePlayerStyle:(MCPlayerStyleSizeType)styleSizeType {
     self.styleSizeType = styleSizeType;
+    [self.rightView updatePlayerStyle:styleSizeType];
     switch (styleSizeType) {
         case PlayerStyleSizeClassRegularHalf: {
         }
@@ -61,6 +64,7 @@ NSString *const kMCPlayerHeaderBack2Half = @"kMCPlayerHeaderBack2Half";
     [self.layer addSublayer:self.gradientLayer];
     [self addSubview:self.backBtn];
     [self addSubview:self.titleLabel];
+    [self addSubview:self.rightView];
 }
 
 - (void)addLayout {
@@ -71,9 +75,10 @@ NSString *const kMCPlayerHeaderBack2Half = @"kMCPlayerHeaderBack2Half";
     CGFloat h = CGRectGetHeight(self.frame) - top;
     CGFloat w = h - 2 * insets.top;
     self.backBtn.frame = CGRectMake(0, top, h, h);
-
+    [self.rightView resizeViews];
+    self.rightView.frame = CGRectMake(CGRectGetWidth(self.frame) - CGRectGetWidth(self.rightView.frame), top, CGRectGetWidth(self.rightView.frame), h);
     CGFloat startX = CGRectGetMaxX(self.backBtn.frame) - [MCStyle contentInsetIII].left;
-    CGFloat maxTitleWidth = CGRectGetWidth(self.frame) - startX - [MCStyle contentInsetIII].right;
+    CGFloat maxTitleWidth = CGRectGetMinX(self.rightView.frame) - startX - [MCStyle contentInsetIII].right;
     self.titleLabel.frame = CGRectMake(startX, (h - [MCFont fontV].lineHeight) / 2.0f + top, maxTitleWidth, [MCFont fontV].lineHeight);
     self.gradientLayer.frame = CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
 }
@@ -123,4 +128,10 @@ NSString *const kMCPlayerHeaderBack2Half = @"kMCPlayerHeaderBack2Half";
     return _gradientLayer;
 }
 
+- (MCTopRightView *)rightView {
+    if (!_rightView) {
+        _rightView = [MCTopRightView new];
+    }
+    return _rightView;
+}
 @end
