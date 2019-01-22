@@ -384,8 +384,16 @@
 }
 
 - (void)playEnd {
-    [self.terminalView updatePlayerTerminal:PlayerTerminalPlayEnd title:self.topView.titleLabel.text];
-    self.terminalView.hidden = NO;
+    if (self.canShowTerminalCallBack) {
+        BOOL can = self.canShowTerminalCallBack();
+        if (can) {
+            [self.terminalView updatePlayerTerminal:PlayerTerminalPlayEnd title:self.topView.titleLabel.text];
+            self.terminalView.hidden = NO;
+        }
+    } else {
+        [self.terminalView updatePlayerTerminal:PlayerTerminalPlayEnd title:self.topView.titleLabel.text];
+        self.terminalView.hidden = NO;
+    }
 }
 
 - (void)playError {

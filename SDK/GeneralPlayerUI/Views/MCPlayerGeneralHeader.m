@@ -119,7 +119,6 @@ NSString *const kMCPlayerHeaderBack2Half = @"kMCPlayerHeaderBack2Half";
         _gradientLayer.startPoint = CGPointMake(0, 0);
         _gradientLayer.endPoint = CGPointMake(0, 1.0);
         _gradientLayer.frame = CGRectMake(0, 0, CGRectGetHeight(self.frame), 50);
-        _gradientLayer.backgroundColor = [UIColor redColor].CGColor;
     }
     return _gradientLayer;
 }

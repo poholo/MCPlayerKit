@@ -65,7 +65,9 @@
         return;
     }
     self.player = [AVQueuePlayer queuePlayerWithItems:self.playerItems];
-    [self.player play];
+    [self configurePlayerObserver];
+    [self configurePlayerItemObserver:self.player.currentItem];
+    [self preparePlay];
 
     if (self.actionAtItemEnd == PlayerActionAtItemEndCircle) {
         self.player.actionAtItemEnd = AVPlayerActionAtItemEndPause;
@@ -74,10 +76,7 @@
         self.player.automaticallyWaitsToMinimizeStalling = NO;
     }
     self.playerLayer = [self configPlayerLayer:self.player];
-
-    [self configurePlayerObserver];
-    [self configurePlayerItemObserver:self.player.currentItem];
-    [self preparePlay];
+    [self.player play];
 }
 
 - (AVPlayerLayer *)configPlayerLayer:(AVPlayer *)player {
@@ -177,6 +176,12 @@
     [self playFinishX];
 }
 
+- (void)playError:(NSNotification *)notification {
+    if (notification.object != self.player.currentItem) return;
+    self.playerState = PlayerStateError;
+}
+
+
 - (void)playFinishX {
     switch (self.actionAtItemEnd) {
         case PlayerActionAtItemEndAdvance : {
@@ -259,6 +264,7 @@
     [self.playerKVOManager safelyAddObserver:self forKeyPath:_k_Player_Status options:NSKeyValueObservingOptionNew context:nil];
     [self.playerKVOManager safelyAddObserver:self forKeyPath:_k_Player_CurrentItem options:NSKeyValueObservingOptionNew context:nil];
     [self.notificationManager addObserver:self selector:@selector(playFinish:) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
+    [self.notificationManager addObserver:self selector:@selector(playError:) name:AVPlayerItemFailedToPlayToEndTimeNotification object:nil];
 
     __weak typeof(self) weakSelf = self;
     self.boundaryTime = [self.player addBoundaryTimeObserverForTimes:@[[NSValue valueWithCMTime:CMTimeMake(1, 100)]] queue:dispatch_get_main_queue() usingBlock:^{

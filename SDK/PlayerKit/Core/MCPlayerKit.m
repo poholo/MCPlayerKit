@@ -198,11 +198,12 @@
         }
         player;
     });
+
+    [_player addObserver:self forKeyPath:@"playerState" options:NSKeyValueObservingOptionNew context:nil];
     _player.actionAtItemEnd = self.actionAtItemEnd;
     _player.playerLayerVideoGravity = self.playerLayerVideoGravity;
     [_player playUrls:urls isLiveOptions:isLiveOptions];
 
-    [_player addObserver:self forKeyPath:@"playerState" options:NSKeyValueObservingOptionNew context:nil];
 }
 
 - (void)preparePlay {
