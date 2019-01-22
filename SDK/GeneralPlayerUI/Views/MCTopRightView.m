@@ -33,11 +33,11 @@
     [super addSubview:customView];
     self.customViews = [[self.customViews sortedArrayUsingComparator:^NSComparisonResult(MCPlayerCommonButton *b0, MCPlayerCommonButton *b1) {
         if (b0.tag > b1.tag) {
-            return NSOrderedAscending;
+            return NSOrderedDescending;
         } else if (b0.tag == b1.tag) {
             return NSOrderedSame;
         } else {
-            return NSOrderedDescending;
+            return NSOrderedAscending;
         }
     }] mutableCopy];
 
