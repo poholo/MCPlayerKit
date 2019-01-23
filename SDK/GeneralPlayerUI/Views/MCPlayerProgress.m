@@ -58,6 +58,8 @@
 }
 
 - (void)updateProgress:(float)progress {
+    if (_slider.state != UIControlStateNormal)
+        return;
     _slider.value = progress;
     _progressView.progress = progress;
 }

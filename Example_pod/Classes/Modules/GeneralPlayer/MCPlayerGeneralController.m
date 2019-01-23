@@ -92,6 +92,8 @@
         [self.playerView.topView.rightView addCustom:btn];
         btn.titleLabel.font = [UIFont systemFontOfSize:12];
     }
+
+    self.view.backgroundColor = [UIColor grayColor];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -173,6 +175,10 @@
     }                            completion:nil];
 }
 
+- (BOOL)prefersStatusBarHidden {
+    return self.playerView.styleSizeType != PlayerStyleSizeClassRegularHalf;
+}
+
 #pragma mark - getter
 
 - (MCPlayerKit *)playerKit {
@@ -189,8 +195,9 @@
         CGFloat height = width * 9 / 16.0f + [MCDeviceUtils xTop];
         _playerView = [[MCPlayerGeneralView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
         _playerView.canShowTerminalCallBack = ^BOOL(void) {
-            return NO;
+            return YES;
         };
+        _playerView.backgroundColor = [UIColor blackColor];
     }
     return _playerView;
 }
