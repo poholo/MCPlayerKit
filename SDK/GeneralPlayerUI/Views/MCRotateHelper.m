@@ -19,13 +19,13 @@
 }
 
 + (void)updatePlayerRegular {
-    [MCRotateHelper updateOrientation:UIInterfaceOrientationLandscapeRight];
-    [self setStatusBarHidden:YES];
+    [MCRotateHelper updateOrientation:UIInterfaceOrientationPortrait];
+    [self setStatusBarHidden:NO];
 }
 
 + (void)updatePlayerCompact {
-    [MCRotateHelper updateOrientation:UIInterfaceOrientationPortrait];
-    [self setStatusBarHidden:NO];
+    [MCRotateHelper updateOrientation:UIInterfaceOrientationLandscapeRight];
+    [self setStatusBarHidden:YES];
 }
 
 + (void)updateOrientation:(UIInterfaceOrientation)interfaceOrientation {

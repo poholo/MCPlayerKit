@@ -146,6 +146,9 @@
 }
 
 - (void)rotate2Portrait {
+    if (self.styleSizeType == PlayerStyleSizeClassRegularHalf) {
+        return;
+    }
     [MCRotateHelper setStatusBarHidden:NO];
     CGSize size = [UIScreen mainScreen].bounds.size;
     [self updatePlayerStyle:PlayerStyleSizeClassRegularHalf];
@@ -153,6 +156,9 @@
 }
 
 - (void)rotate2PortraitFullScreen {
+    if (self.styleSizeType == PlayerStyleSizeClassRegular) {
+        return;
+    }
     [MCRotateHelper setStatusBarHidden:YES];
     [self updatePlayerStyle:PlayerStyleSizeClassRegular];
     self.frame = [UIScreen mainScreen].bounds;
@@ -261,12 +267,17 @@
         __strong typeof(weakSelf) strongself = weakSelf;
         if ([action isEqualToString:kMCPlayer2HalfScreenAction]) {
             [MCRotateHelper updatePlayerRegularHalf];
-            [strongself updatePlayerStyle:PlayerStyleSizeClassRegularHalf];
+            [strongself rotate2Portrait];
             [strongself showControlThenHide];
         } else if ([action isEqualToString:kMCPlayer2FullScreenAction]) {
-            //TODO:: 竖屏全屏
-            [MCRotateHelper updatePlayerRegular];
-            [strongself updatePlayerStyle:PlayerStyleSizeClassCompact];
+            CGSize naturalSize = self.playerKit.naturalSize;
+            if (naturalSize.width < naturalSize.height) {
+                [MCRotateHelper updatePlayerRegular];
+                [strongself rotate2PortraitFullScreen];
+            } else {
+                [MCRotateHelper updatePlayerCompact];
+                [strongself rotate2Landscape];
+            }
             [strongself showControlThenHide];
         } else if ([action isEqualToString:kMCPlayer2PlayAction]) {
             strongself.playBtn.selected = strongself.bottomView.playBtn.selected;
