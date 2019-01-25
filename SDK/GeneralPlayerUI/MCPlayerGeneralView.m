@@ -30,7 +30,7 @@
 @property(nonatomic, strong) MCPlayerGeneralTerminalView *terminalView;
 @property(nonatomic, strong) UIButton *lockBtn;
 @property(nonatomic, strong) UIButton *playBtn;
-@property(nonatomic, strong) UIView *definitionView;
+@property(nonatomic, strong) UIButton *backBtn;
 
 @property(nonatomic, weak) MCPlayerKit *playerKit;
 
@@ -77,16 +77,19 @@
     [self.bottomView updatePlayerStyle:styleSizeType];
     switch (self.styleSizeType) {
         case PlayerStyleSizeClassRegularHalf: {
+            self.backBtn.hidden = NO;
             self.lockBtn.hidden = YES;
             self.playBtn.hidden = self.bottomView.hidden;
         }
             break;
         case PlayerStyleSizeClassRegular: {
+            self.backBtn.hidden = YES;
             self.lockBtn.hidden = self.bottomView.hidden;
             self.playBtn.hidden = YES;
         }
             break;
         case PlayerStyleSizeClassCompact: {
+            self.backBtn.hidden = YES;
             self.lockBtn.hidden = self.bottomView.hidden;
             self.playBtn.hidden = YES;
         }
@@ -175,10 +178,10 @@
     [self.containerView addSubview:self.lockBtn];
     [self.containerView addSubview:self.playBtn];
     [self.containerView addSubview:self.bottomProgress];
-    [self.containerView addSubview:self.definitionView];
 
     [self.containerView addSubview:self.loadingView];
     [self.containerView addSubview:self.terminalView];
+    [self.containerView addSubview:self.backBtn];
     self.backgroundColor = [UIColor blackColor];
 }
 
@@ -186,7 +189,7 @@
     if (CGRectIsEmpty(self.frame)) return;
 
     CGRect containerFrame = self.bounds;
-    if (self.styleSizeType != PlayerStyleSizeClassRegularHalf) {
+    if (self.styleSizeType == PlayerStyleSizeClassCompact) {
         containerFrame = CGRectMake([MCDeviceUtils xTop], 0, CGRectGetWidth(self.frame) - [MCDeviceUtils xTop] * 2, CGRectGetHeight(self.frame));
     }
     self.containerView.frame = containerFrame;
@@ -198,7 +201,7 @@
     CGFloat barRate = 0.1f;
     CGFloat barHeight = 44;
 
-    if (self.styleSizeType == PlayerStyleSizeClassRegularHalf) {
+    if (self.styleSizeType == PlayerStyleSizeClassRegularHalf || self.styleSizeType == PlayerStyleSizeClassRegular) {
         CGFloat py = [MCDeviceUtils iPhoneX] ? 24 : 0;
         self.playerView.frame = CGRectMake(0, py, CGRectGetWidth(containerFrame), CGRectGetHeight(containerFrame) - py);
         self.topView.frame = CGRectMake(0, 0, w, barHeight + [MCDeviceUtils xStatusBarHeight]);
@@ -208,6 +211,9 @@
     }
 
     self.bottomView.frame = CGRectMake(0, h - barHeight, w, barHeight);
+    if (self.styleSizeType == PlayerStyleSizeClassRegular || self.styleSizeType == PlayerStyleSizeClassCompact) {
+        self.bottomView.frame = CGRectMake(0, h - barHeight - [MCDeviceUtils xBottom], w, barHeight + [MCDeviceUtils xBottom]);
+    }
     self.bottomProgress.frame = CGRectMake(0, h - 2, w, 2);
 
     CGFloat lockW = 44;
@@ -215,36 +221,15 @@
     CGFloat playW = 44;
     self.playBtn.frame = CGRectMake((CGRectGetWidth(self.frame) - playW) / 2.0f, (CGRectGetHeight(self.frame) - playW) / 2.0f, playW, playW);
     self.loadingView.frame = self.containerView.bounds;
+    self.backBtn.frame = CGRectMake(0, [MCDeviceUtils xStatusBarHeight], lockW, lockW);
 }
 
 - (void)addActions {
     __weak typeof(self) weakSelf = self;
     self.topView.callBack = ^id(NSString *action, id value) {
         __strong typeof(weakSelf) strongself = weakSelf;
-        if ([action isEqualToString:kMCPlayerHeaderBack2Half]) {
-            [MCRotateHelper updatePlayerRegularHalf];
-            [strongself updatePlayerStyle:PlayerStyleSizeClassRegularHalf];
-        } else if ([action isEqualToString:kMCPlayerHeaderBack]) {
-            UIViewController *viewController = [UIApplication sharedApplication].keyWindow.rootViewController;
-            UINavigationController *navigationController;
-            if ([viewController isKindOfClass:[UINavigationController class]]) {
-                navigationController = (UINavigationController *) viewController;
-                if ([navigationController.topViewController isKindOfClass:[UITabBarController class]]) {
-                    UITabBarController *tabBarController = (UITabBarController *) navigationController.topViewController;
-                    UIViewController *tabViewController = (tabBarController.viewControllers.count > tabBarController.selectedIndex ? tabBarController.viewControllers[tabBarController.selectedIndex] : nil);
-                    if ([tabViewController isKindOfClass:[UINavigationController class]]) {
-                        navigationController = (UINavigationController *) tabViewController;
-                    }
-                }
-            } else if (viewController.navigationController) {
-                navigationController = viewController.navigationController;
-            }
-            if (navigationController) {
-                [navigationController popViewControllerAnimated:YES];
-            } else {
-                //TODO test presentDismiss
-                [viewController dismissViewControllerAnimated:YES completion:NULL];
-            }
+        if ([action isEqualToString:kMCPlayerHeaderBack]) {
+            [strongself backBtnClick];
         }
         if (strongself.eventCallBack) {
             strongself.eventCallBack(action, value);
@@ -270,7 +255,7 @@
             [strongself rotate2Portrait];
             [strongself showControlThenHide];
         } else if ([action isEqualToString:kMCPlayer2FullScreenAction]) {
-            CGSize naturalSize = self.playerKit.naturalSize;
+            CGSize naturalSize = strongself.playerKit.naturalSize;
             if (naturalSize.width < naturalSize.height) {
                 [MCRotateHelper updatePlayerRegular];
                 [strongself rotate2PortraitFullScreen];
@@ -370,6 +355,33 @@
         [self.playerKit pause];
     } else {
         [self.playerKit play];
+    }
+}
+
+- (void)backBtnClick {
+    if (self.styleSizeType != PlayerStyleSizeClassRegularHalf) {
+        [MCRotateHelper updatePlayerRegularHalf];
+        [self rotate2Portrait];
+    } else {
+        UIViewController *viewController = [UIApplication sharedApplication].keyWindow.rootViewController;
+        UINavigationController *navigationController;
+        if ([viewController isKindOfClass:[UINavigationController class]]) {
+            navigationController = (UINavigationController *) viewController;
+            if ([navigationController.topViewController isKindOfClass:[UITabBarController class]]) {
+                UITabBarController *tabBarController = (UITabBarController *) navigationController.topViewController;
+                UIViewController *tabViewController = (tabBarController.viewControllers.count > tabBarController.selectedIndex ? tabBarController.viewControllers[tabBarController.selectedIndex] : nil);
+                if ([tabViewController isKindOfClass:[UINavigationController class]]) {
+                    navigationController = (UINavigationController *) tabViewController;
+                }
+            }
+        } else if (viewController.navigationController) {
+            navigationController = viewController.navigationController;
+        }
+        if (navigationController) {
+            [navigationController popViewControllerAnimated:YES];
+        } else {
+            [viewController dismissViewControllerAnimated:YES completion:NULL];
+        }
     }
 }
 
@@ -530,9 +542,15 @@
     return _playBtn;
 }
 
-- (UIView *)definitionView {
-    return nil;
+- (UIButton *)backBtn {
+    if (!_backBtn) {
+        _backBtn = [UIButton new];
+        [_backBtn setImage:[MCStyle customImage:@"player_header_0"] forState:UIControlStateNormal];
+        [_backBtn addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _backBtn;
 }
+
 
 - (MCPlayerLoadingView *)loadingView {
     if (!_loadingView) {

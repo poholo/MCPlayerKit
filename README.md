@@ -6,12 +6,22 @@
 
 
 [MCPlayerKit](https://github.com/poholo/MCPlayerKit) 是基于AVPlayer和IJKPlayer做的一款播放内核播放模块，做IJKPlayer支持是因为AVPlayer对于一些格式协议的支持的补充，比如flv、RTMP等。
-
+[MCPlayerKit/GeneralPlayerUI]是一套基于MCPlayerKit高度封装16:9模式的播放UI，可以通过MCStyle样式完全自定图标、部分custom区域等。
 ## 特点
-
+```text
+MCPlayerKit
 - PlayerKit高度抽象出播放层和渲染层
 - 耦合低，使用方便
-- 有很多使用案例
+- support IJK & AVPlayer
+
+GeneralPlayerUI
+- 旋转
+- support 2018 Devices
+- loading
+- 播放中断重试
+- 用户可以自定义UI颜色、样式、字体大小
+- 自定义topRightView
+```
 
 ## Installation
 

@@ -10,7 +10,6 @@
 @class MCTopRightView;
 
 extern NSString *const kMCPlayerHeaderBack;
-extern NSString *const kMCPlayerHeaderBack2Half;
 
 @interface MCPlayerGeneralHeader : UIView
 

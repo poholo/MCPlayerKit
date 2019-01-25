@@ -129,19 +129,6 @@
 
 #pragma mark - Rotate
 
-- (BOOL)isSizeClassRegular {
-    //如果是横屏全屏切换给切换机会
-//    if (self.playerView.playerStyle == PlayerStyleSizeClassCompact) {
-//        return NO;
-//    }
-
-    CGSize naturalSize = self.playerKit.naturalSize;
-    if (naturalSize.width < naturalSize.height) {
-        return YES;
-    }
-    return NO;
-}
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
@@ -173,10 +160,6 @@
         }
 
     }                            completion:nil];
-}
-
-- (BOOL)prefersStatusBarHidden {
-    return self.playerView.styleSizeType != PlayerStyleSizeClassRegularHalf;
 }
 
 #pragma mark - getter

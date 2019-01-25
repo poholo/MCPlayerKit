@@ -10,7 +10,6 @@
 #import <MCStyle/MCStyleDef.h>
 
 NSString *const kMCPlayerHeaderBack = @"kMCPlayerHeaderBack";
-NSString *const kMCPlayerHeaderBack2Half = @"kMCPlayerHeaderBack2Half";
 
 @interface MCPlayerGeneralHeader ()
 
@@ -53,11 +52,7 @@ NSString *const kMCPlayerHeaderBack2Half = @"kMCPlayerHeaderBack2Half";
 
 - (void)backBtnClick {
     if (!self.callBack) return;
-    if (self.styleSizeType == PlayerStyleSizeClassRegularHalf) {
-        self.callBack(kMCPlayerHeaderBack, nil);
-    } else {
-        self.callBack(kMCPlayerHeaderBack2Half, nil);
-    }
+    self.callBack(kMCPlayerHeaderBack, nil);
 }
 
 - (void)createViews {
@@ -71,7 +66,7 @@ NSString *const kMCPlayerHeaderBack2Half = @"kMCPlayerHeaderBack2Half";
     if (CGRectIsEmpty(self.frame))
         return;
     UIEdgeInsets insets = [MCStyle contentInsetII];
-    CGFloat top = (self.styleSizeType == PlayerStyleSizeClassRegularHalf) ? [MCDeviceUtils xStatusBarHeight] : 0;
+    CGFloat top = (self.styleSizeType == PlayerStyleSizeClassRegularHalf || self.styleSizeType == PlayerStyleSizeClassRegular) ? [MCDeviceUtils xStatusBarHeight] : 0;
     CGFloat h = CGRectGetHeight(self.frame) - top;
     CGFloat w = h - 2 * insets.top;
     self.backBtn.frame = CGRectMake(0, top, h, h);
