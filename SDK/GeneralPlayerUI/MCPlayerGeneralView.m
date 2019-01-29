@@ -155,7 +155,7 @@
     [MCRotateHelper setStatusBarHidden:NO];
     CGSize size = [UIScreen mainScreen].bounds.size;
     [self updatePlayerStyle:PlayerStyleSizeClassRegularHalf];
-    self.frame = CGRectMake(0, 0, size.width, size.width * 9 / 16 + [MCDeviceUtils xTop]);
+    self.frame = CGRectMake(0, 0, size.width, size.width * 9 / 16 + [MCDeviceUtils xStatusBarHeight]);
 }
 
 - (void)rotate2PortraitFullScreen {
@@ -188,7 +188,7 @@
 - (void)addLayout {
     if (CGRectIsEmpty(self.frame)) return;
 
-    CGRect containerFrame = self.bounds;
+    CGRect containerFrame = CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
     if (self.styleSizeType == PlayerStyleSizeClassCompact) {
         containerFrame = CGRectMake([MCDeviceUtils xTop], 0, CGRectGetWidth(self.frame) - [MCDeviceUtils xTop] * 2, CGRectGetHeight(self.frame));
     }
