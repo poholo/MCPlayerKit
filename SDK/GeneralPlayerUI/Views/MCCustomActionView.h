@@ -8,7 +8,7 @@
 
 @class MCPlayerCommonButton;
 
-@interface MCTopRightView : UIView
+@interface MCCustomActionView : UIView
 
 
 - (void)addSubview:(UIView *)view NS_UNAVAILABLE;

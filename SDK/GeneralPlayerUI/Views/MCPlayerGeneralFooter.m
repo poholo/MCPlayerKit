@@ -10,6 +10,7 @@
 
 #import "MCPlayerProgress.h"
 #import "NSNumber+Extend.h"
+#import "MCCustomActionView.h"
 
 NSString *const kMCPlayer2HalfScreenAction = @"kMCPlayer2HalfScreenAction";
 NSString *const kMCPlayer2FullScreenAction = @"kMCPlayer2FullScreenAction";
@@ -27,6 +28,7 @@ NSString *const kMCControlProgressEndDragSlider = @"kMCControlProgressEndDragSli
 @property(nonatomic, strong) UILabel *durationLabel;
 @property(nonatomic, strong) UILabel *currentLabel;
 @property(nonatomic, strong) MCPlayerProgress *playerProgress;
+@property(nonatomic, strong) MCCustomActionView *rightView;
 @property(nonatomic, strong) UIButton *screenBtn;
 @property(nonatomic, assign) MCPlayerStyleSizeType styleSizeType;
 
@@ -58,6 +60,7 @@ NSString *const kMCControlProgressEndDragSlider = @"kMCControlProgressEndDragSli
 
 - (void)updatePlayerStyle:(MCPlayerStyleSizeType)styleSizeType {
     self.styleSizeType = styleSizeType;
+    [self.rightView updatePlayerStyle:styleSizeType];
     switch (styleSizeType) {
         case PlayerStyleSizeClassRegularHalf: {
             self.screenBtn.selected = NO;
@@ -113,6 +116,7 @@ NSString *const kMCControlProgressEndDragSlider = @"kMCControlProgressEndDragSli
     [self addSubview:self.currentLabel];
     [self addSubview:self.durationLabel];
     [self addSubview:self.playerProgress];
+    [self addSubview:self.rightView];
     [self addSubview:self.screenBtn];
 }
 
@@ -121,7 +125,12 @@ NSString *const kMCControlProgressEndDragSlider = @"kMCControlProgressEndDragSli
 
     CGFloat w = CGRectGetHeight(self.frame) - 2 * [MCStyle contentInsetII].top;
     self.playBtn.frame = CGRectMake([MCStyle contentInsetII].left, [MCStyle contentInsetII].top, w, w);
+
     self.screenBtn.frame = CGRectMake(CGRectGetWidth(self.frame) - w - [MCStyle contentInsetII].right, [MCStyle contentInsetII].top, w, w);
+
+    [self.rightView resizeViews];
+    self.rightView.frame = CGRectMake(CGRectGetMinX(self.screenBtn.frame) - CGRectGetWidth(self.rightView.frame), [MCStyle contentInsetII].top, CGRectGetWidth(self.rightView.frame), w);
+
     self.gradientLayer.frame = self.bounds;
     [self refreshTimeFrame];
 }
@@ -130,7 +139,7 @@ NSString *const kMCControlProgressEndDragSlider = @"kMCControlProgressEndDragSli
     if (CGRectIsEmpty(self.frame)) return;
     CGSize durationSize = [self.durationLabel sizeThatFits:CGSizeMake(CGRectGetWidth(self.frame) * .5f, self.durationLabel.font.lineHeight)];
     CGSize currentSize = [self.currentLabel sizeThatFits:CGSizeMake(CGRectGetWidth(self.frame) * .5f, self.currentLabel.font.lineHeight)];
-    CGFloat durationX = CGRectGetMinX(self.screenBtn.frame) - durationSize.width - [MCStyle contentInsetII].right;
+    CGFloat durationX = CGRectGetMinX(self.rightView.frame) - durationSize.width - [MCStyle contentInsetII].right;
     CGFloat currentX = CGRectGetMaxX(self.playBtn.frame) + [MCStyle contentInsetIII].left;
 
     if (self.styleSizeType == PlayerStyleSizeClassRegularHalf) {
@@ -154,7 +163,7 @@ NSString *const kMCControlProgressEndDragSlider = @"kMCControlProgressEndDragSli
 
     if (self.styleSizeType == PlayerStyleSizeClassRegularHalf) {
         progressX = CGRectGetMaxX(self.durationLabel.frame) + [MCStyle contentInsetII].left;
-        progressW = CGRectGetMinX(self.screenBtn.frame) - CGRectGetMaxX(self.durationLabel.frame) - [MCStyle contentInsetII].right - [MCStyle contentInsetII].left;
+        progressW = CGRectGetMinX(self.rightView.frame) - CGRectGetMaxX(self.durationLabel.frame) - [MCStyle contentInsetII].right - [MCStyle contentInsetII].left;
     }
     self.playerProgress.frame = CGRectMake(progressX,
             CGRectGetHeight(self.frame) * 0.25,
@@ -245,6 +254,13 @@ NSString *const kMCControlProgressEndDragSlider = @"kMCControlProgressEndDragSli
         _gradientLayer.endPoint = CGPointMake(0, 1.0);
     }
     return _gradientLayer;
+}
+
+- (MCCustomActionView *)rightView {
+    if (!_rightView) {
+        _rightView = [MCCustomActionView new];
+    }
+    return _rightView;
 }
 
 @end

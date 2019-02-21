@@ -5,7 +5,7 @@
 
 #import "MCPlayerGeneralHeader.h"
 #import "MCDeviceUtils.h"
-#import "MCTopRightView.h"
+#import "MCCustomActionView.h"
 
 #import <MCStyle/MCStyleDef.h>
 
@@ -16,7 +16,7 @@ NSString *const kMCPlayerHeaderBack = @"kMCPlayerHeaderBack";
 @property(nonatomic, strong) CAGradientLayer *gradientLayer;
 @property(nonatomic, strong) UIButton *backBtn;
 @property(nonatomic, strong) UILabel *titleLabel;
-@property(nonatomic, strong) MCTopRightView *rightView;
+@property(nonatomic, strong) MCCustomActionView *rightView;
 
 @property(nonatomic, assign) MCPlayerStyleSizeType styleSizeType;
 
@@ -123,9 +123,9 @@ NSString *const kMCPlayerHeaderBack = @"kMCPlayerHeaderBack";
     return _gradientLayer;
 }
 
-- (MCTopRightView *)rightView {
+- (MCCustomActionView *)rightView {
     if (!_rightView) {
-        _rightView = [MCTopRightView new];
+        _rightView = [MCCustomActionView new];
     }
     return _rightView;
 }

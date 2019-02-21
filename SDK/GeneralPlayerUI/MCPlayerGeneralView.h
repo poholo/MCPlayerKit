@@ -11,6 +11,7 @@
 
 @class MCPlayerKit;
 @class MCPlayerGeneralHeader;
+@class MCPlayerGeneralFooter;
 
 
 extern NSString *const kMCPlayer2PlayAction;
@@ -37,6 +38,7 @@ typedef NS_ENUM(NSInteger, MCPlayerStyleSizeType) {
 @property(nonatomic, assign) MCPlayerStyleSizeType styleSizeType;
 @property(nonatomic, readonly) MCPlayerView *playerView;
 @property(nonatomic, readonly) MCPlayerGeneralHeader *topView;
+@property(nonatomic, readonly) MCPlayerGeneralFooter *bottomView;
 
 
 @property(nonatomic, copy) MCPlayerNormalViewEventCallBack eventCallBack;

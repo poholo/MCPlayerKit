@@ -7,6 +7,7 @@
 #import "MCPlayerGeneralView.h"
 
 @class MCPlayerProgress;
+@class MCCustomActionView;
 
 extern NSString *const kMCPlayer2HalfScreenAction;
 extern NSString *const kMCPlayer2FullScreenAction;
@@ -20,6 +21,7 @@ extern NSString *const kMCControlProgressEndDragSlider;
 
 @property(nonatomic, readonly) UIButton *playBtn;
 @property(nonatomic, copy) MCPlayerNormalViewEventCallBack callBack;
+@property(nonatomic, readonly) MCCustomActionView *rightView;
 
 - (void)updatePlayerStyle:(MCPlayerStyleSizeType)styleSizeType;
 

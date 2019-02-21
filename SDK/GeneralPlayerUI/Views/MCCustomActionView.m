@@ -4,18 +4,18 @@
 //
 
 #import <MCStyle/MCStyle.h>
-#import "MCTopRightView.h"
+#import "MCCustomActionView.h"
 
 #import "MCPlayerCommonButton.h"
 
-@interface MCTopRightView ()
+@interface MCCustomActionView ()
 
 @property(nonatomic, strong) NSMutableArray<MCPlayerCommonButton *> *customViews;
 @property(nonatomic, assign) MCPlayerStyleSizeType styleSizeType;
 
 @end
 
-@implementation MCTopRightView
+@implementation MCCustomActionView
 
 - (void)addSubview:(UIView *)view {
 }

@@ -12,7 +12,8 @@
 #import "MCPlayerKit.h"
 #import "MCDeviceUtils.h"
 #import "MCPlayerCommonButton.h"
-#import "MCTopRightView.h"
+#import "MCCustomActionView.h"
+#import "MCPlayerGeneralFooter.h"
 
 
 @interface MCPlayerGeneralController ()
@@ -90,6 +91,16 @@
         btn.size = CGSizeMake(60, 30);
         btn.tag = 0;
         [self.playerView.topView.rightView addCustom:btn];
+        btn.titleLabel.font = [UIFont systemFontOfSize:12];
+    }
+
+    {
+        MCPlayerCommonButton *btn = [MCPlayerCommonButton new];
+        [btn setTitle:@"清晰度2" forState:UIControlStateNormal];
+        [btn setBackgroundColor:[UIColor orangeColor]];
+        btn.size = CGSizeMake(60, 30);
+        btn.tag = 0;
+        [self.playerView.bottomView.rightView addCustom:btn];
         btn.titleLabel.font = [UIFont systemFontOfSize:12];
     }
 
