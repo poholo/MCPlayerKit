@@ -126,11 +126,11 @@
 
 - (void)didEnterBackground:(NSNotification *)notification {
     [_playerKit pause];
-    _playerKit.playerEnvironment = PlayerEnvironmentOnResignActiveStatus;
+    _playerKit.playerEnvironment = MCPlayerEnvironmentOnResignActiveStatus;
 }
 
 - (void)willEnterForground:(NSNotification *)notification {
-    _playerKit.playerEnvironment = PlayerEnvironmentOnBecomeActiveStatus;
+    _playerKit.playerEnvironment = MCPlayerEnvironmentOnBecomeActiveStatus;
     if (self.navigationController.topViewController == self) {
         [_playerKit play];
     } else {
@@ -178,7 +178,7 @@
 - (MCPlayerKit *)playerKit {
     if (!_playerKit) {
         _playerKit = [[MCPlayerKit alloc] initWithPlayerView:self.playerView.playerView];
-        _playerKit.playerCoreType = PlayerCoreAVPlayer;
+        _playerKit.playerCoreType = MCPlayerCoreAVPlayer;
     }
     return _playerKit;
 }

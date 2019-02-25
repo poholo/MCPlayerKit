@@ -9,7 +9,7 @@
 #import <MCStyleDef.h>
 
 #import "MCPlayerProgress.h"
-#import "NSNumber+Extend.h"
+#import "NSNumber+MCExtend.h"
 #import "MCCustomActionView.h"
 
 NSString *const kMCPlayer2HalfScreenAction = @"kMCPlayer2HalfScreenAction";
@@ -20,7 +20,7 @@ NSString *const kMCControlProgressStartDragSlider = @"kMCControlProgressStartDra
 NSString *const kMCDragProgressToProgress = @"kMCDragProgressToProgress";
 NSString *const kMCControlProgressEndDragSlider = @"kMCControlProgressEndDragSlider";
 
-@interface MCPlayerGeneralFooter () <PlayerProgressDelegate>
+@interface MCPlayerGeneralFooter () <MCPlayerProgressDelegate>
 
 @property(nonatomic, strong) CAGradientLayer *gradientLayer;
 
@@ -62,17 +62,17 @@ NSString *const kMCControlProgressEndDragSlider = @"kMCControlProgressEndDragSli
     self.styleSizeType = styleSizeType;
     [self.rightView updatePlayerStyle:styleSizeType];
     switch (styleSizeType) {
-        case PlayerStyleSizeClassRegularHalf: {
+        case MCPlayerStyleSizeClassRegularHalf: {
             self.screenBtn.selected = NO;
             self.playBtn.hidden = YES;
         }
             break;
-        case PlayerStyleSizeClassRegular: {
+        case MCPlayerStyleSizeClassRegular: {
             self.screenBtn.selected = YES;
             self.playBtn.hidden = NO;
         }
             break;
-        case PlayerStyleSizeClassCompact: {
+        case MCPlayerStyleSizeClassCompact: {
             self.screenBtn.selected = YES;
             self.playBtn.hidden = NO;
         }
@@ -82,7 +82,7 @@ NSString *const kMCControlProgressEndDragSlider = @"kMCControlProgressEndDragSli
 
 - (void)currentTime:(double)time {
     NSString *t = [@(time) hhMMss];
-    if (self.styleSizeType == PlayerStyleSizeClassRegularHalf) {
+    if (self.styleSizeType == MCPlayerStyleSizeClassRegularHalf) {
         t = [t stringByAppendingString:@"/"];
     }
     self.currentLabel.text = t;
@@ -142,7 +142,7 @@ NSString *const kMCControlProgressEndDragSlider = @"kMCControlProgressEndDragSli
     CGFloat durationX = CGRectGetMinX(self.rightView.frame) - durationSize.width - [MCStyle contentInsetII].right;
     CGFloat currentX = CGRectGetMaxX(self.playBtn.frame) + [MCStyle contentInsetIII].left;
 
-    if (self.styleSizeType == PlayerStyleSizeClassRegularHalf) {
+    if (self.styleSizeType == MCPlayerStyleSizeClassRegularHalf) {
         currentX = [MCStyle contentInsetIII].left;
         durationX = currentX + currentSize.width;
     }
@@ -161,7 +161,7 @@ NSString *const kMCControlProgressEndDragSlider = @"kMCControlProgressEndDragSli
     CGFloat progressX = CGRectGetMaxX(self.currentLabel.frame) + [MCStyle contentInsetII].left;
     CGFloat progressW = CGRectGetMinX(self.durationLabel.frame) - CGRectGetMaxX(self.currentLabel.frame) - [MCStyle contentInsetII].right - [MCStyle contentInsetII].left;
 
-    if (self.styleSizeType == PlayerStyleSizeClassRegularHalf) {
+    if (self.styleSizeType == MCPlayerStyleSizeClassRegularHalf) {
         progressX = CGRectGetMaxX(self.durationLabel.frame) + [MCStyle contentInsetII].left;
         progressW = CGRectGetMinX(self.rightView.frame) - CGRectGetMaxX(self.durationLabel.frame) - [MCStyle contentInsetII].right - [MCStyle contentInsetII].left;
     }
@@ -176,7 +176,7 @@ NSString *const kMCControlProgressEndDragSlider = @"kMCControlProgressEndDragSli
     [self addLayout];
 }
 
-#pragma mark - PlayerProgressDelegate
+#pragma mark - MCPlayerProgressDelegate
 
 - (void)controlProgressStartDragSlider {
     if (self.callBack) {

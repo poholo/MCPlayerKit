@@ -7,7 +7,7 @@
 
 #import <IJKMediaFramework/IJKFFMoviePlayerController.h>
 
-#import "NSURL+Extend.h"
+#import "NSURL+MCExtend.h"
 #import "MCPlayerKitDef.h"
 
 @interface MCIJKPlayer ()
@@ -61,7 +61,7 @@
 
 - (void)playUrls:(NSArray<NSString *> *)urls isLiveOptions:(BOOL)isLiveOptions {
     self.startTime = CFAbsoluteTimeGetCurrent();
-    self.playerState = PlayerStateLoading;
+    self.playerState = MCPlayerStateLoading;
     [super playUrls:urls isLiveOptions:isLiveOptions];
 
     self.currentPlayerIndex = 0;
@@ -128,7 +128,7 @@
 
 - (void)preparePlay {
     [super preparePlay];
-    self.playerState = PlayerStateLoading;
+    self.playerState = MCPlayerStateLoading;
     [self.ijkPlayer prepareToPlay];
 }
 
@@ -188,8 +188,8 @@
     return self.ijkPlayer.view;
 }
 
-- (PlayerCoreType)playerType {
-    return PlayerCoreIJKPlayer;
+- (MCPlayerCoreType)playerType {
+    return MCPlayerCoreIJKPlayer;
 }
 
 - (void)changeAudioVolume:(CGFloat)volume {
@@ -230,15 +230,15 @@
 - (void)configureDefaultPlayer:(IJKFFMoviePlayerController *)player {
     player.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     switch (self.playerLayerVideoGravity) {
-        case PlayerLayerVideoGravityResizeAspect: {
+        case MCPlayerLayerVideoGravityResizeAspect: {
             player.scalingMode = IJKMPMovieScalingModeAspectFit;
         }
             break;
-        case PlayerLayerVideoGravityResizeAspectFill: {
+        case MCPlayerLayerVideoGravityResizeAspectFill: {
             player.scalingMode = IJKMPMovieScalingModeAspectFill;
         }
             break;
-        case PlayerLayerVideoGravityResize: {
+        case MCPlayerLayerVideoGravityResize: {
             player.scalingMode = IJKMPMovieScalingModeFill;
         }
             break;
@@ -259,10 +259,10 @@
 
     if ((loadState & IJKMPMovieLoadStatePlaythroughOK) != 0) {
         MCLog(@"%@:::::: loadStateDidChange: IJKMPMovieLoadStatePlaythroughOK: %d\n", [self class], (int) loadState);
-        self.playerState = PlayerStatePlaying;
+        self.playerState = MCPlayerStatePlaying;
     } else if ((loadState & IJKMPMovieLoadStateStalled) != 0) {
         MCLog(@"%@::::::loadStateDidChange: IJKMPMovieLoadStateStalled: %d\n", [self class], (int) loadState);
-        self.playerState = PlayerStateBuffering;
+        self.playerState = MCPlayerStateBuffering;
     } else {
         MCLog(@"%@::::::loadStateDidChange: ???: %d\n", [self class], (int) loadState);
     }
@@ -276,17 +276,17 @@
         case IJKMPMovieFinishReasonPlaybackEnded:
             MCLog(@"%@::::::playbackStateDidChange: IJKMPMovieFinishReasonPlaybackEnded: %d\n", [self class], reason);
             self.startTime = CFAbsoluteTimeGetCurrent();
-            self.playerState = PlayerStatePlayEnd;
+            self.playerState = MCPlayerStatePlayEnd;
             break;
 
         case IJKMPMovieFinishReasonUserExited:
             MCLog(@"%@::::::playbackStateDidChange: IJKMPMovieFinishReasonUserExited: %d\n", [self class], reason);
-            self.playerState = PlayerStateError;
+            self.playerState = MCPlayerStateError;
             break;
 
         case IJKMPMovieFinishReasonPlaybackError:
             MCLog(@"%@::::::playbackStateDidChange: IJKMPMovieFinishReasonPlaybackError: %d\n", [self class], reason);
-            self.playerState = PlayerStateError;
+            self.playerState = MCPlayerStateError;
             break;
 
         default:
@@ -311,12 +311,12 @@
 
     switch (self.ijkPlayer.playbackState) {
         case IJKMPMoviePlaybackStateStopped: {
-            self.playerState = PlayerStatePlayEnd;
+            self.playerState = MCPlayerStatePlayEnd;
             break;
         }
         case IJKMPMoviePlaybackStatePlaying: {
             MCLog(@"%@::::::IJKMPMoviePlayBackStateDidChange %d: playing", [self class], (int) self.ijkPlayer.playbackState);
-//            self.playerState = PlayerStatePlaying;
+//            self.playerState = MCPlayerStatePlaying;
             break;
         }
         case IJKMPMoviePlaybackStatePaused: {
@@ -341,7 +341,7 @@
 
 - (void)firstVideoFrameRenderedNotification:(NSNotification *)notification {
     if (notification.object != self.ijkPlayer)return;
-    self.playerState = PlayerStateStarting;
+    self.playerState = MCPlayerStateStarting;
     self.startEndTime = CFAbsoluteTimeGetCurrent();
 }
 

@@ -17,7 +17,7 @@
 #import "MCDeviceUtils.h"
 #import "MCPlayerGeneralTerminalView.h"
 
-@interface MCPlayerGeneralView () <MCPlayerDelegate, PlayerTerminalDelegate>
+@interface MCPlayerGeneralView () <MCPlayerDelegate, MCPlayerTerminalDelegate>
 
 @property(nonatomic, strong) UIView *containerView;
 @property(nonatomic, strong) MCPlayerGeneralTouchView *touchView;
@@ -76,19 +76,19 @@
     [self.topView updatePlayerStyle:styleSizeType];
     [self.bottomView updatePlayerStyle:styleSizeType];
     switch (self.styleSizeType) {
-        case PlayerStyleSizeClassRegularHalf: {
+        case MCPlayerStyleSizeClassRegularHalf: {
             self.backBtn.hidden = NO;
             self.lockBtn.hidden = YES;
             self.playBtn.hidden = self.bottomView.hidden;
         }
             break;
-        case PlayerStyleSizeClassRegular: {
+        case MCPlayerStyleSizeClassRegular: {
             self.backBtn.hidden = YES;
             self.lockBtn.hidden = self.bottomView.hidden;
             self.playBtn.hidden = YES;
         }
             break;
-        case PlayerStyleSizeClassCompact: {
+        case MCPlayerStyleSizeClassCompact: {
             self.backBtn.hidden = YES;
             self.lockBtn.hidden = self.bottomView.hidden;
             self.playBtn.hidden = YES;
@@ -139,31 +139,31 @@
 #pragma mark -
 
 - (void)rotate2Landscape {
-    if (self.styleSizeType == PlayerStyleSizeClassCompact) {
+    if (self.styleSizeType == MCPlayerStyleSizeClassCompact) {
         return;
     }
     [MCRotateHelper setStatusBarHidden:YES];
 
-    [self updatePlayerStyle:PlayerStyleSizeClassCompact];
+    [self updatePlayerStyle:MCPlayerStyleSizeClassCompact];
     self.frame = [UIScreen mainScreen].bounds;
 }
 
 - (void)rotate2Portrait {
-    if (self.styleSizeType == PlayerStyleSizeClassRegularHalf) {
+    if (self.styleSizeType == MCPlayerStyleSizeClassRegularHalf) {
         return;
     }
     [MCRotateHelper setStatusBarHidden:NO];
     CGSize size = [UIScreen mainScreen].bounds.size;
-    [self updatePlayerStyle:PlayerStyleSizeClassRegularHalf];
+    [self updatePlayerStyle:MCPlayerStyleSizeClassRegularHalf];
     self.frame = CGRectMake(0, 0, size.width, size.width * 9 / 16 + [MCDeviceUtils xStatusBarHeight]);
 }
 
 - (void)rotate2PortraitFullScreen {
-    if (self.styleSizeType == PlayerStyleSizeClassRegular) {
+    if (self.styleSizeType == MCPlayerStyleSizeClassRegular) {
         return;
     }
     [MCRotateHelper setStatusBarHidden:YES];
-    [self updatePlayerStyle:PlayerStyleSizeClassRegular];
+    [self updatePlayerStyle:MCPlayerStyleSizeClassRegular];
     self.frame = [UIScreen mainScreen].bounds;
 }
 
@@ -189,7 +189,7 @@
     if (CGRectIsEmpty(self.frame)) return;
 
     CGRect containerFrame = CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
-    if (self.styleSizeType == PlayerStyleSizeClassCompact) {
+    if (self.styleSizeType == MCPlayerStyleSizeClassCompact) {
         containerFrame = CGRectMake([MCDeviceUtils xTop], 0, CGRectGetWidth(self.frame) - [MCDeviceUtils xTop] * 2, CGRectGetHeight(self.frame));
     }
     self.containerView.frame = containerFrame;
@@ -201,7 +201,7 @@
     CGFloat barRate = 0.1f;
     CGFloat barHeight = 44;
 
-    if (self.styleSizeType == PlayerStyleSizeClassRegularHalf || self.styleSizeType == PlayerStyleSizeClassRegular) {
+    if (self.styleSizeType == MCPlayerStyleSizeClassRegularHalf || self.styleSizeType == MCPlayerStyleSizeClassRegular) {
         CGFloat py = [MCDeviceUtils iPhoneX] ? 24 : 0;
         self.playerView.frame = CGRectMake(0, py, CGRectGetWidth(containerFrame), CGRectGetHeight(containerFrame) - py);
         self.topView.frame = CGRectMake(0, 0, w, barHeight + [MCDeviceUtils xStatusBarHeight]);
@@ -211,7 +211,7 @@
     }
 
     self.bottomView.frame = CGRectMake(0, h - barHeight, w, barHeight);
-    if (self.styleSizeType == PlayerStyleSizeClassRegular || self.styleSizeType == PlayerStyleSizeClassCompact) {
+    if (self.styleSizeType == MCPlayerStyleSizeClassRegular || self.styleSizeType == MCPlayerStyleSizeClassCompact) {
         self.bottomView.frame = CGRectMake(0, h - barHeight - [MCDeviceUtils xBottom], w, barHeight + [MCDeviceUtils xBottom]);
     }
     self.bottomProgress.frame = CGRectMake(0, h - 2, w, 2);
@@ -315,7 +315,7 @@
     [self.topView showControl];
     [self.bottomView showControl];
     self.bottomProgress.hidden = YES;
-    if (self.styleSizeType == PlayerStyleSizeClassRegularHalf) {
+    if (self.styleSizeType == MCPlayerStyleSizeClassRegularHalf) {
         self.playBtn.hidden = self.bottomView.hidden;
     } else {
         self.lockBtn.hidden = self.bottomView.hidden;
@@ -359,7 +359,7 @@
 }
 
 - (void)backBtnClick {
-    if (self.styleSizeType != PlayerStyleSizeClassRegularHalf) {
+    if (self.styleSizeType != MCPlayerStyleSizeClassRegularHalf) {
         [MCRotateHelper updatePlayerRegularHalf];
         [self rotate2Portrait];
     } else {
@@ -410,18 +410,18 @@
     if (self.canShowTerminalCallBack) {
         BOOL can = self.canShowTerminalCallBack();
         if (can) {
-            [self.terminalView updatePlayerTerminal:PlayerTerminalPlayEnd title:self.topView.titleLabel.text];
+            [self.terminalView updatePlayerTerminal:MCPlayerTerminalPlayEnd title:self.topView.titleLabel.text];
             self.terminalView.hidden = NO;
         }
     } else {
-        [self.terminalView updatePlayerTerminal:PlayerTerminalPlayEnd title:self.topView.titleLabel.text];
+        [self.terminalView updatePlayerTerminal:MCPlayerTerminalPlayEnd title:self.topView.titleLabel.text];
         self.terminalView.hidden = NO;
     }
 }
 
 - (void)playError {
     [self.loadingView endRotating];
-    [self.terminalView updatePlayerTerminal:PlayerTerminalError title:self.topView.titleLabel.text];
+    [self.terminalView updatePlayerTerminal:MCPlayerTerminalError title:self.topView.titleLabel.text];
     self.terminalView.hidden = NO;
 }
 
@@ -562,7 +562,7 @@
 - (MCPlayerProgress *)bottomProgress {
     if (!_bottomProgress) {
         _bottomProgress = [MCPlayerProgress new];
-        [_bottomProgress changeSliderStyle:SliderShowProgress];
+        [_bottomProgress changeSliderStyle:MCSliderShowProgress];
         _bottomProgress.hidden = YES;
     }
     return _bottomProgress;

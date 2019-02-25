@@ -5,7 +5,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSNumber (Extend)
+@interface NSNumber (MCExtend)
 
 - (NSString *)hhMMss;
 

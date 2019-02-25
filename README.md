@@ -62,7 +62,7 @@ Run `pod install`
 - (MCPlayerKit *)playerKit {
     if (!_playerKit) {
         _playerKit = [[MCPlayerKit alloc] initWithPlayerView:self.playerView];
-        _playerKit.playerCoreType = PlayerCoreAVPlayer;
+        _playerKit.playerCoreType = MCPlayerCoreAVPlayer;
         _playerKit.playerStatusDelegate = self;
     }
     return _playerKit;
@@ -136,7 +136,7 @@ TODO:
     - (MCPlayerKit *)playerKit {
         if (!_playerKit) {
             _playerKit = [[MCPlayerKit alloc] initWithPlayerView:self.playerView.playerView];
-            _playerKit.playerCoreType = PlayerCoreAVPlayer;
+            _playerKit.playerCoreType = MCPlayerCoreAVPlayer;
         }
         return _playerKit;
     }

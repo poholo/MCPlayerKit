@@ -5,7 +5,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSURL (Extend)
+@interface NSURL (MCExtend)
 
 + (NSURL *)source4URI:(NSString *)uri;
 

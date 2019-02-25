@@ -24,7 +24,7 @@
 
 @property(nonatomic, strong) NSArray<NSString *> *urls;
 
-@property(nonatomic, assign) PlayerState playerState;
+@property(nonatomic, assign) MCPlayerState playerState;
 
 @property(nonatomic, strong) GCDMulticastDelegate <MCPlayerDelegate> *multicastDelegate;
 
@@ -41,14 +41,14 @@
     self = [super init];
     if (self) {
         self.playerView = playerView;
-        self.playerEnvironment = PlayerEnvironmentOnBecomeActiveStatus;
+        self.playerEnvironment = MCPlayerEnvironmentOnBecomeActiveStatus;
     }
     return self;
 }
 
 - (void)updatePlayerView:(MCPlayerView *)playerView {
     self.playerView = playerView;
-    self.playerEnvironment = PlayerEnvironmentOnBecomeActiveStatus;
+    self.playerEnvironment = MCPlayerEnvironmentOnBecomeActiveStatus;
 
     if ([self.multicastDelegate respondsToSelector:@selector(updatePlayView)]) {
         [self.multicastDelegate updatePlayView];
@@ -94,7 +94,7 @@
     return [_player isPlaying];
 }
 
-- (void)setActionAtItemEnd:(PlayerActionAtItemEnd)actionAtItemEnd {
+- (void)setActionAtItemEnd:(MCPlayerActionAtItemEnd)actionAtItemEnd {
     _actionAtItemEnd = actionAtItemEnd;
     _player.actionAtItemEnd = actionAtItemEnd;
 }
@@ -108,7 +108,7 @@
 }
 
 - (BOOL)conditionLimit2CannotPlay {
-    if (self.playerEnvironment == PlayerEnvironmentOnResignActiveStatus) {
+    if (self.playerEnvironment == MCPlayerEnvironmentOnResignActiveStatus) {
         return YES;
     }
     return NO;
@@ -140,34 +140,34 @@
 }
 
 
-- (void)changePlayerState:(PlayerState)playerState {
+- (void)changePlayerState:(MCPlayerState)playerState {
     MCLog(@"PlayerState -> %zd", playerState);
     switch (playerState) {
-        case PlayerStateLoading : {
+        case MCPlayerStateLoading : {
             [self timer];
             [self.multicastDelegate playLoading];
         }
             break;
-        case PlayerStateBuffering: {
+        case MCPlayerStateBuffering: {
             [self.multicastDelegate playBuffer];
         }
             break;
-        case PlayerStateStarting: {
+        case MCPlayerStateStarting: {
             [self.multicastDelegate playStart];
             if (self.playerView) {
                 [self updatePlayerView:self.playerView];
             }
         }
             break;
-        case PlayerStatePlaying: {
+        case MCPlayerStatePlaying: {
             [self.multicastDelegate playPlay];
         }
             break;
-        case PlayerStatePlayEnd: {
+        case MCPlayerStatePlayEnd: {
             [self.multicastDelegate playEnd];
         }
             break;
-        case PlayerStateError: {
+        case MCPlayerStateError: {
             [self.multicastDelegate playError];
             [self fireTimer];
         }
@@ -185,13 +185,13 @@
 - (void)playUrls:(nonnull NSArray<NSString *> *)urls isLiveOptions:(BOOL)isLiveOptions {
     [self destory];
     MCLog(@"[Play]%@", urls);
-    self.playerState = PlayerStateNone;
+    self.playerState = MCPlayerStateNone;
     self.urls = urls;
     _player = ({
         MCPlayer *player;
-        if (self.playerCoreType == PlayerCoreIJKPlayer) {
+        if (self.playerCoreType == MCPlayerCoreIJKPlayer) {
             player = [[MCIJKPlayer alloc] init];
-        } else if (self.playerCoreType == PlayerCoreAVPlayer) {
+        } else if (self.playerCoreType == MCPlayerCoreAVPlayer) {
             player = [[MCAVPlayerx alloc] init];
         } else {
             player = [[MCIJKPlayer alloc] init];
@@ -229,7 +229,7 @@
 
 - (void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary<NSKeyValueChangeKey, id> *)change context:(nullable void *)context {
     if ([keyPath isEqualToString:@"playerState"]) {
-        PlayerState state = (PlayerState) [change[NSKeyValueChangeNewKey] integerValue];
+        MCPlayerState state = (MCPlayerState) [change[NSKeyValueChangeNewKey] integerValue];
         if (state == self.playerState)
             return;
         [self changePlayerState:state];

@@ -38,13 +38,13 @@ NSString *const kMCPlayerHeaderBack = @"kMCPlayerHeaderBack";
     self.styleSizeType = styleSizeType;
     [self.rightView updatePlayerStyle:styleSizeType];
     switch (styleSizeType) {
-        case PlayerStyleSizeClassRegularHalf: {
+        case MCPlayerStyleSizeClassRegularHalf: {
         }
             break;
-        case PlayerStyleSizeClassRegular: {
+        case MCPlayerStyleSizeClassRegular: {
         }
             break;
-        case PlayerStyleSizeClassCompact: {
+        case MCPlayerStyleSizeClassCompact: {
         }
             break;
     }
@@ -66,7 +66,7 @@ NSString *const kMCPlayerHeaderBack = @"kMCPlayerHeaderBack";
     if (CGRectIsEmpty(self.frame))
         return;
     UIEdgeInsets insets = [MCStyle contentInsetII];
-    CGFloat top = (self.styleSizeType == PlayerStyleSizeClassRegularHalf || self.styleSizeType == PlayerStyleSizeClassRegular) ? [MCDeviceUtils xStatusBarHeight] : 0;
+    CGFloat top = (self.styleSizeType == MCPlayerStyleSizeClassRegularHalf || self.styleSizeType == MCPlayerStyleSizeClassRegular) ? [MCDeviceUtils xStatusBarHeight] : 0;
     CGFloat h = CGRectGetHeight(self.frame) - top;
     CGFloat w = h - 2 * insets.top;
     self.backBtn.frame = CGRectMake(0, top, h, h);

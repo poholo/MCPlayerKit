@@ -8,7 +8,7 @@
 
 @class MASViewAttribute;
 
-@protocol PlayerProgressDelegate <NSObject>
+@protocol MCPlayerProgressDelegate <NSObject>
 
 - (void)controlProgressStartDragSlider;
 
@@ -18,10 +18,10 @@
 
 @end
 
-typedef NS_ENUM(NSInteger, SliderStyle) {
-    SliderShowAll,
-    SliderShowSliderProgress,
-    SliderShowProgress
+typedef NS_ENUM(NSInteger, MCSliderStyle) {
+    MCSliderShowAll,
+    MCSliderShowSliderProgress,
+    MCSliderShowProgress
 };
 
 /**
@@ -32,13 +32,13 @@ typedef NS_ENUM(NSInteger, SliderStyle) {
 
 @interface MCPlayerProgress : UIView
 
-@property(nonatomic, weak) id <PlayerProgressDelegate> delegate;
+@property(nonatomic, weak) id <MCPlayerProgressDelegate> delegate;
 
 - (void)updateProgress:(float)progress;
 
 - (void)updateBufferProgress:(float)progress;
 
-- (void)changeSliderStyle:(SliderStyle)sliderStyle;
+- (void)changeSliderStyle:(MCSliderStyle)sliderStyle;
 
 
 @end

@@ -8,7 +8,7 @@
 #import "MCPlayerConfig.h"
 
 
-@protocol PlayerTerminalDelegate <NSObject>
+@protocol MCPlayerTerminalDelegate <NSObject>
 
 @required
 - (void)terminalPlayEndReplay;
@@ -37,8 +37,8 @@
 
 @interface MCPlayerGeneralTerminalView : UIView
 
-@property(nonatomic, weak) id <PlayerTerminalDelegate> delegate;
+@property(nonatomic, weak) id <MCPlayerTerminalDelegate> delegate;
 
-- (void)updatePlayerTerminal:(PlayerTerminalState)state title:(NSString *)videoTitle;
+- (void)updatePlayerTerminal:(MCPlayerTerminalState)state title:(NSString *)videoTitle;
 
 @end

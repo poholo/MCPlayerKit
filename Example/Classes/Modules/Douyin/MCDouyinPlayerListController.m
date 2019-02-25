@@ -77,8 +77,8 @@
 - (MCPlayerKit *)playerKit {
     if (!_playerKit) {
         _playerKit = [[MCPlayerKit alloc] initWithPlayerView:self.playerView];
-        _playerKit.playerCoreType = PlayerCoreIJKPlayer;
-        _playerKit.actionAtItemEnd = PlayerActionAtItemEndCircle;
+        _playerKit.playerCoreType = MCPlayerCoreIJKPlayer;
+        _playerKit.actionAtItemEnd = MCPlayerActionAtItemEndCircle;
     }
     return _playerKit;
 }

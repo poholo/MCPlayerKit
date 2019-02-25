@@ -35,7 +35,7 @@
     return self;
 }
 
-+ (void)showImage:(UIImage *)image message:(NSString *)message mediaNotifyType:(MediaNotifyType)mediaNotifyType inView:(UIView *)view {
++ (void)showImage:(UIImage *)image message:(NSString *)message mediaNotifyType:(MCMediaNotifyType)mediaNotifyType inView:(UIView *)view {
     [[self sharedView] showImage:image message:message mediaNotifyType:mediaNotifyType inView:view duration:0];
 }
 
@@ -59,7 +59,7 @@
 
 }
 
-- (void)showImage:(UIImage *)image message:(NSString *)message mediaNotifyType:(MediaNotifyType)mediaNotifyType inView:(UIView *)view duration:(CGFloat)duration {
+- (void)showImage:(UIImage *)image message:(NSString *)message mediaNotifyType:(MCMediaNotifyType)mediaNotifyType inView:(UIView *)view duration:(CGFloat)duration {
     UIView *containerView = (UIView *) [[self class] sharedView];
     if (!textLabel) {
         textLabel = [[UILabel alloc] init];
@@ -88,10 +88,10 @@
     CGRect labelFrame = CGRectMake(0, containerFrame.size.height - 14 - 20, containerFrame.size.width, 14);
     textLabel.frame = labelFrame;
     switch (mediaNotifyType) {
-        case MediaProgress:
+        case MCMediaProgress:
             textLabel.attributedText = [self getAttributedString:message];
             break;
-        case MediaBrightness:
+        case MCMediaBrightness:
             textLabel.text = message;
             break;
         default:

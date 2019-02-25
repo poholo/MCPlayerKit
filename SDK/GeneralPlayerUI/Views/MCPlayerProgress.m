@@ -14,7 +14,7 @@
 @property(nonatomic, strong) UISlider *slider;
 @property(nonatomic, strong) UIProgressView *progressView;
 @property(nonatomic, strong) UIProgressView *bufferProgressView;
-@property(nonatomic, assign) SliderStyle sliderStyle;
+@property(nonatomic, assign) MCSliderStyle sliderStyle;
 
 @end
 
@@ -68,21 +68,21 @@
     _bufferProgressView.progress = progress;
 }
 
-- (void)changeSliderStyle:(SliderStyle)sliderStyle {
+- (void)changeSliderStyle:(MCSliderStyle)sliderStyle {
     if (_sliderStyle == sliderStyle) return;
     _sliderStyle = sliderStyle;
 
     switch (sliderStyle) {
-        case SliderShowAll: {
+        case MCSliderShowAll: {
             _slider.hidden = NO;
         }
             break;
-        case SliderShowSliderProgress: {
+        case MCSliderShowSliderProgress: {
 
             _slider.hidden = NO;
         }
             break;
-        case SliderShowProgress: {
+        case MCSliderShowProgress: {
 
             _slider.hidden = YES;
         }

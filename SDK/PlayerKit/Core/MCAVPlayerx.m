@@ -5,7 +5,7 @@
 
 #import "MCAVPlayerx.h"
 
-#import "NSURL+Extend.h"
+#import "NSURL+MCExtend.h"
 #import "MCSafeKVOController.h"
 #import "MCSafeNotificationManager.h"
 #import "MCPlayerKitDef.h"
@@ -51,7 +51,7 @@
 
 - (void)playUrls:(nonnull NSArray<NSString *> *)urls {
     self.startTime = CFAbsoluteTimeGetCurrent();
-    self.playerState = PlayerStateLoading;
+    self.playerState = MCPlayerStateLoading;
     [super playUrls:urls];
     for (NSString *url in urls) {
         AVPlayerItem *playerItem = [self playerItemFromPath:url];
@@ -61,7 +61,7 @@
     }
 
     if (self.playerItems.count == 0) {
-        self.playerState = PlayerStateError;
+        self.playerState = MCPlayerStateError;
         return;
     }
     self.player = [AVQueuePlayer queuePlayerWithItems:self.playerItems];
@@ -69,7 +69,7 @@
     [self configurePlayerItemObserver:self.player.currentItem];
     [self preparePlay];
 
-    if (self.actionAtItemEnd == PlayerActionAtItemEndCircle) {
+    if (self.actionAtItemEnd == MCPlayerActionAtItemEndCircle) {
         self.player.actionAtItemEnd = AVPlayerActionAtItemEndPause;
     }
     if ([[UIDevice currentDevice] systemVersion].floatValue >= 10) {
@@ -82,15 +82,15 @@
 - (AVPlayerLayer *)configPlayerLayer:(AVPlayer *)player {
     AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:player];
     switch (self.playerLayerVideoGravity) {
-        case PlayerLayerVideoGravityResizeAspect: {
+        case MCPlayerLayerVideoGravityResizeAspect: {
             playerLayer.videoGravity = AVLayerVideoGravityResizeAspect;
         }
             break;
-        case PlayerLayerVideoGravityResizeAspectFill: {
+        case MCPlayerLayerVideoGravityResizeAspectFill: {
             playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
         }
             break;
-        case PlayerLayerVideoGravityResize: {
+        case MCPlayerLayerVideoGravityResize: {
             playerLayer.videoGravity = AVLayerVideoGravityResize;
         }
             break;
@@ -167,8 +167,8 @@
     return CMTimeGetSeconds(self.player.currentItem.duration);
 }
 
-- (PlayerCoreType)playerType {
-    return PlayerCoreAVPlayer;
+- (MCPlayerCoreType)playerType {
+    return MCPlayerCoreAVPlayer;
 }
 
 - (void)playFinish:(NSNotification *)notification {
@@ -178,23 +178,23 @@
 
 - (void)playError:(NSNotification *)notification {
     if (notification.object != self.player.currentItem) return;
-    self.playerState = PlayerStateError;
+    self.playerState = MCPlayerStateError;
 }
 
 
 - (void)playFinishX {
     switch (self.actionAtItemEnd) {
-        case PlayerActionAtItemEndAdvance : {
-            self.playerState = PlayerStatePlayEnd;
+        case MCPlayerActionAtItemEndAdvance : {
+            self.playerState = MCPlayerStatePlayEnd;
         }
             break;
-        case PlayerActionAtItemEndCircle : {
+        case MCPlayerActionAtItemEndCircle : {
             self.startTime = CFAbsoluteTimeGetCurrent();
-            self.playerState = PlayerStatePlayEnd;
+            self.playerState = MCPlayerStatePlayEnd;
         }
             break;
-        case PlayerActionAtItemEndNone : {
-            self.playerState = PlayerStatePlayEnd;
+        case MCPlayerActionAtItemEndNone : {
+            self.playerState = MCPlayerStatePlayEnd;
         }
             break;
     }
@@ -224,7 +224,7 @@
     return _playerKVOManager;
 }
 
-- (void)setPlayerState:(PlayerState)playerState {
+- (void)setPlayerState:(MCPlayerState)playerState {
     if (_playerState == playerState) return;
     _playerState = playerState;
 }
@@ -260,9 +260,9 @@
 }
 
 - (void)configurePlayerObserver {
-    [self.playerKVOManager safelyAddObserver:self forKeyPath:_k_Player_ExternalPlayBackActive options:NSKeyValueObservingOptionNew context:nil];
-    [self.playerKVOManager safelyAddObserver:self forKeyPath:_k_Player_Status options:NSKeyValueObservingOptionNew context:nil];
-    [self.playerKVOManager safelyAddObserver:self forKeyPath:_k_Player_CurrentItem options:NSKeyValueObservingOptionNew context:nil];
+    [self.playerKVOManager safelyAddObserver:self forKeyPath:_kMC_Player_ExternalPlayBackActive options:NSKeyValueObservingOptionNew context:nil];
+    [self.playerKVOManager safelyAddObserver:self forKeyPath:_kMC_Player_Status options:NSKeyValueObservingOptionNew context:nil];
+    [self.playerKVOManager safelyAddObserver:self forKeyPath:_kMC_Player_CurrentItem options:NSKeyValueObservingOptionNew context:nil];
     [self.notificationManager addObserver:self selector:@selector(playFinish:) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
     [self.notificationManager addObserver:self selector:@selector(playError:) name:AVPlayerItemFailedToPlayToEndTimeNotification object:nil];
 
@@ -271,17 +271,17 @@
         __strong typeof(weakSelf) strongSelf = weakSelf;
         strongSelf.startEndTime = CFAbsoluteTimeGetCurrent();
         MCLog(@"[AVPlayer] %llf startDuration %llf", [strongSelf currentTime], strongSelf.startEndTime - strongSelf.startTime);
-        strongSelf.playerState = PlayerStateStarting;
+        strongSelf.playerState = MCPlayerStateStarting;
     }];
 
 }
 
 - (void)configurePlayerItemObserver:(AVPlayerItem *)playerItem {
     MCSafeKVOController *ijkkvoController = [[MCSafeKVOController alloc] initWithTarget:playerItem];
-    [ijkkvoController safelyAddObserver:self forKeyPath:_k_PlayerItem_Status options:NSKeyValueObservingOptionNew context:nil];
-    [ijkkvoController safelyAddObserver:self forKeyPath:_k_PlayerItem_PlaybackBufferEmpty options:NSKeyValueObservingOptionNew context:nil];
-    [ijkkvoController safelyAddObserver:self forKeyPath:_k_PlayerItem_PlaybackLikelyToKeepUp options:NSKeyValueObservingOptionNew context:nil];
-    [ijkkvoController safelyAddObserver:self forKeyPath:_k_PlayerItem_LoadedTimeRanges options:NSKeyValueObservingOptionNew context:nil];
+    [ijkkvoController safelyAddObserver:self forKeyPath:_kMC_PlayerItem_Status options:NSKeyValueObservingOptionNew context:nil];
+    [ijkkvoController safelyAddObserver:self forKeyPath:_kMC_PlayerItem_PlaybackBufferEmpty options:NSKeyValueObservingOptionNew context:nil];
+    [ijkkvoController safelyAddObserver:self forKeyPath:_kMC_PlayerItem_PlaybackLikelyToKeepUp options:NSKeyValueObservingOptionNew context:nil];
+    [ijkkvoController safelyAddObserver:self forKeyPath:_kMC_PlayerItem_LoadedTimeRanges options:NSKeyValueObservingOptionNew context:nil];
     [self.playerItemsKVOManagers addObject:ijkkvoController];
 
 }
@@ -309,9 +309,9 @@
     if (object == self.player && [keyPath isEqualToString:@"status"]) {
         if (self.player.status == AVPlayerStatusFailed) {
             [self removePlayerItemsObserver];
-            self.playerState = PlayerStateError;
+            self.playerState = MCPlayerStateError;
         } else if (self.player.status == AVPlayerStatusReadyToPlay) {
-            self.playerState = PlayerStateLoading;
+            self.playerState = MCPlayerStateLoading;
             [self configurePlayerItemObserver:self.player.currentItem];
         }
         return;
@@ -325,13 +325,13 @@
 
     if ([keyPath isEqualToString:@"status"]) {
         if (self.player.currentItem.status == AVPlayerStatusFailed) {
-            self.playerState = PlayerStateError;
+            self.playerState = MCPlayerStateError;
         }
 
     } else if ([keyPath isEqualToString:@"playbackBufferEmpty"] && self.player.currentItem.playbackBufferEmpty) {
-        self.playerState = PlayerStateBuffering;
+        self.playerState = MCPlayerStateBuffering;
     } else if ([keyPath isEqualToString:@"playbackLikelyToKeepUp"] && self.player.currentItem.playbackLikelyToKeepUp) {
-        self.playerState = PlayerStatePlaying;
+        self.playerState = MCPlayerStatePlaying;
 
     } else if ([keyPath isEqualToString:@"loadedTimeRanges"]) {
 //        MCLog(@"[MCPlayer] loadedTimeRanges");

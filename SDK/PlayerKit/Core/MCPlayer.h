@@ -8,18 +8,18 @@
 #import "MCPlayerConfig.h"
 
 @interface MCPlayer : NSObject {
-    PlayerState _playerState;
+    MCPlayerState _playerState;
     CGFloat _cacheProgress;
     CGFloat _rate;
     BOOL _enableVideoToolBox; // default NO
 
 }
 
-@property(nonatomic, assign) PlayerState playerState;
+@property(nonatomic, assign) MCPlayerState playerState;
 @property(nonatomic, assign) CGFloat cacheProgress; ///< 0.0 ~ 1.0
 @property(nonatomic, assign) CGFloat rate;
-@property(nonatomic, assign) PlayerActionAtItemEnd actionAtItemEnd;
-@property(nonatomic, assign) PlayerLayerVideoGravity playerLayerVideoGravity;
+@property(nonatomic, assign) MCPlayerActionAtItemEnd actionAtItemEnd;
+@property(nonatomic, assign) MCPlayerLayerVideoGravity playerLayerVideoGravity;
 @property(nonatomic, assign) BOOL notNeedSetProbesize;
 
 @property(nonatomic, assign) CFAbsoluteTime startTime;
@@ -39,7 +39,7 @@
 
 - (nonnull UIView *)playerView;
 
-- (PlayerCoreType)playerType;
+- (MCPlayerCoreType)playerType;
 
 #pragma mark - control
 

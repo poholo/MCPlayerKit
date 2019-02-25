@@ -10,7 +10,7 @@
 
 #import "MCPlayerKitDef.h"
 #import "MCMediaNotify.h"
-#import "NSNumber+Extend.h"
+#import "NSNumber+MCExtend.h"
 
 NSString *const kMCTouchTapAction = @"kMCTouchTapAction";
 NSString *const kMCTouchBegin = @"kMCTouchBegin";
@@ -109,14 +109,14 @@ NSString *const kMCTouchDurationAction = @"kMCTouchDurationAction";
     //滑动轨迹与水平线夹角在正负45度，都认为是水平滑动，超过45度，就认为是垂直滚动。
     //fabs计算|x|, 当x不为负时返回x，否则返回-x
     if ((fabs(panTransPoint.y) / fabs(panTransPoint.x)) <= 1) {
-        if (fabs(panTransPoint.x) < _k_AV_offsetChoseDirection) {
+        if (fabs(panTransPoint.x) < _kMC_AV_offsetChoseDirection) {
             return;
         }
         // 判断角度     tan(45),这里需要通过正负来判断手势方向
         //进度
         [self resetVideorogressWithPanTransPoint:panTransPoint];
     } else {
-        if (fabs(panTransPoint.y) < _k_AV_offsetChoseDirection) {
+        if (fabs(panTransPoint.y) < _kMC_AV_offsetChoseDirection) {
             return;
         }
         //缓存列表直接打开横屏 获取宽度正常 / 竖屏下获取宽度正常 ; 竖屏切换到横屏 获取宽度异常
@@ -146,7 +146,7 @@ NSString *const kMCTouchDurationAction = @"kMCTouchDurationAction";
         brightness = MAX(0, [UIScreen mainScreen].brightness - 0.0001 * panTransPoint.y);
     }
     [UIScreen mainScreen].brightness = brightness;
-    [MCMediaNotify showImage:[MCStyle customImage:@"player_control_0"] message:[NSString stringWithFormat:@"%.f%%", brightness * 100] mediaNotifyType:MediaBrightness inView:self];
+    [MCMediaNotify showImage:[MCStyle customImage:@"player_control_0"] message:[NSString stringWithFormat:@"%.f%%", brightness * 100] mediaNotifyType:MCMediaBrightness inView:self];
     _isChangingBright = YES;
 }
 
@@ -162,10 +162,10 @@ NSString *const kMCTouchDurationAction = @"kMCTouchDurationAction";
     if (panTransPoint.x < 0) {
         //后退
         _timeSliding = MAX(_timeSliding, 0);
-        [MCMediaNotify showImage:[MCStyle customImage:@"player_control_2"] message:[NSString stringWithFormat:@"%@/%@", [@(_timeSliding) hhMMss], [@(duration) hhMMss]] mediaNotifyType:MediaProgress inView:self];
+        [MCMediaNotify showImage:[MCStyle customImage:@"player_control_2"] message:[NSString stringWithFormat:@"%@/%@", [@(_timeSliding) hhMMss], [@(duration) hhMMss]] mediaNotifyType:MCMediaProgress inView:self];
     } else {
         _timeSliding = MIN(_timeSliding, duration);//video_forward
-        [MCMediaNotify showImage:[MCStyle customImage:@"player_control_1"] message:[NSString stringWithFormat:@"%@/%@", [@(_timeSliding) hhMMss], [@(duration) hhMMss]] mediaNotifyType:MediaProgress inView:self];
+        [MCMediaNotify showImage:[MCStyle customImage:@"player_control_1"] message:[NSString stringWithFormat:@"%@/%@", [@(_timeSliding) hhMMss], [@(duration) hhMMss]] mediaNotifyType:MCMediaProgress inView:self];
     }
     _isWillSeeking = YES;
 }

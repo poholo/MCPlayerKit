@@ -46,8 +46,8 @@
 - (void)resizeViews {
     CGRect bFrame = CGRectZero;
     for (MCPlayerCommonButton *cview in self.customViews) {
-        if ((self.styleSizeType == PlayerStyleSizeClassRegularHalf && cview.showHalfScreen)
-                || (self.styleSizeType != PlayerStyleSizeClassRegularHalf && cview.showFullScreen)) {
+        if ((self.styleSizeType == MCPlayerStyleSizeClassRegularHalf && cview.showHalfScreen)
+                || (self.styleSizeType != MCPlayerStyleSizeClassRegularHalf && cview.showFullScreen)) {
             CGFloat top = (CGRectGetHeight(self.frame) - cview.size.height) / 2.0f;
             cview.frame = CGRectMake(CGRectGetMaxX(bFrame) + [MCStyle contentInsetIII].left, top, cview.size.width, cview.size.height);
             bFrame = cview.frame;

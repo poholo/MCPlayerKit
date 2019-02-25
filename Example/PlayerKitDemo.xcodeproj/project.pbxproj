@@ -63,6 +63,7 @@
 		25A536D81FDA9DFA002511DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25A536D71FDA9DFA002511DF /* Assets.xcassets */; };
 		25A536DB1FDA9DFA002511DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25A536D91FDA9DFA002511DF /* LaunchScreen.storyboard */; };
 		25A536DE1FDA9DFA002511DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A536DD1FDA9DFA002511DF /* main.m */; };
+		25B1791B22212A2F00381793 /* VideoList.json in Resources */ = {isa = PBXBuildFile; fileRef = 25B1791A22212A2F00381793 /* VideoList.json */; };
 		3B3F235F10699A53D5F36D28 /* libPods-PlayerKitDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E35018D0726C1C19647408 /* libPods-PlayerKitDemo.a */; };
 /* End PBXBuildFile section */
 
@@ -179,6 +180,7 @@
 		25A536DA1FDA9DFA002511DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		25A536DC1FDA9DFA002511DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		25A536DD1FDA9DFA002511DF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		25B1791A22212A2F00381793 /* VideoList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = VideoList.json; sourceTree = "<group>"; };
 		25DE19561FE3EE1A005CD97C /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
 		658AF439C28156EB4B42FE20 /* Pods-PlayerKitDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlayerKitDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PlayerKitDemo/Pods-PlayerKitDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		B00A8E2810ED2A8E4D854DF1 /* Pods-PlayerKitDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlayerKitDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-PlayerKitDemo/Pods-PlayerKitDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 		250F1E981FFCE6A300F564AD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				25B1791A22212A2F00381793 /* VideoList.json */,
 				250F1E991FFCE6A300F564AD /* Player.xcassets */,
 			);
 			path = Resources;
@@ -546,6 +549,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				25436B0B21E0995700036057 /* CustomPlayerFont.json in Resources */,
+				25B1791B22212A2F00381793 /* VideoList.json in Resources */,
 				25A536DB1FDA9DFA002511DF /* LaunchScreen.storyboard in Resources */,
 				250F1E9A1FFCE6A300F564AD /* Player.xcassets in Resources */,
 				25436B0D21E0995700036057 /* NormalPlayer.xcassets in Resources */,

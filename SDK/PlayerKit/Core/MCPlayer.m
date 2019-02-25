@@ -15,7 +15,7 @@
     self = [super init];
     if (self) {
         self.rate = 1.0f;
-        self.playerState = PlayerStateNone;
+        self.playerState = MCPlayerStateNone;
     }
     return self;
 }
@@ -49,7 +49,7 @@
 }
 
 - (void)preparePlay {
-    self.playerState = PlayerStateLoading;
+    self.playerState = MCPlayerStateLoading;
 }
 
 - (void)play {
@@ -98,8 +98,8 @@
     return nil;
 }
 
-- (PlayerCoreType)playerType {
-    return PlayerCoreNone;
+- (MCPlayerCoreType)playerType {
+    return MCPlayerCoreNone;
 }
 
 - (void)cancelLoading {

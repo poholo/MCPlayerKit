@@ -3,10 +3,10 @@
 // Copyright (c) 2019 majiancheng. All rights reserved.
 //
 
-#import "NSNumber+Extend.h"
+#import "NSNumber+MCExtend.h"
 
 
-@implementation NSNumber (Extend)
+@implementation NSNumber (MCExtend)
 
 - (NSString *)hhMMss {
     static NSDateFormatter *formatter = nil;

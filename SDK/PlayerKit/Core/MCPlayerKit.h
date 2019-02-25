@@ -38,10 +38,10 @@
     MCPlayer *_player;
 }
 
-@property(nonatomic, assign) PlayerEnvironment playerEnvironment;
-@property(nonatomic, assign) PlayerCoreType playerCoreType; ///< default IJKPlayer
-@property(nonatomic, assign) PlayerActionAtItemEnd actionAtItemEnd;
-@property(nonatomic, assign) PlayerLayerVideoGravity playerLayerVideoGravity;
+@property(nonatomic, assign) MCPlayerEnvironment playerEnvironment;
+@property(nonatomic, assign) MCPlayerCoreType playerCoreType; ///< default IJKPlayer
+@property(nonatomic, assign) MCPlayerActionAtItemEnd actionAtItemEnd;
+@property(nonatomic, assign) MCPlayerLayerVideoGravity playerLayerVideoGravity;
 @property(nonatomic, assign) BOOL notNeedSetProbesize;
 
 - (instancetype)initWithPlayerView:(MCPlayerView *)playerView;

@@ -91,7 +91,7 @@
 - (MCPlayerKit *)playerKit {
     if (!_playerKit) {
         _playerKit = [[MCPlayerKit alloc] initWithPlayerView:self.playerView];
-        _playerKit.playerCoreType = PlayerCoreAVPlayer;
+        _playerKit.playerCoreType = MCPlayerCoreAVPlayer;
         [_playerKit addDelegate:self];
     }
     return _playerKit;

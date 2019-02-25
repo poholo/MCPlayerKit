@@ -10,15 +10,15 @@
 
 
 //////////////////////AVPlayerKVO///////////////////////////////////////////
-NSString *const _k_Player_ExternalPlayBackActive = @"externalPlaybackActive";
-NSString *const _k_Player_Status = @"status";
-NSString *const _k_Player_CurrentItem = @"currentItem";
+NSString *const _kMC_Player_ExternalPlayBackActive = @"externalPlaybackActive";
+NSString *const _kMC_Player_Status = @"status";
+NSString *const _kMC_Player_CurrentItem = @"currentItem";
 
 //////////////////////AVPlayerItem//////////////////////////////////////////////////////
-NSString *const _k_PlayerItem_Status = @"status";
-NSString *const _k_PlayerItem_PlaybackBufferEmpty = @"playbackBufferEmpty";
-NSString *const _k_PlayerItem_PlaybackLikelyToKeepUp = @"playbackLikelyToKeepUp";
-NSString *const _k_PlayerItem_LoadedTimeRanges = @"loadedTimeRanges";
+NSString *const _kMC_PlayerItem_Status = @"status";
+NSString *const _kMC_PlayerItem_PlaybackBufferEmpty = @"playbackBufferEmpty";
+NSString *const _kMC_PlayerItem_PlaybackLikelyToKeepUp = @"playbackLikelyToKeepUp";
+NSString *const _kMC_PlayerItem_LoadedTimeRanges = @"loadedTimeRanges";
 
 @implementation MCPlayerConfig
 

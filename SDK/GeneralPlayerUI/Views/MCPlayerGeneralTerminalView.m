@@ -23,7 +23,7 @@ typedef NS_ENUM(NSInteger, PTAirPlayEvent) {
 @property(nonatomic, strong) UILabel *videoTitle;
 @property(nonatomic, strong) UILabel *mentionInfo;
 @property(nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
-@property(nonatomic, assign) PlayerTerminalState playerSate;
+@property(nonatomic, assign) MCPlayerTerminalState playerSate;
 
 @property(nonatomic, strong) UIButton *quitAirPlayBtn;
 @property(nonatomic, strong) UIButton *volumeLargeBtn;
@@ -183,40 +183,40 @@ typedef NS_ENUM(NSInteger, PTAirPlayEvent) {
     _playPauseBtn.hidden = NO;
 }
 
-- (void)updatePlayerTerminal:(PlayerTerminalState)state title:(NSString *)videoTitle {
+- (void)updatePlayerTerminal:(MCPlayerTerminalState)state title:(NSString *)videoTitle {
 
     _videoTitle.text = videoTitle;
     [self showNormalStyle];
     switch (state) {
-        case PlayerTerminalPlayEnd    : {
-            _mentionInfo.text = _k_AV_TerminalMentionPLayerStatePlayEnd;
+        case MCPlayerTerminalPlayEnd    : {
+            _mentionInfo.text = _kMC_AV_TerminalMentionPlayerStatePlayEnd;
             [self tapGestureRecognizer];
         }
             break;
 
-        case PlayerTerminal3GUnenable : {
-            _mentionInfo.text = _k_AV_TerminalMentionPlayerState3GUnenable;
+        case MCPlayerTerminal3GUnenable : {
+            _mentionInfo.text = _kMC_AV_TerminalMentionPlayerState3GUnenable;
             _mentionInfo.textColor = [MCColor custom:@"player_terminal_mentioncolor_alert"];
             [self tapGestureRecognizer];
         }
             break;
 
-        case PlayerTerminalNetError   : {
-            _mentionInfo.text = _k_AV_TerminalMentionPlayerStateNetError;
+        case MCPlayerTerminalNetError   : {
+            _mentionInfo.text = _kMC_AV_TerminalMentionPlayerStateNetError;
             _mentionInfo.textColor = [MCColor custom:@"player_terminal_mentioncolor_alert"];
             [self tapGestureRecognizer];
         }
             break;
 
-        case PlayerTerminalUrlError   : {
-            _mentionInfo.text = _k_AV_TerminalMentionPlayerStateUrlError;
+        case MCPlayerTerminalUrlError   : {
+            _mentionInfo.text = _kMC_AV_TerminalMentionPlayerStateUrlError;
             _mentionInfo.textColor = [MCColor custom:@"player_terminal_mentioncolor_alert"];
             [self tapGestureRecognizer];
         }
             break;
 
-        case PlayerTerminalError      : {
-            _mentionInfo.text = _k_AV_TerminalMentionPlayerStateError;
+        case MCPlayerTerminalError      : {
+            _mentionInfo.text = _kMC_AV_TerminalMentionPlayerStateError;
             _mentionInfo.textColor = [MCColor custom:@"player_terminal_mentioncolor_alert"];
             [self tapGestureRecognizer];
         }
@@ -258,14 +258,14 @@ typedef NS_ENUM(NSInteger, PTAirPlayEvent) {
 - (void)tapClick:(UITapGestureRecognizer *)tap {
     if (_delegate == nil) return;
     switch (_playerSate) {
-        case PlayerTerminalPlayEnd     : {
+        case MCPlayerTerminalPlayEnd     : {
             if ([_delegate respondsToSelector:@selector(terminalPlayEndReplay)]) {
                 [_delegate terminalPlayEndReplay];
             }
         }
             break;
 
-        case PlayerTerminal3GUnenable : {
+        case MCPlayerTerminal3GUnenable : {
             if ([_delegate respondsToSelector:@selector(terminal3GCanContinuePlay)]) {
 
                 [_delegate terminal3GCanContinuePlay];
@@ -273,21 +273,21 @@ typedef NS_ENUM(NSInteger, PTAirPlayEvent) {
         }
             break;
 
-        case PlayerTerminalNetError   : {
+        case MCPlayerTerminalNetError   : {
             if ([_delegate respondsToSelector:@selector(terminalNetErrorRetry)]) {
                 [_delegate terminalNetErrorRetry];
             }
         }
             break;
 
-        case PlayerTerminalUrlError   : {
+        case MCPlayerTerminalUrlError   : {
             if ([_delegate respondsToSelector:@selector(terminalUrlErrorRetry)]) {
                 [_delegate terminalUrlErrorRetry];
             }
         }
             break;
 
-        case PlayerTerminalError      : {
+        case MCPlayerTerminalError      : {
             if ([_delegate respondsToSelector:@selector(terminalErrorRetry)]) {
                 [_delegate terminalErrorRetry];
             }

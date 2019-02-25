@@ -3,12 +3,12 @@
 // Copyright (c) 2017 majiancheng. All rights reserved.
 //
 
-#import "NSURL+Extend.h"
+#import "NSURL+MCExtend.h"
 
 #import <UIKit/UIKit.h>
 
 
-@implementation NSURL (Extend)
+@implementation NSURL (MCExtend)
 
 + (NSURL *)source4URI:(NSString *)uri {
     if (uri.length == 0) {
