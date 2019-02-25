@@ -5,12 +5,12 @@
 
 #import "MCSafeKVOController.h"
 
-@interface KVOEntry : NSObject
+@interface MCKVOEntry : NSObject
 @property(nonatomic, weak) NSObject *observer;
 @property(nonatomic, strong) NSString *keyPath;
 @end
 
-@implementation KVOEntry
+@implementation MCKVOEntry
 @synthesize observer;
 @synthesize keyPath;
 @end
@@ -50,7 +50,7 @@
                     options:options
                     context:context];
 
-        KVOEntry *entry = [[KVOEntry alloc] init];
+        MCKVOEntry *entry = [[MCKVOEntry alloc] init];
         entry.observer = observer;
         entry.keyPath = keyPath;
         [_observerArray addObject:entry];
@@ -87,7 +87,7 @@
         return;
 
     [_observerArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        KVOEntry *entry = obj;
+        MCKVOEntry *entry = obj;
         if (entry == nil)
             return;
 
@@ -110,7 +110,7 @@
                    forKeyPath:(NSString *)keyPath {
     __block NSInteger foundIndex = -1;
     [_observerArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        KVOEntry *entry = (KVOEntry *) obj;
+        MCKVOEntry *entry = (MCKVOEntry *) obj;
         if (entry.observer == observer &&
                 [entry.keyPath isEqualToString:keyPath]) {
             foundIndex = idx;
