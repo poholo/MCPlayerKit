@@ -233,7 +233,6 @@
         if (state == self.playerState)
             return;
         [self changePlayerState:state];
-        self.playerState = state;
     }
 }
 
@@ -245,6 +244,5 @@
     }
     return _multicastDelegate;
 }
-
 
 @end

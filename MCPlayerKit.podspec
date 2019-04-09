@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "MCPlayerKit"
-  s.version      = "0.1.2"
+  s.version      = "0.1.3"
   s.summary      = "MCPlayerKit is iOS Player, PlayerCoreType: AVPlayer can use play some video, IJKPlayer type can play video, Live ..."
   s.homepage     = "https://github.com/poholo/PlayerKit"
   s.license          = { :type => "MIT", :file => "LICENSE" }
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
     core.source_files = 'SDK/PlayerKit/*.{h,m,mm}',
                         'SDK/PlayerKit/**/*.{h,m,mm}'
     core.public_header_files = 'SDK/PlayerKit/*.h'
-    core.dependency 'IJKMediaFramework'
+    core.dependency 'MCIJKPlayer'
     core.dependency 'GCDMulticastDelegate'
   end
 
