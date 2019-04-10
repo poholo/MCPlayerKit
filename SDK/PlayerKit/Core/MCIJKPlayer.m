@@ -220,21 +220,21 @@
 - (void)configureDefaultPlayer:(IJKFFMoviePlayerController *)player {
     NSAssert([NSThread isMainThread], @"not main thread");
 
-//    player.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-//    switch (self.playerLayerVideoGravity) {
-//        case MCPlayerLayerVideoGravityResizeAspect: {
-//            player.scalingMode = IJKMPMovieScalingModeAspectFit;
-//        }
-//            break;
-//        case MCPlayerLayerVideoGravityResizeAspectFill: {
-//            player.scalingMode = IJKMPMovieScalingModeAspectFill;
-//        }
-//            break;
-//        case MCPlayerLayerVideoGravityResize: {
-//            player.scalingMode = IJKMPMovieScalingModeFill;
-//        }
-//            break;
-//    }
+    player.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    switch (self.playerLayerVideoGravity) {
+        case MCPlayerLayerVideoGravityResizeAspect: {
+            player.scalingMode = IJKMPMovieScalingModeAspectFit;
+        }
+            break;
+        case MCPlayerLayerVideoGravityResizeAspectFill: {
+            player.scalingMode = IJKMPMovieScalingModeAspectFill;
+        }
+            break;
+        case MCPlayerLayerVideoGravityResize: {
+            player.scalingMode = IJKMPMovieScalingModeFill;
+        }
+            break;
+    }
     player.shouldAutoplay = YES;
     player.view.userInteractionEnabled = NO;
 }

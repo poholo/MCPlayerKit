@@ -82,7 +82,7 @@
 
 /* Begin PBXFileReference section */
 		08E35018D0726C1C19647408 /* libPods-PlayerKitDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PlayerKitDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1A666DE1C95A6C8406800B42 /* MCPlayerKit.podspec */ = {isa = PBXFileReference; lastKnownFileType = file.podspec; name = MCPlayerKit.podspec; path = ../MCPlayerKit.podspec; sourceTree = "<group>"; };
+		1A666DE1C95A6C8406800B42 /* MCPlayerKit.podspec */ = {isa = PBXFileReference; lastKnownFileType = file.podspec; name = MCPlayerKit.podspec; path = ../MCPlayerKit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		1A666E6D57BF2501FF33F988 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		250A49C81FE3DD2200F56C17 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		250A49CA1FE3DD4400F56C17 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -500,7 +500,6 @@
 				25A536C81FDA9DFA002511DF /* Frameworks */,
 				25A536C91FDA9DFA002511DF /* Resources */,
 				25B2FAA31FE11EA900AFE8AC /* Embed Frameworks */,
-				7B36B8090F76D612E86610D6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -579,28 +578,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7B36B8090F76D612E86610D6 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PlayerKitDemo/Pods-PlayerKitDemo-frameworks.sh",
-				"${PODS_ROOT}/MCIJKPlayer/SDK/IJKMediaFramework.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IJKMediaFramework.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PlayerKitDemo/Pods-PlayerKitDemo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
