@@ -167,6 +167,24 @@ TODO:
     具体参照MCPlayerCommonButton.h 注释
 ```
 
+#### 2.2.2 释放问题
+```objectivec
+self.playerView.outEventCallBack = ^id(NSString *action, id value) {
+    __strong typeof(weakSelf) strongSelf = weakSelf;
+    if([action isEqualToString:kMCPlayerDestory]) {
+        if(strongSelf.playerView) {
+            [strongSelf.playerView removeFromSuperview];
+            strongSelf.playerView = nil;
+        }
+        if(strongSelf.playerKit) {
+            [strongSelf.playerKit destory];
+            strongSelf.playerKit = nil;
+        }
+    }
+    return nil;
+};
+```
+
 
 ### 2.3 Screenshot
 ![MCPlayerKit_GeneralPlayerUI](./Screenshot/MCPlayerKit.gif)
