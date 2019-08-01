@@ -8,6 +8,7 @@
 #import <MCStyle/MCStyleDef.h>
 
 #import "MCPlayerViewConfig.h"
+#import "MCPlayerkitDef.h"
 
 
 typedef NS_ENUM(NSInteger, PTAirPlayEvent) {
@@ -33,6 +34,10 @@ typedef NS_ENUM(NSInteger, PTAirPlayEvent) {
 @end
 
 @implementation MCPlayerGeneralTerminalView
+
+- (void)dealloc {
+    MCLog(@"[PK]%@ dealloc", NSStringFromClass(self.class));
+}
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {

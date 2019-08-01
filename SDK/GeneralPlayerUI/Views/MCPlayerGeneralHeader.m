@@ -9,6 +9,8 @@
 
 #import <MCStyle/MCStyleDef.h>
 
+#import "MCPlayerKitDef.h"
+
 NSString *const kMCPlayerHeaderBack = @"kMCPlayerHeaderBack";
 
 @interface MCPlayerGeneralHeader ()
@@ -24,6 +26,10 @@ NSString *const kMCPlayerHeaderBack = @"kMCPlayerHeaderBack";
 
 
 @implementation MCPlayerGeneralHeader
+
+- (void)dealloc {
+    MCLog(@"[PK]%@ dealloc", NSStringFromClass(self.class));
+}
 
 - (instancetype)init {
     self = [super init];

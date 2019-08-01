@@ -46,7 +46,7 @@
 
     [self.dataVM refresh];
     [self.tableView reloadData];
-    [self.playerKit playUrls:@[@"http://aliuwmp3.changba.com/userdata/video/45F6BD5E445E4C029C33DC5901307461.mp4"]];
+    [self.playerKit playUrls:@[@"https://api.huoshan.com/hotsoon/item/video/_playback/?video_id=bea0903abb954f58ac0e17c21226a3c3&line=1&app_id=1115&quality=720p"]];
 
 }
 

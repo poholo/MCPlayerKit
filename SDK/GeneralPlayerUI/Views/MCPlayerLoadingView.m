@@ -10,6 +10,7 @@
 #import <MCStyle/MCStyleDef.h>
 
 #import "MCCircleProgress.h"
+#import "MCPlayerKitDef.h"
 
 @interface MCPlayerLoadingView ()
 
@@ -23,6 +24,7 @@
 @implementation MCPlayerLoadingView
 
 - (void)dealloc {
+    MCLog(@"[PK]%@ dealloc", NSStringFromClass(self.class));
     [self disposeHUD];
 }
 

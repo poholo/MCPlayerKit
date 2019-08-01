@@ -8,8 +8,13 @@
 
 #import "MCPlayerView.h"
 
+#import "MCPlayerKitDef.h"
 
 @implementation MCPlayerView
+
+- (void)dealloc {
+    MCLog(@"[PK]%@ dealloc", NSStringFromClass(self.class));
+}
 
 - (instancetype)init {
     self = [super init];

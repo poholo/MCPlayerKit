@@ -33,7 +33,7 @@
 
 - (void)dealloc {
     [self releaseSpace];
-    MCLog(@"%@--%s--%d dealloc", [self class], __func__, __LINE__);
+    MCLog(@"%@", [self class]);
 }
 
 - (void)releaseSpace {

@@ -11,6 +11,7 @@
 #import "MCPlayerProgress.h"
 #import "NSNumber+MCExtend.h"
 #import "MCCustomActionView.h"
+#import "MCPlayerKitDef.h"
 
 NSString *const kMCPlayer2HalfScreenAction = @"kMCPlayer2HalfScreenAction";
 NSString *const kMCPlayer2FullScreenAction = @"kMCPlayer2FullScreenAction";
@@ -35,6 +36,9 @@ NSString *const kMCControlProgressEndDragSlider = @"kMCControlProgressEndDragSli
 @end
 
 @implementation MCPlayerGeneralFooter
+- (void)dealloc {
+    MCLog(@"[PK]%@ dealloc", NSStringFromClass(self.class));
+}
 
 - (instancetype)init {
     self = [super init];

@@ -23,6 +23,7 @@ extern NSString *const kMCTouchDurationAction;
 extern NSString *const kMCControlProgressStartDragSlider;
 extern NSString *const kMCDragProgressToProgress;
 extern NSString *const kMCControlProgressEndDragSlider;
+extern NSString *const kMCPlayerDestory;
 
 typedef NS_ENUM(NSInteger, MCPlayerStyleSizeType) {
     MCPlayerStyleSizeClassRegularHalf,   ///<  16:9 半屏幕
@@ -41,7 +42,7 @@ typedef NS_ENUM(NSInteger, MCPlayerStyleSizeType) {
 @property(nonatomic, readonly) MCPlayerGeneralFooter *bottomView;
 
 
-@property(nonatomic, copy) MCPlayerNormalViewEventCallBack eventCallBack;
+@property(nonatomic, copy) MCPlayerNormalViewEventCallBack outEventCallBack;
 @property(nonatomic, copy) NSString *(^retryPlayUrl)(void); ///< 获取url尝试重新播放
 @property(nonatomic, copy) BOOL (^canShowTerminalCallBack)(void);
 
@@ -59,7 +60,7 @@ typedef NS_ENUM(NSInteger, MCPlayerStyleSizeType) {
 
 - (BOOL)isLock;
 
-- (void)updateAction:(MCPlayerKit *)playerKit;
+- (void)updateAction:(__weak MCPlayerKit *)playerKit;
 
 - (void)updatePlayerPicture:(NSString *)url;
 

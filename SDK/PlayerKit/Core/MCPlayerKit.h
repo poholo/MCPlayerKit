@@ -44,7 +44,7 @@
 @property(nonatomic, assign) MCPlayerLayerVideoGravity playerLayerVideoGravity;
 @property(nonatomic, assign) BOOL notNeedSetProbesize;
 
-- (instancetype)initWithPlayerView:(MCPlayerView *)playerView;
+- (instancetype)initWithPlayerView:(__weak MCPlayerView *)playerView;
 
 - (void)updatePlayerView:(MCPlayerView *)playerView;
 

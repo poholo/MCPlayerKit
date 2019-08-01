@@ -16,6 +16,9 @@
 #import "MCPlayerProgress.h"
 #import "MCDeviceUtils.h"
 #import "MCPlayerGeneralTerminalView.h"
+#import "MCPlayerKitDef.h"
+
+NSString *const kMCPlayerDestory = @"kMCPlayerDestory";
 
 @interface MCPlayerGeneralView () <MCPlayerDelegate, MCPlayerTerminalDelegate>
 
@@ -35,9 +38,59 @@
 @property(nonatomic, weak) MCPlayerKit *playerKit;
 
 
+@property(nonatomic, copy) MCPlayerNormalViewEventCallBack eventCallBack;
+
 @end
 
 @implementation MCPlayerGeneralView
+
+- (void)dealloc {
+    [self freeSpace];
+    MCLog(@"[PK]%@ dealloc", NSStringFromClass(self.class));
+}
+
+- (void)freeSpace {
+    if(_playerKit) {
+        [_playerKit removeDelegate:self];
+        [_playerKit destory];
+        _playerKit = nil;
+    }
+    if(_touchView) {
+        [_touchView removeFromSuperview];
+        _touchView.callBack = nil;
+        _touchView = nil;
+    }
+    if(_playerView) {
+        [_playerView removeFromSuperview];
+        _playerView = nil;
+    }
+    if(_loadingView) {
+        [_loadingView removeFromSuperview];
+        _loadingView = nil;
+    }
+    if(_topView) {
+        [_topView removeFromSuperview];
+        _topView.callBack = nil;
+        _topView = nil;
+    }
+    
+    if(_bottomView) {
+        [_bottomView removeFromSuperview];
+        _bottomView.callBack = nil;
+        _bottomView = nil;
+    }
+    
+    if(_terminalView) {
+        [_terminalView removeFromSuperview];
+        _terminalView.delegate = nil;
+        _terminalView = nil;
+    }
+    
+    self.eventCallBack = nil;
+    self.retryPlayUrl = nil;
+    self.canShowTerminalCallBack = nil;
+    [self removeFromSuperview];
+}
 
 - (instancetype)init {
     self = [super init];
@@ -127,7 +180,7 @@
     [self.bottomView updateBufferProgress:progress];
 }
 
-- (void)updateAction:(MCPlayerKit *)playerKit {
+- (void)updateAction:(__weak MCPlayerKit *)playerKit {
     self.playerKit = playerKit;
     [self.playerKit addDelegate:self];
 }
@@ -377,6 +430,10 @@
         } else if (viewController.navigationController) {
             navigationController = viewController.navigationController;
         }
+        if(self.outEventCallBack) {
+            self.outEventCallBack(kMCPlayerDestory, nil);
+        }
+        [self freeSpace];
         if (navigationController) {
             [navigationController popViewControllerAnimated:YES];
         } else {

@@ -33,11 +33,15 @@
 @implementation MCPlayerKit
 
 - (void)dealloc {
-    [self.multicastDelegate removeAllDelegates];
+    if(_multicastDelegate) {
+        [_multicastDelegate removeAllDelegates];
+        _multicastDelegate = nil;
+    }
     [self destory];
+    MCLog(@"[PK]%@ dealloc", NSStringFromClass(self.class));
 }
 
-- (instancetype)initWithPlayerView:(MCPlayerView *)playerView {
+- (instancetype)initWithPlayerView:(__weak MCPlayerView *)playerView {
     self = [super init];
     if (self) {
         self.playerView = playerView;
@@ -71,6 +75,7 @@
 
 - (void)destory {
     [self fireTimer];
+    
     if (_player) {
         [_player removeObserver:self forKeyPath:@"playerState"];
         [_player destory];
