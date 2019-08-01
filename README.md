@@ -172,17 +172,23 @@ TODO:
 self.playerView.outEventCallBack = ^id(NSString *action, id value) {
     __strong typeof(weakSelf) strongSelf = weakSelf;
     if([action isEqualToString:kMCPlayerDestory]) {
-        if(strongSelf.playerView) {
-            [strongSelf.playerView removeFromSuperview];
-            strongSelf.playerView = nil;
-        }
-        if(strongSelf.playerKit) {
-            [strongSelf.playerKit destory];
-            strongSelf.playerKit = nil;
-        }
+        [strongSelf destory];
     }
     return nil;
 };
+
+- (void)destory {
+    if(_playerView) {
+        [_playerView removeFromSuperview];
+        _playerView = nil;
+    }
+    if(_playerKit) {
+        [_playerKit destory];
+        _playerKit = nil;
+    }
+}
+
+
 ```
 
 
