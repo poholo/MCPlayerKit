@@ -215,6 +215,10 @@ Commen ------------------- 通用类
 
 此项目会作为长期维护项目，接受各位指导。
 
+## support
+Tanks JetBrains AppCode
+[Download JetBrains Develop Tools](https://www.jetbrains.com/?from=MCPlayerKit)
+
 ## License
 
 These PlayerKit are available under the MIT license.

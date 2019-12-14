@@ -67,6 +67,23 @@
 		3B3F235F10699A53D5F36D28 /* libPods-PlayerKitDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E35018D0726C1C19647408 /* libPods-PlayerKitDemo.a */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		2528CE24231E03EF00CF5F9F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2528CE20231E03EF00CF5F9F /* IJKMediaPlayer.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E654EA8A1B6B27E600B0F2D0;
+			remoteInfo = IJKMediaFramework;
+		};
+		2528CE27231E044500CF5F9F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2528CE20231E03EF00CF5F9F /* IJKMediaPlayer.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E654EA891B6B27E600B0F2D0;
+			remoteInfo = IJKMediaFramework;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		25B2FAA31FE11EA900AFE8AC /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -99,6 +116,7 @@
 		250A49E21FE3DF9900F56C17 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		250A49E41FE3DFD400F56C17 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		250F1E991FFCE6A300F564AD /* Player.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Player.xcassets; sourceTree = "<group>"; };
+		2528CE20231E03EF00CF5F9F /* IJKMediaPlayer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IJKMediaPlayer.xcodeproj; path = ../../ijkplayer/ios/IJKMediaPlayer/IJKMediaPlayer.xcodeproj; sourceTree = "<group>"; };
 		25436AA721E0995700036057 /* SmallPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmallPlayerView.m; sourceTree = "<group>"; };
 		25436AA821E0995700036057 /* SmallPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmallPlayerView.h; sourceTree = "<group>"; };
 		25436AAA21E0995700036057 /* PlayerSimpleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerSimpleView.m; sourceTree = "<group>"; };
@@ -218,6 +236,14 @@
 				250F1E991FFCE6A300F564AD /* Player.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		2528CE21231E03EF00CF5F9F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2528CE25231E03EF00CF5F9F /* IJKMediaFramework.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		25436AA421E0995700036057 /* Classes */ = {
@@ -424,6 +450,7 @@
 		25A536C21FDA9DFA002511DF = {
 			isa = PBXGroup;
 			children = (
+				2528CE20231E03EF00CF5F9F /* IJKMediaPlayer.xcodeproj */,
 				25436AA421E0995700036057 /* Classes */,
 				250F1E981FFCE6A300F564AD /* Resources */,
 				25A536CD1FDA9DFA002511DF /* PlayerKitDemo */,
@@ -504,6 +531,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				2528CE28231E044500CF5F9F /* PBXTargetDependency */,
 			);
 			name = PlayerKitDemo;
 			productName = PlayerKitDemo;
@@ -536,12 +564,28 @@
 			mainGroup = 25A536C21FDA9DFA002511DF;
 			productRefGroup = 25A536CC1FDA9DFA002511DF /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 2528CE21231E03EF00CF5F9F /* Products */;
+					ProjectRef = 2528CE20231E03EF00CF5F9F /* IJKMediaPlayer.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				25A536CA1FDA9DFA002511DF /* PlayerKitDemo */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		2528CE25231E03EF00CF5F9F /* IJKMediaFramework.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = IJKMediaFramework.framework;
+			remoteRef = 2528CE24231E03EF00CF5F9F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		25A536C91FDA9DFA002511DF /* Resources */ = {
@@ -627,6 +671,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2528CE28231E044500CF5F9F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = IJKMediaFramework;
+			targetProxy = 2528CE27231E044500CF5F9F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		25A536D91FDA9DFA002511DF /* LaunchScreen.storyboard */ = {

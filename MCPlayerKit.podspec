@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
     core.source_files = 'SDK/PlayerKit/*.{h,m,mm}',
                         'SDK/PlayerKit/**/*.{h,m,mm}'
     core.public_header_files = 'SDK/PlayerKit/*.h'
-    core.dependency 'MCIJKPlayer', '0.0.2'
+    core.dependency 'MCIJKPlayer', '0.0.5'
     core.dependency 'GCDMulticastDelegate'
   end
 
