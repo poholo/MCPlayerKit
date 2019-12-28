@@ -439,9 +439,6 @@ NSString *const kMCPlayerDestory = @"kMCPlayerDestory";
         } else {
             [viewController dismissViewControllerAnimated:YES completion:NULL];
         }
-        if (self.destoryCallBack) {
-            self.destoryCallBack();
-        }
     }
 }
 
