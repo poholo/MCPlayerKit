@@ -45,6 +45,7 @@ typedef NS_ENUM(NSInteger, MCPlayerStyleSizeType) {
 @property(nonatomic, copy) MCPlayerNormalViewEventCallBack outEventCallBack;
 @property(nonatomic, copy) NSString *(^retryPlayUrl)(void); ///< 获取url尝试重新播放
 @property(nonatomic, copy) BOOL (^canShowTerminalCallBack)(void);
+@property(nonatomic, copy) void (^destoryCallBack)(void);
 
 - (void)updatePlayerStyle:(MCPlayerStyleSizeType)styleSizeType;
 

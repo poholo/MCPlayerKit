@@ -50,42 +50,42 @@ NSString *const kMCPlayerDestory = @"kMCPlayerDestory";
 }
 
 - (void)freeSpace {
-    if(_playerKit) {
+    if (_playerKit) {
         [_playerKit removeDelegate:self];
         [_playerKit destory];
         _playerKit = nil;
     }
-    if(_touchView) {
+    if (_touchView) {
         [_touchView removeFromSuperview];
         _touchView.callBack = nil;
         _touchView = nil;
     }
-    if(_playerView) {
+    if (_playerView) {
         [_playerView removeFromSuperview];
         _playerView = nil;
     }
-    if(_loadingView) {
+    if (_loadingView) {
         [_loadingView removeFromSuperview];
         _loadingView = nil;
     }
-    if(_topView) {
+    if (_topView) {
         [_topView removeFromSuperview];
         _topView.callBack = nil;
         _topView = nil;
     }
-    
-    if(_bottomView) {
+
+    if (_bottomView) {
         [_bottomView removeFromSuperview];
         _bottomView.callBack = nil;
         _bottomView = nil;
     }
-    
-    if(_terminalView) {
+
+    if (_terminalView) {
         [_terminalView removeFromSuperview];
         _terminalView.delegate = nil;
         _terminalView = nil;
     }
-    
+
     self.eventCallBack = nil;
     self.retryPlayUrl = nil;
     self.canShowTerminalCallBack = nil;
@@ -430,7 +430,7 @@ NSString *const kMCPlayerDestory = @"kMCPlayerDestory";
         } else if (viewController.navigationController) {
             navigationController = viewController.navigationController;
         }
-        if(self.outEventCallBack) {
+        if (self.outEventCallBack) {
             self.outEventCallBack(kMCPlayerDestory, nil);
         }
         [self freeSpace];
@@ -438,6 +438,9 @@ NSString *const kMCPlayerDestory = @"kMCPlayerDestory";
             [navigationController popViewControllerAnimated:YES];
         } else {
             [viewController dismissViewControllerAnimated:YES completion:NULL];
+        }
+        if (self.destoryCallBack) {
+            self.destoryCallBack();
         }
     }
 }
