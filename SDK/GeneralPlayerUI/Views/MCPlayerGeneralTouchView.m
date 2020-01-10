@@ -58,6 +58,7 @@ NSString *const kMCTouchDurationAction = @"kMCTouchDurationAction";
 }
 
 - (void)pan:(UIPanGestureRecognizer *)panGesture {
+    if (self.unableSeek) return;
     switch (panGesture.state) {
         case UIGestureRecognizerStateBegan: {
             if (self.callBack) {

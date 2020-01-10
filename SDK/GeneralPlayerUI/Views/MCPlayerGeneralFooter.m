@@ -267,4 +267,8 @@ NSString *const kMCControlProgressEndDragSlider = @"kMCControlProgressEndDragSli
     return _rightView;
 }
 
+- (void)setUnableSeek:(BOOL)unableSeek {
+    self.playerProgress.userInteractionEnabled = !unableSeek;
+}
+
 @end

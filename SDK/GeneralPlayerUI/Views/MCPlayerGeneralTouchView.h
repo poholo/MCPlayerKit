@@ -20,5 +20,6 @@ extern NSString *const kMCTouchDurationAction;
 @interface MCPlayerGeneralTouchView : UIView
 
 @property(nonatomic, copy) MCPlayerNormalViewEventCallBack callBack;
+@property(nonatomic, assign) BOOL unableSeek;
 
 @end

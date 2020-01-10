@@ -634,5 +634,12 @@ NSString *const kMCPlayerDestory = @"kMCPlayerDestory";
     return _terminalView;
 }
 
+
+- (void)setUnableSeek:(BOOL)unableSeek {
+    _unableSeek = unableSeek;
+    self.unableSeek = unableSeek;
+    self.bottomView.unableSeek = unableSeek;
+}
+
 @end
 
