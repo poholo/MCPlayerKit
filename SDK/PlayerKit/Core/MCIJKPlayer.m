@@ -322,6 +322,7 @@
         case IJKMPMoviePlaybackStateSeekingForward:
         case IJKMPMoviePlaybackStateSeekingBackward: {
             MCLog(@"%@::::::IJKMPMoviePlayBackStateDidChange %d: seeking", [self class], (int) self.ijkPlayer.playbackState);
+            self.playerState = MCPlayerStatePlaying;
             break;
         }
         default: {
