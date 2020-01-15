@@ -220,6 +220,11 @@ NSString *const kMCPlayerDestory = @"kMCPlayerDestory";
     self.frame = [UIScreen mainScreen].bounds;
 }
 
+- (void)reset {
+    self.playBtn.selected = NO;
+    self.bottomView.playBtn.selected = NO;
+}
+
 #pragma mark - views
 
 - (void)createViews {

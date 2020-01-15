@@ -71,16 +71,16 @@ NSString *const kMCPlayerHeaderBack = @"kMCPlayerHeaderBack";
 - (void)addLayout {
     if (CGRectIsEmpty(self.frame))
         return;
-    UIEdgeInsets insets = [MCStyle contentInsetII];
+    UIEdgeInsets insets = [MCStyle customInsets:@"player_contentInsetII"];
     CGFloat top = (self.styleSizeType == MCPlayerStyleSizeClassRegularHalf || self.styleSizeType == MCPlayerStyleSizeClassRegular) ? [MCDeviceUtils xStatusBarHeight] : 0;
     CGFloat h = CGRectGetHeight(self.frame) - top;
     CGFloat w = h - 2 * insets.top;
     self.backBtn.frame = CGRectMake(0, top, h, h);
     [self.rightView resizeViews];
     self.rightView.frame = CGRectMake(CGRectGetWidth(self.frame) - CGRectGetWidth(self.rightView.frame), top, CGRectGetWidth(self.rightView.frame), h);
-    CGFloat startX = CGRectGetMaxX(self.backBtn.frame) - [MCStyle contentInsetIII].left;
-    CGFloat maxTitleWidth = CGRectGetMinX(self.rightView.frame) - startX - [MCStyle contentInsetIII].right;
-    self.titleLabel.frame = CGRectMake(startX, (h - [MCFont fontV].lineHeight) / 2.0f + top, maxTitleWidth, [MCFont fontV].lineHeight);
+    CGFloat startX = CGRectGetMaxX(self.backBtn.frame) - [MCStyle customInsets:@"player_contentInsetIII"].left;
+    CGFloat maxTitleWidth = CGRectGetMinX(self.rightView.frame) - startX - [MCStyle customInsets:@"player_contentInsetIII"].right;
+    self.titleLabel.frame = CGRectMake(startX, (h - [MCFont custom:@"player_title_font"].lineHeight) / 2.0f + top, maxTitleWidth, [MCFont fontV].lineHeight);
     self.gradientLayer.frame = CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
 }
 
@@ -111,8 +111,8 @@ NSString *const kMCPlayerHeaderBack = @"kMCPlayerHeaderBack";
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [UILabel new];
-        _titleLabel.font = [MCFont fontIV];
-        _titleLabel.textColor = [MCColor colorI];
+        _titleLabel.font = [MCFont custom:@"player_title_font"];
+        _titleLabel.textColor = [MCColor custom:@"player_title_color"];
     }
     return _titleLabel;
 }

@@ -1,9 +1,9 @@
 {
   "success": true,
   "data": {
-    "contentInsetI": "{15, 15, 15, 15}",
-    "contentInsetII": "{8, 8, 8, 8}",
-    "contentInsetIII": "{4, 4, 4, 4}",
+    "player_contentInsetII": "{8, 8, 8, 8}",
+    "player_contentInsetIII": "{4, 4, 4, 4}",
+    "player_terminal_inset": "{15, 15, 15, 15}",
     "player_header_0": "player_header_0",
     "player_header_1": "player_header_1",
     "player_header_1_s": "player_header_1_s",

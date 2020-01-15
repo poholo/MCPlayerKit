@@ -79,4 +79,6 @@ typedef NS_ENUM(NSInteger, MCPlayerStyleSizeType) {
  * 竖屏全屏
  */
 - (void)rotate2PortraitFullScreen;
+
+- (void)reset;
 @end

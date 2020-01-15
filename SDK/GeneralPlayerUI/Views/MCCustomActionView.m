@@ -49,7 +49,7 @@
         if ((self.styleSizeType == MCPlayerStyleSizeClassRegularHalf && cview.showHalfScreen)
                 || (self.styleSizeType != MCPlayerStyleSizeClassRegularHalf && cview.showFullScreen)) {
             CGFloat top = (CGRectGetHeight(self.frame) - cview.size.height) / 2.0f;
-            cview.frame = CGRectMake(CGRectGetMaxX(bFrame) + [MCStyle contentInsetIII].left, top, cview.size.width, cview.size.height);
+            cview.frame = CGRectMake(CGRectGetMaxX(bFrame) + [MCStyle customInsets:@"player_contentInsetIII"].left, top, cview.size.width, cview.size.height);
             bFrame = cview.frame;
             cview.hidden = NO;
         } else {
@@ -57,7 +57,7 @@
         }
     }
 
-    CGFloat maxX = CGRectGetMaxX(bFrame) + [MCStyle contentInsetII].right;
+    CGFloat maxX = CGRectGetMaxX(bFrame) + [MCStyle customInsets:@"player_contentInsetII"].right;
     CGRect frame = self.frame;
     frame.size.width = maxX;
     self.frame = frame;

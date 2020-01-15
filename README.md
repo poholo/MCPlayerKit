@@ -153,6 +153,28 @@ TODO:
     具体参照 Example/Classes/Modules/GeneralPlayer/MCPlayerGeneralController
 ```
 
+
+#### 2.2.0 style
+使用参照 MCStyle
+```text
+播放页样式颜色
+{
+  "success": true,
+  "data": {
+    "player_title_color": "#ffffff",
+    "player_time_color": "#ffffff",
+    "player_progress_color": "#5cc0f2",
+    "player_progress_buffer_trackcolor": "#97a2a8",
+    "player_progress_buffer_color": "#737b80",
+    "player_circle_progress_track_color": "#ffffff",
+    "player_terminal_bgcolor": "#edf1f5",
+    "player_terminal_titlecolor": "#999999",
+    "player_terminal_mentioncolor": "#666666",
+    "player_terminal_mentioncolor_alert": "#76bdff"
+  }
+}
+```
+
 #### 2.2.1 自定义播放器headerView右侧view
 ```objectivec
 {

@@ -101,7 +101,7 @@ typedef NS_ENUM(NSInteger, PTAirPlayEvent) {
 
 - (void)addLayout {
     if (CGRectIsEmpty(self.frame)) return;
-    UIEdgeInsets insets = [MCStyle contentInsetI];
+    UIEdgeInsets insets = [MCStyle customInsets:@"player_terminal_inset"];
     CGFloat h = CGRectGetHeight(self.frame);
     CGFloat w = CGRectGetWidth(self.frame);
 
