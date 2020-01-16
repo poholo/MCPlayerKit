@@ -175,6 +175,50 @@ TODO:
 }
 ```
 
+播放器字体
+```text
+{
+  "success": true,
+  "data": {
+    "player_title_font": 12,
+    "player_time_font": 10,
+    "player_terminal_title_font": 15,
+    "player_terminal_info_font": 13
+  }
+}
+```
+播放器图片参数等
+```text
+{
+  "success": true,
+  "data": {
+    "player_contentInsetII": "{8, 8, 8, 8}",
+    "player_contentInsetIII": "{4, 4, 4, 4}",
+    "player_terminal_inset": "{15, 15, 15, 15}",
+    "player_header_0": "player_header_0",
+    "player_header_1": "player_header_1",
+    "player_header_1_s": "player_header_1_s",
+    "player_body_0": "player_body_0",
+    "player_body_0_s": "player_body_0_s",
+    "player_body_1": "player_body_1",
+    "player_body_1_s": "player_body_1_s",
+    "player_footer_0": "player_footer_0",
+    "player_footer_0_s": "player_footer_0_s",
+    "player_footer_1": "player_footer_1",
+    "player_footer_1_s": "player_footer_1_s",
+    "player_control_0": "player_control_0",
+    "player_control_1": "player_control_1",
+    "player_control_2": "player_control_2",
+    "player_loading_default": "player_loading_pic",
+    "player_slider": "player_slider",
+    "player_terminal_title_is_image": 1,
+    "player_terminal_bg": "player_terminal_bg",
+    "player_terminal_bg_alpha": 0.3,
+    "player_terminal_title_image": "player_terminal_title_image"
+  }
+}
+```
+
 #### 2.2.1 自定义播放器headerView右侧view
 ```objectivec
 {
