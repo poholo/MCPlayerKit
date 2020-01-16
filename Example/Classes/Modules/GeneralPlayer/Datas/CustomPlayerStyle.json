@@ -19,6 +19,10 @@
     "player_control_1": "player_control_1",
     "player_control_2": "player_control_2",
     "player_loading_default": "player_loading_pic",
-    "player_slider": "player_slider"
+    "player_slider": "player_slider",
+    "player_terminal_title_is_image": 1,
+    "player_terminal_bg": "player_terminal_bg",
+    "player_terminal_bg_alpha": 0.3,
+    "player_terminal_title_image": "player_terminal_title_image"
   }
 }

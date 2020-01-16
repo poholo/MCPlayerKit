@@ -21,6 +21,8 @@ typedef NS_ENUM(NSInteger, PTAirPlayEvent) {
 
 @interface MCPlayerGeneralTerminalView ()
 
+@property(nonatomic, strong) UIImageView *bgImageView;
+@property(nonatomic, strong) UIImageView *titleImageView;
 @property(nonatomic, strong) UILabel *videoTitle;
 @property(nonatomic, strong) UILabel *mentionInfo;
 @property(nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
@@ -72,6 +74,9 @@ typedef NS_ENUM(NSInteger, PTAirPlayEvent) {
 
 - (void)createViews {
 
+    _bgImageView = [[UIImageView alloc] initWithImage:[MCStyle customImage:@"player_terminal_bg"]];
+    _titleImageView = [[UIImageView alloc] initWithImage:[MCStyle customImage:@"player_terminal_title_image"]];
+    _titleImageView.alpha = [[MCStyle customValue:@"player_terminal_bg_alpha"] floatValue];
     _videoTitle = [[UILabel alloc] init];
     _mentionInfo = [[UILabel alloc] init];
 
@@ -80,6 +85,8 @@ typedef NS_ENUM(NSInteger, PTAirPlayEvent) {
     _volumeSmallBtn = [[UIButton alloc] init];
     _playPauseBtn = [[UIButton alloc] init];
 
+    [self addSubview:_bgImageView];
+    [self addSubview:_titleImageView];
     [self addSubview:_videoTitle];
     [self addSubview:_mentionInfo];
     [self addSubview:_quitAirPlayBtn];
@@ -97,22 +104,36 @@ typedef NS_ENUM(NSInteger, PTAirPlayEvent) {
     _mentionInfo.textAlignment = NSTextAlignmentCenter;
 
     self.backgroundColor = [MCColor custom:@"player_terminal_bgcolor"];
+    BOOL terminalTitleIsImage = [[MCStyle customValue:@"player_terminal_title_is_image"] boolValue];
+    self.titleImageView.hidden = !terminalTitleIsImage;
+    self.videoTitle.hidden = terminalTitleIsImage;
 }
 
 - (void)addLayout {
     if (CGRectIsEmpty(self.frame)) return;
+    self.bgImageView.frame = self.bounds;
     UIEdgeInsets insets = [MCStyle customInsets:@"player_terminal_inset"];
     CGFloat h = CGRectGetHeight(self.frame);
     CGFloat w = CGRectGetWidth(self.frame);
 
-    self.videoTitle.frame = CGRectMake(insets.left,
-            (h - self.videoTitle.font.lineHeight) / 2.0f,
-            w - 2 * insets.left,
-            self.videoTitle.font.lineHeight);
+    CGRect rect = CGRectZero;
+    if (self.videoTitle.hidden) {
+        self.titleImageView.frame = CGRectMake((w - self.titleImageView.image.size.width) / 2.0f,
+                (h - self.titleImageView.image.size.height) / 2.0f,
+                self.titleImageView.image.size.width,
+                self.titleImageView.image.size.height);
+        rect = self.titleImageView.frame;
+    } else {
+        self.videoTitle.frame = CGRectMake(insets.left,
+                (h - self.videoTitle.font.lineHeight) / 2.0f,
+                w - 2 * insets.left,
+                self.videoTitle.font.lineHeight);
+        rect = self.videoTitle.frame;
+    }
 
     self.mentionInfo.frame = CGRectMake(insets.left,
-            CGRectGetMaxY(self.videoTitle.frame) + insets.top,
-            CGRectGetWidth(self.videoTitle.frame),
+            CGRectGetMaxY(rect) + insets.top,
+            w - 2 * insets.left,
             self.mentionInfo.font.lineHeight);
 
 //
