@@ -65,6 +65,7 @@ typedef NS_ENUM(NSInteger, PTAirPlayEvent) {
 }
 
 - (void)setup {
+    if (_bgImageView) return;
     [self createViews];
     [self addLayout];
     [self addAction];
@@ -73,7 +74,6 @@ typedef NS_ENUM(NSInteger, PTAirPlayEvent) {
 }
 
 - (void)createViews {
-
     _bgImageView = [[UIImageView alloc] initWithImage:[MCStyle customImage:@"player_terminal_bg"]];
     _bgImageView.alpha = [[MCStyle customValue:@"player_terminal_bg_alpha"] floatValue];
     _titleImageView = [[UIImageView alloc] initWithImage:[MCStyle customImage:@"player_terminal_title_image"]];

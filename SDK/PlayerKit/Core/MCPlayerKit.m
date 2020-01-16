@@ -75,7 +75,7 @@
 
 - (void)destory {
     [self fireTimer];
-    
+    self.playerState = MCPlayerStateNone;
     if (_player) {
         [_player removeObserver:self forKeyPath:@"playerState"];
         [_player destory];
@@ -105,6 +105,7 @@
 }
 
 - (void)seekSeconds:(CGFloat)seconds {
+    self.playerState = MCPlayerStateBuffering;
     [_player seekSeconds:seconds];
 }
 

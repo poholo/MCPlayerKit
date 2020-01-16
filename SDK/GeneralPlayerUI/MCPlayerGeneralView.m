@@ -465,7 +465,7 @@ NSString *const kMCPlayerDestory = @"kMCPlayerDestory";
 }
 
 - (void)playPlay {
-
+    [self.loadingView endRotating];
 }
 
 - (void)playEnd {
