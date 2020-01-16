@@ -88,10 +88,10 @@ typedef NS_ENUM(NSInteger, PTAirPlayEvent) {
     [self addSubview:_playPauseBtn];
 
     _videoTitle.textColor = [MCColor custom:@"player_terminal_titlecolor"];
-    _videoTitle.font = [UIFont systemFontOfSize:14];
+    _videoTitle.font = [MCFont custom:@"player_terminal_title_font"];
 
     _mentionInfo.textColor = [MCColor custom:@"player_terminal_mentioncolor"];
-    _mentionInfo.font = [UIFont systemFontOfSize:12];
+    _mentionInfo.font = [MCFont custom:@"player_terminal_info_font"];
 
     _videoTitle.textAlignment = NSTextAlignmentCenter;
     _mentionInfo.textAlignment = NSTextAlignmentCenter;
