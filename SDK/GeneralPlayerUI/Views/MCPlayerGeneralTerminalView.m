@@ -75,8 +75,8 @@ typedef NS_ENUM(NSInteger, PTAirPlayEvent) {
 - (void)createViews {
 
     _bgImageView = [[UIImageView alloc] initWithImage:[MCStyle customImage:@"player_terminal_bg"]];
+    _bgImageView.alpha = [[MCStyle customValue:@"player_terminal_bg_alpha"] floatValue];
     _titleImageView = [[UIImageView alloc] initWithImage:[MCStyle customImage:@"player_terminal_title_image"]];
-    _titleImageView.alpha = [[MCStyle customValue:@"player_terminal_bg_alpha"] floatValue];
     _videoTitle = [[UILabel alloc] init];
     _mentionInfo = [[UILabel alloc] init];
 
