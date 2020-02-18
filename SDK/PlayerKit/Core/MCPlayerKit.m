@@ -179,6 +179,7 @@
         }
             break;
     }
+    self.playerState = playerState;
 }
 
 
