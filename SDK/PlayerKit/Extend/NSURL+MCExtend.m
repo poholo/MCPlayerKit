@@ -15,7 +15,7 @@
         return nil;
     }
     NSURL *URL = nil;
-    if ([uri hasPrefix:@"http"] || [uri hasPrefix:@"https"]) {
+    if ([uri containsString:@"://"]) {
         URL = [NSURL URLWithString:uri];
     } else if ([uri hasPrefix:@"/var/mobile/"]) {
         URL = [NSURL fileURLWithPath:uri];
