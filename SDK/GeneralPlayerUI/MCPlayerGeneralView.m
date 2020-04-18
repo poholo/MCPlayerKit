@@ -132,7 +132,7 @@ NSString *const kMCPlayerDestory = @"kMCPlayerDestory";
         case MCPlayerStyleSizeClassRegularHalf: {
             self.backBtn.hidden = NO;
             self.lockBtn.hidden = YES;
-            self.playBtn.hidden = self.bottomView.hidden;
+            self.playBtn.hidden = self.isLive ?: self.bottomView.hidden;
         }
             break;
         case MCPlayerStyleSizeClassRegular: {
@@ -364,7 +364,7 @@ NSString *const kMCPlayerDestory = @"kMCPlayerDestory";
     [self.bottomView fadeHiddenControl];
     self.lockBtn.hidden = YES;
     self.playBtn.hidden = YES;
-    self.bottomProgress.hidden = NO;
+    self.bottomProgress.hidden = self.isLive ?: NO;
 }
 
 - (void)showControl {
@@ -374,7 +374,7 @@ NSString *const kMCPlayerDestory = @"kMCPlayerDestory";
     [self.bottomView showControl];
     self.bottomProgress.hidden = YES;
     if (self.styleSizeType == MCPlayerStyleSizeClassRegularHalf) {
-        self.playBtn.hidden = self.bottomView.hidden;
+        self.playBtn.hidden = self.isLive ?: self.bottomView.hidden;
     } else {
         self.lockBtn.hidden = self.bottomView.hidden;
     }
@@ -644,6 +644,12 @@ NSString *const kMCPlayerDestory = @"kMCPlayerDestory";
     _unableSeek = unableSeek;
     self.touchView.unableSeek = unableSeek;
     self.bottomView.unableSeek = unableSeek;
+}
+
+- (void)setIsLive:(BOOL)isLive {
+    _isLive = isLive;
+    self.bottomView.isLive = _isLive;
+    self.playBtn.hidden = _isLive ?: NO;
 }
 
 @end

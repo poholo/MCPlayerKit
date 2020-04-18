@@ -73,12 +73,12 @@ NSString *const kMCControlProgressEndDragSlider = @"kMCControlProgressEndDragSli
             break;
         case MCPlayerStyleSizeClassRegular: {
             self.screenBtn.selected = YES;
-            self.playBtn.hidden = NO;
+            self.playBtn.hidden = self.isLive ?: NO;
         }
             break;
         case MCPlayerStyleSizeClassCompact: {
             self.screenBtn.selected = YES;
-            self.playBtn.hidden = NO;
+            self.playBtn.hidden = self.isLive ?: NO;
         }
             break;
     }
@@ -269,6 +269,13 @@ NSString *const kMCControlProgressEndDragSlider = @"kMCControlProgressEndDragSli
 
 - (void)setUnableSeek:(BOOL)unableSeek {
     self.playerProgress.userInteractionEnabled = !unableSeek;
+}
+
+- (void)setIsLive:(BOOL)isLive {
+    _isLive = isLive;
+    self.currentLabel.hidden = _isLive ?: NO;
+    self.durationLabel.hidden = _isLive ?: NO;
+    self.playerProgress.hidden = _isLive ?: NO;
 }
 
 @end
