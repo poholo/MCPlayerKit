@@ -89,6 +89,7 @@ Run `pod install`
     b. 播放中断重试
     c. 用户可以自定义UI颜色、样式、字体大小
     e. 自定义topRightView
+    f. 支持UI 是否能seek状态、Live状态
 TODO:
     I. 投屏UI
 ```
