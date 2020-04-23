@@ -34,10 +34,22 @@
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];
         [invocation setSelector:selector];
         [invocation setTarget:[UIDevice currentDevice]];
-        int val = interfaceOrientation;
+        UIInterfaceOrientation val = interfaceOrientation;
         [invocation setArgument:&val atIndex:2];
         [invocation invoke];
     }
 }
+
++ (void)setNaviBarHidden:(BOOL)isHidden {
+    UIViewController *vc = [UIApplication sharedApplication].keyWindow.rootViewController;
+    if([vc isKindOfClass:[UINavigationController class]]) {
+        UINavigationController *nav = (UINavigationController *)vc;
+        BOOL nowStatus = nav.navigationBarHidden;
+        if(nowStatus != isHidden) {
+            nav.navigationBarHidden = isHidden;
+        }
+    }
+}
+
 
 @end

@@ -78,9 +78,9 @@ NSString *const kMCPlayerHeaderBack = @"kMCPlayerHeaderBack";
     self.backBtn.frame = CGRectMake(0, top, h, h);
     [self.rightView resizeViews];
     self.rightView.frame = CGRectMake(CGRectGetWidth(self.frame) - CGRectGetWidth(self.rightView.frame), top, CGRectGetWidth(self.rightView.frame), h);
-    CGFloat startX = CGRectGetMaxX(self.backBtn.frame) - [MCStyle customInsets:@"player_contentInsetIII"].left;
+    CGFloat startX = (self.notTop ? 0 : CGRectGetMaxX(self.backBtn.frame)) - [MCStyle customInsets:@"player_contentInsetIII"].left;
     CGFloat maxTitleWidth = CGRectGetMinX(self.rightView.frame) - startX - [MCStyle customInsets:@"player_contentInsetIII"].right;
-    self.titleLabel.frame = CGRectMake(startX, (h - [MCFont custom:@"player_title_font"].lineHeight) / 2.0f + top, maxTitleWidth, [MCFont fontV].lineHeight);
+    self.titleLabel.frame = CGRectMake(startX, (h - [MCFont custom:@"player_title_font"].lineHeight) / 2.0f + top, maxTitleWidth, [MCFont custom:@"player_title_font"].lineHeight);
     self.gradientLayer.frame = CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
 }
 
@@ -134,5 +134,11 @@ NSString *const kMCPlayerHeaderBack = @"kMCPlayerHeaderBack";
         _rightView = [MCCustomActionView new];
     }
     return _rightView;
+}
+
+- (void)setNotTop:(BOOL)notTop {
+    _notTop = notTop;
+    self.backBtn.hidden = notTop;
+    [self addLayout];
 }
 @end

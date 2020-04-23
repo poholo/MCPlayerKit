@@ -47,6 +47,7 @@ typedef NS_ENUM(NSInteger, MCPlayerStyleSizeType) {
 @property(nonatomic, copy) BOOL (^canShowTerminalCallBack)(void);
 @property(nonatomic, assign) BOOL unableSeek;
 @property(nonatomic, assign) BOOL isLive;
+@property(nonatomic, assign) BOOL notTop;
 
 - (void)updatePlayerStyle:(MCPlayerStyleSizeType)styleSizeType;
 

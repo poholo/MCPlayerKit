@@ -19,6 +19,8 @@ extern NSString *const kMCPlayerHeaderBack;
 
 @property(nonatomic, copy) MCPlayerNormalViewEventCallBack callBack;
 
+@property(nonatomic, assign) BOOL notTop;
+
 - (void)updatePlayerStyle:(MCPlayerStyleSizeType)styleSizeType;
 
 - (void)fadeHiddenControl;

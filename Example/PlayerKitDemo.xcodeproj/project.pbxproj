@@ -59,6 +59,7 @@
 		25436B2621E0995700036057 /* MMPopupWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 25436AF921E0995700036057 /* MMPopupWindow.m */; };
 		25436B2721E0995700036057 /* MMPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25436AFD21E0995700036057 /* MMPopupView.m */; };
 		25436B2821E0995700036057 /* MMPopupItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 25436B0021E0995700036057 /* MMPopupItem.m */; };
+		2568A8C5244E993F00C30EDF /* MCPlayerGeneralNotTopController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2568A8C4244E993F00C30EDF /* MCPlayerGeneralNotTopController.m */; };
 		25A536D01FDA9DFA002511DF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A536CF1FDA9DFA002511DF /* AppDelegate.m */; };
 		25A536D81FDA9DFA002511DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25A536D71FDA9DFA002511DF /* Assets.xcassets */; };
 		25A536DB1FDA9DFA002511DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25A536D91FDA9DFA002511DF /* LaunchScreen.storyboard */; };
@@ -191,6 +192,8 @@
 		25436AFF21E0995700036057 /* MMPopupCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPopupCategory.h; sourceTree = "<group>"; };
 		25436B0021E0995700036057 /* MMPopupItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPopupItem.m; sourceTree = "<group>"; };
 		25436B0121E0995700036057 /* MMWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMWindowController.h; sourceTree = "<group>"; };
+		2568A8C3244E993F00C30EDF /* MCPlayerGeneralNotTopController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MCPlayerGeneralNotTopController.h; sourceTree = "<group>"; };
+		2568A8C4244E993F00C30EDF /* MCPlayerGeneralNotTopController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MCPlayerGeneralNotTopController.m; sourceTree = "<group>"; };
 		25A536CB1FDA9DFA002511DF /* PlayerKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayerKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25A536CE1FDA9DFA002511DF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		25A536CF1FDA9DFA002511DF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -337,6 +340,8 @@
 				25436AC721E0995700036057 /* MCPlayerGeneralController.m */,
 				25436ACC21E0995700036057 /* MCPlayerNormalDataVM.m */,
 				25436ACD21E0995700036057 /* MCPlayerNormalDto.m */,
+				2568A8C3244E993F00C30EDF /* MCPlayerGeneralNotTopController.h */,
+				2568A8C4244E993F00C30EDF /* MCPlayerGeneralNotTopController.m */,
 			);
 			path = GeneralPlayer;
 			sourceTree = "<group>";
@@ -652,6 +657,7 @@
 				25A536D01FDA9DFA002511DF /* AppDelegate.m in Sources */,
 				25436B0A21E0995700036057 /* MCTouchTestController.m in Sources */,
 				25436B1F21E0995700036057 /* MCDouyinPlayerListController.m in Sources */,
+				2568A8C5244E993F00C30EDF /* MCPlayerGeneralNotTopController.m in Sources */,
 				25436B2621E0995700036057 /* MMPopupWindow.m in Sources */,
 				25436B2221E0995700036057 /* MMAlertView.m in Sources */,
 				25436B2321E0995700036057 /* MMSheetView.m in Sources */,

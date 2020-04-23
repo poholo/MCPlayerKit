@@ -11,6 +11,7 @@
 #import "ScrollPlayer2SmallPlayerController.h"
 #import "MCDouyinPlayerListController.h"
 #import "MCTouchTestController.h"
+#import "MCPlayerGeneralNotTopController.h"
 
 
 @implementation PlayerCategroiesDataVM {
@@ -74,6 +75,13 @@
         dto.actionClass = [MCTouchTestController class];
         [self.dataList addObject:dto];
     }
+    {
+         PlayerCategroryDto *dto = [PlayerCategroryDto new];
+         dto.name = @"PlayerView not top";
+         dto.actionClass = [MCPlayerGeneralNotTopController class];
+         [self.dataList addObject:dto];
+     }
+    
 
 }
 @end

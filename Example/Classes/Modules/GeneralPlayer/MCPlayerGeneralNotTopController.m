@@ -1,9 +1,13 @@
 //
-// Created by majiancheng on 2018/1/3.
-// Copyright (c) 2018 majiancheng. All rights reserved.
+//  MCPlayerGeneralNotTopController.m
+//  PlayerKitDemo
+//
+//  Created by majiancheng on 2020/4/21.
+//  Copyright © 2020 majiancheng. All rights reserved.
 //
 
-#import "MCPlayerGeneralController.h"
+#import "MCPlayerGeneralNotTopController.h"
+
 
 #import <MCStyle/MCStyleDef.h>
 
@@ -16,7 +20,7 @@
 #import "MCPlayerGeneralFooter.h"
 
 
-@interface MCPlayerGeneralController ()
+@interface MCPlayerGeneralNotTopController ()
 
 @property(nonatomic, strong) MCPlayerKit *playerKit;
 @property(nonatomic, strong) MCPlayerGeneralView *playerView;
@@ -30,7 +34,7 @@
 @end
 
 
-@implementation MCPlayerGeneralController {
+@implementation MCPlayerGeneralNotTopController {
 
 }
 
@@ -170,8 +174,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    self.navigationController.navigationBarHidden = YES;
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+//    self.navigationController.navigationBarHidden = NO;
+//    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     [self willEnterForground:nil];
 
 }
@@ -179,8 +183,8 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
 
-    self.navigationController.navigationBarHidden = NO;
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+//    self.navigationController.navigationBarHidden = NO;
+//    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     [self didEnterBackground:nil];
 }
 
@@ -226,8 +230,11 @@
         __strong typeof(weakSelf) strongSelf = weakSelf;
         if (newCollection.verticalSizeClass == UIUserInterfaceSizeClassCompact) {
             [strongSelf.playerView rotate2Landscape];
+            strongSelf.navigationController.navigationBarHidden = YES;
+            [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
         } else {
             [strongSelf.playerView rotate2Portrait];
+            strongSelf.navigationController.navigationBarHidden = NO;
         }
 
     }                            completion:nil];
@@ -251,6 +258,7 @@
         _playerView.backgroundColor = [UIColor blackColor];
         _playerView.unableSeek = NO;
         _playerView.isLive = NO;
+        _playerView.notTop = YES;
     }
     return _playerView;
 }

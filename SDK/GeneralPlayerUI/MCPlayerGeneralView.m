@@ -130,7 +130,7 @@ NSString *const kMCPlayerDestory = @"kMCPlayerDestory";
     [self.bottomView updatePlayerStyle:styleSizeType];
     switch (self.styleSizeType) {
         case MCPlayerStyleSizeClassRegularHalf: {
-            self.backBtn.hidden = NO;
+            self.backBtn.hidden = self.notTop?: NO;
             self.lockBtn.hidden = YES;
             self.playBtn.hidden = self.isLive ?: self.bottomView.hidden;
         }
@@ -260,9 +260,9 @@ NSString *const kMCPlayerDestory = @"kMCPlayerDestory";
     CGFloat barHeight = 44;
 
     if (self.styleSizeType == MCPlayerStyleSizeClassRegularHalf || self.styleSizeType == MCPlayerStyleSizeClassRegular) {
-        CGFloat py = [MCDeviceUtils iPhoneX] ? 24 : 0;
+        CGFloat py = (!self.notTop && [MCDeviceUtils iPhoneX]) ? 24 : 0;
         self.playerView.frame = CGRectMake(0, py, CGRectGetWidth(containerFrame), CGRectGetHeight(containerFrame) - py);
-        self.topView.frame = CGRectMake(0, 0, w, barHeight + [MCDeviceUtils xStatusBarHeight]);
+        self.topView.frame = CGRectMake(0, 0, w, barHeight + (self.notTop ? 0 : [MCDeviceUtils xStatusBarHeight]));
     } else {
         self.playerView.frame = self.containerView.bounds;
         self.topView.frame = CGRectMake(0, 0, w, barHeight);
@@ -310,15 +310,18 @@ NSString *const kMCPlayerDestory = @"kMCPlayerDestory";
         __strong typeof(weakSelf) strongself = weakSelf;
         if ([action isEqualToString:kMCPlayer2HalfScreenAction]) {
             [MCRotateHelper updatePlayerRegularHalf];
+            [MCRotateHelper setNaviBarHidden:strongself.notTop ? NO : YES];
             [strongself rotate2Portrait];
             [strongself showControlThenHide];
         } else if ([action isEqualToString:kMCPlayer2FullScreenAction]) {
             CGSize naturalSize = strongself.playerKit.naturalSize;
             if (naturalSize.width < naturalSize.height) {
                 [MCRotateHelper updatePlayerRegular];
+                [MCRotateHelper setNaviBarHidden:YES];
                 [strongself rotate2PortraitFullScreen];
             } else {
                 [MCRotateHelper updatePlayerCompact];
+                [MCRotateHelper setNaviBarHidden:YES];
                 [strongself rotate2Landscape];
             }
             [strongself showControlThenHide];
@@ -650,6 +653,12 @@ NSString *const kMCPlayerDestory = @"kMCPlayerDestory";
     _isLive = isLive;
     self.bottomView.isLive = _isLive;
     self.playBtn.hidden = _isLive ?: NO;
+}
+
+- (void)setNotTop:(BOOL)notTop {
+    _notTop = notTop;
+    self.backBtn.hidden = notTop;
+    [self addLayout];
 }
 
 @end

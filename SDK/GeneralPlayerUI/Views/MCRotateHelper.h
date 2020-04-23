@@ -24,4 +24,9 @@
  */
 + (void)updatePlayerCompact;
 
+/**
+ * 设置隐藏导航栏
+ */
++ (void)setNaviBarHidden:(BOOL)isHidden;
+
 @end
