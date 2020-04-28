@@ -58,7 +58,6 @@ NSString *const kMCTouchDurationAction = @"kMCTouchDurationAction";
 }
 
 - (void)pan:(UIPanGestureRecognizer *)panGesture {
-    if (self.unableSeek) return;
     switch (panGesture.state) {
         case UIGestureRecognizerStateBegan: {
             if (self.callBack) {
@@ -66,7 +65,7 @@ NSString *const kMCTouchDurationAction = @"kMCTouchDurationAction";
             }
 
             _panOrigin = [panGesture locationInView:self];
-            if (self.callBack) {
+            if (self.callBack && !self.unableSeek) {
                 _timeSliding = [self.callBack(kMCTouchCurrentTimeAction, nil) doubleValue];
             }
         }
@@ -85,7 +84,7 @@ NSString *const kMCTouchDurationAction = @"kMCTouchDurationAction";
         }
             break;
         case UIGestureRecognizerStateEnded: {
-            if (self.callBack) {
+            if (self.callBack && !self.unableSeek) {
                 self.callBack(kMCTouchSeekAction, @(_timeSliding));
             }
             _isWillSeeking = NO;
@@ -115,6 +114,7 @@ NSString *const kMCTouchDurationAction = @"kMCTouchDurationAction";
         }
         // 判断角度     tan(45),这里需要通过正负来判断手势方向
         //进度
+        if(self.unableSeek) return;
         [self resetVideorogressWithPanTransPoint:panTransPoint];
     } else {
         if (fabs(panTransPoint.y) < _kMC_AV_offsetChoseDirection) {

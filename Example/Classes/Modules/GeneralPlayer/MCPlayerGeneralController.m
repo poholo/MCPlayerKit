@@ -249,7 +249,7 @@
         CGFloat height = width * 9 / 16.0f + [MCDeviceUtils xTop];
         _playerView = [[MCPlayerGeneralView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
         _playerView.backgroundColor = [UIColor blackColor];
-        _playerView.unableSeek = NO;
+        _playerView.unableSeek = YES;
         _playerView.isLive = NO;
     }
     return _playerView;
