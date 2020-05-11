@@ -7,8 +7,6 @@
 
 @interface MCRotateHelper : NSObject
 
-+ (void)setStatusBarHidden:(BOOL)isHidden;
-
 /**
  * 设置横竖屏
  */

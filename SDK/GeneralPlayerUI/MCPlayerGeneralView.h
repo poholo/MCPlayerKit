@@ -37,6 +37,7 @@ typedef NS_ENUM(NSInteger, MCPlayerStyleSizeType) {
 @interface MCPlayerGeneralView : UIView
 
 @property(nonatomic, assign) MCPlayerStyleSizeType styleSizeType;
+@property(nonatomic, assign) MCPlayerStyleSizeType willStyleSizeType;
 @property(nonatomic, readonly) MCPlayerView *playerView;
 @property(nonatomic, readonly) MCPlayerGeneralHeader *topView;
 @property(nonatomic, readonly) MCPlayerGeneralFooter *bottomView;

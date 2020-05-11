@@ -8,24 +8,17 @@
 
 @implementation MCRotateHelper
 
-+ (void)setStatusBarHidden:(BOOL)isHidden {
-    [[UIApplication sharedApplication] setStatusBarHidden:isHidden withAnimation:YES];
-}
-
 + (void)updatePlayerRegularHalf {
     [MCRotateHelper updateOrientation:UIInterfaceOrientationPortrait];
-    [self setStatusBarHidden:NO];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
 + (void)updatePlayerRegular {
     [MCRotateHelper updateOrientation:UIInterfaceOrientationPortrait];
-    [self setStatusBarHidden:NO];
 }
 
 + (void)updatePlayerCompact {
     [MCRotateHelper updateOrientation:UIInterfaceOrientationLandscapeRight];
-    [self setStatusBarHidden:YES];
 }
 
 + (void)updateOrientation:(UIInterfaceOrientation)interfaceOrientation {

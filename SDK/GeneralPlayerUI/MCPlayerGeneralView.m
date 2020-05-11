@@ -195,17 +195,16 @@ NSString *const kMCPlayerDestory = @"kMCPlayerDestory";
     if (self.styleSizeType == MCPlayerStyleSizeClassCompact) {
         return;
     }
-    [MCRotateHelper setStatusBarHidden:YES];
-
     [self updatePlayerStyle:MCPlayerStyleSizeClassCompact];
-    self.frame = [UIScreen mainScreen].bounds;
+    CGFloat w = CGRectGetWidth([UIScreen mainScreen].bounds);
+    CGFloat h = CGRectGetHeight([UIScreen mainScreen].bounds);
+    self.frame = CGRectMake(0, 0, MAX(w, h), MIN(w, h));
 }
 
 - (void)rotate2Portrait {
     if (self.styleSizeType == MCPlayerStyleSizeClassRegularHalf) {
         return;
     }
-    [MCRotateHelper setStatusBarHidden:NO];
     CGSize size = [UIScreen mainScreen].bounds.size;
     [self updatePlayerStyle:MCPlayerStyleSizeClassRegularHalf];
     self.frame = CGRectMake(0, 0, size.width, size.width * 9 / 16 + [MCDeviceUtils xStatusBarHeight]);
@@ -215,7 +214,6 @@ NSString *const kMCPlayerDestory = @"kMCPlayerDestory";
     if (self.styleSizeType == MCPlayerStyleSizeClassRegular) {
         return;
     }
-    [MCRotateHelper setStatusBarHidden:YES];
     [self updatePlayerStyle:MCPlayerStyleSizeClassRegular];
     self.frame = [UIScreen mainScreen].bounds;
 }

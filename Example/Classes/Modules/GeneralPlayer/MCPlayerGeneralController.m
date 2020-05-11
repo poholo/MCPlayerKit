@@ -199,9 +199,19 @@
 }
 
 #pragma mark - Rotate
+#pragma mark - Rotate
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+- (BOOL)isSizeClassRegular {
+    //如果是横屏全屏切换给切换机会
+//    if (self.playerView.playerStyle == PlayerStyleSizeClassCompact) {
+//        return NO;
+//    }
+
+    CGSize naturalSize = self.playerKit.naturalSize;
+    if (naturalSize.width < naturalSize.height) {
+        return YES;
+    }
+    return NO;
 }
 
 - (BOOL)shouldAutorotate {
@@ -212,25 +222,45 @@
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
-    return UIInterfaceOrientationMaskAll;
+    return UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskLandscapeLeft | UIInterfaceOrientationMaskLandscapeRight;
 }
 
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
-    return UIInterfaceOrientationPortrait;
+    return UIInterfaceOrientationPortrait | UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight;
+}
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator{
+    [self changeTransition:coordinator];
 }
 
 - (void)willTransitionToTraitCollection:(UITraitCollection *)newCollection withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator {
+    [self changeTransition:coordinator];
+}
 
-    __weak typeof(self) weakSelf = self;
-    [coordinator animateAlongsideTransition:^(id <UIViewControllerTransitionCoordinatorContext> context) {
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        if (newCollection.verticalSizeClass == UIUserInterfaceSizeClassCompact) {
-            [strongSelf.playerView rotate2Landscape];
-        } else {
-            [strongSelf.playerView rotate2Portrait];
-        }
+- (void)changeTransition:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    MCPlayerStyleSizeType type = self.playerView.styleSizeType;
+    if(type != MCPlayerStyleSizeClassCompact) {
+        self.playerView.willStyleSizeType = MCPlayerStyleSizeClassCompact;
+    } else {
+        self.playerView.willStyleSizeType = MCPlayerStyleSizeClassRegularHalf;
+    }
+     __weak typeof(self) weakSelf = self;
+        [coordinator animateAlongsideTransition:^(id <UIViewControllerTransitionCoordinatorContext> context) {
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            if (type != MCPlayerStyleSizeClassCompact) {
+                [strongSelf.playerView rotate2Landscape];
+            } else {
+    //            [strongSelf.definitionView removeFromSuperview];
+                [strongSelf.playerView updateTitle:@""];
+                [strongSelf.playerView rotate2Portrait];
+            }
+        }                            completion:^(id <UIViewControllerTransitionCoordinatorContext> context) {
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+        }];
+}
 
-    }                            completion:nil];
+- (BOOL)prefersStatusBarHidden {
+    return self.playerView.willStyleSizeType != MCPlayerStyleSizeClassRegularHalf;
 }
 
 #pragma mark - getter
