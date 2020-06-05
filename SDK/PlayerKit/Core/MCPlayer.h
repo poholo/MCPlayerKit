@@ -45,6 +45,10 @@
 
 - (void)preparePlay;
 
+- (void)preParePlayContainView:(UIView *)containView;
+
+- (void)updatePlayerView:(UIView *)playerView;
+
 - (void)play;
 
 - (void)pause;

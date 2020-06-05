@@ -33,7 +33,7 @@
 
 - (void)dealloc {
     [self releaseSpace];
-    MCLog(@"%@", [self class]);
+    MCLog(@"[MCP][dealloc]%@", [self class]);
 }
 
 - (void)releaseSpace {

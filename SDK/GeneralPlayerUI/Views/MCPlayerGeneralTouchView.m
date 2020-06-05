@@ -11,6 +11,7 @@
 #import "MCPlayerKitDef.h"
 #import "MCMediaNotify.h"
 #import "NSNumber+MCExtend.h"
+#import "MCImpactFeedbackGeneratorUtils.h"
 
 NSString *const kMCTouchTapAction = @"kMCTouchTapAction";
 NSString *const kMCTouchBegin = @"kMCTouchBegin";

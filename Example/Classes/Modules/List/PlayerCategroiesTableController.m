@@ -5,6 +5,8 @@
 
 #import "PlayerCategroiesTableController.h"
 
+#import <MCStyle/MCStyleDef.h>
+
 #import "PlayerCategroiesDataVM.h"
 #import "PlayerCategroryCell.h"
 #import "PlayerCategroryDto.h"
@@ -30,6 +32,32 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [MCStyleManager share].colorStyleDataCallback = ^NSDictionary *(void) {
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"CustomPlayerColor" ofType:@"json"];
+        NSError *error;
+        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:NSJSONReadingMutableContainers error:&error];
+        NSAssert(!error, @"read json file error");
+        return dictionary[@"data"];
+    };
+
+    [MCStyleManager share].fontStyleDataCallBack = ^NSDictionary *(void) {
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"CustomPlayerFont" ofType:@"json"];
+        NSError *error;
+        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:NSJSONReadingMutableContainers error:&error];
+        NSAssert(!error, @"read json file error");
+        return dictionary[@"data"];
+    };
+
+    [MCStyleManager share].styleDataCallback = ^NSDictionary *(void) {
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"CustomPlayerStyle" ofType:@"json"];
+        NSError *error;
+        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:NSJSONReadingMutableContainers error:&error];
+        NSAssert(!error, @"read json file error");
+        return dictionary[@"data"];
+    };
+    [[MCStyleManager share] loadData];
+    
     [self.dataVM refresh];
 
     [self.view addSubview:self.tableView];

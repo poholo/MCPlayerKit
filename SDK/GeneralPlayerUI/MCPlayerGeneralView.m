@@ -17,6 +17,7 @@
 #import "MCDeviceUtils.h"
 #import "MCPlayerGeneralTerminalView.h"
 #import "MCPlayerKitDef.h"
+#import "MCImpactFeedbackGeneratorUtils.h"
 
 NSString *const kMCPlayerDestory = @"kMCPlayerDestory";
 
@@ -24,6 +25,7 @@ NSString *const kMCPlayerDestory = @"kMCPlayerDestory";
 
 @property(nonatomic, strong) UIView *containerView;
 @property(nonatomic, strong) MCPlayerGeneralTouchView *touchView;
+@property(nonatomic, assign) BOOL isControlBarShow;
 @property(nonatomic, strong) MCPlayerView *playerView;
 @property(nonatomic, strong) MCPlayerLoadingView *loadingView;
 
@@ -46,7 +48,7 @@ NSString *const kMCPlayerDestory = @"kMCPlayerDestory";
 
 - (void)dealloc {
     [self freeSpace];
-    MCLog(@"[PK]%@ dealloc", NSStringFromClass(self.class));
+    MCLog(@"[MCP][PK]%@ dealloc", NSStringFromClass(self.class));
 }
 
 - (void)freeSpace {
@@ -296,7 +298,12 @@ NSString *const kMCPlayerDestory = @"kMCPlayerDestory";
     self.touchView.callBack = ^id(NSString *action, id value) {
         __strong typeof(weakSelf) strongself = weakSelf;
         if ([action isEqualToString:kMCTouchTapAction]) {
-            [strongself showControlThenHide];
+            [MCImpactFeedbackGeneratorUtils responseFeedBackGenderator];
+            if(strongself.isControlBarShow) {
+                [strongself fadeHiddenControl];
+            } else {
+                [strongself showControlThenHide];
+            }
         }
         if (strongself.eventCallBack) {
             return strongself.eventCallBack(action, value);
@@ -366,6 +373,7 @@ NSString *const kMCPlayerDestory = @"kMCPlayerDestory";
     self.lockBtn.hidden = YES;
     self.playBtn.hidden = YES;
     self.bottomProgress.hidden = self.isLive ?: NO;
+    self.isControlBarShow = NO;
 }
 
 - (void)showControl {
@@ -379,6 +387,7 @@ NSString *const kMCPlayerDestory = @"kMCPlayerDestory";
     } else {
         self.lockBtn.hidden = self.bottomView.hidden;
     }
+    self.isControlBarShow = YES;
 }
 
 - (void)showControlThenHide {
@@ -405,6 +414,7 @@ NSString *const kMCPlayerDestory = @"kMCPlayerDestory";
     } else {
         [self showControlThenHide];
     }
+    [MCImpactFeedbackGeneratorUtils responseFeedBackGenderator];
 }
 
 - (void)playBtnClick {
@@ -415,6 +425,7 @@ NSString *const kMCPlayerDestory = @"kMCPlayerDestory";
     } else {
         [self.playerKit play];
     }
+    [MCImpactFeedbackGeneratorUtils responseFeedBackGenderator];
 }
 
 - (void)backBtnClick {
@@ -446,6 +457,7 @@ NSString *const kMCPlayerDestory = @"kMCPlayerDestory";
             [viewController dismissViewControllerAnimated:YES completion:NULL];
         }
     }
+    [MCImpactFeedbackGeneratorUtils responseFeedBackGenderator];
 }
 
 #pragma mark - MCPlayerDelegate

@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
     core.dependency 'MCIJKPlayer', '0.0.8'
     core.dependency 'GCDMulticastDelegate'
   end
-
+  
   s.subspec 'GeneralPlayerUI' do |general|
     general.source_files = 'SDK/GeneralPlayerUI/**/*.{h,m,mm}',
                            'SDK/GeneralPlayerUI/*.{h,m,mm}',

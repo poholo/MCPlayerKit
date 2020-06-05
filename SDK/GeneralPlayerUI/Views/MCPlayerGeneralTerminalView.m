@@ -9,6 +9,7 @@
 
 #import "MCPlayerViewConfig.h"
 #import "MCPlayerkitDef.h"
+#import "MCImpactFeedbackGeneratorUtils.h"
 
 
 typedef NS_ENUM(NSInteger, PTAirPlayEvent) {
@@ -322,6 +323,7 @@ typedef NS_ENUM(NSInteger, PTAirPlayEvent) {
         default:
             break;
     }
+    [MCImpactFeedbackGeneratorUtils responseFeedBackGenderator];
 }
 
 - (void)btnClick:(UIButton *)btn {

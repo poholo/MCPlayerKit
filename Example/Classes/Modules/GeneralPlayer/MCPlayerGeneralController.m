@@ -5,8 +5,6 @@
 
 #import "MCPlayerGeneralController.h"
 
-#import <MCStyle/MCStyleDef.h>
-
 #import "MCPlayerGeneralView.h"
 #import "MCPlayerGeneralHeader.h"
 #import "MCPlayerKit.h"
@@ -40,32 +38,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [MCStyleManager share].colorStyleDataCallback = ^NSDictionary *(void) {
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"CustomPlayerColor" ofType:@"json"];
-        NSError *error;
-        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:NSJSONReadingMutableContainers error:&error];
-        NSAssert(!error, @"read json file error");
-        return dictionary[@"data"];
-    };
-
-    [MCStyleManager share].fontStyleDataCallBack = ^NSDictionary *(void) {
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"CustomPlayerFont" ofType:@"json"];
-        NSError *error;
-        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:NSJSONReadingMutableContainers error:&error];
-        NSAssert(!error, @"read json file error");
-        return dictionary[@"data"];
-    };
-
-    [MCStyleManager share].styleDataCallback = ^NSDictionary *(void) {
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"CustomPlayerStyle" ofType:@"json"];
-        NSError *error;
-        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:NSJSONReadingMutableContainers error:&error];
-        NSAssert(!error, @"read json file error");
-        return dictionary[@"data"];
-    };
-    [[MCStyleManager share] loadData];
-
-
     [self.view addSubview:self.testBtn];
     [self prepare];
 }
@@ -76,8 +48,8 @@
     [self.view addSubview:self.playerView];
     [self.playerView updatePlayerPicture:@"https://avatars0.githubusercontent.com/u/3861387?s=460&v=4"];
     [self.playerView updateTitle:@"Skipping code signing because the target does not have an Info.plist file. (in target 'App')"];
-//    [self.playerKit playUrls:@[@"http://aliuwmp3.changba.com/userdata/video/45F6BD5E445E4C029C33DC5901307461.mp4"]];
-    [self.playerKit playUrls:@[@"rtmp://live.pull.gymchina.com/jz/eudgbqsv5dmghslo?auth_key=1586975460-237-0-565bae0d84c926af9319dd0fa6cdd6a9"]];
+    [self.playerKit playUrls:@[@"http://aliuwmp3.changba.com/userdata/video/45F6BD5E445E4C029C33DC5901307461.mp4"]];
+//    [self.playerKit playUrls:@[@"rtmp://live.pull.gymchina.com/jz/tm8va2x69m31fz53?auth_key=1589383277-302-0-caf21b3553a1e31c25d847e9e3ab66b8"] isLiveOptions:YES];
 //    self.playerView.unableSeek = YES;
     [self.playerView updateAction:self.playerKit];
     self.playerView.retryPlayUrl = ^NSString *(void) {
@@ -238,21 +210,17 @@
 }
 
 - (void)changeTransition:(id<UIViewControllerTransitionCoordinator>)coordinator {
-    MCPlayerStyleSizeType type = self.playerView.styleSizeType;
-    if(type != MCPlayerStyleSizeClassCompact) {
-        self.playerView.willStyleSizeType = MCPlayerStyleSizeClassCompact;
-    } else {
-        self.playerView.willStyleSizeType = MCPlayerStyleSizeClassRegularHalf;
-    }
+    NSLog(@"[Orientation]%zd", [UIDevice currentDevice].orientation);
+    UIDeviceOrientation willOrientation = [UIDevice currentDevice].orientation;
      __weak typeof(self) weakSelf = self;
         [coordinator animateAlongsideTransition:^(id <UIViewControllerTransitionCoordinatorContext> context) {
             __strong typeof(weakSelf) strongSelf = weakSelf;
-            if (type != MCPlayerStyleSizeClassCompact) {
-                [strongSelf.playerView rotate2Landscape];
-            } else {
-    //            [strongSelf.definitionView removeFromSuperview];
+            if (willOrientation == UIDeviceOrientationPortrait || willOrientation == UIDeviceOrientationPortraitUpsideDown ) {
                 [strongSelf.playerView updateTitle:@""];
                 [strongSelf.playerView rotate2Portrait];
+            } else if(willOrientation == UIDeviceOrientationLandscapeLeft || willOrientation == UIDeviceOrientationLandscapeRight) {
+    //            [strongSelf.definitionView removeFromSuperview];
+                [strongSelf.playerView rotate2Landscape];
             }
         }                            completion:^(id <UIViewControllerTransitionCoordinatorContext> context) {
             __strong typeof(weakSelf) strongSelf = weakSelf;
@@ -260,7 +228,9 @@
 }
 
 - (BOOL)prefersStatusBarHidden {
-    return self.playerView.willStyleSizeType != MCPlayerStyleSizeClassRegularHalf;
+    NSLog(@"[Orientation][status]%zd", [UIDevice currentDevice].orientation);
+    UIDeviceOrientation willOrientation = [UIDevice currentDevice].orientation;
+    return self.playerView.styleSizeType != MCPlayerStyleSizeClassRegularHalf;
 }
 
 #pragma mark - getter
@@ -279,7 +249,7 @@
         CGFloat height = width * 9 / 16.0f + [MCDeviceUtils xTop];
         _playerView = [[MCPlayerGeneralView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
         _playerView.backgroundColor = [UIColor blackColor];
-        _playerView.unableSeek = YES;
+        _playerView.unableSeek = NO;
         _playerView.isLive = NO;
     }
     return _playerView;

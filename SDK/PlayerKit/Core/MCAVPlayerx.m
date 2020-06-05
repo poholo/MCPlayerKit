@@ -39,7 +39,7 @@
 
 - (void)dealloc {
     [self releaseSpace];
-    MCLog(@"%@--%s--%d dealloc", [self class], __func__, __LINE__);
+    MCLog(@"[MCP][dealloc]%@--%s--%d", [self class], __func__, __LINE__);
 }
 
 - (void)releaseSpace {

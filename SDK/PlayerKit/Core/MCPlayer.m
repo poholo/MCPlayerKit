@@ -7,6 +7,8 @@
 
 #import <AudioToolbox/AudioToolbox.h>
 
+#import "MCPlayerKitDef.h"
+
 @implementation MCPlayer
 
 @synthesize playerState = _playerState, cacheProgress = _cacheProgress, rate = _rate;
@@ -22,6 +24,7 @@
 
 - (void)dealloc {
     [self releaseSpace];
+    MCLog(@"[MCP][dealloc]%@", [self class]);
 }
 
 - (void)releaseSpace {
@@ -50,6 +53,14 @@
 
 - (void)preparePlay {
     self.playerState = MCPlayerStateLoading;
+}
+
+- (void)preParePlayContainView:(UIView *)containView {
+    self.playerState = MCPlayerStateLoading;
+}
+
+- (void)updatePlayerView:(UIView *)playerView {
+
 }
 
 - (void)play {

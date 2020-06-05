@@ -33,12 +33,12 @@
 @implementation MCPlayerKit
 
 - (void)dealloc {
-    if(_multicastDelegate) {
+    if (_multicastDelegate) {
         [_multicastDelegate removeAllDelegates];
         _multicastDelegate = nil;
     }
     [self destory];
-    MCLog(@"[PK]%@ dealloc", NSStringFromClass(self.class));
+    MCLog(@"[MCP][PK]%@ dealloc", NSStringFromClass(self.class));
 }
 
 - (instancetype)initWithPlayerView:(__weak MCPlayerView *)playerView {
@@ -53,7 +53,7 @@
 - (void)updatePlayerView:(MCPlayerView *)playerView {
     self.playerView = playerView;
     self.playerEnvironment = MCPlayerEnvironmentOnBecomeActiveStatus;
-
+    [_player updatePlayerView:playerView];
     if ([self.multicastDelegate respondsToSelector:@selector(updatePlayView)]) {
         [self.multicastDelegate updatePlayView];
     }
@@ -209,6 +209,7 @@
     [_player addObserver:self forKeyPath:@"playerState" options:NSKeyValueObservingOptionNew context:nil];
     _player.actionAtItemEnd = self.actionAtItemEnd;
     _player.playerLayerVideoGravity = self.playerLayerVideoGravity;
+    [_player preParePlayContainView:_playerView];
     [_player playUrls:urls isLiveOptions:isLiveOptions];
 
 }
@@ -217,7 +218,9 @@
     if ([self conditionLimit2CannotPlay]) {
         return;
     }
-    [_player preparePlay];
+    if(![[_player class] isKindOfClass:[NSClassFromString(@"MCTXPlayer") class]]) {
+        [_player preparePlay];
+    }
 }
 
 - (void)play {

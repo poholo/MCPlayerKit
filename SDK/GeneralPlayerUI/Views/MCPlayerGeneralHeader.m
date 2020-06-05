@@ -10,6 +10,7 @@
 #import <MCStyle/MCStyleDef.h>
 
 #import "MCPlayerKitDef.h"
+#import "MCImpactFeedbackGeneratorUtils.h"
 
 NSString *const kMCPlayerHeaderBack = @"kMCPlayerHeaderBack";
 
@@ -59,6 +60,8 @@ NSString *const kMCPlayerHeaderBack = @"kMCPlayerHeaderBack";
 - (void)backBtnClick {
     if (!self.callBack) return;
     self.callBack(kMCPlayerHeaderBack, nil);
+    [MCImpactFeedbackGeneratorUtils responseFeedBackGenderator];
+    
 }
 
 - (void)createViews {

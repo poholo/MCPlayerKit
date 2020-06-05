@@ -12,6 +12,7 @@
 #import "NSNumber+MCExtend.h"
 #import "MCCustomActionView.h"
 #import "MCPlayerKitDef.h"
+#import "MCImpactFeedbackGeneratorUtils.h"
 
 NSString *const kMCPlayer2HalfScreenAction = @"kMCPlayer2HalfScreenAction";
 NSString *const kMCPlayer2FullScreenAction = @"kMCPlayer2FullScreenAction";
@@ -54,12 +55,14 @@ NSString *const kMCControlProgressEndDragSlider = @"kMCControlProgressEndDragSli
     if (self.callBack) {
         self.callBack(self.playBtn.selected ? kMCPlayer2PauseAction : kMCPlayer2PlayAction, nil);
     }
+    [MCImpactFeedbackGeneratorUtils responseFeedBackGenderator];
 }
 
 - (void)screenBtnClick {
     if (self.callBack) {
         self.callBack(self.screenBtn.selected ? kMCPlayer2HalfScreenAction : kMCPlayer2FullScreenAction, nil);
     }
+    [MCImpactFeedbackGeneratorUtils responseFeedBackGenderator];
 }
 
 - (void)updatePlayerStyle:(MCPlayerStyleSizeType)styleSizeType {
