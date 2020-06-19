@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
 
   s.requires_arc = true
 
-  s.platform     = :ios, "9.0"
+  s.platform     = :ios, "10.0"
   s.source       = { :git => "https://github.com/poholo/MCPlayerKit.git", :tag => "#{s.version}" }
 
   s.default_subspec = 'Core'
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
     core.source_files = 'SDK/PlayerKit/*.{h,m,mm}',
                         'SDK/PlayerKit/**/*.{h,m,mm}'
     core.public_header_files = 'SDK/PlayerKit/*.h'
-    core.dependency 'MCIJKPlayer', '0.0.8'
+    core.dependency 'MCIJKPlayer', '0.0.9'
     core.dependency 'GCDMulticastDelegate', '1.0.0'
   end
   
@@ -27,20 +27,13 @@ Pod::Spec.new do |s|
                            'SDK/GeneralPlayerUI/*.{h,m,mm}',
                            'SDK/Commen/*.{h,m,mm}'
     general.public_header_files = 'SDK/GeneralPlayerUI/*.h'
-    general.dependency 'MCPlayerKit/Core', '0.1.9'
-    general.dependency 'SDVersion', '>= 4.3.2'
+    general.dependency 'MCPlayerKit/Core'
+    general.dependency 'MCVersion', '4.3.3'
     general.dependency 'MCStyle', '0.0.8'
-    general.dependency 'SDWebImage', '>= 5.8.1'
+    general.dependency 'MCBase', '0.0.2'
+    general.dependency 'SDWebImage'
   end
-
-  s.xcconfig = {
-       'VALID_ARCHS' => 'arm64, x86_64',
-       'USER_HEADER_SEARCH_PATHS' => '${PROJECT_DIR}/Pods/**'
-  }
-  s.pod_target_xcconfig = {
-        'VALID_ARCHS' => 'arm64, x86_64'
-  }
-
+  
   s.frameworks = "UIKit", "Foundation", "VideoToolbox", "QuartzCore", "OpenGLES", "MobileCoreServices", 
                  "MediaPlayer", "CoreVideo", "CoreMedia", "CoreGraphics", "AVFoundation", "AudioToolbox"
 
