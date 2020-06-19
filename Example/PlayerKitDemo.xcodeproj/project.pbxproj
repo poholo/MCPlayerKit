@@ -183,6 +183,7 @@
 		25A536DA1FDA9DFA002511DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		25A536DC1FDA9DFA002511DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		25A536DD1FDA9DFA002511DF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		25AEC7EF248B781900AC90A5 /* PlayerKitDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PlayerKitDemo.entitlements; sourceTree = "<group>"; };
 		25B1791A22212A2F00381793 /* VideoList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = VideoList.json; sourceTree = "<group>"; };
 		25DE19561FE3EE1A005CD97C /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
 		658AF439C28156EB4B42FE20 /* Pods-PlayerKitDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlayerKitDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PlayerKitDemo/Pods-PlayerKitDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -451,6 +452,7 @@
 		25A536CD1FDA9DFA002511DF /* PlayerKitDemo */ = {
 			isa = PBXGroup;
 			children = (
+				25AEC7EF248B781900AC90A5 /* PlayerKitDemo.entitlements */,
 				25A536CE1FDA9DFA002511DF /* AppDelegate.h */,
 				25A536CF1FDA9DFA002511DF /* AppDelegate.m */,
 				25A536D71FDA9DFA002511DF /* Assets.xcassets */,
@@ -526,7 +528,7 @@
 				TargetAttributes = {
 					25A536CA1FDA9DFA002511DF = {
 						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -755,9 +757,14 @@
 			baseConfigurationReference = 658AF439C28156EB4B42FE20 /* Pods-PlayerKitDemo.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					arm64,
+					x86_64,
+				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = PlayerKitDemo/PlayerKitDemo.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 6FNUHS4H7D;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -769,7 +776,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gymchina.PlayerKitDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = RootDev;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -779,9 +786,14 @@
 			baseConfigurationReference = B00A8E2810ED2A8E4D854DF1 /* Pods-PlayerKitDemo.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					arm64,
+					x86_64,
+				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = PlayerKitDemo/PlayerKitDemo.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 6FNUHS4H7D;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -790,7 +802,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gymchina.PlayerKitDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = RootDev;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

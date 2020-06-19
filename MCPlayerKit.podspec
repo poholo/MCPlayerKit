@@ -2,15 +2,15 @@ Pod::Spec.new do |s|
   s.name         = "MCPlayerKit"
   s.version      = "0.1.9"
   s.summary      = "MCPlayerKit is iOS Player, PlayerCoreType: AVPlayer can use play some video, IJKPlayer type can play video, Live ..."
-  s.homepage     = "https://github.com/poholo/PlayerKit"
+  s.homepage     = "https://github.com/poholo/MCPlayerKit"
   s.license          = { :type => "MIT", :file => "LICENSE" }
   s.author           = { "littleplayer" => "mailjiancheng@163.com" }
   s.social_media_url   = "https://weibo.com/lp927"
 
   s.requires_arc = true
 
-  s.platform     = :ios, "8.0"
-  s.source       = { :git => "https://github.com/poholo/PlayerKit.git", :tag => "#{s.version}" }
+  s.platform     = :ios, "9.0"
+  s.source       = { :git => "https://github.com/poholo/MCPlayerKit.git", :tag => "#{s.version}" }
 
   s.default_subspec = 'Core'
 
@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
                         'SDK/PlayerKit/**/*.{h,m,mm}'
     core.public_header_files = 'SDK/PlayerKit/*.h'
     core.dependency 'MCIJKPlayer', '0.0.8'
-    core.dependency 'GCDMulticastDelegate'
+    core.dependency 'GCDMulticastDelegate', '1.0.0'
   end
   
   s.subspec 'GeneralPlayerUI' do |general|
@@ -27,18 +27,18 @@ Pod::Spec.new do |s|
                            'SDK/GeneralPlayerUI/*.{h,m,mm}',
                            'SDK/Commen/*.{h,m,mm}'
     general.public_header_files = 'SDK/GeneralPlayerUI/*.h'
-    general.dependency 'MCPlayerKit/Core'
-    general.dependency 'SDVersion'
-    general.dependency 'MCStyle'
-    general.dependency 'SDWebImage'
+    general.dependency 'MCPlayerKit/Core', '0.1.9'
+    general.dependency 'SDVersion', '>= 4.3.2'
+    general.dependency 'MCStyle', '0.0.8'
+    general.dependency 'SDWebImage', '>= 5.8.1'
   end
 
   s.xcconfig = {
-       'VALID_ARCHS' => 'arm64 x86_64',
+       'VALID_ARCHS' => 'arm64, x86_64',
        'USER_HEADER_SEARCH_PATHS' => '${PROJECT_DIR}/Pods/**'
   }
   s.pod_target_xcconfig = {
-        'VALID_ARCHS' => 'arm64 x86_64'
+        'VALID_ARCHS' => 'arm64, x86_64'
   }
 
   s.frameworks = "UIKit", "Foundation", "VideoToolbox", "QuartzCore", "OpenGLES", "MobileCoreServices", 
