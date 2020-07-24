@@ -24,6 +24,7 @@ extern NSString *const kMCControlProgressEndDragSlider;
 @property(nonatomic, readonly) MCCustomActionView *rightView;
 @property(nonatomic, assign) BOOL unableSeek;
 @property(nonatomic, assign) BOOL isLive;
+@property(nonatomic, assign) BOOL onlyFullScreen;
 
 - (void)updatePlayerStyle:(MCPlayerStyleSizeType)styleSizeType;
 

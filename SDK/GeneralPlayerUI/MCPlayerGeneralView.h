@@ -48,6 +48,7 @@ typedef NS_ENUM(NSInteger, MCPlayerStyleSizeType) {
 @property(nonatomic, assign) BOOL unableSeek;
 @property(nonatomic, assign) BOOL isLive;
 @property(nonatomic, assign) BOOL notTop;
+@property(nonatomic, assign) BOOL onlyFullScreen;
 
 - (void)updatePlayerStyle:(MCPlayerStyleSizeType)styleSizeType;
 

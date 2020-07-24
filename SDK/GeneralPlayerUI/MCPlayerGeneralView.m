@@ -429,7 +429,7 @@ NSString *const kMCPlayerDestory = @"kMCPlayerDestory";
 }
 
 - (void)backBtnClick {
-    if (self.styleSizeType != MCPlayerStyleSizeClassRegularHalf) {
+    if (self.styleSizeType != MCPlayerStyleSizeClassRegularHalf && !self.onlyFullScreen) {
         [MCRotateHelper updatePlayerRegularHalf];
         [self rotate2Portrait];
     } else {
@@ -592,6 +592,7 @@ NSString *const kMCPlayerDestory = @"kMCPlayerDestory";
 - (MCPlayerGeneralFooter *)bottomView {
     if (!_bottomView) {
         _bottomView = [MCPlayerGeneralFooter new];
+        _bottomView.onlyFullScreen = self.onlyFullScreen;
     }
     return _bottomView;
 }
@@ -669,6 +670,11 @@ NSString *const kMCPlayerDestory = @"kMCPlayerDestory";
     _notTop = notTop;
     self.backBtn.hidden = notTop;
     [self addLayout];
+}
+
+- (void)setOnlyFullScreen:(BOOL)onlyFullScreen {
+    _onlyFullScreen = onlyFullScreen;
+    self.bottomView.onlyFullScreen = onlyFullScreen;
 }
 
 @end

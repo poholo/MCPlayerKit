@@ -136,7 +136,8 @@ NSString *const kMCControlProgressEndDragSlider = @"kMCControlProgressEndDragSli
     self.screenBtn.frame = CGRectMake(CGRectGetWidth(self.frame) - w - [MCStyle customInsets:@"player_contentInsetII"].right, [MCStyle customInsets:@"player_contentInsetII"].top, w, w);
 
     [self.rightView resizeViews];
-    self.rightView.frame = CGRectMake(CGRectGetMinX(self.screenBtn.frame) - CGRectGetWidth(self.rightView.frame), [MCStyle customInsets:@"player_contentInsetII"].top, CGRectGetWidth(self.rightView.frame), w);
+    CGFloat x = self.screenBtn.hidden ? CGRectGetWidth(self.frame) - CGRectGetWidth(self.rightView.frame) - [MCStyle customInsets:@"player_contentInsetII"].right : CGRectGetMinX(self.screenBtn.frame) - CGRectGetWidth(self.rightView.frame);
+    self.rightView.frame = CGRectMake(x, [MCStyle customInsets:@"player_contentInsetII"].top, CGRectGetWidth(self.rightView.frame), w);
 
     self.gradientLayer.frame = self.bounds;
     [self refreshTimeFrame];
@@ -281,4 +282,10 @@ NSString *const kMCControlProgressEndDragSlider = @"kMCControlProgressEndDragSli
     self.playerProgress.hidden = _isLive ?: NO;
 }
 
+
+- (void)setOnlyFullScreen:(BOOL)onlyFullScreen {
+    _onlyFullScreen = onlyFullScreen;
+    self.screenBtn.hidden = onlyFullScreen ?:NO;
+    [self addLayout];
+}
 @end
