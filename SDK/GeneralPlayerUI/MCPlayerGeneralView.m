@@ -23,6 +23,7 @@ NSString *const kMCPlayerDestory = @"kMCPlayerDestory";
 
 @interface MCPlayerGeneralView () <MCPlayerDelegate, MCPlayerTerminalDelegate>
 
+@property(nonatomic, assign) CGRect originFrame;
 @property(nonatomic, strong) UIView *containerView;
 @property(nonatomic, strong) MCPlayerGeneralTouchView *touchView;
 @property(nonatomic, assign) BOOL isControlBarShow;
@@ -105,6 +106,7 @@ NSString *const kMCPlayerDestory = @"kMCPlayerDestory";
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        self.originFrame = frame;
         [self setup];
     }
     return self;
@@ -207,9 +209,10 @@ NSString *const kMCPlayerDestory = @"kMCPlayerDestory";
     if (self.styleSizeType == MCPlayerStyleSizeClassRegularHalf) {
         return;
     }
-    CGSize size = [UIScreen mainScreen].bounds.size;
+//    CGSize size = [UIScreen mainScreen].bounds.size;
     [self updatePlayerStyle:MCPlayerStyleSizeClassRegularHalf];
-    self.frame = CGRectMake(0, 0, size.width, size.width * 9 / 16 + [MCDeviceUtils xStatusBarHeight]);
+    self.frame = self.originFrame;
+//    CGRectMake(0, 0, size.width, size.width * 9 / 16 + [MCDeviceUtils xStatusBarHeight]);
 }
 
 - (void)rotate2PortraitFullScreen {
@@ -259,10 +262,14 @@ NSString *const kMCPlayerDestory = @"kMCPlayerDestory";
     CGFloat barRate = 0.1f;
     CGFloat barHeight = 44;
 
-    if (self.styleSizeType == MCPlayerStyleSizeClassRegularHalf || self.styleSizeType == MCPlayerStyleSizeClassRegular) {
+    if (self.styleSizeType == MCPlayerStyleSizeClassRegularHalf) {
         CGFloat py = (!self.notTop && [MCDeviceUtils iPhoneX]) ? 24 : 0;
         self.playerView.frame = CGRectMake(0, py, CGRectGetWidth(containerFrame), CGRectGetHeight(containerFrame) - py);
         self.topView.frame = CGRectMake(0, 0, w, barHeight + (self.notTop ? 0 : [MCDeviceUtils xStatusBarHeight]));
+    } else if(self.styleSizeType == MCPlayerStyleSizeClassRegular) {
+        CGFloat py = [MCDeviceUtils iPhoneX] ? 24 : 0;
+        self.playerView.frame = CGRectMake(0, py, CGRectGetWidth(containerFrame), CGRectGetHeight(containerFrame) - py);
+        self.topView.frame = CGRectMake(0, 0, w, barHeight +  [MCDeviceUtils xStatusBarHeight]);
     } else {
         self.playerView.frame = self.containerView.bounds;
         self.topView.frame = CGRectMake(0, 0, w, barHeight);
@@ -669,6 +676,7 @@ NSString *const kMCPlayerDestory = @"kMCPlayerDestory";
 - (void)setNotTop:(BOOL)notTop {
     _notTop = notTop;
     self.backBtn.hidden = notTop;
+    self.topView.notTop = notTop;
     [self addLayout];
 }
 

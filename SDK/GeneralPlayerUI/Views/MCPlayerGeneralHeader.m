@@ -46,15 +46,19 @@ NSString *const kMCPlayerHeaderBack = @"kMCPlayerHeaderBack";
     [self.rightView updatePlayerStyle:styleSizeType];
     switch (styleSizeType) {
         case MCPlayerStyleSizeClassRegularHalf: {
+            self.backBtn.hidden = self.notTop;
         }
             break;
         case MCPlayerStyleSizeClassRegular: {
+            self.backBtn.hidden = NO;
         }
             break;
         case MCPlayerStyleSizeClassCompact: {
+            self.backBtn.hidden = NO;
         }
             break;
     }
+    [self addLayout];
 }
 
 - (void)backBtnClick {
@@ -76,12 +80,15 @@ NSString *const kMCPlayerHeaderBack = @"kMCPlayerHeaderBack";
         return;
     UIEdgeInsets insets = [MCStyle customInsets:@"player_contentInsetII"];
     CGFloat top = (self.styleSizeType == MCPlayerStyleSizeClassRegularHalf || self.styleSizeType == MCPlayerStyleSizeClassRegular) ? [MCDeviceUtils xStatusBarHeight] : 0;
+    if (self.styleSizeType == MCPlayerStyleSizeClassRegularHalf && self.notTop) {
+        top = 0;
+    }
     CGFloat h = CGRectGetHeight(self.frame) - top;
     CGFloat w = h - 2 * insets.top;
     self.backBtn.frame = CGRectMake(0, top, h, h);
     [self.rightView resizeViews];
     self.rightView.frame = CGRectMake(CGRectGetWidth(self.frame) - CGRectGetWidth(self.rightView.frame), top, CGRectGetWidth(self.rightView.frame), h);
-    CGFloat startX = (self.notTop ? 0 : CGRectGetMaxX(self.backBtn.frame)) - [MCStyle customInsets:@"player_contentInsetIII"].left;
+    CGFloat startX = (self.backBtn.hidden ? 5 : CGRectGetMaxX(self.backBtn.frame)) - [MCStyle customInsets:@"player_contentInsetIII"].left;
     CGFloat maxTitleWidth = CGRectGetMinX(self.rightView.frame) - startX - [MCStyle customInsets:@"player_contentInsetIII"].right;
     self.titleLabel.frame = CGRectMake(startX, (h - [MCFont custom:@"player_title_font"].lineHeight) / 2.0f + top, maxTitleWidth, [MCFont custom:@"player_title_font"].lineHeight);
     self.gradientLayer.frame = CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));

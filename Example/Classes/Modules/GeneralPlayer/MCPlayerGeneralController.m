@@ -251,7 +251,7 @@
         _playerView.backgroundColor = [UIColor blackColor];
         _playerView.unableSeek = NO;
         _playerView.isLive = NO;
-        _playerView.onlyFullScreen = YES;
+//        _playerView.onlyFullScreen = NO;
     }
     return _playerView;
 }

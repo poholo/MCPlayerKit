@@ -133,6 +133,16 @@
         [self.playerView.bottomView.rightView addCustom:btn];
         btn.titleLabel.font = [UIFont systemFontOfSize:12];
     }
+    
+    {
+        MCPlayerCommonButton *btn = [MCPlayerCommonButton new];
+        [btn setTitle:@"清晰度2" forState:UIControlStateNormal];
+        [btn setBackgroundColor:[UIColor orangeColor]];
+        btn.size = CGSizeMake(60, 30);
+        btn.tag = 0;
+        [self.playerView.bottomView.rightView addCustom:btn];
+        btn.titleLabel.font = [UIFont systemFontOfSize:12];
+    }
 
     self.view.backgroundColor = [UIColor grayColor];
 
@@ -252,9 +262,9 @@
 
 - (MCPlayerGeneralView *)playerView {
     if (!_playerView) {
-        CGFloat width = MIN([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
-        CGFloat height = width * 9 / 16.0f + [MCDeviceUtils xTop];
-        _playerView = [[MCPlayerGeneralView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
+        CGFloat width = MIN([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height) - 30;
+        CGFloat height = width * 9 / 16.0f;
+        _playerView = [[MCPlayerGeneralView alloc] initWithFrame:CGRectMake(15, 150, width, height)];
         _playerView.backgroundColor = [UIColor blackColor];
         _playerView.unableSeek = NO;
         _playerView.isLive = NO;

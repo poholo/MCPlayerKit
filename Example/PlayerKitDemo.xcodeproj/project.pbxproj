@@ -60,6 +60,7 @@
 		25436B2721E0995700036057 /* MMPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25436AFD21E0995700036057 /* MMPopupView.m */; };
 		25436B2821E0995700036057 /* MMPopupItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 25436B0021E0995700036057 /* MMPopupItem.m */; };
 		2568A8C5244E993F00C30EDF /* MCPlayerGeneralNotTopController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2568A8C4244E993F00C30EDF /* MCPlayerGeneralNotTopController.m */; };
+		25718CF8250721DA00231459 /* MCPlayerNotTopController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25718CF7250721DA00231459 /* MCPlayerNotTopController.m */; };
 		25A536D01FDA9DFA002511DF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A536CF1FDA9DFA002511DF /* AppDelegate.m */; };
 		25A536D81FDA9DFA002511DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25A536D71FDA9DFA002511DF /* Assets.xcassets */; };
 		25A536DB1FDA9DFA002511DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25A536D91FDA9DFA002511DF /* LaunchScreen.storyboard */; };
@@ -176,6 +177,8 @@
 		25436B0121E0995700036057 /* MMWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMWindowController.h; sourceTree = "<group>"; };
 		2568A8C3244E993F00C30EDF /* MCPlayerGeneralNotTopController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MCPlayerGeneralNotTopController.h; sourceTree = "<group>"; };
 		2568A8C4244E993F00C30EDF /* MCPlayerGeneralNotTopController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MCPlayerGeneralNotTopController.m; sourceTree = "<group>"; };
+		25718CF6250721DA00231459 /* MCPlayerNotTopController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MCPlayerNotTopController.h; sourceTree = "<group>"; };
+		25718CF7250721DA00231459 /* MCPlayerNotTopController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MCPlayerNotTopController.m; sourceTree = "<group>"; };
 		25A536CB1FDA9DFA002511DF /* PlayerKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayerKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25A536CE1FDA9DFA002511DF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		25A536CF1FDA9DFA002511DF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -286,6 +289,7 @@
 		25436ABA21E0995700036057 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				25718CF52507218C00231459 /* GeneralPlayer-NotTop */,
 				25436ABB21E0995700036057 /* TouchTest */,
 				25436ABE21E0995700036057 /* GeneralPlayer */,
 				25436ACE21E0995700036057 /* List */,
@@ -425,6 +429,15 @@
 				25436B0121E0995700036057 /* MMWindowController.h */,
 			);
 			path = MMPopupView;
+			sourceTree = "<group>";
+		};
+		25718CF52507218C00231459 /* GeneralPlayer-NotTop */ = {
+			isa = PBXGroup;
+			children = (
+				25718CF6250721DA00231459 /* MCPlayerNotTopController.h */,
+				25718CF7250721DA00231459 /* MCPlayerNotTopController.m */,
+			);
+			path = "GeneralPlayer-NotTop";
 			sourceTree = "<group>";
 		};
 		25A536C21FDA9DFA002511DF = {
@@ -608,6 +621,7 @@
 				25436B1421E0995700036057 /* PlayerCategroiesDataVM.m in Sources */,
 				25436B1C21E0995700036057 /* MCDouyinPlayerView.m in Sources */,
 				25436B1D21E0995700036057 /* MCDouyinPlayerDataVM.m in Sources */,
+				25718CF8250721DA00231459 /* MCPlayerNotTopController.m in Sources */,
 				25436B0821E0995700036057 /* DataVM.m in Sources */,
 				25436B1B21E0995700036057 /* VideoDto.m in Sources */,
 				25436B1121E0995700036057 /* MCPlayerNormalDataVM.m in Sources */,
@@ -700,6 +714,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				VALID_ARCHS = "arm64 arm64e";
 			};
 			name = Debug;
 		};
@@ -749,6 +764,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 arm64e";
 			};
 			name = Release;
 		};
