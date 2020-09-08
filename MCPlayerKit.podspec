@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "MCPlayerKit"
-  s.version      = "0.1.9"
+  s.version      = "0.2.0"
   s.summary      = "MCPlayerKit is iOS Player, PlayerCoreType: AVPlayer can use play some video, IJKPlayer type can play video, Live ..."
   s.homepage     = "https://github.com/poholo/MCPlayerKit"
   s.license          = { :type => "MIT", :file => "LICENSE" }
