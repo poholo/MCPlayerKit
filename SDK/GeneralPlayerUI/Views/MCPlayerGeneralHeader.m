@@ -86,6 +86,7 @@ NSString *const kMCPlayerHeaderBack = @"kMCPlayerHeaderBack";
     CGFloat h = CGRectGetHeight(self.frame) - top;
     CGFloat w = h - 2 * insets.top;
     self.backBtn.frame = CGRectMake(0, top, h, h);
+    self.rightView.frame = CGRectMake(CGRectGetWidth(self.frame), top, 0, h);
     [self.rightView resizeViews];
     self.rightView.frame = CGRectMake(CGRectGetWidth(self.frame) - CGRectGetWidth(self.rightView.frame), top, CGRectGetWidth(self.rightView.frame), h);
     CGFloat startX = (self.backBtn.hidden ? 5 : CGRectGetMaxX(self.backBtn.frame)) - [MCStyle customInsets:@"player_contentInsetIII"].left;
