@@ -20,6 +20,7 @@
 #import "MCImpactFeedbackGeneratorUtils.h"
 
 NSString *const kMCPlayerDestory = @"kMCPlayerDestory";
+NSString *const kMCPlayerStyleSizeClassRegularAction = @"kMCPlayerStyleSizeClassRegularAction";
 
 @interface MCPlayerGeneralView () <MCPlayerDelegate, MCPlayerTerminalDelegate>
 
