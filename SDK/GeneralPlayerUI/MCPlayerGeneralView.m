@@ -221,6 +221,11 @@ NSString *const kMCPlayerDestory = @"kMCPlayerDestory";
     }
     [self updatePlayerStyle:MCPlayerStyleSizeClassRegular];
     self.frame = [UIScreen mainScreen].bounds;
+    if(self.notTop) {
+        if(self.outEventCallBack) {
+            self.outEventCallBack(kMCPlayerStyleSizeClassRegularAction, nil);
+        }
+    }
 }
 
 - (void)reset {

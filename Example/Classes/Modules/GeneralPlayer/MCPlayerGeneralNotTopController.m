@@ -110,6 +110,8 @@
         [btn setBackgroundColor:[UIColor orangeColor]];
         btn.size = CGSizeMake(60, 30);
         btn.tag = 99;
+        btn.showFullScreen = YES;
+        btn.showHalfScreen = YES;
         [self.playerView.topView.rightView addCustom:btn];
         btn.titleLabel.font = [UIFont systemFontOfSize:12];
     }
