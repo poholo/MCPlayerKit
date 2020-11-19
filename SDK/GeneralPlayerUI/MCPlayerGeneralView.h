@@ -25,6 +25,7 @@ extern NSString *const kMCDragProgressToProgress;
 extern NSString *const kMCControlProgressEndDragSlider;
 extern NSString *const kMCPlayerDestory;
 extern NSString *const kMCPlayerStyleSizeClassRegularAction;
+extern NSString *const kMCPlayerStyleSizeClassRegularHalfAction;
 
 typedef NS_ENUM(NSInteger, MCPlayerStyleSizeType) {
     MCPlayerStyleSizeClassRegularHalf,   ///<  16:9 半屏幕

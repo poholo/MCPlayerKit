@@ -21,6 +21,8 @@
 
 NSString *const kMCPlayerDestory = @"kMCPlayerDestory";
 NSString *const kMCPlayerStyleSizeClassRegularAction = @"kMCPlayerStyleSizeClassRegularAction";
+NSString *const kMCPlayerStyleSizeClassRegularHalfAction = @"kMCPlayerStyleSizeClassRegularHalfAction";
+
 
 @interface MCPlayerGeneralView () <MCPlayerDelegate, MCPlayerTerminalDelegate>
 
@@ -214,6 +216,11 @@ NSString *const kMCPlayerStyleSizeClassRegularAction = @"kMCPlayerStyleSizeClass
     [self updatePlayerStyle:MCPlayerStyleSizeClassRegularHalf];
     self.frame = self.originFrame;
 //    CGRectMake(0, 0, size.width, size.width * 9 / 16 + [MCDeviceUtils xStatusBarHeight]);
+    if(self.notTop) {
+        if(self.outEventCallBack) {
+            self.outEventCallBack(kMCPlayerStyleSizeClassRegularHalfAction, nil);
+        }
+    }
 }
 
 - (void)rotate2PortraitFullScreen {
@@ -222,6 +229,7 @@ NSString *const kMCPlayerStyleSizeClassRegularAction = @"kMCPlayerStyleSizeClass
     }
     [self updatePlayerStyle:MCPlayerStyleSizeClassRegular];
     self.frame = [UIScreen mainScreen].bounds;
+    
     if(self.notTop) {
         if(self.outEventCallBack) {
             self.outEventCallBack(kMCPlayerStyleSizeClassRegularAction, nil);
