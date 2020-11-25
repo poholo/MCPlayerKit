@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "MCPlayerKit"
-  s.version      = "0.2.1"
+  s.version      = "0.2.2"
   s.summary      = "MCPlayerKit is iOS Player, PlayerCoreType: AVPlayer can use play some video, IJKPlayer type can play video, Live ..."
   s.homepage     = "https://github.com/poholo/MCPlayerKit"
   s.license          = { :type => "MIT", :file => "LICENSE" }
@@ -18,8 +18,8 @@ Pod::Spec.new do |s|
     core.source_files = 'SDK/PlayerKit/*.{h,m,mm}',
                         'SDK/PlayerKit/**/*.{h,m,mm}'
     core.public_header_files = 'SDK/PlayerKit/*.h'
-    core.dependency 'MCIJKPlayer', '0.0.9'
-    core.dependency 'GCDMulticastDelegate', '1.0.0'
+    core.dependency 'MCIJKPlayer'
+    core.dependency 'GCDMulticastDelegate'
   end
   
   s.subspec 'GeneralPlayerUI' do |general|
@@ -28,9 +28,9 @@ Pod::Spec.new do |s|
                            'SDK/Commen/*.{h,m,mm}'
     general.public_header_files = 'SDK/GeneralPlayerUI/*.h'
     general.dependency 'MCPlayerKit/Core'
-    general.dependency 'MCVersion', '4.3.3'
-    general.dependency 'MCStyle', '0.0.8'
-    general.dependency 'MCBase', '0.0.2'
+    general.dependency 'MCVersion'
+    general.dependency 'MCStyle'
+    general.dependency 'MCBase'
     general.dependency 'SDWebImage'
   end
   
