@@ -435,6 +435,7 @@ NSString *const kMCPlayerStyleSizeClassRegularHalfAction = @"kMCPlayerStyleSizeC
     } else {
         [self showControlThenHide];
     }
+    self.touchView.isLock = self.lockBtn.selected;
     [MCImpactFeedbackGeneratorUtils responseFeedBackGenderator];
 }
 
