@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "MCPlayerKit"
-  s.version      = "0.2.2"
+  s.version      = "0.2.3"
   s.summary      = "MCPlayerKit is iOS Player, PlayerCoreType: AVPlayer can use play some video, IJKPlayer type can play video, Live ..."
   s.homepage     = "https://github.com/poholo/MCPlayerKit"
   s.license          = { :type => "MIT", :file => "LICENSE" }
@@ -21,6 +21,13 @@ Pod::Spec.new do |s|
     core.dependency 'MCIJKPlayer'
     core.dependency 'GCDMulticastDelegate'
   end
+
+  s.subspec 'SwiftCore' do |core|
+    core.source_files = 'SDK/PlayerKit/*.{h,m,mm}',
+                        'SDK/PlayerKit/**/*.{h,m,mm}'
+    core.public_header_files = 'SDK/PlayerKit/*.h'
+    core.dependency 'GCDMulticastDelegate'
+  end
   
   s.subspec 'GeneralPlayerUI' do |general|
     general.source_files = 'SDK/GeneralPlayerUI/**/*.{h,m,mm}',
@@ -33,8 +40,20 @@ Pod::Spec.new do |s|
     general.dependency 'MCBase'
     general.dependency 'SDWebImage'
   end
+
+  s.subspec 'SwiftGeneralPlayerUI' do |general|
+    general.source_files = 'SDK/GeneralPlayerUI/**/*.{h,m,mm}',
+                           'SDK/GeneralPlayerUI/*.{h,m,mm}',
+                           'SDK/Commen/*.{h,m,mm}'
+    general.public_header_files = 'SDK/GeneralPlayerUI/*.h'
+    general.dependency 'MCPlayerKit/SwiftCore'
+    general.dependency 'MCVersion'
+    general.dependency 'MCStyle'
+    general.dependency 'MCBase'
+    general.dependency 'SDWebImage'
+  end
   
   s.frameworks = "UIKit", "Foundation", "VideoToolbox", "QuartzCore", "OpenGLES", "MobileCoreServices", 
-                 "MediaPlayer", "CoreVideo", "CoreMedia", "CoreGraphics", "AVFoundation", "AudioToolbox"
+                 "MediaPlayer", "CoreVideo", "CoreMedia", "CoreGraphics", "AVFoundation", "AudioToolbox", 'IJKP'
 
 end
