@@ -45,6 +45,38 @@ GeneralPlayerUI 样式依赖于'MCStyle'，Example/Classes/Modules/GeneralPlayer
 
 Run `pod install`
 
+#### 手动集成(swift pod 集成错误问题)
+最近关注到了swift项目使用use_framework后无法下载MCPlayerKit,主要是由于IJKMediaFramework.framework是静态库导致, 近期安排时间修复此问题. 若项目急切使用此模块,请按照下面的方式手动集成.
+```text
+1. 下载IJKMediaFramework.framework(https://e.coding.net/lp_mr/MCIJKPlayer.git), 手动拖动到项目中, 并添加
+#         AudioToolbox.framework
+#         AVFoundation.framework
+#         CoreGraphics.framework
+#         CoreMedia.framework
+#         CoreVideo.framework
+#         libbz2.tbd
+#         libz.tbd
+#         MediaPlayer.framework
+#         MobileCoreServices.framework
+#         OpenGLES.framework
+#         QuartzCore.framework
+#         UIKit.framework
+#         VideoToolbox.framework
+2. pod中增加以下依赖库
+   pod 'MCVersion'
+   pod 'MCStyle'
+   Pod 'MCBase'
+   pod 'SDWebImage'
+3. 手动把MCPlayerKit/SDK 复制到你项目中
+   编译 修改一些类的引入头文件问题
+
+4  通过xxxx-Bridging-Header.h 导入 
+     #import “MCPlayerKitDef.h”
+     #import “MCPlayerGeneralView.h”
+5 swift 文件调用验证
+```
+
+
 
 ## 使用方法
 
