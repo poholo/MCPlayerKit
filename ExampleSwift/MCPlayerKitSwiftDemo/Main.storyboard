@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MCIJKPlayerTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bqU-pl-ep5">
+                                <rect key="frame" x="0.0" y="44" width="414" height="400"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="400" id="epy-x7-Aln"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kEb-fg-6cK">
+                                <rect key="frame" x="15" y="454" width="184.5" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="NLc-mw-lTX"/>
+                                </constraints>
+                                <state key="normal" title="IJKFrameWorkTest"/>
+                                <connections>
+                                    <action selector="ijkTest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="89m-dV-XdX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wBD-Qp-vFr">
+                                <rect key="frame" x="214.5" y="461" width="184.5" height="30"/>
+                                <state key="normal" title="MCPlayerTest"/>
+                                <connections>
+                                    <action selector="mcplayerKitTest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BoM-X9-3CX"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="bqU-pl-ep5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="3pM-rA-ayN"/>
+                            <constraint firstItem="bqU-pl-ep5" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="3qO-bN-qod"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bqU-pl-ep5" secondAttribute="trailing" id="Efp-Gp-Kcj"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wBD-Qp-vFr" secondAttribute="trailing" constant="15" id="JrF-Rp-kZh"/>
+                            <constraint firstItem="wBD-Qp-vFr" firstAttribute="leading" secondItem="kEb-fg-6cK" secondAttribute="trailing" constant="15" id="N84-Ac-lzb"/>
+                            <constraint firstItem="wBD-Qp-vFr" firstAttribute="height" secondItem="kEb-fg-6cK" secondAttribute="height" multiplier="0.681818" id="RqJ-Dm-Qf4"/>
+                            <constraint firstItem="kEb-fg-6cK" firstAttribute="top" secondItem="bqU-pl-ep5" secondAttribute="bottom" constant="10" id="T1Q-Xx-x04"/>
+                            <constraint firstItem="wBD-Qp-vFr" firstAttribute="centerY" secondItem="kEb-fg-6cK" secondAttribute="centerY" id="e77-gU-GL5"/>
+                            <constraint firstItem="wBD-Qp-vFr" firstAttribute="leading" secondItem="kEb-fg-6cK" secondAttribute="trailing" constant="15" id="s9m-zS-rBV"/>
+                            <constraint firstItem="kEb-fg-6cK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="wDX-jF-6tZ"/>
+                            <constraint firstItem="wBD-Qp-vFr" firstAttribute="width" secondItem="kEb-fg-6cK" secondAttribute="width" id="xap-y3-68Y"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="basePlayerViewBoard" destination="bqU-pl-ep5" id="Hk0-ag-IQg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="123.88392857142857"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

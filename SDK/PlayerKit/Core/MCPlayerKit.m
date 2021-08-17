@@ -9,7 +9,7 @@
 
 #import "MCPlayerKit.h"
 
-#import <GCDMulticastDelegate.h>
+#import <GCDMulticastDelegate/GCDMulticastDelegate.h>
 
 #import "MCIJKPlayer.h"
 #import "MCAVPlayerx.h"

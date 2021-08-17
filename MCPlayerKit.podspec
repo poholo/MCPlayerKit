@@ -17,43 +17,31 @@ Pod::Spec.new do |s|
   s.subspec 'Core' do |core|
     core.source_files = 'SDK/PlayerKit/*.{h,m,mm}',
                         'SDK/PlayerKit/**/*.{h,m,mm}'
-    core.public_header_files = 'SDK/PlayerKit/*.h'
     core.dependency 'MCIJKPlayer'
     core.dependency 'GCDMulticastDelegate'
-  end
-
-  s.subspec 'SwiftCore' do |core|
-    core.source_files = 'SDK/PlayerKit/*.{h,m,mm}',
-                        'SDK/PlayerKit/**/*.{h,m,mm}'
-    core.public_header_files = 'SDK/PlayerKit/*.h'
-    core.dependency 'GCDMulticastDelegate'
+    core.vendored_frameworks = 'IJKMediaFramework.framework', 'GCDMulticastDelegate.framework'
   end
   
   s.subspec 'GeneralPlayerUI' do |general|
     general.source_files = 'SDK/GeneralPlayerUI/**/*.{h,m,mm}',
                            'SDK/GeneralPlayerUI/*.{h,m,mm}',
                            'SDK/Commen/*.{h,m,mm}'
-    general.public_header_files = 'SDK/GeneralPlayerUI/*.h'
     general.dependency 'MCPlayerKit/Core'
     general.dependency 'MCVersion'
     general.dependency 'MCStyle'
     general.dependency 'MCBase'
     general.dependency 'SDWebImage'
+    general.libraries   = 'bz2', 'z', 'c++'
+    general.vendored_frameworks = 'IJKMediaFramework.framework', 'GCDMulticastDelegate.framework', 'MCVersion.framework', 'MCStyle.framework', 'SDWebImage.framework'
   end
 
-  s.subspec 'SwiftGeneralPlayerUI' do |general|
-    general.source_files = 'SDK/GeneralPlayerUI/**/*.{h,m,mm}',
-                           'SDK/GeneralPlayerUI/*.{h,m,mm}',
-                           'SDK/Commen/*.{h,m,mm}'
-    general.public_header_files = 'SDK/GeneralPlayerUI/*.h'
-    general.dependency 'MCPlayerKit/SwiftCore'
-    general.dependency 'MCVersion'
-    general.dependency 'MCStyle'
-    general.dependency 'MCBase'
-    general.dependency 'SDWebImage'
-  end
-  
-  s.frameworks = "UIKit", "Foundation", "VideoToolbox", "QuartzCore", "OpenGLES", "MobileCoreServices", 
-                 "MediaPlayer", "CoreVideo", "CoreMedia", "CoreGraphics", "AVFoundation", "AudioToolbox", 'IJKP'
+  s.xcconfig = {
+    'HEADER_SEARCH_PATHS' => ['${PODS_ROOT}/MCPlayerKit/SDK/']
+  }
+  s.pod_target_xcconfig = {
+   'OTHER_LDFLAGS' => '-lz' 
+  }
+  s.static_framework = true
+  s.frameworks = ["UIKit", "Foundation", "VideoToolbox", "QuartzCore", "OpenGLES", "MobileCoreServices", "MediaPlayer", "CoreVideo", "CoreMedia", "CoreGraphics", "AVFoundation", "AudioToolbox"]
 
 end

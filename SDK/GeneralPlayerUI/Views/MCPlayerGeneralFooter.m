@@ -6,7 +6,8 @@
 
 #import "MCPlayerGeneralFooter.h"
 
-#import <MCStyleDef.h>
+//#import <MCStyleDef.h>
+#import <MCStyle/MCStyleDef.h>
 
 #import "MCPlayerProgress.h"
 #import "NSNumber+MCExtend.h"
