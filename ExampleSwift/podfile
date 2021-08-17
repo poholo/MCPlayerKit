@@ -7,12 +7,5 @@ use_frameworks!
 
 
 target "MCPlayerKitSwiftDemo" do
-  
   pod 'MCPlayerKit/GeneralPlayerUI', path: '../'
-
-#  pod 'MCIJKPlayer', '0.1.1'
-#  pod 'MCPlayerKit/SwiftGeneralPlayerUI', git: 'https://github.com/poholo/MCPlayerkit.git'
-  pod 'MCIJKPlayer', path: '../../MCIJKPlayer/'
-  pod 'MCStyle', path: '../../MCStyle/'
-  pod 'MCBase', path: '../../MCBase/'
 end

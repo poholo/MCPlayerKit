@@ -7,6 +7,12 @@
 
 [MCPlayerKit](https://github.com/poholo/MCPlayerKit) 是基于AVPlayer和IJKPlayer做的一款播放内核播放模块，做IJKPlayer支持是因为AVPlayer对于一些格式协议的支持的补充，比如flv、RTMP等。
 [MCPlayerKit/GeneralPlayerUI]是一套基于MCPlayerKit高度封装16:9模式的播放UI，可以通过MCStyle样式完全自定图标、部分custom区域等。
+
+## update
+
+```text
+0.2.3 fix swift cocoapods use_frameworks 集成报错问题(swift使用例子参照./ExampleSwift)
+```
 ## 特点
 ```text
 MCPlayerKit
@@ -45,36 +51,7 @@ GeneralPlayerUI 样式依赖于'MCStyle'，Example/Classes/Modules/GeneralPlayer
 
 Run `pod install`
 
-#### 手动集成(swift pod 集成错误问题)
-最近关注到了swift项目使用use_framework后无法下载MCPlayerKit,主要是由于IJKMediaFramework.framework是静态库导致, 近期安排时间修复此问题. 若项目急切使用此模块,请按照下面的方式手动集成.
-```text
-1. 下载IJKMediaFramework.framework(https://e.coding.net/lp_mr/MCIJKPlayer.git), 手动拖动到项目中, 并添加
-#         AudioToolbox.framework
-#         AVFoundation.framework
-#         CoreGraphics.framework
-#         CoreMedia.framework
-#         CoreVideo.framework
-#         libbz2.tbd
-#         libz.tbd
-#         MediaPlayer.framework
-#         MobileCoreServices.framework
-#         OpenGLES.framework
-#         QuartzCore.framework
-#         UIKit.framework
-#         VideoToolbox.framework
-2. pod中增加以下依赖库
-   pod 'MCVersion'
-   pod 'MCStyle'
-   Pod 'MCBase'
-   pod 'SDWebImage'
-3. 手动把MCPlayerKit/SDK 复制到你项目中
-   编译 修改一些类的引入头文件问题
-
-4  通过xxxx-Bridging-Header.h 导入 
-     #import “MCPlayerKitDef.h”
-     #import “MCPlayerGeneralView.h”
-5 swift 文件调用验证
-```
+0.2.3 已经解决swift cocoapods use_framework报错问题
 
 
 

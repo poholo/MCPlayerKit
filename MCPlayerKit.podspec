@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "MCPlayerKit"
-  s.version      = "0.2.3"
+  s.version      = "0.2.4"
   s.summary      = "MCPlayerKit is iOS Player, PlayerCoreType: AVPlayer can use play some video, IJKPlayer type can play video, Live ..."
   s.homepage     = "https://github.com/poholo/MCPlayerKit"
   s.license          = { :type => "MIT", :file => "LICENSE" }
@@ -35,9 +35,6 @@ Pod::Spec.new do |s|
     general.vendored_frameworks = 'IJKMediaFramework.framework', 'GCDMulticastDelegate.framework', 'MCVersion.framework', 'MCStyle.framework', 'SDWebImage.framework'
   end
 
-  s.xcconfig = {
-    'HEADER_SEARCH_PATHS' => ['${PODS_ROOT}/MCPlayerKit/SDK/']
-  }
   s.pod_target_xcconfig = {
    'OTHER_LDFLAGS' => '-lz' 
   }
