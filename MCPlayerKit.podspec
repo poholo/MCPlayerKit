@@ -19,7 +19,6 @@ Pod::Spec.new do |s|
                         'SDK/PlayerKit/**/*.{h,m,mm}'
     core.dependency 'MCIJKPlayer'
     core.dependency 'GCDMulticastDelegate'
-    core.vendored_frameworks = 'IJKMediaFramework.framework', 'GCDMulticastDelegate.framework'
   end
   
   s.subspec 'GeneralPlayerUI' do |general|
@@ -31,14 +30,14 @@ Pod::Spec.new do |s|
     general.dependency 'MCStyle'
     general.dependency 'MCBase'
     general.dependency 'SDWebImage'
-    general.libraries   = 'bz2', 'z', 'c++'
-    general.vendored_frameworks = 'IJKMediaFramework.framework', 'GCDMulticastDelegate.framework', 'MCVersion.framework', 'MCStyle.framework', 'SDWebImage.framework'
   end
 
   s.pod_target_xcconfig = {
    'OTHER_LDFLAGS' => '-lz' 
   }
   s.static_framework = true
+
+  s.libraries   = 'bz2', 'z', 'c++'
   s.frameworks = ["UIKit", "Foundation", "VideoToolbox", "QuartzCore", "OpenGLES", "MobileCoreServices", "MediaPlayer", "CoreVideo", "CoreMedia", "CoreGraphics", "AVFoundation", "AudioToolbox"]
 
 end
