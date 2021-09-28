@@ -7,5 +7,5 @@ use_frameworks!
 
 
 target "MCPlayerKitSwiftDemo" do
-  pod 'MCPlayerKit/GeneralPlayerUI', path: '../'
+  pod 'MCPlayerKit/GeneralPlayerUI', '0.2.3'
 end

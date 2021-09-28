@@ -11,6 +11,7 @@
 ## update
 
 ```text
+-   pod  install --repo-update --verbose 支持2021devices 
 0.2.3 fix swift cocoapods use_frameworks 集成报错问题(swift使用例子参照./ExampleSwift)
 ```
 ## 特点
